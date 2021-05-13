@@ -13,7 +13,8 @@
 		78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848611264C09EC00FA33F9 /* HomeListViewController.swift */; };
 		7884861D264C129D00FA33F9 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884861C264C129D00FA33F9 /* SelectionView.swift */; };
 		78848621264C492A00FA33F9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78848620264C492A00FA33F9 /* CoreLocation.framework */; };
-		78848624264CB3DB00FA33F9 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848623264CB3DB00FA33F9 /* MapViewModel.swift */; };
+		7884864E264CFFE300FA33F9 /* LandscapeCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884864C264CFFE300FA33F9 /* LandscapeCardCell.swift */; };
+		7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7884864D264CFFE300FA33F9 /* LandscapeCardCell.xib */; };
 		78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DD264BFCA300DF4190 /* AppDelegate.swift */; };
 		78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */; };
 		78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72E1264BFCA300DF4190 /* HomeViewController.swift */; };
@@ -31,7 +32,8 @@
 		78848611264C09EC00FA33F9 /* HomeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListViewController.swift; sourceTree = "<group>"; };
 		7884861C264C129D00FA33F9 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		78848620264C492A00FA33F9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		78848623264CB3DB00FA33F9 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		7884864C264CFFE300FA33F9 /* LandscapeCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeCardCell.swift; sourceTree = "<group>"; };
+		7884864D264CFFE300FA33F9 /* LandscapeCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandscapeCardCell.xib; sourceTree = "<group>"; };
 		78FA72DA264BFCA300DF4190 /* Discoffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discoffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FA72DD264BFCA300DF4190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 		78848617264C120200FA33F9 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				78848623264CB3DB00FA33F9 /* MapViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -112,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				7884861C264C129D00FA33F9 /* SelectionView.swift */,
+				7884864C264CFFE300FA33F9 /* LandscapeCardCell.swift */,
+				7884864D264CFFE300FA33F9 /* LandscapeCardCell.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			files = (
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
 				788485E6264BFF9D00FA33F9 /* GoogleService-Info.plist in Resources */,
+				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
 				78FA72E7264BFCA600DF4190 /* Assets.xcassets in Resources */,
 				78FA72E5264BFCA300DF4190 /* Main.storyboard in Resources */,
 			);
@@ -308,9 +312,9 @@
 				78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */,
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
-				78848624264CB3DB00FA33F9 /* MapViewModel.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				7884861D264C129D00FA33F9 /* SelectionView.swift in Sources */,
+				7884864E264CFFE300FA33F9 /* LandscapeCardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

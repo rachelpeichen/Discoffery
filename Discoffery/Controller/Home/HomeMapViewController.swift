@@ -61,7 +61,7 @@ extension HomeMapViewController: MKMapViewDelegate {
       return nil
     }
 
-    // 如果可行即將標註再重複使用
+    // 把標註重複使用
     var annotationView: MKMarkerAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 
     if annotationView == nil {
@@ -69,11 +69,9 @@ extension HomeMapViewController: MKMapViewDelegate {
       annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
     }
 
-    let annotationLabel = UILabel(frame: CGRect(x: -35, y: -60, width: 120, height: 40))
-
-    annotationLabel.adjustsFontSizeToFitWidth = true
-    annotationLabel.numberOfLines = 0
-
+//    let annotationLabel = UILabel(frame: CGRect(x: -35, y: -60, width: 120, height: 40))
+//    annotationLabel.adjustsFontSizeToFitWidth = true
+//    annotationLabel.numberOfLines = 0
 //    annotationLabel.text = "編號"
 //    annotationLabel.textColor = .white
 //    annotationLabel.textAlignment = .center
@@ -87,16 +85,20 @@ extension HomeMapViewController: MKMapViewDelegate {
 
     return annotationView
   }
+
+  // 導航功能
+  func navigateToSelectedCafe() {
+  }
 }
 
 extension HomeMapViewController: CLLocationManagerDelegate {
 
   // swiftlint:disable force_unwrapping
 
-  // 開啟update位置後 startUpdatingLocation()，觸發func locationManager, [CLLocation]會取得所有定位點，[0]為最新點 這是取得用戶的
+  // 開啟startUpdatingLocation()會，觸發func locationManager, [CLLocation]會取得所有定位點，[0]為最新點
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 
-    let userLocation: CLLocation = locations[0] //用戶當前位置
+    let userLocation: CLLocation = locations[0] // 用戶當前位置
 
     let request = MKLocalSearch.Request()
 
@@ -143,7 +145,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
         }
       }
     }
-    
+
     //  將用戶的placemark轉成地址 現在用不到
     CLGeocoder().reverseGeocodeLocation(userLocation) { placemark, error in
       if error != nil {
@@ -190,6 +192,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
       }
     }
   }
+
   // 將地址轉換為座標並標在地圖上 之後要用到的
   func transformAddressToPlacemark() {
 

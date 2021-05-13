@@ -187,18 +187,46 @@
                     <view key="view" contentMode="scaleToFill" id="QIw-3D-9Ee">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="605"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnL-p0-1hQ">
+                                <rect key="frame" x="16" y="30" width="150" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="1lm-uY-10S"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="排序條件：距離遠近" image="list.number" catalog="system">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LKd-hX-ua8">
+                                <rect key="frame" x="0.0" y="64" width="414" height="525"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="P1L-xG-BtU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="P1L-xG-BtU" firstAttribute="bottom" secondItem="LKd-hX-ua8" secondAttribute="bottom" constant="16" id="5sc-Js-Coe"/>
+                            <constraint firstItem="LKd-hX-ua8" firstAttribute="leading" secondItem="P1L-xG-BtU" secondAttribute="leading" id="JKP-mr-gi7"/>
+                            <constraint firstItem="LKd-hX-ua8" firstAttribute="trailing" secondItem="P1L-xG-BtU" secondAttribute="trailing" id="Qtf-iO-t9Q"/>
+                            <constraint firstItem="bnL-p0-1hQ" firstAttribute="top" secondItem="QIw-3D-9Ee" secondAttribute="top" constant="30" id="clk-cw-lXd"/>
+                            <constraint firstItem="bnL-p0-1hQ" firstAttribute="leading" secondItem="P1L-xG-BtU" secondAttribute="leading" constant="16" id="uCR-ty-xWe"/>
+                            <constraint firstItem="LKd-hX-ua8" firstAttribute="top" secondItem="bnL-p0-1hQ" secondAttribute="bottom" constant="16" id="xzX-TV-OqX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="LKd-hX-ua8" id="RvU-8q-bHn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LwV-kg-c9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2433" y="94"/>
+            <point key="canvasLocation" x="2430.434782608696" y="93.415178571428569"/>
         </scene>
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="list.number" catalog="system" width="128" height="97"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <namedColor name="AccentColor">
