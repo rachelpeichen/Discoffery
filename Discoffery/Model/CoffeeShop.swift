@@ -78,6 +78,7 @@ enum City: String, Codable {
 }
 
 enum LimitedTime: String, Codable {
+  // swiftlint:disable identifier_name
   case empty = ""
   case maybe = "maybe"
   case no

@@ -13,15 +13,12 @@ class HomeListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Properties
-  let homeMapViewModel = HomeMapViewModel()
 
   // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-      homeMapViewModel.fetchData()
-
+    // Do any additional setup after loading the view.
       setupTableView()
     }
 
@@ -74,5 +71,5 @@ extension HomeListViewController: UITableViewDataSource {
 }
 
 extension HomeListViewController: UITableViewDelegate {
-
+  // Do sth
 }

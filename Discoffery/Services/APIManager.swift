@@ -21,8 +21,6 @@ class APIManager {
       case .success:
 
         if let jsonData = response.data {
-
-          // print("👻 Get response = \(response)")
           
           do {
 
@@ -30,7 +28,7 @@ class APIManager {
 
             let coffeeShopsData: [CoffeeShop] = try decoder.decode([CoffeeShop].self, from: jsonData)
 
-            // 傳入data([CoffeeShop]型別)給Closure
+            // MARK: Pass data ([CoffeeShop]) to closure
             closure(coffeeShopsData)
           } catch let DecodingError.dataCorrupted(context) {
 
