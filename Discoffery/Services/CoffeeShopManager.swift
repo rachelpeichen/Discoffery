@@ -13,7 +13,7 @@ enum FirebaseError: Error {
     case documentError
 }
 
-enum MasterError: Error {
+enum OtherError: Error {
     case youKnowNothingError(String)
 }
 
@@ -21,11 +21,25 @@ class CoffeeShopManager {
 
   static let shared = CoffeeShopManager()
 
-  lazy var db = Firestore.firestore()
+  lazy var database = Firestore.firestore()
 
-  func fetchShops(){}
+  func publishShop(shop: CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
-  func publishShop(){}
+      let document = database.collection("coffeeShops").document()
+
+      document.setData(shop.toDict) { error in
+
+          if let error = error {
+
+              completion(.failure(error))
+          } else {
+
+              completion(.success("Success"))
+          }
+      }
+  }
 
   func deleteShop(){}
+
+  func fetchShops(){}
 }

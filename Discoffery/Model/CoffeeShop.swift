@@ -11,7 +11,7 @@ struct CoffeeShop: Codable {
 
   var id: String
   var name: String
-  var city: City
+// 
   var wifi: Double
   var seat: Double
   var quiet: Double
@@ -22,16 +22,16 @@ struct CoffeeShop: Codable {
   var address: String
   var latitude: String
   var longitude: String
-  var limitedTime: LimitedTime
-  var socket: LimitedTime
-  var standingDesk: LimitedTime
+//  var limitedTime: LimitedTime
+//  //var socket: LimitedTime
+//  var standingDesk: LimitedTime
   var mrt: String
   var openTime: String
 
   enum CodingKeys: String, CodingKey {
     case id = "id"
     case name = "name"
-    case city = "city"
+//    case city = "city"
     case wifi = "wifi"
     case seat = "seat"
     case quiet = "quiet"
@@ -42,9 +42,9 @@ struct CoffeeShop: Codable {
     case address = "address"
     case latitude = "latitude"
     case longitude = "longitude"
-    case limitedTime = "limited_time"
-    case socket = "socket"
-    case standingDesk = "standing_desk"
+//    case limitedTime = "limited_time"
+//    case socket = "socket"
+//    case standingDesk = "standing_desk"
     case mrt = "mrt"
     case openTime = "open_time"
   }
@@ -53,7 +53,7 @@ struct CoffeeShop: Codable {
     return [
     "id": id as Any,
     "name": name as Any,
-    "city": city as Any,
+//    "city": city as Any,
     "wifi": wifi as Any,
     "seat": seat as Any,
     "quiet": quiet as Any,
@@ -64,23 +64,23 @@ struct CoffeeShop: Codable {
     "address": address as Any,
     "latitude": latitude as Any,
     "longitude": longitude as Any,
-    "limited_time": limitedTime as Any,
-    "socket": socket as Any,
-    "standing_desk": standingDesk as Any,
+//    "limited_time": limitedTime as Any,
+//    "socket": socket as Any,
+//    "standing_desk": standingDesk as Any,
     "mrt": mrt as Any,
     "open_time": openTime as Any
     ]
   }
 }
+//
+//enum City: String, Codable {
+//  case taipei
+//}
 
-enum City: String, Codable {
-  case taipei
-}
-
-enum LimitedTime: String, Codable {
-  // swiftlint:disable identifier_name
-  case empty = ""
-  case maybe = "maybe"
-  case no
-  case yes = "yes"
-}
+//enum LimitedTime: String, Codable {
+//  // swiftlint:disable identifier_name
+//  case empty = ""
+//  case maybe = "maybe"
+//  case no
+//  case yes = "yes"
+//}

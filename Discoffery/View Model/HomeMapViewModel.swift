@@ -50,8 +50,29 @@ class HomeMapViewModel {
       shopAnnotation.title = shopsData[index].name
 
       shopAnnotations.append(shopAnnotation)
+
+      publishToFirebase(with: shopsData[index])
     }
     self.onShopsAnnotations?(shopAnnotations)
+  }
+
+  // MARK: 暫時放這邊把資料送上去
+
+  func publishToFirebase(with shop: CoffeeShop) {
+
+    CoffeeShopManager.shared.publishShop(shop: shop) { result in
+
+      switch result {
+
+      case .success:
+
+        print(" 🥴🥴 publidhToFirebase SUCCESS")
+
+      case .failure(let error):
+
+        print(" 🥴🥴 \(error)")
+      }
+    }
   }
 }
 //
