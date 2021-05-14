@@ -13,12 +13,15 @@ class HomeListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Properties
+  let homeMapViewModel = HomeMapViewModel()
 
   // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+      homeMapViewModel.fetchData()
+
       setupTableView()
     }
 
@@ -49,7 +52,8 @@ extension HomeListViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    if let cell = tableView.dequeueReusableCell(withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
+    if let cell = tableView.dequeueReusableCell(
+        withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
 
       cell.cafeMainImage.backgroundColor = .brown
       cell.cafeName.text = "這是一間名字很長的咖啡廳"
@@ -70,4 +74,5 @@ extension HomeListViewController: UITableViewDataSource {
 }
 
 extension HomeListViewController: UITableViewDelegate {
+
 }

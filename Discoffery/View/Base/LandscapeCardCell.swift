@@ -30,7 +30,6 @@ class LandscapeCardCell: UITableViewCell {
 
   @IBOutlet weak var itemTwo: UILabel!
 
-
   override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,5 +40,4 @@ class LandscapeCardCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }
