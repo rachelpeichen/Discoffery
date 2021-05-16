@@ -12,7 +12,7 @@ class APIManager {
 
   static let shared = APIManager()
 
-  func request(requestURL: String = "https://cafenomad.tw/api/v1.2/cafes/taipei", closure: @escaping ([CoffeeShop]) -> Void) {
+  func request(requestURL: String = "https://cafenomad.tw/api/v1.2/cafes", closure: @escaping ([CoffeeShop]) -> Void) {
 
     AF.request(requestURL, method: .get, encoding: JSONEncoding.default).responseJSON { response in
 

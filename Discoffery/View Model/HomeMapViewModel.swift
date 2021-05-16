@@ -25,6 +25,16 @@ class HomeMapViewModel {
     }
   }
 
+  var shopForPublish: CoffeeShop? {
+
+    didSet {
+
+      publishToFirebase(with: &(shopForPublish)!) { (true) in
+        print("🍎🍎completion handler says true!")
+      }
+    }
+  }
+
   func fetchData() {
 
     APIManager.shared.request { result in
@@ -37,7 +47,7 @@ class HomeMapViewModel {
 
     var shopAnnotations: [MKPointAnnotation] = []
 
-    guard let shopsData = shopsData else { return }
+    guard let shopsData = self.shopsData else { return }
 
     for index in 0..<shopsData.count {
 
@@ -51,26 +61,30 @@ class HomeMapViewModel {
 
       shopAnnotations.append(shopAnnotation)
 
-      publishToFirebase(with: shopsData[index])
+      self.shopForPublish = shopsData[index]
     }
     self.onShopsAnnotations?(shopAnnotations)
   }
 
   // MARK: 暫時放這邊把資料送上去
 
-  func publishToFirebase(with shop: CoffeeShop) {
+  func publishToFirebase(with shop: inout CoffeeShop, completion: @escaping (_ success: Bool) -> Void) {
 
-    CoffeeShopManager.shared.publishShop(shop: shop) { result in
+    CoffeeShopManager.shared.publishShop(shop: &shop) { result in
 
       switch result {
 
       case .success:
 
-        print(" 🥴🥴 publidhToFirebase SUCCESS")
+        print("🥴 Publish To Firebase Success")
+
+        completion(true)
 
       case .failure(let error):
 
         print(" 🥴🥴 \(error)")
+
+        completion(false)
       }
     }
   }

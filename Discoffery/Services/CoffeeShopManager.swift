@@ -23,9 +23,11 @@ class CoffeeShopManager {
 
   lazy var database = Firestore.firestore()
 
-  func publishShop(shop: CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+  func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
       let document = database.collection("coffeeShops").document()
+
+      shop.id = document.documentID
 
       document.setData(shop.toDict) { error in
 
@@ -37,6 +39,7 @@ class CoffeeShopManager {
               completion(.success("Success"))
           }
       }
+    print("✌🏻Finished publishing to Firebase!✌🏻")
   }
 
   func deleteShop(){}
