@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M6P-gk-fBN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--推薦-->
+        <scene sceneID="4i6-nO-g30">
+            <objects>
+                <viewController id="0Tj-rj-QTs" customClass="RecommendViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KnD-35-Nv9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbd-3S-7rS">
+                                <rect key="frame" x="134" y="508" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="RaE-Te-HMY"/>
+                                    <constraint firstAttribute="width" constant="42" id="dn0-yd-GnB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cta-8j-jZt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mbd-3S-7rS" firstAttribute="top" secondItem="cta-8j-jZt" secondAttribute="top" constant="420" id="Gzn-CS-WE1"/>
+                            <constraint firstItem="mbd-3S-7rS" firstAttribute="leading" secondItem="cta-8j-jZt" secondAttribute="leading" constant="134" id="RFP-8P-yve"/>
+                            <constraint firstItem="cta-8j-jZt" firstAttribute="bottom" secondItem="mbd-3S-7rS" secondAttribute="bottom" constant="333" id="ceh-S4-3tW"/>
+                            <constraint firstItem="cta-8j-jZt" firstAttribute="trailing" secondItem="mbd-3S-7rS" secondAttribute="trailing" constant="238" id="ze9-BU-dEz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="推薦" id="8sz-Vv-O75"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OsZ-9g-9PM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="776.81159420289862" y="872.54464285714278"/>
+        </scene>
+        <!--推薦-->
+        <scene sceneID="VrE-sa-sqf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M6P-gk-fBN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="推薦" image="hand.thumbsup" catalog="system" selectedImage="hand.thumbsup.fill" id="CCa-at-DQ3">
+                        <color key="badgeColor" systemColor="linkColor"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PQw-I2-RIT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0Tj-rj-QTs" kind="relationship" relationship="rootViewController" id="usp-GZ-HEM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HTl-F4-8pU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-133.33333333333334" y="872.54464285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

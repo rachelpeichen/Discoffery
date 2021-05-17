@@ -39,10 +39,8 @@ class CoffeeShopManager {
               completion(.success("Success"))
           }
       }
-    print("✌🏻Finished publishing to Firebase!✌🏻")
+    
   }
-
   func deleteShop(){}
-
   func fetchShops(){}
 }

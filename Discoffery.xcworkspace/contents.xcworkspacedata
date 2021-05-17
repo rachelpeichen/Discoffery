@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Discoffery/View/Collection/Collection.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:Discoffery.xcodeproj">
    </FileRef>
    <FileRef

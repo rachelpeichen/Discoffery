@@ -13,25 +13,23 @@ class HomeMapViewModel {
 
   // swiftlint:disable force_unwrapping
 
-  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // pass from ViewModel by closure
+  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // pass from ViewModel to Controller by closure
 
   var shopsData: [CoffeeShop]? {
 
-    didSet { // didSet：屬性觀察者，在屬性值更新後被呼叫！
+    didSet {
 
       guard let shopsData = shopsData else { return }
       
-      markAnnotationForShops(shops: shopsData)
+//      markAnnotationForShops(shops: shopsData)
     }
   }
 
-  var shopForPublish: CoffeeShop? {
+  var shopToPublish: CoffeeShop? {
 
     didSet {
 
-      publishToFirebase(with: &(shopForPublish)!) { (true) in
-        print("🍎🍎completion handler says true!")
-      }
+      // publishToFirebase(with: &(shopForPublish)!)
     }
   }
 
@@ -40,35 +38,41 @@ class HomeMapViewModel {
     APIManager.shared.request { result in
 
       self.shopsData = result
+      
+      for index in 0..<10 {
+
+        self.shopToPublish = result[index]
+
+        // print(self.shopToPublish)
+        self.publishToFirebase(with: &(self.shopToPublish)!)
+
+      }
     }
   }
 
-  func markAnnotationForShops(shops: [CoffeeShop]) {
+//  func markAnnotationForShops(shops: [CoffeeShop]) {
+//
+//    var shopAnnotations: [MKPointAnnotation] = []
+//
+//    guard let shopsData = self.shopsData else { return }
+//
+//    for index in 0..<shopsData.count {
+//
+//      let shopAnnotation = MKPointAnnotation()
+//
+//      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)!
+//
+//      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)!
+//
+//      shopAnnotation.title = shopsData[index].name
+//
+//      shopAnnotations.append(shopAnnotation)
+//    }
+//    self.onShopsAnnotations?(shopAnnotations)
+//  }
 
-    var shopAnnotations: [MKPointAnnotation] = []
-
-    guard let shopsData = self.shopsData else { return }
-
-    for index in 0..<shopsData.count {
-
-      let shopAnnotation = MKPointAnnotation()
-
-      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)!
-
-      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)!
-
-      shopAnnotation.title = shopsData[index].name
-
-      shopAnnotations.append(shopAnnotation)
-
-      self.shopForPublish = shopsData[index]
-    }
-    self.onShopsAnnotations?(shopAnnotations)
-  }
-
-  // MARK: 暫時放這邊把資料送上去
-
-  func publishToFirebase(with shop: inout CoffeeShop, completion: @escaping (_ success: Bool) -> Void) {
+  // MARK: 把資料送上去
+  func publishToFirebase(with shop: inout CoffeeShop) {
 
     CoffeeShopManager.shared.publishShop(shop: &shop) { result in
 
@@ -78,24 +82,23 @@ class HomeMapViewModel {
 
         print("🥴 Publish To Firebase Success")
 
-        completion(true)
-
       case .failure(let error):
 
-        print(" 🥴🥴 \(error)")
-
-        completion(false)
+        print("🥴🥴 \(error)")
+      default:
+        print("default")
       }
     }
+
+
   }
 }
-//
 //  let searchQuerys = ["coffee"]
 //
 //  var searchResults = [MKMapItem]()
 // extension HomeMapViewController: CLLocationManagerDelegate {
-//  // swiftlint:disable force_unwrapping
-//  // 開啟startUpdatingLocation()會，觸發func locationManager, [CLLocation]會取得所有定位點，[0]為最新點
+// swiftlint:disable force_unwrapping
+// 開啟startUpdatingLocation()會，觸發func locationManager, [CLLocation]會取得所有定位點，[0]為最新點
 //  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 //    let userLocation: CLLocation = locations[0] // 用戶當前位置
 //
@@ -191,4 +194,4 @@ class HomeMapViewModel {
 //      }
 //    }
 //  }
-//}
+// }

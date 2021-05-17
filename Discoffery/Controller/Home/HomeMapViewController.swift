@@ -24,20 +24,20 @@ class HomeMapViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view
 
-    trackUserLocation()
+    //trackUserLocation()
 
     homeMapViewModel.fetchData()
 
     homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
 
-      self?.mapView.showAnnotations(annotations, animated: true)
+      //self?.mapView.showAnnotations(annotations, animated: true)
     }
   }
 
   // MARK: - Functions
   func trackUserLocation() { // MVVM的話這個放在哪？？？？ LocationManager???
 
-    //     locationManager.delegate = self
+    //locationManager.delegate = self
 
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
 

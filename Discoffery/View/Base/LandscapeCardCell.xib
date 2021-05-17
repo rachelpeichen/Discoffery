@@ -35,6 +35,9 @@
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3G0-dX-BbF" customClass="CosmosView" customModule="Cosmos">
                         <rect key="frame" x="98.5" y="285.5" width="82" height="13"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstAttribute="width" constant="82" id="B8c-SA-Qw1"/>
                             <constraint firstAttribute="height" constant="13" id="NlC-LZ-zHd"/>
@@ -146,10 +149,11 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="openHours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4a-3y-2Gq">
-                        <rect key="frame" x="102" y="310" width="136" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="openHours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4a-3y-2Gq">
+                        <rect key="frame" x="101.5" y="310" width="77" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="0op-FN-TkM"/>
+                            <constraint firstAttribute="width" constant="77" id="RVz-0Z-baj"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

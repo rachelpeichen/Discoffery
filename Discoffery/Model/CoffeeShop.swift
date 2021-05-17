@@ -29,23 +29,23 @@ struct CoffeeShop: Codable {
   var openTime: String
 
   enum CodingKeys: String, CodingKey {
-    case id = "id"
-    case name = "name"
-    case city = "city"
-    case wifi = "wifi"
-    case seat = "seat"
-    case quiet = "quiet"
-    case tasty = "tasty"
-    case cheap = "cheap"
-    case music = "music"
-    case url = "url"
-    case address = "address"
-    case latitude = "latitude"
-    case longitude = "longitude"
+    case id
+    case name
+    case city
+    case wifi
+    case seat
+    case quiet
+    case tasty
+    case cheap
+    case music
+    case url
+    case address
+    case latitude
+    case longitude
     case limitedTime = "limited_time"
-    case socket = "socket"
+    case socket
     case standingDesk = "standing_desk"
-    case mrt = "mrt"
+    case mrt
     case openTime = "open_time"
   }
 

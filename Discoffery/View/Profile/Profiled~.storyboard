@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--主頁-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
@@ -97,7 +97,7 @@
                             <constraint firstItem="CMF-Qf-NgS" firstAttribute="top" secondItem="Sg4-nf-HzB" secondAttribute="top" constant="120" id="xeH-tz-iUq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="主頁" id="tNL-bZ-Jq2"/>
+                    <navigationItem key="navigationItem" title="Home" id="tNL-bZ-Jq2"/>
                     <connections>
                         <outlet property="listContainerView" destination="B4f-bV-tby" id="6Yh-gE-Xw8"/>
                         <outlet property="mapContainerView" destination="CMF-Qf-NgS" id="u8h-JZ-zz1"/>
@@ -108,12 +108,12 @@
             </objects>
             <point key="canvasLocation" x="1636.2318840579712" y="93.75"/>
         </scene>
-        <!--主頁-->
+        <!--Home-->
         <scene sceneID="Dfp-vf-clm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5mx-iK-8hg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="主頁" image="house" catalog="system" selectedImage="house.fill" id="cju-2d-vHa">
-                        <color key="badgeColor" systemColor="linkColor"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house" id="cju-2d-vHa">
+                        <color key="badgeColor" systemColor="systemPurpleColor"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jo7-ZT-zbc">
@@ -137,12 +137,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NZY-yG-8AY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="5mx-iK-8hg" kind="relationship" relationship="viewControllers" id="7tQ-IZ-pod"/>
                         <segue destination="aWf-d5-Q7N" kind="relationship" relationship="viewControllers" id="0dR-4E-BuW"/>
-                        <segue destination="wO0-P8-nwu" kind="relationship" relationship="viewControllers" id="Ds7-4q-ViQ"/>
-                        <segue destination="Wcy-IQ-95k" kind="relationship" relationship="viewControllers" id="0gb-P2-Uoa"/>
+                        <segue destination="Sle-EK-HhL" kind="relationship" relationship="viewControllers" id="gYu-9t-CsN"/>
+                        <segue destination="5Sq-LS-CsM" kind="relationship" relationship="viewControllers" id="0gb-P2-Uoa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QM2-Fv-Ucj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -176,42 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVC-5k-mb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2059" y="799"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="Kyn-8Z-Dgb">
-            <objects>
-                <viewController storyboardIdentifier="navigateToDetailVC" id="ZyS-FM-3Fj" customClass="DetailViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lo3-Vp-RYY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="551"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jfW-TD-NoX">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="551"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="ZyS-FM-3Fj" id="XXB-Xp-M4B"/>
-                                    <outlet property="delegate" destination="ZyS-FM-3Fj" id="jd3-5X-oJy"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="7B9-yc-mrp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="jfW-TD-NoX" firstAttribute="leading" secondItem="7B9-yc-mrp" secondAttribute="leading" id="Jzh-60-PzV"/>
-                            <constraint firstItem="jfW-TD-NoX" firstAttribute="trailing" secondItem="7B9-yc-mrp" secondAttribute="trailing" id="MGu-SM-07M"/>
-                            <constraint firstItem="jfW-TD-NoX" firstAttribute="bottom" secondItem="7B9-yc-mrp" secondAttribute="bottom" id="aYG-S0-JsB"/>
-                            <constraint firstItem="jfW-TD-NoX" firstAttribute="top" secondItem="7B9-yc-mrp" secondAttribute="top" id="lDY-qg-dnw"/>
-                        </constraints>
-                    </view>
-                    <size key="freeformSize" width="414" height="605"/>
-                    <connections>
-                        <outlet property="tableView" destination="jfW-TD-NoX" id="dHr-Xl-ljx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NQO-dw-GWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1208.6956521739132" y="1485.6026785714284"/>
+            <point key="canvasLocation" x="1637.68115942029" y="710.82589285714278"/>
         </scene>
         <!--Home List View Controller-->
         <scene sceneID="Vci-Ee-MkJ">
@@ -250,60 +216,57 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="LKd-hX-ua8" id="RvU-8q-bHn"/>
-                        <segue destination="ZyS-FM-3Fj" kind="showDetail" identifier="navigateToDetailVC" id="60v-pL-XVh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LwV-kg-c9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1275" y="799"/>
+            <point key="canvasLocation" x="2430.434782608696" y="93.415178571428569"/>
         </scene>
         <!--Recommend-->
         <scene sceneID="Aph-xr-5aY">
             <objects>
                 <viewControllerPlaceholder storyboardName="Recommend" id="aWf-d5-Q7N" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="推薦" image="hand.thumbsup" catalog="system" selectedImage="hand.thumbsup.fill" id="dai-Or-uFJ">
-                        <color key="badgeColor" systemColor="linkColor"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Item" id="dai-Or-uFJ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cLL-yh-w7m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-512" y="512"/>
+            <point key="canvasLocation" x="-169" y="532"/>
         </scene>
         <!--Profile-->
-        <scene sceneID="z4r-sb-DOZ">
+        <scene sceneID="JAK-cF-h62">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="Wcy-IQ-95k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="3" title="個人" image="person" catalog="system" selectedImage="person.fill" id="CqK-MR-dc5">
+                <viewController id="5Sq-LS-CsM" customClass="ProfileViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ihd-Ow-8yP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Q0j-SD-Ass"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle.fill" catalog="system" selectedImage="person.circle" id="3AR-kl-uZQ">
                         <color key="badgeColor" systemColor="linkColor"/>
                     </tabBarItem>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0lo-1o-XMX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OLv-y4-2bB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="225" y="512"/>
+            <point key="canvasLocation" x="308" y="851"/>
         </scene>
         <!--Collection-->
-        <scene sceneID="z1O-d5-DCU">
+        <scene sceneID="xLc-tZ-Dxu">
             <objects>
-                <viewControllerPlaceholder storyboardName="Collection" id="wO0-P8-nwu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="收藏" image="heart" catalog="system" selectedImage="heart.fill" id="ijl-q9-WTP">
-                        <color key="badgeColor" systemColor="linkColor"/>
-                    </tabBarItem>
+                <viewControllerPlaceholder storyboardName="Collection" id="Sle-EK-HhL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="fg7-vj-w7E"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wu5-ye-s9w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsN-qX-6vq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-184" y="518"/>
+            <point key="canvasLocation" x="-375" y="532"/>
         </scene>
     </scenes>
     <resources>
-        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
-        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="list.number" catalog="system" width="128" height="97"/>
-        <image name="person" catalog="system" width="128" height="117"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <namedColor name="AccentColor">
@@ -314,6 +277,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

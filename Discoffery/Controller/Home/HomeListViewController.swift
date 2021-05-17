@@ -15,12 +15,12 @@ class HomeListViewController: UIViewController {
   // MARK: - Properties
 
   // MARK: - View Life Cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-      setupTableView()
-    }
+    setupTableView()
+  }
 
   // MARK: - Functions
   private func setupTableView() {
@@ -38,6 +38,21 @@ class HomeListViewController: UIViewController {
     tableView.separatorStyle = .none
 
     tableView.reloadData()
+  }
+
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    if segue.identifier == "navigateToDetailVC" {
+
+      if let indexPath = tableView.indexPathForSelectedRow {
+
+        let detailVC = segue.destination as? DetailViewController
+
+        //        let product = hotsDisplayData.sections[indexPath.section].sectionProducts[indexPath.row]
+        //        destinationVC?.product = product
+      }
+    }
   }
 }
 
@@ -67,6 +82,13 @@ extension HomeListViewController: UITableViewDataSource {
       return cell
     }
     return UITableViewCell()
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "navigateToDetailVC") as? DetailViewController else { return }
+
+    self.show(detailVC, sender: self)
   }
 }
 
