@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C949265295D30048B5F5 /* ShopImagesCell.swift */; };
 		7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C94A265295D30048B5F5 /* ShopImagesCell.xib */; };
+		7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C94E2652BD740048B5F5 /* ProfileCell.swift */; };
 		787C2CA5264D824D001AC268 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA4264D824D001AC268 /* Location.swift */; };
 		787C2CAA264D8655001AC268 /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA9264D8655001AC268 /* LocationGeocoder.swift */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
@@ -58,6 +59,7 @@
 		0EE685447FE78E3B98775556 /* Pods-Discoffery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Discoffery.debug.xcconfig"; path = "Target Support Files/Pods-Discoffery/Pods-Discoffery.debug.xcconfig"; sourceTree = "<group>"; };
 		7839C949265295D30048B5F5 /* ShopImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCell.swift; sourceTree = "<group>"; };
 		7839C94A265295D30048B5F5 /* ShopImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCell.xib; sourceTree = "<group>"; };
+		7839C94E2652BD740048B5F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		787C2CA4264D824D001AC268 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		787C2CA9264D8655001AC268 /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
@@ -75,7 +77,7 @@
 		7884866A264D4D0000FA33F9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		78DF24D4265206A400F47A04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78DF24D92652080F00F47A04 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
-		78DF24DD265208A100F47A04 /* Recommend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recommend.storyboard; path = Discoffery/View/Recommend/Recommend.storyboard; sourceTree = SOURCE_ROOT; };
+		78DF24DD265208A100F47A04 /* Recommend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recommend.storyboard; path = Discoffery/View/Recommend.storyboard; sourceTree = SOURCE_ROOT; };
 		78DF24E526520B4100F47A04 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		78DF24EC26520B6A00F47A04 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		78DF24F826520D9500F47A04 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -123,11 +125,11 @@
 		78848615264C11F400FA33F9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				78DF24EA26520B5400F47A04 /* Profile */,
 				78848619264C123200FA33F9 /* Home */,
 				78DF24D7265206A900F47A04 /* Detail */,
 				78DF24E326520ACB00F47A04 /* Recommend */,
 				78DF24E426520B0E00F47A04 /* Collection */,
+				78DF24EA26520B5400F47A04 /* Profile */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -135,6 +137,10 @@
 		78848616264C11FC00FA33F9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				78FA72E3264BFCA300DF4190 /* Main.storyboard */,
+				78DF24DD265208A100F47A04 /* Recommend.storyboard */,
+				78DF250C2652120D00F47A04 /* Collection.storyboard */,
+				78DF24F826520D9500F47A04 /* Profile.storyboard */,
 				7884861B264C126400FA33F9 /* Base */,
 				7884861A264C124C00FA33F9 /* Home */,
 				78DF251A265251B600F47A04 /* Detail */,
@@ -176,7 +182,6 @@
 		7884861A264C124C00FA33F9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				78FA72E3264BFCA300DF4190 /* Main.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -223,7 +228,6 @@
 		78DF24E026520A5200F47A04 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				78DF24DD265208A100F47A04 /* Recommend.storyboard */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -231,7 +235,6 @@
 		78DF24E126520A7400F47A04 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				78DF250C2652120D00F47A04 /* Collection.storyboard */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -239,7 +242,7 @@
 		78DF24E226520A7C00F47A04 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				78DF24F826520D9500F47A04 /* Profile.storyboard */,
+				7839C94E2652BD740048B5F5 /* ProfileCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				78DF251D265251E100F47A04 /* ShopDescriptionCell.swift in Sources */,
 				7884865F264D36EA00FA33F9 /* HomeMapViewModel.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
+				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,
 				787C2CAA264D8655001AC268 /* LocationGeocoder.swift in Sources */,

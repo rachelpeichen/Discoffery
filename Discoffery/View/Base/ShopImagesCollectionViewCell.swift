@@ -15,5 +15,4 @@ class ShopImagesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
 }
