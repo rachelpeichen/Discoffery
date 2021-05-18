@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Koloda
 
 class RecommendViewController: UIViewController {
 

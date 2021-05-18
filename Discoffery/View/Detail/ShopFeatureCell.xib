@@ -19,9 +19,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特別推薦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ho3-vM-3IU">
                         <rect key="frame" x="16" y="16" width="65.5" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="17" id="4je-0l-6Ib"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -45,6 +42,7 @@
                     <constraint firstItem="HgK-yj-LPa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="41" id="gZU-KH-8nC"/>
                     <constraint firstItem="Ho3-vM-3IU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="oXe-3G-LgL"/>
                     <constraint firstAttribute="bottom" secondItem="HgK-yj-LPa" secondAttribute="bottom" constant="16" id="p5X-Nn-Ahx"/>
+                    <constraint firstAttribute="trailing" secondItem="Ho3-vM-3IU" secondAttribute="trailing" constant="238.5" id="s9V-N2-QlN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

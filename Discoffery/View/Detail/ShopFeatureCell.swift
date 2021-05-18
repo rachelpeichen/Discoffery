@@ -50,6 +50,3 @@ extension ShopFeatureCell: UICollectionViewDataSource {
     return cell ?? FeatureCollectionViewCell()
   }
 }
-
-
-

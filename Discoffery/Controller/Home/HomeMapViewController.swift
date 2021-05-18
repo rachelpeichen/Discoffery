@@ -26,7 +26,7 @@ class HomeMapViewController: UIViewController {
 
     //trackUserLocation()
 
-    homeMapViewModel.fetchData()
+    // homeMapViewModel.fetchData()
 
     homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
 

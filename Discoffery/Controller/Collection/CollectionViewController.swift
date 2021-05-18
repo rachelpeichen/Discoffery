@@ -9,9 +9,53 @@ import UIKit
 
 class CollectionViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  // MARK: Outlets
+  @IBOutlet weak var addNewCategory: UIBarButtonItem!
 
-        // Do any additional setup after loading the view.
+  @IBOutlet weak var tableView: UITableView!
+
+  // MARK: Properties
+
+  var categories: [String] = ["預設分類1", " 用戶分類1", "用戶分類2"]
+
+  // MARK: Life Cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view.
+    setupTableView()
+  }
+
+  // MARK: Functions
+  private func setupTableView() {
+
+    tableView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellReuseIdentifier: "collectionCell")
+
+    tableView.estimatedRowHeight = 300
+
+    tableView.rowHeight = UITableView.automaticDimension
+
+    tableView.reloadData()
+  }
+}
+
+extension CollectionViewController: UITableViewDataSource {
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 3
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    if let cell = tableView.dequeueReusableCell(withIdentifier: "collectionCell", for: indexPath) as? CollectionCell {
+
+      cell.category.text = categories[indexPath.row]
+
+      return cell
     }
+    return CollectionCell()
+  }
+}
+
+extension CollectionViewController: UITableViewDelegate {
 }

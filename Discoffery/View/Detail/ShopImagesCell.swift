@@ -9,9 +9,11 @@ import UIKit
 
 class ShopImagesCell: ShopDetailBasicCell {
 
-  var images: [String] = []
-
+  // MARK: Outlets
   @IBOutlet weak var collectionView: UICollectionView!
+
+  // MARK: Properties
+  var images: [String] = []
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -30,33 +32,21 @@ class ShopImagesCell: ShopDetailBasicCell {
     // Configure the view for the selected state
   }
 
+  // MARK: Functions
   private func setupCollectionView() {
-
-    collectionView.backgroundColor = .white
-
-    collectionView.isScrollEnabled = true
 
     collectionView.register(UINib(nibName: "ShopImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imagesCollectionCell")
 
-    setupCollectionViewLayout()
-  }
+    collectionView.isScrollEnabled = true
 
-  private func setupCollectionViewLayout() {
-
-    let flowLayout = UICollectionViewFlowLayout()
-    flowLayout.scrollDirection = .horizontal
-
-    flowLayout.itemSize = CGSize(width: 300, height: 300)
-    flowLayout.minimumLineSpacing = 6.0
-
-    collectionView.collectionViewLayout = flowLayout
+    collectionView.showsHorizontalScrollIndicator = true
   }
 }
 
 extension ShopImagesCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+    return 10
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -71,6 +61,13 @@ extension ShopImagesCell: UICollectionViewDataSource {
   }
 }
 
-extension ShopImagesCell: UICollectionViewDelegate {
-  
+extension ShopImagesCell: UICollectionViewDelegateFlowLayout {
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+      return 4.0
+  }
+}
+
+extension ShopImagesCell: UICollectionViewDelegate {   
 }

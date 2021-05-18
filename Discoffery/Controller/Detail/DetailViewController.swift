@@ -10,8 +10,6 @@ import UIKit
 class DetailViewController: UIViewController {
 
   // MARK: Outlets
-  @IBOutlet weak var collectionView: UICollectionView!
-
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: Properties
@@ -28,13 +26,6 @@ class DetailViewController: UIViewController {
   }
 
   // MARK: Functions
-//  private func setupCollectionView() {
-//
-//    collectionView.register(UINib(nibName: "ShopImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imagesCollectionCell")
-//
-//    collectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
-//  }
-
   private func setupTableView() {
 
     tableView.register(UINib(nibName: "ShopImagesCell", bundle: nil), forCellReuseIdentifier: "shopImagesCell")
@@ -71,6 +62,8 @@ extension DetailViewController: UITableViewDataSource {
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopImagesCell", for: indexPath) as? ShopImagesCell {
 
+        cell.selectionStyle = .none
+
         return cell
       }
 
@@ -79,11 +72,16 @@ extension DetailViewController: UITableViewDataSource {
 
         cell.name.text = "Cafe MDFKKKKKKK"
 
+        cell.selectionStyle = .none
+
         return cell
       }
 
     case 2:
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
+
+        cell.selectionStyle = .none
+
         return cell
       }
 
@@ -92,6 +90,8 @@ extension DetailViewController: UITableViewDataSource {
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
 
         cell.categoryLabel.text = "特色服務"
+
+        cell.selectionStyle = .none
         
         return cell
       }
@@ -99,12 +99,18 @@ extension DetailViewController: UITableViewDataSource {
     case 4:
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopRouteCell", for: indexPath) as? ShopRouteCell {
+
+        cell.selectionStyle = .none
+
         return cell
       }
 
     case 5:
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "writeReviewCell", for: indexPath) as? WriteReviewCell {
+
+        cell.selectionStyle = .none
+
         return cell
       }
 
@@ -114,22 +120,3 @@ extension DetailViewController: UITableViewDataSource {
     return UITableViewCell()
   }
 }
-
-//extension DetailViewController: UICollectionViewDataSource {
-//
-//  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//    return 3
-//  }
-//
-//  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//    //    guard let coffeeShop = coffeeShop else { return UITableViewCell() }
-//
-//    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imagesCollectionCell", for: indexPath) as? ShopImagesCollectionViewCell {
-//      cell.tmpMainImage.backgroundColor = .yellow
-//
-//      return cell
-//    }
-//    return ShopImagesCollectionViewCell()
-//  }
-//}

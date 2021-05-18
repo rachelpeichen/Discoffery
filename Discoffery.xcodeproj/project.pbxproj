@@ -10,6 +10,12 @@
 		7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C949265295D30048B5F5 /* ShopImagesCell.swift */; };
 		7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C94A265295D30048B5F5 /* ShopImagesCell.xib */; };
 		7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C94E2652BD740048B5F5 /* ProfileCell.swift */; };
+		7839C95F2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C95D2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift */; };
+		7839C9602652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C95E2652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib */; };
+		7839C9642652D42C0048B5F5 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C9622652D42C0048B5F5 /* CollectionCell.swift */; };
+		7839C9652652D42C0048B5F5 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C9632652D42C0048B5F5 /* CollectionCell.xib */; };
+		7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C9682652E59B0048B5F5 /* AddShopViewController.swift */; };
+		7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */; };
 		787C2CA5264D824D001AC268 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA4264D824D001AC268 /* Location.swift */; };
 		787C2CAA264D8655001AC268 /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA9264D8655001AC268 /* LocationGeocoder.swift */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
@@ -60,6 +66,12 @@
 		7839C949265295D30048B5F5 /* ShopImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCell.swift; sourceTree = "<group>"; };
 		7839C94A265295D30048B5F5 /* ShopImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCell.xib; sourceTree = "<group>"; };
 		7839C94E2652BD740048B5F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		7839C95D2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtraitCardCollectionCell.swift; sourceTree = "<group>"; };
+		7839C95E2652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProtraitCardCollectionCell.xib; sourceTree = "<group>"; };
+		7839C9622652D42C0048B5F5 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		7839C9632652D42C0048B5F5 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		7839C9682652E59B0048B5F5 /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
+		7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterViewController.swift; sourceTree = "<group>"; };
 		787C2CA4264D824D001AC268 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		787C2CA9264D8655001AC268 /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
@@ -122,9 +134,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7839C9672652E5580048B5F5 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				7839C9682652E59B0048B5F5 /* AddShopViewController.swift */,
+				7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
 		78848615264C11F400FA33F9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7839C9672652E5580048B5F5 /* Add */,
 				78848619264C123200FA33F9 /* Home */,
 				78DF24D7265206A900F47A04 /* Detail */,
 				78DF24E326520ACB00F47A04 /* Recommend */,
@@ -195,6 +217,8 @@
 				7884864C264CFFE300FA33F9 /* LandscapeCardCell.swift */,
 				7884864D264CFFE300FA33F9 /* LandscapeCardCell.xib */,
 				78DF251726524DE700F47A04 /* ShopDetailBasicCell.swift */,
+				7839C95D2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift */,
+				7839C95E2652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -235,6 +259,8 @@
 		78DF24E126520A7400F47A04 /* Collection */ = {
 			isa = PBXGroup;
 			children = (
+				7839C9622652D42C0048B5F5 /* CollectionCell.swift */,
+				7839C9632652D42C0048B5F5 /* CollectionCell.xib */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -416,10 +442,12 @@
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
 				78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */,
 				78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */,
+				7839C9602652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib in Resources */,
 				788485E6264BFF9D00FA33F9 /* GoogleService-Info.plist in Resources */,
 				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
 				78FA72E7264BFCA600DF4190 /* Assets.xcassets in Resources */,
 				78FA72E5264BFCA300DF4190 /* Main.storyboard in Resources */,
+				7839C9652652D42C0048B5F5 /* CollectionCell.xib in Resources */,
 				78DF24F926520D9500F47A04 /* Profile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,10 +519,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7839C95F2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift in Sources */,
+				7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */,
 				7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,
 				78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */,
+				7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */,
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
 				78DF253226525DD900F47A04 /* FeatureCollectionViewCell.swift in Sources */,
@@ -519,6 +550,7 @@
 				78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */,
 				7884861D264C129D00FA33F9 /* SelectionView.swift in Sources */,
 				7884864E264CFFE300FA33F9 /* LandscapeCardCell.swift in Sources */,
+				7839C9642652D42C0048B5F5 /* CollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

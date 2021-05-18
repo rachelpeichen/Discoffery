@@ -89,8 +89,6 @@ class HomeMapViewModel {
         print("default")
       }
     }
-
-
   }
 }
 //  let searchQuerys = ["coffee"]

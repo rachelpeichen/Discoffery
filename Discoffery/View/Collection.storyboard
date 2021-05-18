@@ -15,10 +15,34 @@
                     <view key="view" contentMode="scaleToFill" id="lYK-QA-Hxi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-qf-9K3">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jc4-4p-ye8" id="6AG-54-tRW"/>
+                                    <outlet property="delegate" destination="jc4-4p-ye8" id="pFz-OL-qmh"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="C8P-Ow-Yah"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="V3x-qf-9K3" firstAttribute="leading" secondItem="C8P-Ow-Yah" secondAttribute="leading" id="1iP-YY-wnV"/>
+                            <constraint firstItem="V3x-qf-9K3" firstAttribute="top" secondItem="C8P-Ow-Yah" secondAttribute="top" id="Mgd-qm-rUi"/>
+                            <constraint firstItem="V3x-qf-9K3" firstAttribute="trailing" secondItem="C8P-Ow-Yah" secondAttribute="trailing" id="WVP-kd-7Ef"/>
+                            <constraint firstItem="V3x-qf-9K3" firstAttribute="bottom" secondItem="C8P-Ow-Yah" secondAttribute="bottom" id="myr-bL-e56"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="收藏" id="6SC-4b-gA5"/>
+                    <navigationItem key="navigationItem" title="收藏" id="6SC-4b-gA5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="His-pV-zXz">
+                            <color key="tintColor" systemColor="linkColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addNewCategory" destination="His-pV-zXz" id="f55-ny-jMi"/>
+                        <outlet property="tableView" destination="V3x-qf-9K3" id="BBh-Zd-hsJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M77-hl-XTl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -283,6 +283,8 @@ PODS:
   - JGProgressHUD (2.2)
   - KeychainAccess (4.2.2)
   - Kingfisher (6.3.0)
+  - Koloda (5.0.1):
+    - pop (~> 1.0)
   - leveldb-library (1.22.1)
   - lottie-ios (3.2.2)
   - MJRefresh (3.5.0)
@@ -291,6 +293,7 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - pop (1.0.12)
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
   - PromisesObjC (1.2.12)
@@ -305,6 +308,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - KeychainAccess
   - Kingfisher
+  - Koloda
   - lottie-ios
   - MJRefresh
   - PopupDialog (~> 1.1)
@@ -330,10 +334,12 @@ SPEC REPOS:
     - JGProgressHUD
     - KeychainAccess
     - Kingfisher
+    - Koloda
     - leveldb-library
     - lottie-ios
     - MJRefresh
     - nanopb
+    - pop
     - PopupDialog
     - PromisesObjC
     - SwiftLint
@@ -357,14 +363,16 @@ SPEC CHECKSUMS:
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   lottie-ios: a033bb989eea77d9f99cc4e2bbdd3788229761ad
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 93c8e2672576cc1da8d6be73b7ec8e040ad8be6b
+PODFILE CHECKSUM: 46cc832b4ddaa9a5b7f82c58f9a7de974a362c03
 
 COCOAPODS: 1.10.1
