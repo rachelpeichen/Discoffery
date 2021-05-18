@@ -8,6 +8,8 @@ target 'Discoffery' do
   # Pods for Discoffery
   pod 'SwiftLint'
 
+  pod 'SnapKit', '~> 5.0.0'
+	
   pod 'Kingfisher'
 
   pod 'MJRefresh'
@@ -19,9 +21,9 @@ target 'Discoffery' do
   pod 'Alamofire', '~> 5.2'
 
   pod 'lottie-ios'
- 
-  pod 'PopupDialog', '~> 1.1'
 
+  pod 'SwiftEntryKit', '1.0.0'
+  
   pod 'Cosmos', '~> 23.0'
 
   pod 'KeychainAccess'

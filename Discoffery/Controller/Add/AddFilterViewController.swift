@@ -15,10 +15,7 @@ class AddFilterViewController: UIViewController {
 
     dismiss(animated: true, completion: nil)
   }
-
   @IBOutlet weak var distanceSlider: UISlider!
-
-
   override func viewDidLoad() {
         super.viewDidLoad()
 

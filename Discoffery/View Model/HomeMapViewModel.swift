@@ -21,76 +21,32 @@ class HomeMapViewModel {
 
       guard let shopsData = shopsData else { return }
       
-//      markAnnotationForShops(shops: shopsData)
+      markAnnotationForShops(shops: shopsData)
     }
   }
 
-  var shopToPublish: CoffeeShop? {
+  func markAnnotationForShops(shops: [CoffeeShop]) {
 
-    didSet {
+    var shopAnnotations: [MKPointAnnotation] = []
 
-      // publishToFirebase(with: &(shopForPublish)!)
+    guard let shopsData = self.shopsData else { return }
+
+    for index in 0..<shopsData.count {
+
+      let shopAnnotation = MKPointAnnotation()
+
+      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)!
+
+      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)!
+
+      shopAnnotation.title = shopsData[index].name
+
+      shopAnnotations.append(shopAnnotation)
     }
-  }
-
-  func fetchData() {
-
-    APIManager.shared.request { result in
-
-      self.shopsData = result
-      
-      for index in 0..<10 {
-
-        self.shopToPublish = result[index]
-
-        // print(self.shopToPublish)
-        self.publishToFirebase(with: &(self.shopToPublish)!)
-
-      }
-    }
-  }
-
-//  func markAnnotationForShops(shops: [CoffeeShop]) {
-//
-//    var shopAnnotations: [MKPointAnnotation] = []
-//
-//    guard let shopsData = self.shopsData else { return }
-//
-//    for index in 0..<shopsData.count {
-//
-//      let shopAnnotation = MKPointAnnotation()
-//
-//      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)!
-//
-//      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)!
-//
-//      shopAnnotation.title = shopsData[index].name
-//
-//      shopAnnotations.append(shopAnnotation)
-//    }
-//    self.onShopsAnnotations?(shopAnnotations)
-//  }
-
-  // MARK: 把資料送上去
-  func publishToFirebase(with shop: inout CoffeeShop) {
-
-    CoffeeShopManager.shared.publishShop(shop: &shop) { result in
-
-      switch result {
-
-      case .success:
-
-        print("🥴 Publish To Firebase Success")
-
-      case .failure(let error):
-
-        print("🥴🥴 \(error)")
-      default:
-        print("default")
-      }
-    }
+    self.onShopsAnnotations?(shopAnnotations)
   }
 }
+
 //  let searchQuerys = ["coffee"]
 //
 //  var searchResults = [MKMapItem]()

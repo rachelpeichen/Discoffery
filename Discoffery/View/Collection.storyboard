@@ -37,6 +37,9 @@
                     <navigationItem key="navigationItem" title="收藏" id="6SC-4b-gA5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="His-pV-zXz">
                             <color key="tintColor" systemColor="linkColor"/>
+                            <connections>
+                                <segue destination="avu-Km-9kF" kind="show" id="EL3-Gy-ObS"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -47,6 +50,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M77-hl-XTl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="889.85507246376824" y="1031.9196428571429"/>
+        </scene>
+        <!--Add Category View Controller-->
+        <scene sceneID="Km6-0s-C9z">
+            <objects>
+                <viewController id="avu-Km-9kF" customClass="AddCategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Baa-Pw-vFo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="hhb-vS-0YK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CjP-nP-sOB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5B0-dQ-4aL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1675" y="1032"/>
         </scene>
         <!--收藏-->
         <scene sceneID="9ac-gB-vWM">

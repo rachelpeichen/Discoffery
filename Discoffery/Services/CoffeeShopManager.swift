@@ -41,6 +41,4 @@ class CoffeeShopManager {
       }
     
   }
-  func deleteShop(){}
-  func fetchShops(){}
 }

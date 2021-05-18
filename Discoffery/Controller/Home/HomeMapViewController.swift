@@ -19,6 +19,10 @@ class HomeMapViewController: UIViewController {
 
   var locationManager = CLLocationManager()
 
+  var coffeeShopManager = CoffeeShopManager()
+
+  var APIdata: [CoffeeShop]?
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,18 +30,48 @@ class HomeMapViewController: UIViewController {
 
     //trackUserLocation()
 
-    // homeMapViewModel.fetchData()
+    //homeMapViewModel.fetchData()
 
-    homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
+    //    homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
+    //
+    //      self?.mapView.showAnnotations(annotations, animated: true)
+    //    }
+    
+    APIManager.shared.request { result in
 
-      //self?.mapView.showAnnotations(annotations, animated: true)
+      self.APIdata = result
+
+      print("🥴API總共抓到\(String(describing: self.APIdata?.count))筆資料")
+
+      for index in 0..<10 {
+
+        self.publishToFirebase(with: &self.APIdata![index])
+      }
     }
   }
 
   // MARK: - Functions
+  // Publish API data to Firebase (Only used at first time)
+  func publishToFirebase(with shop: inout CoffeeShop) {
+
+    CoffeeShopManager.shared.publishShop(shop: &shop) { result in
+
+      switch result {
+
+      case .success:
+
+        print("🥴Publish To Firebase Success")
+
+      case .failure(let error):
+
+        print("\(error)")
+      }
+    }
+  }
+
   func trackUserLocation() { // MVVM的話這個放在哪？？？？ LocationManager???
 
-    //locationManager.delegate = self
+    // locationManager.delegate = self
 
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
 

@@ -16,23 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tinder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cH8-F2-fKV">
-                                <rect key="frame" x="181" y="128" width="53" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2F-zc-JFe" customClass="KolodaView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cta-8j-jZt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="cH8-F2-fKV" firstAttribute="top" secondItem="cta-8j-jZt" secondAttribute="top" constant="40" id="2rj-jB-nZh"/>
-                            <constraint firstItem="cta-8j-jZt" firstAttribute="bottom" secondItem="cH8-F2-fKV" secondAttribute="bottom" constant="713" id="6pF-s7-B4h"/>
-                            <constraint firstItem="cH8-F2-fKV" firstAttribute="leading" secondItem="cta-8j-jZt" secondAttribute="leading" constant="181" id="eV6-Wj-jYk"/>
-                            <constraint firstItem="cta-8j-jZt" firstAttribute="trailing" secondItem="cH8-F2-fKV" secondAttribute="trailing" constant="180" id="skp-NR-WMs"/>
+                            <constraint firstItem="cta-8j-jZt" firstAttribute="bottom" secondItem="F2F-zc-JFe" secondAttribute="bottom" id="Dst-Il-slU"/>
+                            <constraint firstItem="cta-8j-jZt" firstAttribute="trailing" secondItem="F2F-zc-JFe" secondAttribute="trailing" id="QAB-QW-vPw"/>
+                            <constraint firstItem="F2F-zc-JFe" firstAttribute="top" secondItem="cta-8j-jZt" secondAttribute="top" id="UqF-aU-h6n"/>
+                            <constraint firstItem="F2F-zc-JFe" firstAttribute="leading" secondItem="cta-8j-jZt" secondAttribute="leading" id="VkH-n2-eAX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="推薦" id="8sz-Vv-O75"/>
+                    <connections>
+                        <outlet property="tinderView" destination="F2F-zc-JFe" id="L50-jA-FwR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OsZ-9g-9PM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
