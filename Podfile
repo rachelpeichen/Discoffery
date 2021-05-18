@@ -19,17 +19,12 @@ target 'Discoffery' do
   pod 'JGProgressHUD'
 
   pod 'Alamofire', '~> 5.2'
-
-  pod 'lottie-ios'
-
-  pod 'SwiftEntryKit', '1.0.0'
   
   pod 'Cosmos', '~> 23.0'
 
   pod 'KeychainAccess'
 
-  pod 'Koloda'
-
+  pod 'Eureka'
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 

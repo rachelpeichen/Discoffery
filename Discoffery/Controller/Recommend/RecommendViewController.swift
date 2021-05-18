@@ -6,11 +6,8 @@
 //
 
 import UIKit
-import Koloda
 
 class RecommendViewController: UIViewController {
-
-  @IBOutlet weak var tinderView: KolodaView!
 
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -21,33 +21,34 @@ class HomeMapViewController: UIViewController {
 
   var coffeeShopManager = CoffeeShopManager()
 
-  var APIdata: [CoffeeShop]?
+  var apiData: [CoffeeShop]?
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
+
     super.viewDidLoad()
     // Do any additional setup after loading the view
 
-    //trackUserLocation()
+     trackUserLocation()
 
-    //homeMapViewModel.fetchData()
-
-    //    homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
-    //
-    //      self?.mapView.showAnnotations(annotations, animated: true)
-    //    }
+//     homeMapViewModel.fetchData()
+//
+//        homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
+//
+//          self?.mapView.showAnnotations(annotations, animated: true)
+//        }
     
-    APIManager.shared.request { result in
-
-      self.APIdata = result
-
-      print("🥴API總共抓到\(String(describing: self.APIdata?.count))筆資料")
-
-      for index in 0..<10 {
-
-        self.publishToFirebase(with: &self.APIdata![index])
-      }
-    }
+//    APIManager.shared.request { result in
+//
+//      self.apiData = result
+//
+//      print("🥴API總共抓到\(String(describing: self.apiData?.count))筆資料")
+//
+//      for index in 0..<100 {
+//
+//        self.publishToFirebase(with: &self.apiData![index])
+//      }
+//    }
   }
 
   // MARK: - Functions
@@ -60,7 +61,7 @@ class HomeMapViewController: UIViewController {
 
       case .success:
 
-        print("🥴Publish To Firebase Success")
+        print("🥴Publish To Firebase Success!!")
 
       case .failure(let error):
 

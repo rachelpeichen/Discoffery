@@ -220,6 +220,7 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - Cosmos (23.0.0)
+  - Eureka (5.3.3)
   - Firebase/CoreOnly (6.34.0):
     - FirebaseCore (= 6.10.4)
   - Firebase/Firestore (6.34.0):
@@ -282,38 +283,29 @@ PODS:
   - JGProgressHUD (2.2)
   - KeychainAccess (4.2.2)
   - Kingfisher (6.3.0)
-  - Koloda (5.0.1):
-    - pop (~> 1.0)
   - leveldb-library (1.22.1)
-  - lottie-ios (3.2.2)
   - MJRefresh (3.5.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - pop (1.0.12)
   - PromisesObjC (1.2.12)
-  - QuickLayout (3.0.0)
   - SnapKit (5.0.1)
-  - SwiftEntryKit (1.0.0):
-    - QuickLayout (= 3.0.0)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Cosmos (~> 23.0)
+  - Eureka
   - Firebase/Firestore
   - FirebaseFirestoreSwift
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainAccess
   - Kingfisher
-  - Koloda
-  - lottie-ios
   - MJRefresh
   - SnapKit (~> 5.0.0)
-  - SwiftEntryKit (= 1.0.0)
   - SwiftLint
 
 SPEC REPOS:
@@ -322,6 +314,7 @@ SPEC REPOS:
     - Alamofire
     - BoringSSL-GRPC
     - Cosmos
+    - Eureka
     - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
@@ -335,16 +328,11 @@ SPEC REPOS:
     - JGProgressHUD
     - KeychainAccess
     - Kingfisher
-    - Koloda
     - leveldb-library
-    - lottie-ios
     - MJRefresh
     - nanopb
-    - pop
     - PromisesObjC
-    - QuickLayout
     - SnapKit
-    - SwiftEntryKit
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -352,6 +340,7 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
+  Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
@@ -365,18 +354,13 @@ SPEC CHECKSUMS:
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
-  Koloda: d07b9199a383abc5898b62aa945a599f5e7c0c4b
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
-  lottie-ios: a033bb989eea77d9f99cc4e2bbdd3788229761ad
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SwiftEntryKit: b76cb81f6685a7a8a200df5fc402691277fa7e9e
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 735a0ceb51183d39a02b5ef64a9602da22cbaf6b
+PODFILE CHECKSUM: f91dc9fbac2a587ac3b34516300fa315a5054e69
 
 COCOAPODS: 1.10.1

@@ -13,7 +13,7 @@ class HomeMapViewModel {
 
   // swiftlint:disable force_unwrapping
 
-  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // pass from ViewModel to Controller by closure
+  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // Pass from ViewModel to Controller by closure
 
   var shopsData: [CoffeeShop]? {
 

@@ -25,7 +25,7 @@ class CoffeeShopManager {
 
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
-      let document = database.collection("coffeeShops").document()
+      let document = database.collection("coffeeShopsForDemo").document()
 
       shop.id = document.documentID
 

@@ -31,7 +31,7 @@
 		78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848666264D3A7100FA33F9 /* CoffeeShop.swift */; };
 		7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884866A264D4D0000FA33F9 /* APIManager.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
-		7884FBBF2653AE820093F666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7884FBBE2653AE820093F666 /* GoogleService-Info.plist */; };
+		7884FBCC2653DDA70093F666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7884FBCB2653DDA70093F666 /* GoogleService-Info.plist */; };
 		78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D4265206A400F47A04 /* DetailViewController.swift */; };
 		78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D92652080F00F47A04 /* RecommendViewController.swift */; };
 		78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DF24DD265208A100F47A04 /* Recommend.storyboard */; };
@@ -88,7 +88,7 @@
 		78848666264D3A7100FA33F9 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		7884866A264D4D0000FA33F9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
-		7884FBBE2653AE820093F666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7884FBCB2653DDA70093F666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78DF24D4265206A400F47A04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78DF24D92652080F00F47A04 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		78DF24DD265208A100F47A04 /* Recommend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recommend.storyboard; path = Discoffery/View/Recommend.storyboard; sourceTree = SOURCE_ROOT; };
@@ -351,7 +351,7 @@
 				78FA72E6264BFCA600DF4190 /* Assets.xcassets */,
 				78FA72E8264BFCA600DF4190 /* LaunchScreen.storyboard */,
 				78FA72EB264BFCA600DF4190 /* Info.plist */,
-				7884FBBE2653AE820093F666 /* GoogleService-Info.plist */,
+				7884FBCB2653DDA70093F666 /* GoogleService-Info.plist */,
 			);
 			path = Discoffery;
 			sourceTree = "<group>";
@@ -447,7 +447,7 @@
 				78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */,
 				7839C9602652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib in Resources */,
 				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
-				7884FBBF2653AE820093F666 /* GoogleService-Info.plist in Resources */,
+				7884FBCC2653DDA70093F666 /* GoogleService-Info.plist in Resources */,
 				78FA72E7264BFCA600DF4190 /* Assets.xcassets in Resources */,
 				78FA72E5264BFCA300DF4190 /* Main.storyboard in Resources */,
 				7839C9652652D42C0048B5F5 /* CollectionCell.xib in Resources */,
