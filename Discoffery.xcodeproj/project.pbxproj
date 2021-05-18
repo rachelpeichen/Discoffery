@@ -32,6 +32,10 @@
 		7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884866A264D4D0000FA33F9 /* APIManager.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
 		7884FBCC2653DDA70093F666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7884FBCB2653DDA70093F666 /* GoogleService-Info.plist */; };
+		78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */; };
+		78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */; };
+		78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */; };
+		78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2942654388300726A5D /* WeekDaysCell.xib */; };
 		78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D4265206A400F47A04 /* DetailViewController.swift */; };
 		78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D92652080F00F47A04 /* RecommendViewController.swift */; };
 		78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DF24DD265208A100F47A04 /* Recommend.storyboard */; };
@@ -89,6 +93,10 @@
 		7884866A264D4D0000FA33F9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		7884FBCB2653DDA70093F666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenMRTRowsViewController.swift; sourceTree = "<group>"; };
+		78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomCheckRow&Cell.swift"; sourceTree = "<group>"; };
+		78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeatureViewController.swift; sourceTree = "<group>"; };
+		78DEC2942654388300726A5D /* WeekDaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekDaysCell.xib; sourceTree = "<group>"; };
 		78DF24D4265206A400F47A04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78DF24D92652080F00F47A04 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		78DF24DD265208A100F47A04 /* Recommend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recommend.storyboard; path = Discoffery/View/Recommend.storyboard; sourceTree = SOURCE_ROOT; };
@@ -142,6 +150,8 @@
 				7839C9682652E59B0048B5F5 /* AddShopViewController.swift */,
 				7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */,
 				7884FB782653A3F60093F666 /* AddCategoryViewController.swift */,
+				78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */,
+				78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -166,6 +176,7 @@
 				78DF24DD265208A100F47A04 /* Recommend.storyboard */,
 				78DF250C2652120D00F47A04 /* Collection.storyboard */,
 				78DF24F826520D9500F47A04 /* Profile.storyboard */,
+				78DEC28326541E8400726A5D /* Add */,
 				7884861B264C126400FA33F9 /* Base */,
 				7884861A264C124C00FA33F9 /* Home */,
 				78DF251A265251B600F47A04 /* Detail */,
@@ -242,6 +253,15 @@
 				787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		78DEC28326541E8400726A5D /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */,
+				78DEC2942654388300726A5D /* WeekDaysCell.xib */,
+			);
+			path = Add;
 			sourceTree = "<group>";
 		};
 		78DF24D7265206A900F47A04 /* Detail */ = {
@@ -443,6 +463,7 @@
 				78DF2524265251FE00F47A04 /* ShopFeatureCell.xib in Resources */,
 				78DF253326525DD900F47A04 /* FeatureCollectionViewCell.xib in Resources */,
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
+				78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */,
 				78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */,
 				78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */,
 				7839C9602652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib in Resources */,
@@ -539,8 +560,10 @@
 				7884865F264D36EA00FA33F9 /* HomeMapViewModel.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
+				78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,
+				78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */,
 				787C2CAA264D8655001AC268 /* LocationGeocoder.swift in Sources */,
 				78848654264D223D00FA33F9 /* Box.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
@@ -549,6 +572,7 @@
 				78DF25382652625200F47A04 /* WriteReviewCell.swift in Sources */,
 				78DF25472652717000F47A04 /* ShopImagesCollectionViewCell.swift in Sources */,
 				78DF251426524AD100F47A04 /* CoffeeShopContentCategory.swift in Sources */,
+				78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */,
 				78DF25422652670900F47A04 /* ShopRouteCell.swift in Sources */,
 				78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */,
 				7884861D264C129D00FA33F9 /* SelectionView.swift in Sources */,

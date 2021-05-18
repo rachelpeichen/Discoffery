@@ -4,6 +4,10 @@ excluded:
   - ${PWD}/DerivedData
   - ${PWD}/SceneDelegate.swift
   - ${PWD}/APPDelegate.swift
+  - ${PWD}/AddShopViewController.swift
+  - ${PWD}/HiddenMRTRowsViewController.swift
+  - ${PWD}/AddFeatureViewController.swift
+  - ${PWD}/CustomCheckRow&Cell.swift
 
 disabled_rules:
   - discarded_notification_center_observer

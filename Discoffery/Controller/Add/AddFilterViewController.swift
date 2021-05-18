@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Eureka
+import PopupDialog
 
-class AddFilterViewController: UIViewController {
+class AddFilterViewController: FormViewController {
 
   @IBOutlet weak var cnteredFilterView: UIView!
 
