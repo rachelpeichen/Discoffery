@@ -38,7 +38,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="His-pV-zXz">
                             <color key="tintColor" systemColor="linkColor"/>
                             <connections>
-                                <segue destination="avu-Km-9kF" kind="show" id="EL3-Gy-ObS"/>
+                                <segue destination="avu-Km-9kF" kind="showDetail" id="EL3-Gy-ObS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -51,21 +51,37 @@
             </objects>
             <point key="canvasLocation" x="889.85507246376824" y="1031.9196428571429"/>
         </scene>
-        <!--Add Category View Controller-->
+        <!--View Controller-->
         <scene sceneID="Km6-0s-C9z">
             <objects>
-                <viewController id="avu-Km-9kF" customClass="AddCategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="avu-Km-9kF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Baa-Pw-vFo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgH-cp-wP6">
+                                <rect key="frame" x="57" y="271" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Nd5-F1-lQu"/>
+                                    <constraint firstAttribute="height" constant="300" id="s8q-2Q-pqv"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="4gl-9J-aBD" kind="embed" id="d6Q-8I-3b4"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="hhb-vS-0YK"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AgH-cp-wP6" firstAttribute="centerY" secondItem="Baa-Pw-vFo" secondAttribute="centerY" id="AsH-N1-BRn"/>
+                            <constraint firstItem="AgH-cp-wP6" firstAttribute="centerX" secondItem="Baa-Pw-vFo" secondAttribute="centerX" id="Y0K-V9-d1W"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CjP-nP-sOB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5B0-dQ-4aL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1675" y="1032"/>
+            <point key="canvasLocation" x="1673.913043478261" y="1031.9196428571429"/>
         </scene>
         <!--收藏-->
         <scene sceneID="9ac-gB-vWM">
@@ -87,6 +103,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mVS-Pe-ehd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-20.289855072463769" y="1031.9196428571429"/>
+        </scene>
+        <!--Add Category View Controller-->
+        <scene sceneID="JIV-6F-toa">
+            <objects>
+                <viewController id="4gl-9J-aBD" customClass="AddCategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="LJo-P1-hCc">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HDV-8h-Ii9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2409" y="1032"/>
         </scene>
     </scenes>
     <resources>

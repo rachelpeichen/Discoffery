@@ -21,8 +21,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="新增咖啡廳" id="ZfU-qb-VDH"/>
                     <connections>
-                        <segue destination="z9C-tc-Uq0" kind="show" identifier="HiddenMRTRowsControllerSegue" id="BlF-i3-uMQ"/>
-                        <segue destination="Ly1-PZ-5Cp" kind="show" identifier="AddFeatureControllerSegue" id="aXH-0r-hth"/>
+                        <segue destination="z9C-tc-Uq0" kind="showDetail" identifier="HiddenMRTRowsControllerSegue" id="BlF-i3-uMQ"/>
+                        <segue destination="Ly1-PZ-5Cp" kind="showDetail" identifier="AddFeatureControllerSegue" id="aXH-0r-hth"/>
+                        <segue destination="ag4-Zt-LH6" kind="showDetail" identifier="OpenHoursNavigationControllerSegue" id="mZz-YE-EhL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAi-5R-rmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -34,7 +35,7 @@
             <objects>
                 <viewController id="z9C-tc-Uq0" customClass="HiddenMRTRowsViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sbz-Wn-vpm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="RER-Dz-Fbf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -43,14 +44,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="53i-3Y-tYR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4655" y="-151"/>
+            <point key="canvasLocation" x="3761" y="1213"/>
         </scene>
         <!--Add Feature View Controller-->
         <scene sceneID="gqm-SK-Mtz">
             <objects>
                 <viewController id="Ly1-PZ-5Cp" customClass="AddFeatureViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8N4-RD-ANH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="sxS-0P-jGg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -59,7 +60,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lPx-5y-la6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4654" y="567"/>
+            <point key="canvasLocation" x="2978" y="1213"/>
+        </scene>
+        <!--Add Open Hours View Controller-->
+        <scene sceneID="gsa-ev-ENS">
+            <objects>
+                <viewController id="ag4-Zt-LH6" customClass="AddOpenHoursViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r0g-xE-88D">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zVI-Cn-ytL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7oC-bi-vKQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4493" y="1213"/>
         </scene>
         <!--主頁-->
         <scene sceneID="tne-QT-ifu">
@@ -166,21 +182,36 @@
             </objects>
             <point key="canvasLocation" x="1636.2318840579712" y="93.75"/>
         </scene>
-        <!--Add Filter View Controller-->
+        <!--View Controller-->
         <scene sceneID="5oB-hp-Iu1">
             <objects>
-                <viewController id="qav-qx-MJM" customClass="AddFilterViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qav-qx-MJM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleAspectFill" id="vYM-09-ZAt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eam-Am-2mc">
+                                <rect key="frame" x="0.0" y="200" width="414" height="608"/>
+                                <connections>
+                                    <segue destination="Kqx-J8-kS2" kind="embed" id="uJj-QP-Yxa"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="i1z-Nw-yTN"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eam-Am-2mc" firstAttribute="top" secondItem="i1z-Nw-yTN" secondAttribute="top" constant="200" id="0NX-4F-NyK"/>
+                            <constraint firstItem="eam-Am-2mc" firstAttribute="bottom" secondItem="i1z-Nw-yTN" secondAttribute="bottom" id="ARi-K2-Lf2"/>
+                            <constraint firstItem="eam-Am-2mc" firstAttribute="leading" secondItem="vYM-09-ZAt" secondAttribute="leading" id="YIa-J5-YY4"/>
+                            <constraint firstItem="i1z-Nw-yTN" firstAttribute="trailing" secondItem="eam-Am-2mc" secondAttribute="trailing" id="fU4-5c-zLX"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Y1d-MN-vkF"/>
                     <size key="freeformSize" width="414" height="896"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZv-MU-XJQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3451" y="-423"/>
+            <point key="canvasLocation" x="3450.7246376811595" y="-423.21428571428572"/>
         </scene>
         <!--主頁-->
         <scene sceneID="Dfp-vf-clm">
@@ -366,6 +397,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wu5-ye-s9w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-184" y="518"/>
+        </scene>
+        <!--Add Filter View Controller-->
+        <scene sceneID="yVS-UR-dfu">
+            <objects>
+                <viewController id="Kqx-J8-kS2" customClass="AddFilterViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="ScM-uZ-Yb3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="608"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m90-MN-nj3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4259" y="-423"/>
         </scene>
     </scenes>
     <resources>

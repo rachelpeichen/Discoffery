@@ -28,6 +28,7 @@ class AddFeatureViewController: FormViewController {
         lrow.value = nil
       }
     }
+
     form +++ MultivaluedSection(multivaluedOptions:
                                   [.Insert, .Delete],
                                 header: "自己填特色啦",
@@ -46,7 +47,32 @@ class AddFeatureViewController: FormViewController {
         }
       }
     }
+    
+      <<< ButtonRow("我寫好ㄌ") { (row: ButtonRow) -> Void in
+
+        row.title = row.tag
+
+      } .onCellSelection { [weak self] cell, row in
+
+        showAlert()
+      }
+
+    func showAlert() {
+
+      let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
+
+      let defaultAction = UIAlertAction(title: "讚啦", style: .default, handler: nil)
+
+      let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
+
+      alertController.addAction(defaultAction)
+
+      alertController.addAction(cancelAction)
+
+      present(alertController, animated: true)
+    }
   }
+
   override func valueHasBeenChanged(for row: BaseRow, oldValue: Any?, newValue: Any?) {
 
     if row.section === form[0] {

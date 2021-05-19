@@ -6,26 +6,48 @@
 //
 
 import UIKit
-import SnapKit
+import Eureka
 
-class AddCategoryViewController: UIViewController {
-
-  let addCategoryView = UIView()
+class AddCategoryViewController: FormViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view
-  }
 
-  func setUpAddCategoryView() {
+    form +++ Section("新的收藏分類")
 
-    view.addSubview(addCategoryView)
+      <<< TextRow("新增分類名稱") { row in
 
-    addCategoryView.snp.makeConstraints { maker in
-      maker.size.equalTo(CGSize(width: 200, height: 200))
-      maker.center.equalTo(view)
+        row.title = row.tag
+
+        row.placeholder = "Enter text here"
+      }
+
+    form +++ Section()
+
+      <<< ButtonRow("我寫好ㄌ") { (row: ButtonRow) -> Void in
+
+        row.title = row.tag
+
+      } .onCellSelection { [weak self] cell, row in
+
+        showAlert()
+      }
+
+    func showAlert() {
+
+      let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
+
+      let defaultAction = UIAlertAction(title: "讚啦", style: .default, handler: nil)
+
+      let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
+
+      alertController.addAction(defaultAction)
+
+      alertController.addAction(cancelAction)
+
+      present(alertController, animated: true)
     }
-    addCategoryView.backgroundColor = .lightGray
   }
 }

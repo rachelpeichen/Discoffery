@@ -36,6 +36,8 @@
 		78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */; };
 		78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */; };
 		78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2942654388300726A5D /* WeekDaysCell.xib */; };
+		78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */; };
+		78DEC2B8265500A100726A5D /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2B7265500A000726A5D /* SwitchCell.xib */; };
 		78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D4265206A400F47A04 /* DetailViewController.swift */; };
 		78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D92652080F00F47A04 /* RecommendViewController.swift */; };
 		78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DF24DD265208A100F47A04 /* Recommend.storyboard */; };
@@ -97,6 +99,8 @@
 		78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomCheckRow&Cell.swift"; sourceTree = "<group>"; };
 		78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeatureViewController.swift; sourceTree = "<group>"; };
 		78DEC2942654388300726A5D /* WeekDaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekDaysCell.xib; sourceTree = "<group>"; };
+		78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOpenHoursViewController.swift; sourceTree = "<group>"; };
+		78DEC2B7265500A000726A5D /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		78DF24D4265206A400F47A04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78DF24D92652080F00F47A04 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		78DF24DD265208A100F47A04 /* Recommend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recommend.storyboard; path = Discoffery/View/Recommend.storyboard; sourceTree = SOURCE_ROOT; };
@@ -152,6 +156,7 @@
 				7884FB782653A3F60093F666 /* AddCategoryViewController.swift */,
 				78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */,
 				78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */,
+				78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			children = (
 				78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */,
 				78DEC2942654388300726A5D /* WeekDaysCell.xib */,
+				78DEC2B7265500A000726A5D /* SwitchCell.xib */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -466,6 +472,7 @@
 				78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */,
 				78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */,
 				78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */,
+				78DEC2B8265500A100726A5D /* SwitchCell.xib in Resources */,
 				7839C9602652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib in Resources */,
 				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
 				7884FBCC2653DDA70093F666 /* GoogleService-Info.plist in Resources */,
@@ -545,6 +552,7 @@
 			files = (
 				7839C95F2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift in Sources */,
 				7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */,
+				78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */,
 				7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,

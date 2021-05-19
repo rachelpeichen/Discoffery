@@ -49,8 +49,7 @@ class HiddenMRTRowsViewController: FormViewController {
 
     if row.section === form[0] {
       print("第1個section選到:\((row.section as! SelectableSection<CustomCheckRow<String>>).selectedRow()?.baseValue ?? "No row selected")")
-    }
-    else if row.section === form[1] {
+    } else if row.section === form[1] {
       print("第2個section選到:\((row.section as! SelectableSection<CustomCheckRow<String>>).selectedRow()?.baseValue ?? "No row selected")")
     }
   }

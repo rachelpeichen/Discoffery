@@ -99,8 +99,7 @@ final class WeekDayRow: Row<WeekDayCell>, RowType {
   }
 }
 
-//MARK: WeeklyDayCell
-
+// MARK: WeeklyDayCell
 public enum WeekDay {
   case monday, tuesday, wednesday, thursday, friday, saturday, sunday
 }
