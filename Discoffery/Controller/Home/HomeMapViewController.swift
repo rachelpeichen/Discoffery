@@ -26,11 +26,7 @@ class HomeMapViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view
 
-    homeMapViewModel.delegate = self
-
-    homeMapViewModel.getUserLocation()
-
-    setUpMapView()
+    locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
 
     homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
 
@@ -79,7 +75,9 @@ extension HomeMapViewController: HomeMapViewModelDelegate {
 
   func setUpMapView() {
 
-    mapView.delegate = self
+    homeMapViewModel.delegate = self // 這是 HomeMapViewModelDelegate
+
+    mapView.delegate = self // 這是 MKMapViewDelegate
 
     mapView.showsUserLocation = true
 
@@ -108,5 +106,39 @@ extension HomeMapViewController: MKMapViewDelegate {
     annotationView?.markerTintColor = .brown
 
     return annotationView
+  }
+}
+
+// MARK: - MKMapViewDelegate
+extension HomeMapViewController: CLLocationManagerDelegate {
+
+  func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    // Tells the delegate when the app creates the location manager and when the authorization status changes
+
+    manager.delegate = self
+
+    switch manager.authorizationStatus {
+
+    case .restricted:
+      print("⛔️ Location access was restricted.")
+
+    case .denied:
+      print("🚫 User denied access to location.")
+
+    case .notDetermined:
+      print("❓Location status not determined.")
+      
+      manager.requestWhenInUseAuthorization()
+
+    case .authorizedAlways, .authorizedWhenInUse:
+      print("👌🏻Location status is OK.")
+
+      homeMapViewModel.getUserCoordinates()
+
+      setUpMapView()
+
+    default:
+      print("🙄 蝦小")
+    }
   }
 }

@@ -15,18 +15,26 @@ class LocationManager {
 
   lazy var locationManager = CLLocationManager()
 
-  lazy var currentLocation = CLLocation()
+  weak var delegate: CLLocationManagerDelegate?
+
+  var currentLocation: CLLocation?
 
   // MARK: - Functions
-  func trackLocation() {
+  func trackLocation(completion: (_ latitude: Double, _ longitude: Double) -> Void) {
+    // Only executed if CLAuthorizationStatus = .authorizedAlways || .authorizedWhenInUse
+
+    delegate = locationManager.delegate
 
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
-    locationManager.requestWhenInUseAuthorization()
-
     locationManager.startUpdatingLocation()
+    
+    guard let currentLocation = locationManager.location else { return }
 
-    // 使用者移動多少距離後會更新座標點
-    locationManager.distanceFilter = 50
+    let latitude = Double(currentLocation.coordinate.latitude)
+
+    let longitude = Double(currentLocation.coordinate.longitude)
+
+    completion(latitude, longitude)
   }
 }

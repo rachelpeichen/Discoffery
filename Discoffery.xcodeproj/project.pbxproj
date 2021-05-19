@@ -16,7 +16,6 @@
 		7839C9652652D42C0048B5F5 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C9632652D42C0048B5F5 /* CollectionCell.xib */; };
 		7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C9682652E59B0048B5F5 /* AddShopViewController.swift */; };
 		7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */; };
-		787C2CA5264D824D001AC268 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA4264D824D001AC268 /* Location.swift */; };
 		787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA9264D8655001AC268 /* AddressGeocoder.swift */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
 		78848609264C051900FA33F9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78848608264C051900FA33F9 /* MapKit.framework */; };
@@ -80,7 +79,6 @@
 		7839C9632652D42C0048B5F5 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 		7839C9682652E59B0048B5F5 /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
 		7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterViewController.swift; sourceTree = "<group>"; };
-		787C2CA4264D824D001AC268 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		787C2CA9264D8655001AC268 /* AddressGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressGeocoder.swift; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
 		78848608264C051900FA33F9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -207,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				78848666264D3A7100FA33F9 /* CoffeeShop.swift */,
-				787C2CA4264D824D001AC268 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,7 +575,6 @@
 				787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */,
 				78848654264D223D00FA33F9 /* Box.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
-				787C2CA5264D824D001AC268 /* Location.swift in Sources */,
 				78DF251826524DE700F47A04 /* ShopDetailBasicCell.swift in Sources */,
 				78DF25382652625200F47A04 /* WriteReviewCell.swift in Sources */,
 				78DF25472652717000F47A04 /* ShopImagesCollectionViewCell.swift in Sources */,

@@ -21,8 +21,11 @@ class HomeMapViewModel {
   // MARK: - Properties
   weak var delegate: HomeMapViewModelDelegate?
 
+  var userLocation: [String: Double] = [:]
+
   var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // Pass from ViewModel to Controller by closure
 
+  // MARK: - 這個只能裝一大包
   var shopsData: [CoffeeShop]? {
 
     didSet {
@@ -34,13 +37,37 @@ class HomeMapViewModel {
   }
 
   // MARK: - Functions
-  func getUserLocation() {
-    // blablabla
-    LocationManager.shared.trackLocation()
+  func getUserCoordinates() {
+
+    LocationManager.shared.trackLocation { latitude, longitude in
+
+      self.userLocation["latitude"] = latitude
+
+      self.userLocation["longitude"] = longitude
+
+      print(self.userLocation as Any)
+    }
+  }
+
+  func getShopsCoordinates() {
+
+    CoffeeShopManager.shared.fetchShopCoordinates { [weak self] result in
+
+      switch result {
+
+      case .success(let data):
+
+        self?.shopsData = data
+
+      case .failure(let error):
+
+        print("getShopsCoordinates: \(error)")
+      }
+    }
   }
 
   func markAnnotationForShops(shops: [CoffeeShop]) {
-    // blablabla
+
     var shopAnnotations: [MKPointAnnotation] = []
 
     guard let shopsData = self.shopsData else { return }

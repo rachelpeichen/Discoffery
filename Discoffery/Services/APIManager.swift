@@ -28,7 +28,7 @@ class APIManager {
 
             let coffeeShopsData: [CoffeeShop] = try decoder.decode([CoffeeShop].self, from: jsonData)
 
-            // MARK: Pass data ([CoffeeShop]) to closure
+            // Pass data ([CoffeeShop]) to closure
             closure(coffeeShopsData)
           } catch let DecodingError.dataCorrupted(context) {
 

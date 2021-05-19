@@ -37,8 +37,8 @@ class HomeViewController: UIViewController {
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
 
+    // Do any additional setup after loading the view.
     selectionView.backgroundColor = .white
 
     mapContainerView.isHidden = false
@@ -59,7 +59,7 @@ class HomeViewController: UIViewController {
   }
 }
 
-// MARK: - Conform SelectionView protocol
+// MARK: - SelectionViewDataSource
 extension HomeViewController: SelectionViewDataSource {
 
   func titleOfButton(_ selectionView: SelectionView, at index: Int) -> String {
@@ -75,6 +75,7 @@ extension HomeViewController: SelectionViewDataSource {
   }
 }
 
+// MARK: - SelectionViewDelegate
 extension HomeViewController: SelectionViewDelegate {
 
   func didSelectedButton(_ selectionView: SelectionView, at index: Int) {
