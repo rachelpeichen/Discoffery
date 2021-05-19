@@ -44,14 +44,12 @@ class HomeMapViewModel {
       self.userLocation["latitude"] = latitude
 
       self.userLocation["longitude"] = longitude
-
-      print(self.userLocation as Any)
     }
   }
 
-  func getShopsCoordinates() {
+  func getShopsBy500m() {
 
-    CoffeeShopManager.shared.fetchShopCoordinates { [weak self] result in
+    CoffeeShopManager.shared.fetchShopByCoordinateRange { [weak self] result in
 
       switch result {
 
@@ -76,9 +74,9 @@ class HomeMapViewModel {
 
       let shopAnnotation = MKPointAnnotation()
 
-      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)!
+      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)
 
-      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)!
+      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)
 
       shopAnnotation.title = shopsData[index].name
 

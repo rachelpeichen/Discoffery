@@ -19,6 +19,8 @@ class LocationManager {
 
   var currentLocation: CLLocation?
 
+  var closure: ((CLLocationCoordinate2D) -> Void)?
+
   // MARK: - Functions
   func trackLocation(completion: (_ latitude: Double, _ longitude: Double) -> Void) {
     // Only executed if CLAuthorizationStatus = .authorizedAlways || .authorizedWhenInUse
@@ -31,10 +33,14 @@ class LocationManager {
     
     guard let currentLocation = locationManager.location else { return }
 
+    // Pass to HomeMapViewController
+    closure?(currentLocation.coordinate)
+
     let latitude = Double(currentLocation.coordinate.latitude)
 
     let longitude = Double(currentLocation.coordinate.longitude)
 
+    // Pass to HomeMapViewModel
     completion(latitude, longitude)
   }
 }

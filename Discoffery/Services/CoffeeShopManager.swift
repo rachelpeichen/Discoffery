@@ -44,36 +44,51 @@ class CoffeeShopManager {
     }
   }
 
-  func fetchShopCoordinates(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
+  func fetchShopByCoordinateRange(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
+    //  得到用戶的經緯度資料後抓區間去查詢
 
-    //  得到用戶的經緯度資料後抓一個區間去查詢
-    database.collection("coffeeShopsForDemo").whereField("latitude", isNotEqualTo: "").getDocuments { querySnapshot, error in
+    let ref = database.collection("queryByLatitude")
 
-      if let error = error {
+    ref
+//      .whereField("latitude", isGreaterThanOrEqualTo: 25.019815750976562)
+//
+//      .whereField("latitude", isLessThanOrEqualTo: 25.028798750976563)
 
-        completion(.failure(error))
+      .whereField("longitude", isGreaterThanOrEqualTo: 121.5245246038531)
 
-      } else {
+      .whereField("longitude", isLessThanOrEqualTo: 121.53443820977101)
 
-        var shopsData = [CoffeeShop]()
+      .getDocuments { querySnapshot, error in
 
-        for document in querySnapshot!.documents {
+        if let error = error {
 
-          do {
+          completion(.failure(error))
 
-            if let shopDocument = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+        } else {
 
-              shopsData.append(shopDocument)
+          var shopsData = [CoffeeShop]()
+
+          for document in querySnapshot!.documents {
+
+            do {
+
+              if let shopDocument = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
+                shopsData.append(shopDocument)
+
+//                // MARK: 測試先複製一份送上去第一個查詢條件
+//                let duplicateDoc = self.database.collection("queryByLatitude").document()
+//
+//                duplicateDoc.setData(shopDocument.toDict)
+
+              }
+            } catch {
+
+              completion(.failure(error))
             }
-          } catch {
-
-            completion(.failure(error))
           }
+          completion(.success(shopsData))
         }
-
-        completion(.success(shopsData))
       }
-    }
   }
-
 }
