@@ -1,5 +1,5 @@
 //
-//  LocationGeocoder.swift
+//  AddressGeocoder.swift
 //  Discoffery
 //
 //  Created by Pei Pei on 2021/5/14.
@@ -8,11 +8,13 @@
 import Foundation
 import CoreLocation
 
-class LocationGeocoder {
+class AddressGeocoder {
 
-  private lazy var geocoder = CLGeocoder()
+  static let shared = AddressGeocoder()
 
-  // Convert a place address to a location
+  lazy var geocoder = CLGeocoder()
+
+  // MARK: Convert a place's address to a location
   func geocode(addressString: String, callback: @escaping ([Location]) -> Void) {
 
     geocoder.geocodeAddressString(addressString) { placemarks, error in
@@ -22,6 +24,7 @@ class LocationGeocoder {
       if let error = error {
 
         print("Geocoding error: (\(error))")
+
       } else {
 
         if let placemarks = placemarks {

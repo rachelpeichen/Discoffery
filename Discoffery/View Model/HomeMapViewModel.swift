@@ -9,9 +9,17 @@ import Foundation
 import CoreLocation
 import MapKit
 
+protocol HomeMapViewModelDelegate: AnyObject {
+
+  func setUpMapView()
+}
+
 class HomeMapViewModel {
 
   // swiftlint:disable force_unwrapping
+
+  // MARK: - Properties
+  weak var delegate: HomeMapViewModelDelegate?
 
   var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // Pass from ViewModel to Controller by closure
 
@@ -25,8 +33,14 @@ class HomeMapViewModel {
     }
   }
 
-  func markAnnotationForShops(shops: [CoffeeShop]) {
+  // MARK: - Functions
+  func getUserLocation() {
+    // blablabla
+    LocationManager.shared.trackLocation()
+  }
 
+  func markAnnotationForShops(shops: [CoffeeShop]) {
+    // blablabla
     var shopAnnotations: [MKPointAnnotation] = []
 
     guard let shopsData = self.shopsData else { return }

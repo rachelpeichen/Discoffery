@@ -10,11 +10,11 @@ import Firebase
 import FirebaseFirestoreSwift
 
 enum FirebaseError: Error {
-    case documentError
+  case documentError
 }
 
 enum OtherError: Error {
-    case youKnowNothingError(String)
+  case youKnowNothingError(String)
 }
 
 class CoffeeShopManager {
@@ -23,22 +23,26 @@ class CoffeeShopManager {
 
   lazy var database = Firestore.firestore()
 
+  // MARK: Add a new collection to Firebase
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
-      let document = database.collection("coffeeShopsForDemo").document()
+    let document = database.collection("coffeeShopsForDemo").document()
 
-      shop.id = document.documentID
+    shop.id = document.documentID
 
-      document.setData(shop.toDict) { error in
+    document.setData(shop.toDict) { error in
 
-          if let error = error {
+      if let error = error {
 
-              completion(.failure(error))
-          } else {
+        completion(.failure(error))
+      } else {
 
-              completion(.success("Success"))
-          }
+        completion(.success("Success"))
       }
-    
+    }
+  }
+
+  // MARK: Search coffee shops within speicific range by user's current location
+  func fetchShopByLocation() {
   }
 }

@@ -17,7 +17,7 @@
 		7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C9682652E59B0048B5F5 /* AddShopViewController.swift */; };
 		7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */; };
 		787C2CA5264D824D001AC268 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA4264D824D001AC268 /* Location.swift */; };
-		787C2CAA264D8655001AC268 /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA9264D8655001AC268 /* LocationGeocoder.swift */; };
+		787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA9264D8655001AC268 /* AddressGeocoder.swift */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
 		78848609264C051900FA33F9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78848608264C051900FA33F9 /* MapKit.framework */; };
 		7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884860E264C09AF00FA33F9 /* HomeMapViewController.swift */; };
@@ -38,6 +38,7 @@
 		78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2942654388300726A5D /* WeekDaysCell.xib */; };
 		78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */; };
 		78DEC2B8265500A100726A5D /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2B7265500A000726A5D /* SwitchCell.xib */; };
+		78DEC2BB2655088C00726A5D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2BA2655088C00726A5D /* LocationManager.swift */; };
 		78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D4265206A400F47A04 /* DetailViewController.swift */; };
 		78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF24D92652080F00F47A04 /* RecommendViewController.swift */; };
 		78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DF24DD265208A100F47A04 /* Recommend.storyboard */; };
@@ -80,7 +81,7 @@
 		7839C9682652E59B0048B5F5 /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
 		7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterViewController.swift; sourceTree = "<group>"; };
 		787C2CA4264D824D001AC268 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		787C2CA9264D8655001AC268 /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
+		787C2CA9264D8655001AC268 /* AddressGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressGeocoder.swift; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
 		78848608264C051900FA33F9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7884860E264C09AF00FA33F9 /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		78DEC2942654388300726A5D /* WeekDaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekDaysCell.xib; sourceTree = "<group>"; };
 		78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOpenHoursViewController.swift; sourceTree = "<group>"; };
 		78DEC2B7265500A000726A5D /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		78DEC2BA2655088C00726A5D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		78DF24D4265206A400F47A04 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		78DF24D92652080F00F47A04 /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		78DF24DD265208A100F47A04 /* Recommend.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recommend.storyboard; path = Discoffery/View/Recommend.storyboard; sourceTree = SOURCE_ROOT; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				7884865E264D36EA00FA33F9 /* HomeMapViewModel.swift */,
+				78DF251326524AD100F47A04 /* CoffeeShopContentCategory.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -205,7 +208,6 @@
 			children = (
 				78848666264D3A7100FA33F9 /* CoffeeShop.swift */,
 				787C2CA4264D824D001AC268 /* Location.swift */,
-				78DF251326524AD100F47A04 /* CoffeeShopContentCategory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,8 +256,9 @@
 			isa = PBXGroup;
 			children = (
 				7884866A264D4D0000FA33F9 /* APIManager.swift */,
-				787C2CA9264D8655001AC268 /* LocationGeocoder.swift */,
+				787C2CA9264D8655001AC268 /* AddressGeocoder.swift */,
 				787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */,
+				78DEC2BA2655088C00726A5D /* LocationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -572,7 +575,7 @@
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,
 				78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */,
-				787C2CAA264D8655001AC268 /* LocationGeocoder.swift in Sources */,
+				787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */,
 				78848654264D223D00FA33F9 /* Box.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
 				787C2CA5264D824D001AC268 /* Location.swift in Sources */,
@@ -586,6 +589,7 @@
 				7884861D264C129D00FA33F9 /* SelectionView.swift in Sources */,
 				7884864E264CFFE300FA33F9 /* LandscapeCardCell.swift in Sources */,
 				7839C9642652D42C0048B5F5 /* CollectionCell.swift in Sources */,
+				78DEC2BB2655088C00726A5D /* LocationManager.swift in Sources */,
 				7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

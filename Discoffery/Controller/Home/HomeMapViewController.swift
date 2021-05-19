@@ -14,10 +14,7 @@ class HomeMapViewController: UIViewController {
   @IBOutlet var mapView: MKMapView!
 
   // MARK: - Properties
-
   var homeMapViewModel = HomeMapViewModel()
-
-  var locationManager = CLLocationManager()
 
   var coffeeShopManager = CoffeeShopManager()
 
@@ -29,31 +26,37 @@ class HomeMapViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view
 
-     trackUserLocation()
+    homeMapViewModel.delegate = self
 
-//     homeMapViewModel.fetchData()
-//
-//        homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
-//
-//          self?.mapView.showAnnotations(annotations, animated: true)
-//        }
-    
-//    APIManager.shared.request { result in
-//
-//      self.apiData = result
-//
-//      print("🥴API總共抓到\(String(describing: self.apiData?.count))筆資料")
-//
-//      for index in 0..<100 {
-//
-//        self.publishToFirebase(with: &self.apiData![index])
-//      }
-//    }
+    homeMapViewModel.getUserLocation()
+
+    setUpMapView()
+
+    homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
+
+      self?.mapView.showAnnotations(annotations, animated: true)
+    }
   }
 
   // MARK: - Functions
-  // Publish API data to Firebase (Only used at first time)
+  func fetchAPIdata() {
+    // Publish API data to Firebase (only used at first time)
+
+    APIManager.shared.request { result in
+
+      self.apiData = result
+
+      print("🥴API總共抓到\(String(describing: self.apiData?.count))筆資料")
+
+      for index in 0..<100 {
+
+        self.publishToFirebase(with: &self.apiData![index])
+      }
+    }
+  }
+
   func publishToFirebase(with shop: inout CoffeeShop) {
+    // Publish API data to Firebase (only used at first time)
 
     CoffeeShopManager.shared.publishShop(shop: &shop) { result in
 
@@ -69,16 +72,12 @@ class HomeMapViewController: UIViewController {
       }
     }
   }
+}
 
-  func trackUserLocation() { // MVVM的話這個放在哪？？？？ LocationManager???
+// MARK: - HomeMapViewModelDelegate
+extension HomeMapViewController: HomeMapViewModelDelegate {
 
-    // locationManager.delegate = self
-
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
-    locationManager.requestWhenInUseAuthorization()
-
-    locationManager.startUpdatingLocation()
+  func setUpMapView() {
 
     mapView.delegate = self
 
@@ -88,6 +87,7 @@ class HomeMapViewController: UIViewController {
   }
 }
 
+// MARK: - MKMapViewDelegate
 extension HomeMapViewController: MKMapViewDelegate {
 
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
