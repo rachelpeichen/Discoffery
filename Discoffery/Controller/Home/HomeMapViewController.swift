@@ -35,9 +35,7 @@ class HomeMapViewController: UIViewController {
       print(coordinate)
     }
 
-    fetchAPIThenPublish()
-
-    // homeMapViewModel.getShopsBy500m()
+    fetchAPIdata()
 
     homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
 
@@ -46,47 +44,23 @@ class HomeMapViewController: UIViewController {
   }
 
   // MARK: - Functions
-
-  func calMappingeRange() {
-
-    let currentLatitude = Double(userCurrentCoordinate.latitude)
-
-    let currentLongitude = Double(userCurrentCoordinate.longitude)
-
-    let newLatitudeUp = currentLatitude + (500 * 0.000008983)
-
-    let newLongitudeUp = currentLongitude + (500 * 0.000008983) / cos(currentLatitude * (Double.pi / 180))
-
-    let newLatitudeDown = currentLatitude + (-500 * 0.000008983)
-
-    let newLongitudeDown = currentLongitude + (-500 * 0.000008983) / cos(currentLatitude * (Double.pi / 180))
-
-    print("有夠土炮靠杯🙄")
-
-    print("現在的緯度是\(currentLatitude)現在的經度是\(currentLongitude)")
-
-    print("新緯度上限是\(newLatitudeUp)新經度上限是\(newLongitudeUp)")
-
-    print("新緯度下限是\(newLatitudeDown)新經度下限是\(newLongitudeDown)")
-  }
-
+  
   // MARK: - Publish API data to Firebase (only used at first time)
 
-  func fetchAPIThenPublish() {
+  func fetchAPIdata() {
 
     APIManager.shared.request { result in
 
-      for index in 0..<10 {
+      for index in 0..<5 {
 
         self.apiData.append(result[index])
 
         self.publishToFirebase(with: &self.apiData[index])
 
-        self.updateGeoOnFirebase(with: &self.apiData[index])
+        self.updateGeoPointOnFirebase(with: &self.apiData[index])
       }
       print(self.apiData)
-
-      print("API總共抓到\(String(describing: self.apiData.count))筆資料")
+      print("[apiData]存ㄌ\(String(describing: self.apiData.count))筆資料")
     }
   }
 
@@ -107,9 +81,9 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  func updateGeoOnFirebase(with shop: inout CoffeeShop) {
+  func updateGeoPointOnFirebase(with shop: inout CoffeeShop) {
 
-    CoffeeShopManager.shared.updateShopGeo(shop: &shop) { result in
+    CoffeeShopManager.shared.updateShopGeoPoint(shop: &shop) { result in
 
       switch result {
 
@@ -178,7 +152,6 @@ extension HomeMapViewController: HomeMapViewModelDelegate {
       latitudinalMeters: 500,
       longitudinalMeters: 500
     )
-    calMappingeRange()
   }
 }
 

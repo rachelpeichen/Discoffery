@@ -26,100 +26,103 @@ class CoffeeShopManager {
 
   lazy var database = Firestore.firestore()
 
+  let userLocation = CLLocationCoordinate2D(latitude: 25.024368286132812, longitude: 121.5294315869483) // 應該要var in HomeMapViewModel
+
   // MARK: - Functions
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     //  Add a new collection to Firebase
-    let document = database.collection("coffeeShopsForGeo").document()
+    let docRef = database.collection("shops").document()
 
-    shop.id = document.documentID
+    shop.id = docRef.documentID
 
-    document.setData(shop.toDict) { error in
+    docRef.setData(shop.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
+        
       } else {
-
         completion(.success("Success"))
       }
     }
   }
 
-  func updateShopGeo(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+  func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
-    // Compute the GeoHash for a lat/lng point
-    let lat = CLLocationDegrees(shop.latitude)
+    // Update location from original String to GeoPoint
+    let location = GeoPoint(latitude: Double(shop.latitude)!, longitude: Double(shop.longitude)!)
 
-    let lng = CLLocationDegrees(shop.longitude)
+    let updateField: [String: Any] = ["location": location]
 
-    let location = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+    let updatedDocRef = database.collection("shops").document(shop.id)
 
-    let hash = GFUtils.geoHash(forLocation: location)
-
-
-    let updateDoc: [String: Any] = ["geohash": hash ]
-
-    let updatedDocument = database.collection("coffeeShopsForGeo").document(shop.id)
-
-    updatedDocument.updateData(updateDoc) { error in
+    updatedDocRef.updateData(updateField) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
         completion(.success("success"))
       }
     }
   }
 
-  func fetchShopByCoordinateRange(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
-    //  得到用戶的經緯度資料後抓區間去查詢
+  func fetchShopWithinDistance(latitude: Double, longitude: Double, distance: Double = 500) {
 
-    let ref = database.collection("queryByLatitude")
+    // Find all shops within input meter of user's current location; default 500 m
 
-    ref
-      //      .whereField("latitude", isGreaterThanOrEqualTo: 25.019815750976562)
-      //
-      //      .whereField("latitude", isLessThanOrEqualTo: 25.028798750976563)
+    // 1 meter of lat and lng in degrees (roughly)
+    let lat = (Double.pi / 180) * 6371000.0
 
-      .whereField("longitude", isGreaterThanOrEqualTo: 121.5245246038531)
+    let lon = (Double.pi / 180) * 6371000.0 * cos(latitude/180)
 
-      .whereField("longitude", isLessThanOrEqualTo: 121.53443820977101)
+    let lowerLat = latitude - (lat * distance)
+    let lowerLon = longitude - (lon * distance)
 
-      .getDocuments { querySnapshot, error in
+    let greaterLat = latitude + (lat * distance)
+    let greaterLon = longitude + (lon * distance)
 
-        if let error = error {
+    let lesserGeopoint = GeoPoint(latitude: lowerLat, longitude: lowerLon)
+    let greaterGeopoint = GeoPoint(latitude: greaterLat, longitude: greaterLon)
 
-          completion(.failure(error))
+    let docRef = Firestore.firestore().collection("yo")
 
-        } else {
+    let query = docRef.whereField("location", isGreaterThan: lesserGeopoint).whereField("location", isLessThan: greaterGeopoint)
 
-          var shopsData = [CoffeeShop]()
-
-          for document in querySnapshot!.documents {
-
-            do {
-
-              if let shopDocument = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-
-                shopsData.append(shopDocument)
-
-                //                // MARK: 測試先複製一份送上去第一個查詢條件
-                //                let duplicateDoc = self.database.collection("queryByLatitude").document()
-                //
-                //                duplicateDoc.setData(shopDocument.toDict)
-
-              }
-            } catch {
-
-              completion(.failure(error))
-            }
-          }
-          completion(.success(shopsData))
+    query.getDocuments { snapshot, error in
+      if let error = error {
+        print("Error getting documents: \(error)")
+      } else {
+        for document in snapshot!.documents {
+          print("\(document.documentID) => \(document.data())")
         }
       }
+    }
+  }
+
+  func calDistanceBetweenTwoLocations(location1: CLLocationCoordinate2D, location2: CLLocationCoordinate2D) -> Double {
+
+    // Use Haversine Formula to calculate the distance in meter between two locations
+    // φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km)
+    let lat1 = location1.latitude
+    let lat2 = location2.latitude
+
+    let lon1 = location1.longitude
+    let lon2 = location2.longitude
+
+    let earthRadius = 6371000.0
+
+    let φ1 = lat1 * Double.pi / 180 // φ, λ in radians
+    let φ2 = lat2 * Double.pi / 180
+
+    let Δφ = (lat2 - lat1) * Double.pi / 180
+    let Δλ = (lon2 - lon1) * Double.pi / 180
+
+    let aaa = sin(Δφ/2) * sin(Δφ/2) + cos(φ1) * cos(φ2) * sin(Δλ/2) * sin(Δλ/2)
+    let ccc = 2 * atan2(sqrt(aaa), sqrt(1-aaa))
+
+    let distance = earthRadius * ccc
+
+    return distance
   }
 }

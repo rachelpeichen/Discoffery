@@ -25,7 +25,6 @@ class HomeMapViewModel {
 
   var onShopsAnnotations: (([MKPointAnnotation]) -> Void)?  // Pass from ViewModel to Controller by closure
 
-  // MARK: - 這個只能裝一大包
   var shopsData: [CoffeeShop]? {
 
     didSet {
@@ -44,23 +43,6 @@ class HomeMapViewModel {
       self.userLocation["latitude"] = latitude
 
       self.userLocation["longitude"] = longitude
-    }
-  }
-
-  func getShopsBy500m() {
-
-    CoffeeShopManager.shared.fetchShopByCoordinateRange { [weak self] result in
-
-      switch result {
-
-      case .success(let data):
-
-        self?.shopsData = data
-
-      case .failure(let error):
-
-        print("getShopsCoordinates: \(error)")
-      }
     }
   }
 
