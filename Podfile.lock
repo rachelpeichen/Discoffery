@@ -250,6 +250,7 @@ PODS:
     - nanopb (~> 1.30906.0)
   - FirebaseFirestoreSwift (0.4.0):
     - FirebaseFirestore (>= 1.6.1, ~> 1.6)
+  - GeoFire/Utils (4.2.0)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
   - GoogleUtilities/Environment (6.7.2):
@@ -296,6 +297,7 @@ PODS:
   - PromisesObjC (1.2.12)
   - SnapKit (5.0.1)
   - SwiftLint (0.43.1)
+  - VerticalCardSwiper (2.3.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -303,6 +305,7 @@ DEPENDENCIES:
   - Eureka
   - Firebase/Firestore
   - FirebaseFirestoreSwift
+  - GeoFire/Utils
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - KeychainAccess
@@ -311,6 +314,7 @@ DEPENDENCIES:
   - PopupDialog
   - SnapKit (~> 5.0.0)
   - SwiftLint
+  - VerticalCardSwiper
 
 SPEC REPOS:
   trunk:
@@ -325,6 +329,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
     - FirebaseFirestoreSwift
+    - GeoFire
     - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
@@ -340,6 +345,7 @@ SPEC REPOS:
     - PromisesObjC
     - SnapKit
     - SwiftLint
+    - VerticalCardSwiper
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -353,6 +359,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseFirestore: 9b2f1b9b9a6f2f0b6fb7484b9e32ab7e39243554
   FirebaseFirestoreSwift: 2c46dbc1156db97dc4f6dd798d4f5b57b9c7fab6
+  GeoFire: 4a0d0c1d3e635278f3d95c1dc33ddaec858c64f7
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
@@ -368,7 +375,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  VerticalCardSwiper: 68df635b354500f86934ea044ade37a264c044c6
 
-PODFILE CHECKSUM: 5ec8f928247f00c5c7482dc31fd7cc0b381a9044
+PODFILE CHECKSUM: 386fb6b29de2193ff3e8d35f41d9255d42d946ec
 
 COCOAPODS: 1.10.1

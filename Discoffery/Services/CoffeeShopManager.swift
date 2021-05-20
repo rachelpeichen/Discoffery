@@ -8,6 +8,8 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import CoreLocation
+import GeoFire
 
 enum FirebaseError: Error {
   case documentError
@@ -28,7 +30,7 @@ class CoffeeShopManager {
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     //  Add a new collection to Firebase
-    let document = database.collection("coffeeShopsForDemo").document()
+    let document = database.collection("coffeeShopsForGeo").document()
 
     shop.id = document.documentID
 
@@ -44,15 +46,44 @@ class CoffeeShopManager {
     }
   }
 
+  func updateShopGeo(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+
+    // Compute the GeoHash for a lat/lng point
+    let lat = CLLocationDegrees(shop.latitude)
+
+    let lng = CLLocationDegrees(shop.longitude)
+
+    let location = CLLocationCoordinate2D(latitude: lat!, longitude: lng!)
+
+    let hash = GFUtils.geoHash(forLocation: location)
+
+
+    let updateDoc: [String: Any] = ["geohash": hash ]
+
+    let updatedDocument = database.collection("coffeeShopsForGeo").document(shop.id)
+
+    updatedDocument.updateData(updateDoc) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("success"))
+      }
+    }
+  }
+
   func fetchShopByCoordinateRange(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
     //  得到用戶的經緯度資料後抓區間去查詢
 
     let ref = database.collection("queryByLatitude")
 
     ref
-//      .whereField("latitude", isGreaterThanOrEqualTo: 25.019815750976562)
-//
-//      .whereField("latitude", isLessThanOrEqualTo: 25.028798750976563)
+      //      .whereField("latitude", isGreaterThanOrEqualTo: 25.019815750976562)
+      //
+      //      .whereField("latitude", isLessThanOrEqualTo: 25.028798750976563)
 
       .whereField("longitude", isGreaterThanOrEqualTo: 121.5245246038531)
 
@@ -76,10 +107,10 @@ class CoffeeShopManager {
 
                 shopsData.append(shopDocument)
 
-//                // MARK: 測試先複製一份送上去第一個查詢條件
-//                let duplicateDoc = self.database.collection("queryByLatitude").document()
-//
-//                duplicateDoc.setData(shopDocument.toDict)
+                //                // MARK: 測試先複製一份送上去第一個查詢條件
+                //                let duplicateDoc = self.database.collection("queryByLatitude").document()
+                //
+                //                duplicateDoc.setData(shopDocument.toDict)
 
               }
             } catch {

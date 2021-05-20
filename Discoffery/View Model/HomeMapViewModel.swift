@@ -74,9 +74,9 @@ class HomeMapViewModel {
 
       let shopAnnotation = MKPointAnnotation()
 
-      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)
+      shopAnnotation.coordinate.longitude = Double(shopsData[index].longitude)!
 
-      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)
+      shopAnnotation.coordinate.latitude = Double(shopsData[index].latitude)!
 
       shopAnnotation.title = shopsData[index].name
 

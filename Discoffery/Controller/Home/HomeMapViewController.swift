@@ -16,11 +16,9 @@ class HomeMapViewController: UIViewController {
   // MARK: - Properties
   var homeMapViewModel = HomeMapViewModel()
 
-  var coffeeShopManager = CoffeeShopManager()
-
-  var locataionManager = LocationManager.shared.locationManager
-
   var userCurrentCoordinate = CLLocationCoordinate2D()
+
+  var apiData: [CoffeeShop] = []
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -28,17 +26,18 @@ class HomeMapViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view
 
-    locationManagerDidChangeAuthorization(locataionManager)
+    locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
 
     LocationManager.shared.closure = { coordinate in
 
       self.userCurrentCoordinate = coordinate
 
       print(coordinate)
-
     }
 
-    homeMapViewModel.getShopsBy500m()
+    fetchAPIThenPublish()
+
+    // homeMapViewModel.getShopsBy500m()
 
     homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
 
@@ -48,24 +47,19 @@ class HomeMapViewController: UIViewController {
 
   // MARK: - Functions
 
-  func calMappingeRange(){
-
-    // 1 degree in google map is equal to 111.32 Kilometer.
-    // 1 Degree = 111.32KM.
-    // 1KM in Degree = 1 / 111.32 = 0.008983.
-    // 1M in Degree = 0.000008983.
+  func calMappingeRange() {
 
     let currentLatitude = Double(userCurrentCoordinate.latitude)
 
     let currentLongitude = Double(userCurrentCoordinate.longitude)
 
-    var newLatitudeUp = currentLatitude + (500 * 0.000008983)
+    let newLatitudeUp = currentLatitude + (500 * 0.000008983)
 
-    var newLongitudeUp = currentLongitude + (500 * 0.000008983) / cos(currentLatitude * (Double.pi / 180))
+    let newLongitudeUp = currentLongitude + (500 * 0.000008983) / cos(currentLatitude * (Double.pi / 180))
 
-    var newLatitudeDown = currentLatitude + (-500 * 0.000008983)
+    let newLatitudeDown = currentLatitude + (-500 * 0.000008983)
 
-    var newLongitudeDown = currentLongitude + (-500 * 0.000008983) / cos(currentLatitude * (Double.pi / 180))
+    let newLongitudeDown = currentLongitude + (-500 * 0.000008983) / cos(currentLatitude * (Double.pi / 180))
 
     print("有夠土炮靠杯🙄")
 
@@ -74,41 +68,25 @@ class HomeMapViewController: UIViewController {
     print("新緯度上限是\(newLatitudeUp)新經度上限是\(newLongitudeUp)")
 
     print("新緯度下限是\(newLatitudeDown)新經度下限是\(newLongitudeDown)")
-
-
-    // MARK: - 偶不會三角函數啦幹我要算以現在座標上下左右五百公尺範圍的經緯度
-//    let currentLatitude = Double(userCurrentCoordinate.latitude)
-//
-//    let currentLongitude = Double(userCurrentCoordinate.longitude)
-//
-//    var earthRadius = 6378.137 // in kilometer
-//
-//    var pi = Double.pi
-//
-//    var cosinus = cos(90 * pi / 180)
-//
-//    var m = (1 / ((2 * pi / 360) * earthRadius)) / 1000  // 1 meter in degree
-//
-//    var newLatitude = currentLatitude + (500 * m)
-//
-//     var newLongitude = currentLongitude + (500 * m) / cosinus(currentLatitude * (pi / 180))
   }
 
   // MARK: - Publish API data to Firebase (only used at first time)
-  var apiData: [CoffeeShop]?
 
-  func fetchAPIdata() {
+  func fetchAPIThenPublish() {
 
     APIManager.shared.request { result in
 
-      self.apiData = result
+      for index in 0..<10 {
 
-      print("API總共抓到\(String(describing: self.apiData?.count))筆資料")
+        self.apiData.append(result[index])
 
-      for index in 0..<100 {
+        self.publishToFirebase(with: &self.apiData[index])
 
-        self.publishToFirebase(with: &self.apiData![index])
+        self.updateGeoOnFirebase(with: &self.apiData[index])
       }
+      print(self.apiData)
+
+      print("API總共抓到\(String(describing: self.apiData.count))筆資料")
     }
   }
 
@@ -128,12 +106,30 @@ class HomeMapViewController: UIViewController {
       }
     }
   }
+
+  func updateGeoOnFirebase(with shop: inout CoffeeShop) {
+
+    CoffeeShopManager.shared.updateShopGeo(shop: &shop) { result in
+
+      switch result {
+
+      case .success:
+
+        print("🍈Update Geo on Firebase Success!!")
+
+      case .failure(let error):
+
+        print("\(error)")
+      }
+    }
+  }
 }
 
 // MARK: - CLLocationManagerDelegate
 extension HomeMapViewController: CLLocationManagerDelegate {
 
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+
     // Tells the delegate when the app creates the location manager and when the authorization status changes
 
     manager.delegate = self
@@ -169,9 +165,9 @@ extension HomeMapViewController: HomeMapViewModelDelegate {
 
   func setUpMapView() {
 
-    homeMapViewModel.delegate = self // HomeMapViewModelDelegate
+    homeMapViewModel.delegate = self
 
-    mapView.delegate = self // MKMapViewDelegate
+    mapView.delegate = self
 
     mapView.showsUserLocation = true
 

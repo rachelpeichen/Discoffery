@@ -27,6 +27,10 @@ target 'Discoffery' do
   pod 'Eureka'
 
   pod 'PopupDialog'
+  
+  pod 'VerticalCardSwiper'
+
+  pod 'GeoFire/Utils'
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 
