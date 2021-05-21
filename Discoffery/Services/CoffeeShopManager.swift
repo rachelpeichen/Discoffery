@@ -26,7 +26,7 @@ class CoffeeShopManager {
 
   lazy var database = Firestore.firestore()
 
-  let userLocation = CLLocationCoordinate2D(latitude: 25.024368286132812, longitude: 121.5294315869483) // 應該要var in HomeMapViewModel
+  //  var didQuery: (([QueryDocumentSnapshot]) -> Void)?
 
   // MARK: - Functions
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
@@ -49,8 +49,8 @@ class CoffeeShopManager {
 
   func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
-    // Update location from original String to GeoPoint
-    let location = GeoPoint(latitude: Double(shop.latitude)!, longitude: Double(shop.longitude)!)
+    // Update location from original String to GeoPoint -> 現在暫時用不到了因為GeoPoint不能查經度
+    let location = GeoPoint(latitude: shop.latitude, longitude: shop.longitude)
 
     let updateField: [String: Any] = ["location": location]
 
@@ -67,35 +67,45 @@ class CoffeeShopManager {
     }
   }
 
-  func fetchShopWithinDistance(latitude: Double, longitude: Double, distance: Double = 500) {
+  func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
-    // Find all shops within input meter of user's current location; default 500 m
+    // Find all shops within input meter of user's current location
 
-    // 1 meter of lat and lng in degrees (roughly)
-    let lat = (Double.pi / 180) * 6371000.0
+    // The number of meters per degree of latidue (roughly) 換算 1 degrees 的緯度 ~ 111194 m
+    let metersPerLatDegree = (Double.pi / 180) * 6371000
 
-    let lon = (Double.pi / 180) * 6371000.0 * cos(latitude/180)
+    let lowerLat = latitude - (distance / metersPerLatDegree) // 緯度下限
+    let upperLat = latitude + (distance / metersPerLatDegree) // 緯度上限
 
-    let lowerLat = latitude - (lat * distance)
-    let lowerLon = longitude - (lon * distance)
+    let docRef = Firestore.firestore().collection("shops")
 
-    let greaterLat = latitude + (lat * distance)
-    let greaterLon = longitude + (lon * distance)
+    // 先查緯度: Firebase range filters can be implemented on only one field
+    let queryByLat = docRef
+      .whereField("latitude", isGreaterThan: lowerLat)
+      .whereField("latitude", isLessThan: upperLat)
 
-    let lesserGeopoint = GeoPoint(latitude: lowerLat, longitude: lowerLon)
-    let greaterGeopoint = GeoPoint(latitude: greaterLat, longitude: greaterLon)
+    queryByLat.getDocuments { querySnapshot, error in
 
-    let docRef = Firestore.firestore().collection("yo")
-
-    let query = docRef.whereField("location", isGreaterThan: lesserGeopoint).whereField("location", isLessThan: greaterGeopoint)
-
-    query.getDocuments { snapshot, error in
       if let error = error {
         print("Error getting documents: \(error)")
+
       } else {
-        for document in snapshot!.documents {
-          print("\(document.documentID) => \(document.data())")
+
+        var shopsFilterd = [CoffeeShop]()
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let shopFilterd = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+              shopsFilterd.append(shopFilterd)
+            }
+
+          } catch {
+            completion(.failure(error))
+          }
         }
+
+        completion(.success(shopsFilterd))
       }
     }
   }
@@ -118,10 +128,10 @@ class CoffeeShopManager {
     let Δφ = (lat2 - lat1) * Double.pi / 180
     let Δλ = (lon2 - lon1) * Double.pi / 180
 
-    let aaa = sin(Δφ/2) * sin(Δφ/2) + cos(φ1) * cos(φ2) * sin(Δλ/2) * sin(Δλ/2)
-    let ccc = 2 * atan2(sqrt(aaa), sqrt(1-aaa))
+    let parA = sin(Δφ/2) * sin(Δφ/2) + cos(φ1) * cos(φ2) * sin(Δλ/2) * sin(Δλ/2)
+    let parC = 2 * atan2(sqrt(parA), sqrt(1-parA))
 
-    let distance = earthRadius * ccc
+    let distance = earthRadius * parC
 
     return distance
   }

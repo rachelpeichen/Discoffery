@@ -20,8 +20,11 @@ struct CoffeeShop: Codable {
   var music: Double
   var url: String
   var address: String
-  var latitude: String
-  var longitude: String
+
+  // Call API: String; Decode from Firebase: Double
+  var latitude: Double
+  var longitude: Double
+  
   var limitedTime: String
   var socket: String
   var standingDesk: String

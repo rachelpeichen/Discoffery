@@ -19,7 +19,7 @@ class LocationManager {
 
   var currentLocation: CLLocation?
 
-  var closure: ((CLLocationCoordinate2D) -> Void)?
+  var onCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
   // MARK: - Functions
   func trackLocation(completion: (_ latitude: Double, _ longitude: Double) -> Void) {
@@ -28,19 +28,17 @@ class LocationManager {
     delegate = locationManager.delegate
 
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
     locationManager.startUpdatingLocation()
     
     guard let currentLocation = locationManager.location else { return }
 
-    // Pass to HomeMapViewController
-    closure?(currentLocation.coordinate)
+    // Pass to HomeMapViewController for drawing map
+    onCurrentCoordinate?(currentLocation.coordinate)
 
     let latitude = Double(currentLocation.coordinate.latitude)
-
     let longitude = Double(currentLocation.coordinate.longitude)
 
-    // Pass to HomeMapViewModel
+    // Pass to HomeMapViewModel for fetching data on Firebase
     completion(latitude, longitude)
   }
 }

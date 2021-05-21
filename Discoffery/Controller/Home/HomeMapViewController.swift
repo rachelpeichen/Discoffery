@@ -16,9 +16,9 @@ class HomeMapViewController: UIViewController {
   // MARK: - Properties
   var homeMapViewModel = HomeMapViewModel()
 
-  var userCurrentCoordinate = CLLocationCoordinate2D()
-
   var apiData: [CoffeeShop] = []
+
+  var userCurrentCoordinate = CLLocationCoordinate2D() // For drawing map
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -26,16 +26,17 @@ class HomeMapViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view
 
+    // 1:  When enter we check auth status
     locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
 
-    LocationManager.shared.closure = { coordinate in
+    // 2: Get user's current coordinate for drawing map
+    LocationManager.shared.onCurrentCoordinate = { coordinate in
 
       self.userCurrentCoordinate = coordinate
-
-      print(coordinate)
     }
 
-    fetchAPIdata()
+    // 3: Fetch shops within distance on Firebase
+    self.homeMapViewModel.getShopAroundUser()
 
     homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
 
@@ -46,12 +47,11 @@ class HomeMapViewController: UIViewController {
   // MARK: - Functions
   
   // MARK: - Publish API data to Firebase (only used at first time)
-
   func fetchAPIdata() {
 
     APIManager.shared.request { result in
 
-      for index in 0..<5 {
+      for index in 0..<200 { // Demo 用 200筆不然我的火地又要爆掉ㄌ
 
         self.apiData.append(result[index])
 
@@ -59,8 +59,7 @@ class HomeMapViewController: UIViewController {
 
         self.updateGeoPointOnFirebase(with: &self.apiData[index])
       }
-      print(self.apiData)
-      print("[apiData]存ㄌ\(String(describing: self.apiData.count))筆資料")
+      print("[apiData]存ㄌ\(String(describing: self.apiData.count))筆資料 = \(self.apiData)")
     }
   }
 
@@ -71,11 +70,9 @@ class HomeMapViewController: UIViewController {
       switch result {
 
       case .success:
-
         print("🥴Publish To Firebase Success!!")
 
       case .failure(let error):
-
         print("\(error)")
       }
     }
@@ -88,11 +85,9 @@ class HomeMapViewController: UIViewController {
       switch result {
 
       case .success:
-
         print("🍈Update Geo on Firebase Success!!")
 
       case .failure(let error):
-
         print("\(error)")
       }
     }
@@ -124,7 +119,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     case .authorizedAlways, .authorizedWhenInUse:
       print("👌🏻Location status is OK.")
 
-      homeMapViewModel.getUserCoordinates()
+      homeMapViewModel.getShopAroundUser()
 
       setUpMapView()
 
