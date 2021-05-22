@@ -32,8 +32,8 @@ class CollectionViewController: UIViewController {
     tableView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellReuseIdentifier: "collectionCell")
 
     tableView.estimatedRowHeight = 300
-
     tableView.rowHeight = UITableView.automaticDimension
+    tableView.separatorStyle = .none
 
     tableView.reloadData()
   }

@@ -13,19 +13,12 @@ class ShopDescriptionCell: ShopDetailBasicCell {
   var coffeShop: CoffeeShop?
 
   @IBOutlet weak var name: UILabel!
-
   @IBOutlet weak var rateStars: CosmosView!
-
   @IBOutlet weak var averageRatings: UILabel!
-
   @IBOutlet weak var reviewsCount: UILabel!
-
   @IBOutlet weak var checkAllReviews: UIButton!
-
   @IBOutlet weak var openingStatus: UILabel!
-
   @IBOutlet weak var openingHours: UILabel!
-
   @IBOutlet weak var address: UILabel!
 
   override func awakeFromNib() {

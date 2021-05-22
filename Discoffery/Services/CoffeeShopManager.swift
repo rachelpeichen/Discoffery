@@ -61,7 +61,6 @@ class CoffeeShopManager {
     let queryByLat = docRef
       .whereField("latitude", isGreaterThan: lowerLat)
       .whereField("latitude", isLessThan: upperLat)
-      .order(by: "latitude")
 
     queryByLat.getDocuments { querySnapshot, error in
 
@@ -87,32 +86,6 @@ class CoffeeShopManager {
         completion(.success(shopsFilterd))
       }
     }
-  }
-
-  func calDistanceBetweenTwoLocations(location1: CLLocationCoordinate2D, location2: CLLocationCoordinate2D) -> Double {
-
-    // Use Haversine Formula to calculate the distance in meter between two locations
-    // φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km)
-    let lat1 = location1.latitude
-    let lat2 = location2.latitude
-
-    let lon1 = location1.longitude
-    let lon2 = location2.longitude
-
-    let earthRadius = 6371000.0
-
-    let φ1 = lat1 * Double.pi / 180 // φ, λ in radians
-    let φ2 = lat2 * Double.pi / 180
-
-    let Δφ = (lat2 - lat1) * Double.pi / 180
-    let Δλ = (lon2 - lon1) * Double.pi / 180
-
-    let parA = sin(Δφ/2) * sin(Δφ/2) + cos(φ1) * cos(φ2) * sin(Δλ/2) * sin(Δλ/2)
-    let parC = 2 * atan2(sqrt(parA), sqrt(1-parA))
-
-    let distance = earthRadius * parC
-
-    return distance
   }
 }
 

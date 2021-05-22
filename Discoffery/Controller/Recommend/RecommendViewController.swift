@@ -35,6 +35,6 @@ class RecommendViewController: UIViewController, VerticalCardSwiperDatasource {
     }
 
     func numberOfCards(verticalCardSwiperView: VerticalCardSwiperView) -> Int {
-        return 200
+        return 10
     }
 }

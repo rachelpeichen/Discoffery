@@ -12,7 +12,10 @@ class ShopImagesCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var tmpMainImage: UIImageView!
 
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    super.awakeFromNib()
+    // Initialization code
+
+    // corner radius
+    tmpMainImage.layer.cornerRadius = 20
+  }
 }

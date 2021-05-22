@@ -15,13 +15,13 @@ class CollectionCell: UITableViewCell {
   @IBOutlet weak var collectionView: UICollectionView!
 
   // MARK: Properties
+  var mockImages = ["mock_sq1", "mock_sq2", "mock_sq3"]
 
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
 
     collectionView.dataSource = self
-
     collectionView.delegate = self
 
     setupCollectionView()
@@ -37,7 +37,6 @@ class CollectionCell: UITableViewCell {
   private func setupCollectionView() {
 
     collectionView.backgroundColor = .white
-
     collectionView.isScrollEnabled = true
 
     collectionView.register(UINib(nibName: "ProtraitCardCollectionCell", bundle: nil), forCellWithReuseIdentifier: "protraitCardCell")
@@ -60,14 +59,14 @@ class CollectionCell: UITableViewCell {
 extension CollectionCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 10
+    return 3
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "protraitCardCell", for: indexPath) as? ProtraitCardCollectionCell {
 
-      cell.image.image = UIImage(named: "mock_1")
+      cell.image.image = UIImage(named: mockImages[indexPath.row])
 
       return cell
     }
