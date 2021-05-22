@@ -26,11 +26,12 @@
 		7884864E264CFFE300FA33F9 /* LandscapeCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884864C264CFFE300FA33F9 /* LandscapeCardCell.swift */; };
 		7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7884864D264CFFE300FA33F9 /* LandscapeCardCell.xib */; };
 		78848654264D223D00FA33F9 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848653264D223D00FA33F9 /* Box.swift */; };
-		7884865F264D36EA00FA33F9 /* HomeMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884865E264D36EA00FA33F9 /* HomeMapViewModel.swift */; };
+		7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884865E264D36EA00FA33F9 /* HomeViewModel.swift */; };
 		78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848666264D3A7100FA33F9 /* CoffeeShop.swift */; };
 		7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884866A264D4D0000FA33F9 /* APIManager.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
 		78D4B3972656DE8B004EBB20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78D4B3962656DE8B004EBB20 /* GoogleService-Info.plist */; };
+		78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */; };
 		78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */; };
 		78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */; };
 		78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */; };
@@ -91,11 +92,12 @@
 		7884864C264CFFE300FA33F9 /* LandscapeCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeCardCell.swift; sourceTree = "<group>"; };
 		7884864D264CFFE300FA33F9 /* LandscapeCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LandscapeCardCell.xib; sourceTree = "<group>"; };
 		78848653264D223D00FA33F9 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
-		7884865E264D36EA00FA33F9 /* HomeMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewModel.swift; sourceTree = "<group>"; };
+		7884865E264D36EA00FA33F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		78848666264D3A7100FA33F9 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		7884866A264D4D0000FA33F9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		78D4B3962656DE8B004EBB20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPageViewController.swift; sourceTree = "<group>"; };
 		78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenMRTRowsViewController.swift; sourceTree = "<group>"; };
 		78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomCheckRow&Cell.swift"; sourceTree = "<group>"; };
 		78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeatureViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +201,7 @@
 		78848617264C120200FA33F9 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				7884865E264D36EA00FA33F9 /* HomeMapViewModel.swift */,
+				7884865E264D36EA00FA33F9 /* HomeViewModel.swift */,
 				78DF251326524AD100F47A04 /* CoffeeShopContentCategory.swift */,
 			);
 			path = "View Model";
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				78DF24D4265206A400F47A04 /* DetailViewController.swift */,
+				78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -572,7 +575,7 @@
 				787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */,
 				78DF2523265251FE00F47A04 /* ShopFeatureCell.swift in Sources */,
 				78DF251D265251E100F47A04 /* ShopDescriptionCell.swift in Sources */,
-				7884865F264D36EA00FA33F9 /* HomeMapViewModel.swift in Sources */,
+				7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
 				78DEC3002655A5A900726A5D /* ExampleCardCell.swift in Sources */,
@@ -595,6 +598,7 @@
 				7839C9642652D42C0048B5F5 /* CollectionCell.swift in Sources */,
 				78DEC2BB2655088C00726A5D /* LocationManager.swift in Sources */,
 				7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */,
+				78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

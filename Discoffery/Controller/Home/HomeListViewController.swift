@@ -9,10 +9,14 @@ import UIKit
 import MapKit
 
 class HomeListViewController: UIViewController {
+  
   // MARK: - Outlets
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Properties
+  var homeViewModel: HomeViewModel?
+
+  var shopsDataForList: [CoffeeShop] = []
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -20,46 +24,34 @@ class HomeListViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setupTableView()
+
+    homeViewModel?.getShopsData = { [weak self] shopsData in
+
+      self?.shopsDataForList = shopsData
+      self?.tableView.reloadData()
+    }
   }
 
   // MARK: - Functions
-  private func setupTableView() {
+  func setupTableView() {
 
     tableView.delegate = self
-
     tableView.dataSource = self
 
     tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
 
     tableView.estimatedRowHeight = 280
-
     tableView.rowHeight = UITableView.automaticDimension
-
     tableView.separatorStyle = .none
 
     tableView.reloadData()
-  }
-
-  // MARK: - Navigation
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-    if segue.identifier == "navigateToDetailVC" {
-
-      if let indexPath = tableView.indexPathForSelectedRow {
-
-        let detailVC = segue.destination as? DetailViewController
-
-        //        let product = hotsDisplayData.sections[indexPath.section].sectionProducts[indexPath.row]
-        //        destinationVC?.product = product
-      }
-    }
   }
 }
 
 extension HomeListViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    return shopsDataForList.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,13 +59,15 @@ extension HomeListViewController: UITableViewDataSource {
     if let cell = tableView.dequeueReusableCell(
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
 
-      cell.cafeMainImage.backgroundColor = .brown
-      cell.cafeName.text = "這是一間名字很長的咖啡廳"
+      let shop = shopsDataForList[indexPath.row]
+
+      cell.cafeMainImage.image = UIImage(named: "mock_2")
+      cell.cafeName.text = shop.name
       cell.starsView.rating = 4.3
       cell.averageRatings.text = "4.3"
       cell.distance.text = "距離 500 m"
-      cell.openHours.text = "11:00 - 20:00"
-      cell.featureOne.text = "沒有網美"
+      cell.openHours.text = shop.limitedTime
+      cell.featureOne.text = "插座：" + shop.socket
       cell.featureTwo.text = "冷氣超涼讚啦"
       cell.itemOne.text = "燕麥奶拿鐵"
       cell.itemTwo.text = "冷萃咖啡"

@@ -26,14 +26,12 @@ class CoffeeShopManager {
 
   lazy var database = Firestore.firestore()
 
-  //  var didQuery: (([QueryDocumentSnapshot]) -> Void)?
-
   // MARK: - Functions
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     //  Add a new collection to Firebase
-    let docRef = database.collection("shops").document()
-
+    let docRef = database.collection("shopsTaipei").document()
+    
     shop.id = docRef.documentID
 
     docRef.setData(shop.toDict) { error in
@@ -43,26 +41,6 @@ class CoffeeShopManager {
         
       } else {
         completion(.success("Success"))
-      }
-    }
-  }
-
-  func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
-
-    // Update location from original String to GeoPoint -> 現在暫時用不到了因為GeoPoint不能查經度
-    let location = GeoPoint(latitude: shop.latitude, longitude: shop.longitude)
-
-    let updateField: [String: Any] = ["location": location]
-
-    let updatedDocRef = database.collection("shops").document(shop.id)
-
-    updatedDocRef.updateData(updateField) { error in
-
-      if let error = error {
-        completion(.failure(error))
-
-      } else {
-        completion(.success("success"))
       }
     }
   }
@@ -83,6 +61,7 @@ class CoffeeShopManager {
     let queryByLat = docRef
       .whereField("latitude", isGreaterThan: lowerLat)
       .whereField("latitude", isLessThan: upperLat)
+      .order(by: "latitude")
 
     queryByLat.getDocuments { querySnapshot, error in
 
@@ -136,3 +115,23 @@ class CoffeeShopManager {
     return distance
   }
 }
+
+//func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+//
+//  // Update location from original String to GeoPoint -> 現在暫時用不到了因為GeoPoint不能查經度
+//  let location = GeoPoint(latitude: shop.latitude, longitude: shop.longitude)
+//
+//  let updateField: [String: Any] = ["location": location]
+//
+//  let updatedDocRef = database.collection("shops").document(shop.id)
+//
+//  updatedDocRef.updateData(updateField) { error in
+//
+//    if let error = error {
+//      completion(.failure(error))
+//
+//    } else {
+//      completion(.success("success"))
+//    }
+//  }
+//}

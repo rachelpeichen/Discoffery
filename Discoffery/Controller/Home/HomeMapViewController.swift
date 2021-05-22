@@ -14,17 +14,20 @@ class HomeMapViewController: UIViewController {
   @IBOutlet var mapView: MKMapView!
 
   // MARK: - Properties
-  var homeMapViewModel = HomeMapViewModel()
+  var homeViewModel: HomeViewModel?
 
   var apiData: [CoffeeShop] = []
 
   var userCurrentCoordinate = CLLocationCoordinate2D() // For drawing map
 
+  var shopsDataForMap: [CoffeeShop] = []
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
-
     super.viewDidLoad()
+
     // Do any additional setup after loading the view
+    // fetchAPIdata()
 
     // 1:  When enter we check auth status
     locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
@@ -36,28 +39,33 @@ class HomeMapViewController: UIViewController {
     }
 
     // 3: Fetch shops within distance on Firebase
-    self.homeMapViewModel.getShopAroundUser()
+    self.homeViewModel?.getShopAroundUser()
 
-    homeMapViewModel.onShopsAnnotations = { [weak self] annotations in
+    homeViewModel?.onShopsAnnotations = { [weak self] annotations in
 
       self?.mapView.showAnnotations(annotations, animated: true)
+    }
+
+    homeViewModel?.getShopsData = { [weak self] shopsData in
+
+      self?.shopsDataForMap = shopsData
     }
   }
 
   // MARK: - Functions
-  
+
   // MARK: - Publish API data to Firebase (only used at first time)
   func fetchAPIdata() {
 
     APIManager.shared.request { result in
 
-      for index in 0..<200 { // Demo 用 200筆不然我的火地又要爆掉ㄌ
+      for index in 0..<result.count { // Demo 用200筆不然我的火地又要爆掉ㄌ
 
         self.apiData.append(result[index])
 
         self.publishToFirebase(with: &self.apiData[index])
 
-        self.updateGeoPointOnFirebase(with: &self.apiData[index])
+        // self.updateGeoPointOnFirebase(with: &self.apiData[index])
       }
       print("[apiData]存ㄌ\(String(describing: self.apiData.count))筆資料 = \(self.apiData)")
     }
@@ -71,21 +79,6 @@ class HomeMapViewController: UIViewController {
 
       case .success:
         print("🥴Publish To Firebase Success!!")
-
-      case .failure(let error):
-        print("\(error)")
-      }
-    }
-  }
-
-  func updateGeoPointOnFirebase(with shop: inout CoffeeShop) {
-
-    CoffeeShopManager.shared.updateShopGeoPoint(shop: &shop) { result in
-
-      switch result {
-
-      case .success:
-        print("🍈Update Geo on Firebase Success!!")
 
       case .failure(let error):
         print("\(error)")
@@ -119,7 +112,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     case .authorizedAlways, .authorizedWhenInUse:
       print("👌🏻Location status is OK.")
 
-      homeMapViewModel.getShopAroundUser()
+      homeViewModel?.getShopAroundUser()
 
       setUpMapView()
 
@@ -130,16 +123,14 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 }
 
 // MARK: - HomeMapViewModelDelegate
-extension HomeMapViewController: HomeMapViewModelDelegate {
+extension HomeMapViewController: HomeViewModelDelegate {
 
   func setUpMapView() {
 
-    homeMapViewModel.delegate = self
+    homeViewModel?.delegate = self
 
     mapView.delegate = self
-
     mapView.showsUserLocation = true
-
     mapView.userTrackingMode = .follow
 
     mapView.region = MKCoordinateRegion(
@@ -163,13 +154,26 @@ extension HomeMapViewController: MKMapViewDelegate {
       mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 
     if annotationView == nil {
-
       annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
     }
 
-    annotationView?.glyphText = "☕️"
     annotationView?.markerTintColor = .brown
 
     return annotationView
   }
 }
+
+//  func updateGeoPointOnFirebase(with shop: inout CoffeeShop) {
+//
+//    CoffeeShopManager.shared.updateShopGeoPoint(shop: &shop) { result in
+//
+//      switch result {
+//
+//      case .success:
+//        print("🍈Update Geo on Firebase Success!!")
+//
+//      case .failure(let error):
+//        print("\(error)")
+//      }
+//    }
+//  }
