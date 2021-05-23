@@ -11,9 +11,7 @@ class ProfileViewController: UIViewController {
 
   // MARK: Outlets
   @IBOutlet weak var profileImage: UIImageView!
-
   @IBOutlet weak var userID: UILabel!
-
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: Properties
@@ -25,7 +23,6 @@ class ProfileViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setUpProfileImageLayout()
-
   }
 
   // MARK: Functions
@@ -37,6 +34,7 @@ class ProfileViewController: UIViewController {
 
   private func setUpProfileCellLayout() {
 
+    tableView.separatorStyle = .none
     tableView.reloadData()
   }
 }
@@ -53,12 +51,9 @@ extension ProfileViewController: UITableViewDataSource {
 
     cell?.settingButton.setTitle(titleForSettingButtons[indexPath.row], for: .normal)
 
-    tableView.separatorStyle = .none
-
     return cell ?? UITableViewCell()
   }
 }
 
 extension ProfileViewController: UITableViewDelegate {
-
 }

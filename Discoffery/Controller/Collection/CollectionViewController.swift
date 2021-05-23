@@ -11,7 +11,6 @@ class CollectionViewController: UIViewController {
 
   // MARK: Outlets
   @IBOutlet weak var addNewCategory: UIBarButtonItem!
-
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: Properties

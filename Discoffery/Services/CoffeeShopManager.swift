@@ -9,7 +9,6 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 import CoreLocation
-import GeoFire
 
 enum FirebaseError: Error {
   case documentError
@@ -87,7 +86,43 @@ class CoffeeShopManager {
       }
     }
   }
+
+  func fetchShopsDemoOnFirebase(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
+    // 把shopsTaipei 這個collection裡面所有的文件抓下來後暫存 再寫入reviews這個sub-collection
+
+    let docRef = Firestore.firestore().collection("shops")
+
+    docRef.getDocuments(){ querySnapshot, error in
+
+      if let error = error {
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        var shopsTaipei = [CoffeeShop]()
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let shopTaipei =  try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+              shopsTaipei.append(shopTaipei)
+            }
+
+          } catch {
+            completion(.failure(error))
+          }
+        }
+
+        print(shopsTaipei.count)
+
+        completion(.success(shopsTaipei))
+      }
+    }
+  }
+
 }
+
+
 
 //func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 //

@@ -82,7 +82,7 @@ class HomeViewModel {
 //      }
 //    }
 //    shopsData = temp
-    // 86 是 77~84 的 簡潔寫法！
+    // 簡潔寫法！
     shopsData = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
   }
 

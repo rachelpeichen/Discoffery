@@ -37,7 +37,6 @@ class HomeListViewController: UIViewController {
     homeViewModel?.getShopsData = { [weak self] shopsData in
       
       self?.shopsDataForList = shopsData
-      
       self?.tableView.reloadData()
     }
   }

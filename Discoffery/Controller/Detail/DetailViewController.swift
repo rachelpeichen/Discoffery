@@ -19,10 +19,12 @@ class DetailViewController: UIViewController {
   let activityVC = UIActivityViewController(activityItems: ["我還不知道要怎ㄇ拿到值= ="], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
+    // 現在的分享無法帶入資訊
     present(activityVC, animated: true, completion: nil)
   }
 
   @IBAction func saveToCollection(_ sender: Any) {
+    // 加入該用戶的收藏
   }
 
   // MARK: Properties
@@ -70,11 +72,9 @@ extension DetailViewController: UITableViewDataSource {
     switch indexPath.row {
 
     case 0:
-
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopImagesCell", for: indexPath) as? ShopImagesCell {
 
         cell.selectionStyle = .none
-
         return cell
       }
 

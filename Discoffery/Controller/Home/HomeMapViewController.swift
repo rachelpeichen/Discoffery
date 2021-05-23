@@ -22,34 +22,39 @@ class HomeMapViewController: UIViewController {
 
   var shopsDataForMap: [CoffeeShop] = []
 
+  var shopsDemo: [CoffeeShop] = []
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Do any additional setup after loading the view
-    // fetchAPIdata()
+    //    // Do any additional setup after loading the view
+    //    // fetchAPIdata()
+    //
+    //    // 1:  When enter we check auth status
+    //    locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
+    //
+    //    // 2: Get user's current coordinate for drawing map
+    //    LocationManager.shared.onCurrentCoordinate = { coordinate in
+    //
+    //      self.userCurrentCoordinate = coordinate
+    //    }
+    //
+    //    // 3: Fetch shops within distance on Firebase
+    //    self.homeViewModel?.getShopAroundUser()
+    //
+    //    homeViewModel?.onShopsAnnotations = { [weak self] annotations in
+    //
+    //      self?.mapView.showAnnotations(annotations, animated: true)
+    //    }
+    //
+    //    homeViewModel?.getShopsData = { [weak self] shopsData in
+    //
+    //      self?.shopsDataForMap = shopsData
+    //    }
 
-    // 1:  When enter we check auth status
-    locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
+    fetchShopsTaipeiCollection()
 
-    // 2: Get user's current coordinate for drawing map
-    LocationManager.shared.onCurrentCoordinate = { coordinate in
-
-      self.userCurrentCoordinate = coordinate
-    }
-
-    // 3: Fetch shops within distance on Firebase
-    self.homeViewModel?.getShopAroundUser()
-
-    homeViewModel?.onShopsAnnotations = { [weak self] annotations in
-
-      self?.mapView.showAnnotations(annotations, animated: true)
-    }
-
-    homeViewModel?.getShopsData = { [weak self] shopsData in
-
-      self?.shopsDataForMap = shopsData
-    }
   }
 
   // MARK: - Functions
@@ -84,6 +89,46 @@ class HomeMapViewController: UIViewController {
         print("\(error)")
       }
     }
+  }
+
+  // MARK: - 把shops這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection
+  func fetchShopsTaipeiCollection() {
+
+    CoffeeShopManager.shared.fetchShopsDemoOnFirebase { result  in
+      switch result {
+
+      case .success(let shopsData):
+
+        self.shopsDemo = shopsData
+
+        self.publishMockReviewsCollection()
+
+      case .failure(let error):
+        print("\(error)")
+      }
+    }
+  }
+
+  func publishMockReviewsCollection() {
+
+    for index in 0..<shopsDemo.count {
+
+      for _ in 0..<10 { // Write 10 mock reviews
+
+        ReviewManager.shared.publishReview(shop: &shopsDemo[index]) { result  in
+
+          switch result {
+
+          case .success(let result):
+            print("ok\(result)")
+
+          case .failure(let error):
+            print("\(error)")
+          }
+        }
+      }
+    }
+
   }
 }
 

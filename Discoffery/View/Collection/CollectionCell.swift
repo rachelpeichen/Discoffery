@@ -11,7 +11,6 @@ class CollectionCell: UITableViewCell {
 
   // MARK: Outlets
   @IBOutlet weak var category: UILabel!
-
   @IBOutlet weak var collectionView: UICollectionView!
 
   // MARK: Properties

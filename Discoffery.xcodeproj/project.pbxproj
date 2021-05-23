@@ -31,6 +31,11 @@
 		7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884866A264D4D0000FA33F9 /* APIManager.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
 		78AEDFAA26596CFE000570C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78AEDFA926596CFE000570C7 /* Assets.xcassets */; };
+		78B2FCF7265A1849005C9D1D /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FCF6265A1849005C9D1D /* Review.swift */; };
+		78B2FCFA265A1856005C9D1D /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FCF9265A1856005C9D1D /* Features.swift */; };
+		78B2FCFD265A1876005C9D1D /* RecommendItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FCFC265A1876005C9D1D /* RecommendItems.swift */; };
+		78B2FD00265A1907005C9D1D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FCFF265A1907005C9D1D /* User.swift */; };
+		78B2FD1C265A3326005C9D1D /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD1B265A3326005C9D1D /* ReviewManager.swift */; };
 		78D4B3972656DE8B004EBB20 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78D4B3962656DE8B004EBB20 /* GoogleService-Info.plist */; };
 		78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */; };
 		78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */; };
@@ -97,6 +102,11 @@
 		7884866A264D4D0000FA33F9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		78AEDFA926596CFE000570C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		78B2FCF6265A1849005C9D1D /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		78B2FCF9265A1856005C9D1D /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		78B2FCFC265A1876005C9D1D /* RecommendItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItems.swift; sourceTree = "<group>"; };
+		78B2FCFF265A1907005C9D1D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		78B2FD1B265A3326005C9D1D /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		78D4B3962656DE8B004EBB20 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPageViewController.swift; sourceTree = "<group>"; };
 		78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenMRTRowsViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +221,10 @@
 			isa = PBXGroup;
 			children = (
 				78848666264D3A7100FA33F9 /* CoffeeShop.swift */,
+				78B2FCF6265A1849005C9D1D /* Review.swift */,
+				78B2FCF9265A1856005C9D1D /* Features.swift */,
+				78B2FCFC265A1876005C9D1D /* RecommendItems.swift */,
+				78B2FCFF265A1907005C9D1D /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,6 +276,7 @@
 				787C2CA9264D8655001AC268 /* AddressGeocoder.swift */,
 				787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */,
 				78DEC2BA2655088C00726A5D /* LocationManager.swift */,
+				78B2FD1B265A3326005C9D1D /* ReviewManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -569,18 +584,22 @@
 				78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */,
 				7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */,
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
+				78B2FCFD265A1876005C9D1D /* RecommendItems.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
 				78DF253226525DD900F47A04 /* FeatureCollectionViewCell.swift in Sources */,
 				78DF24ED26520B6A00F47A04 /* ProfileViewController.swift in Sources */,
 				787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */,
 				78DF2523265251FE00F47A04 /* ShopFeatureCell.swift in Sources */,
+				78B2FD1C265A3326005C9D1D /* ReviewManager.swift in Sources */,
 				78DF251D265251E100F47A04 /* ShopDescriptionCell.swift in Sources */,
 				7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */,
+				78B2FCFA265A1856005C9D1D /* Features.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
 				78DEC3002655A5A900726A5D /* ExampleCardCell.swift in Sources */,
 				78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
+				78B2FCF7265A1849005C9D1D /* Review.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,
 				78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */,
 				787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */,
@@ -599,6 +618,7 @@
 				78DEC2BB2655088C00726A5D /* LocationManager.swift in Sources */,
 				7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */,
 				78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */,
+				78B2FD00265A1907005C9D1D /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
