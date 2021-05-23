@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_sq4" translatesAutoresizingMaskIntoConstraints="NO" id="NVB-s0-vac">
+                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_sq2" translatesAutoresizingMaskIntoConstraints="NO" id="NVB-s0-vac">
                         <rect key="frame" x="4" y="4" width="392" height="392"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
@@ -37,6 +37,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="mock_sq4" width="1512" height="2016"/>
+        <image name="mock_sq2" width="2205" height="2336"/>
     </resources>
 </document>

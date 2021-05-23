@@ -9,12 +9,51 @@ import UIKit
 
 class ReviewsPageViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  // MARK: Outlets
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var cafeName: UILabel!
+  @IBAction func didTapBackButton(_ sender: Any) {
+    self.dismiss(animated: true, completion: nil)
+  }
 
-        // Do any additional setup after loading the view.
-    }
+  // MARK: Properties
+  var reviews: [Review]?
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view.
+  }
+
+  // MARK: Functions
+  private func setupTableView() {
+
+    tableView.estimatedRowHeight = 200
+    tableView.rowHeight = UITableView.automaticDimension
+
+    tableView.reloadData()
+  }
 }
+
+extension ReviewsPageViewController: UITableViewDataSource {
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return reviews?.count ?? 3
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    if let cell = tableView.dequeueReusableCell(
+        withIdentifier: "reviewCell", for: indexPath) as? ReviewCell {
+
+      cell.comment.text = "很隱密的一家日式咖啡廳，環境很放鬆、很安靜，手沖咖啡很好喝，但品項很少，也沒有特色甜點，只適合辦公或K書。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。"
+
+      return cell
+    }
+    return ReviewCell()
+  }
+}
+
 //
 // class HomeViewController: UIViewController {
 //
@@ -66,7 +105,7 @@ class ReviewsPageViewController: UIViewController {
 //
 //      }
 //  }
-//}
+// }
 //
 //// MARK: - SelectionViewDataSource
 //extension HomeViewController: SelectionViewDataSource {
@@ -82,10 +121,10 @@ class ReviewsPageViewController: UIViewController {
 //  func fontOfTitle(_ selectionView: SelectionView, at index: Int) -> UIFont {
 //    return .systemFont(ofSize: 14)
 //  }
-//}
+// }
 //
-//// MARK: - SelectionViewDelegate
-//extension HomeViewController: SelectionViewDelegate {
+//  MARK: - SelectionViewDelegate
+// extension HomeViewController: SelectionViewDelegate {
 //
 //  func didSelectedButton(_ selectionView: SelectionView, at index: Int) {
 //
@@ -104,5 +143,4 @@ class ReviewsPageViewController: UIViewController {
 //      }
 //    }
 //  }
-//}
-
+// }

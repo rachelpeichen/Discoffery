@@ -34,7 +34,9 @@ class ProfileViewController: UIViewController {
 
   private func setUpProfileCellLayout() {
 
-    tableView.separatorStyle = .none
+    tableView.delegate = self
+    tableView.dataSource = self
+    
     tableView.reloadData()
   }
 }
@@ -50,6 +52,8 @@ extension ProfileViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? ProfileCell
 
     cell?.settingButton.setTitle(titleForSettingButtons[indexPath.row], for: .normal)
+
+    tableView.separatorStyle = .none
 
     return cell ?? UITableViewCell()
   }

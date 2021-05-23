@@ -51,9 +51,8 @@ class HomeMapViewController: UIViewController {
 
       self?.shopsDataForMap = shopsData
     }
-
-    //    fetchAPIdata()
-    //    fetchShopsCollection()
+       //  fetchAPIdata()
+       //  fetchShopsCollection()
 
   }
 
@@ -101,9 +100,9 @@ class HomeMapViewController: UIViewController {
 
         self.shopsDemo = shopsData
 
-        self.publishReviewsSubCollection()
+       self.publishReviewsSubCollection()
 
-        self.publishFeaturesSubCollection()
+       self.publishFeaturesSubCollection()
 
       case .failure(let error):
         print("\(error)")
@@ -124,7 +123,7 @@ class HomeMapViewController: UIViewController {
           switch result {
 
           case .success(let result):
-            print("ok\(result)")
+            print("\(result)")
 
           case .failure(let error):
             print("\(error)")
@@ -132,6 +131,7 @@ class HomeMapViewController: UIViewController {
         }
       }
     }
+    print("ok")
   }
 
   func publishFeaturesSubCollection() {
@@ -143,13 +143,14 @@ class HomeMapViewController: UIViewController {
         switch result {
 
         case .success(let result):
-          print("ok\(result)")
+          print("\(result)")
 
         case .failure(let error):
           print("\(error)")
         }
       }
     }
+    print("ok")
   }
 
 }

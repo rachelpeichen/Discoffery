@@ -17,6 +17,8 @@ class HomeListViewController: UIViewController {
   var homeViewModel: HomeViewModel?
   
   var shopsDataForList: [CoffeeShop] = []
+
+  var reviews: [Review] = []
   
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
@@ -37,6 +39,7 @@ class HomeListViewController: UIViewController {
     homeViewModel?.getShopsData = { [weak self] shopsData in
       
       self?.shopsDataForList = shopsData
+      
       self?.tableView.reloadData()
     }
   }
@@ -126,7 +129,7 @@ extension HomeListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-    self.performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
+    performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
   }
 }
 

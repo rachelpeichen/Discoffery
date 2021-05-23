@@ -20,8 +20,8 @@
                         <rect key="frame" x="8" y="8" width="400" height="400"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="400" id="vGS-ap-30z"/>
-                            <constraint firstAttribute="height" constant="400" id="z5b-bG-aJV"/>
+                            <constraint firstAttribute="width" constant="400" id="GAA-nU-3Ty"/>
+                            <constraint firstAttribute="height" constant="400" id="nqG-lR-23O"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vda-6H-kPe">
                             <size key="itemSize" width="128" height="128"/>

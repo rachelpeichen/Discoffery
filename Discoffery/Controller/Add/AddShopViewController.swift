@@ -25,11 +25,11 @@ class AddShopViewController: FormViewController {
         row.placeholder = "請輸入地址"
       }
 
-      <<< AlertRow<String>("亲給个五星好評唄") {
+      <<< AlertRow<String>("評分") {
         $0.title = $0.tag
         $0.selectorTitle = "請選擇評分"
-        $0.options = ["⭐️", "⭐️⭐️", "⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️", "⭐️⭐️⭐️⭐️⭐️"]
-        $0.value = "⭐️⭐️⭐️"   // initially selected
+        $0.options = ["★", "★★", "★★★", "★★★★", "★★★★★"]
+        $0.value = "★★★"   // initially selected
       }
 
       <<< ButtonRow("營業時間") { row in
@@ -39,21 +39,21 @@ class AddShopViewController: FormViewController {
         })
       }
     
-    form +++ Section("選填資訊：個人評價")
+    form +++ Section("選填資訊：個人評論")
 
-      <<< TextAreaRow("評價") {
+      <<< TextAreaRow("評論") {
         $0.title = $0.tag
-        $0.placeholder = "請輸入評價"
+        $0.placeholder = "請輸入評論"
         $0.textAreaHeight = .dynamic(initialTextViewHeight: 120)
       }
 
     form +++ Section("選填資訊：環境設施")
 
       // MARK: 這個要再改
-      <<< ButtonRow("鄰近捷運站") { (row: ButtonRow) -> Void in
-        row.title = row.tag
-        row.presentationMode = .segueName(segueName: "HiddenMRTRowsControllerSegue", onDismiss: nil)
-      }
+//      <<< ButtonRow("鄰近捷運站") { (row: ButtonRow) -> Void in
+//        row.title = row.tag
+//        row.presentationMode = .segueName(segueName: "HiddenMRTRowsControllerSegue", onDismiss: nil)
+//      }
 
       <<< PickerInputRow<String>("時間限制") {
         $0.title = $0.tag
@@ -83,8 +83,8 @@ class AddShopViewController: FormViewController {
     form +++ MultivaluedSection(multivaluedOptions:
                                   [.Insert, .Delete],
                                 header: "選填資訊：推薦飲料或餐點",
-                                footer: "按 ＋ 新增按 – 刪掉") {
-      $0.tag = "用戶新增ㄉ"
+                                footer: "按 ＋ 新增按 – 刪除") {
+      $0.tag = "用戶新增"
 
       $0.addButtonProvider = { _ in
 

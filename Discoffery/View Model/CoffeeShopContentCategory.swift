@@ -10,15 +10,10 @@ import Foundation
 enum CoffeeShopContentCategory {
 
   case images
-
   case description
-
   case recommend
-
   case feature
-
   case route
-
   case writeReview
 
   func identifier() -> String {
@@ -36,7 +31,7 @@ enum CoffeeShopContentCategory {
     case .writeReview: return String(describing: WriteReviewCell.self)
     }
   }
-
+//
 //  func cellForIndexPath(_ indexPath: IndexPath, tableView: UITableView, data: CoffeeShop) -> UITableViewCell {
 //
 //    let cell = tableView.dequeueReusableCell(withIdentifier: identifier(), for: indexPath)

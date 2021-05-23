@@ -38,6 +38,7 @@
 		78B2FD1C265A3326005C9D1D /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD1B265A3326005C9D1D /* ReviewManager.swift */; };
 		78B2FD20265A7B23005C9D1D /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD1F265A7B23005C9D1D /* FeatureManager.swift */; };
 		78B2FD28265A8EA9005C9D1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */; };
+		78B2FD2B265AC08D005C9D1D /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */; };
 		78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */; };
 		78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */; };
 		78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */; };
@@ -110,6 +111,7 @@
 		78B2FD1B265A3326005C9D1D /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		78B2FD1F265A7B23005C9D1D /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
 		78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPageViewController.swift; sourceTree = "<group>"; };
 		78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenMRTRowsViewController.swift; sourceTree = "<group>"; };
 		78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomCheckRow&Cell.swift"; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				78DF25412652670900F47A04 /* ShopRouteCell.xib */,
 				7839C949265295D30048B5F5 /* ShopImagesCell.swift */,
 				7839C94A265295D30048B5F5 /* ShopImagesCell.xib */,
+				78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				7839C9642652D42C0048B5F5 /* CollectionCell.swift in Sources */,
 				78DEC2BB2655088C00726A5D /* LocationManager.swift in Sources */,
 				7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */,
+				78B2FD2B265AC08D005C9D1D /* ReviewCell.swift in Sources */,
 				78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */,
 				78B2FD00265A1907005C9D1D /* User.swift in Sources */,
 			);

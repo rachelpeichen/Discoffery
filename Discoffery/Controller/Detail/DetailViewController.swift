@@ -30,6 +30,10 @@ class DetailViewController: UIViewController {
   // MARK: Properties
   var shop: CoffeeShop?
 
+  var review: Review?
+  
+  var feature: Feature?
+
   private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
   // MARK: Life Cycle
@@ -41,6 +45,14 @@ class DetailViewController: UIViewController {
   }
 
   // MARK: Functions
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    if let reviewsVC = segue.destination as? ReviewsPageViewController {
+
+//      reviewsVC.reviews = self.review!
+    }
+  }
+
   private func setupTableView() {
 
     tableView.register(UINib(nibName: "ShopImagesCell", bundle: nil), forCellReuseIdentifier: "shopImagesCell")
@@ -54,7 +66,9 @@ class DetailViewController: UIViewController {
     tableView.register(UINib(nibName: "WriteReviewCell", bundle: nil), forCellReuseIdentifier: "writeReviewCell")
 
     tableView.estimatedRowHeight = 280
+
     tableView.rowHeight = UITableView.automaticDimension
+
     tableView.separatorStyle = .none
 
     tableView.reloadData()
@@ -64,6 +78,9 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    guard shop != nil else { return 0}
+
     return shopsDetail.count
   }
 
@@ -132,5 +149,23 @@ extension DetailViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     return UITableViewCell()
+  }
+}
+
+extension DetailViewController: UITableViewDelegate {
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    switch indexPath.row {
+
+    case 1:
+      performSegue(withIdentifier: "navigateToReviewsVC", sender: indexPath.row)
+
+    case 4: // 大地圖
+      print("default")
+
+    default:
+      print("default")
+    }
   }
 }
