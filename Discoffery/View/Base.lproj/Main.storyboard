@@ -423,6 +423,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LKd-hX-ua8" firstAttribute="leading" secondItem="P1L-xG-BtU" secondAttribute="leading" id="6wd-r6-V1h"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bnL-p0-1hQ" secondAttribute="trailing" constant="234" id="cIm-ew-Ke8"/>
                             <constraint firstItem="bnL-p0-1hQ" firstAttribute="top" secondItem="QIw-3D-9Ee" secondAttribute="top" constant="16" id="dCV-GD-gCX"/>
                             <constraint firstItem="P1L-xG-BtU" firstAttribute="bottom" secondItem="LKd-hX-ua8" secondAttribute="bottom" id="l17-U3-3a2"/>
                             <constraint firstItem="LKd-hX-ua8" firstAttribute="trailing" secondItem="P1L-xG-BtU" secondAttribute="trailing" id="mYN-pt-04R"/>

@@ -29,7 +29,7 @@ class CoffeeShopManager {
   func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     //  Add a new collection to Firebase
-    let docRef = database.collection("shopsTaipei").document()
+    let docRef = database.collection("shopsTaipeiDemo").document()
     
     shop.id = docRef.documentID
 
@@ -54,7 +54,7 @@ class CoffeeShopManager {
     let lowerLat = latitude - (distance / metersPerLatDegree) // 緯度下限
     let upperLat = latitude + (distance / metersPerLatDegree) // 緯度上限
 
-    let docRef = Firestore.firestore().collection("shops")
+    let docRef = Firestore.firestore().collection("shopsTaipeiDemo")
 
     // 先查緯度: Firebase range filters can be implemented on only one field
     let queryByLat = docRef
@@ -87,12 +87,12 @@ class CoffeeShopManager {
     }
   }
 
-  func fetchShopsDemoOnFirebase(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
+  func fetchShopsTaipei(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
     // 把shopsTaipei 這個collection裡面所有的文件抓下來後暫存 再寫入reviews這個sub-collection
 
-    let docRef = Firestore.firestore().collection("shops")
+    let docRef = Firestore.firestore().collection("shopsTaipeiDemo")
 
-    docRef.getDocuments(){ querySnapshot, error in
+    docRef.getDocuments() { querySnapshot, error in
 
       if let error = error {
         print("Error getting documents: \(error)")

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Features: Codable {
+struct Feature: Codable {
 
   var id: String // Features.documentID
   var wifi: String

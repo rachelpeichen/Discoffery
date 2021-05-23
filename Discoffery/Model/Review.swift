@@ -11,7 +11,7 @@ struct Review: Codable {
 
   var id: String = "default"            // Review.documentID
   var parentId: String = "default"      // CoffeeShop.documentID
-  var user: String = "default"           // User.documentID
+  var user: String = "default"          // User.documentID
 
   var userName: String = "default"
   var rating: Double = 4

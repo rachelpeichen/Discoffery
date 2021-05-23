@@ -28,32 +28,32 @@ class HomeMapViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    //    // Do any additional setup after loading the view
-    //    // fetchAPIdata()
-    //
-    //    // 1:  When enter we check auth status
-    //    locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
-    //
-    //    // 2: Get user's current coordinate for drawing map
-    //    LocationManager.shared.onCurrentCoordinate = { coordinate in
-    //
-    //      self.userCurrentCoordinate = coordinate
-    //    }
-    //
-    //    // 3: Fetch shops within distance on Firebase
-    //    self.homeViewModel?.getShopAroundUser()
-    //
-    //    homeViewModel?.onShopsAnnotations = { [weak self] annotations in
-    //
-    //      self?.mapView.showAnnotations(annotations, animated: true)
-    //    }
-    //
-    //    homeViewModel?.getShopsData = { [weak self] shopsData in
-    //
-    //      self?.shopsDataForMap = shopsData
-    //    }
+    // Do any additional setup after loading the view
 
-    fetchShopsTaipeiCollection()
+    // 1:  When enter we check auth status
+    locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
+
+    // 2: Get user's current coordinate for drawing map
+    LocationManager.shared.onCurrentCoordinate = { coordinate in
+
+      self.userCurrentCoordinate = coordinate
+    }
+
+    // 3: Fetch shops within distance on Firebase
+    self.homeViewModel?.getShopAroundUser()
+
+    homeViewModel?.onShopsAnnotations = { [weak self] annotations in
+
+      self?.mapView.showAnnotations(annotations, animated: true)
+    }
+
+    homeViewModel?.getShopsData = { [weak self] shopsData in
+
+      self?.shopsDataForMap = shopsData
+    }
+
+    //    fetchAPIdata()
+    //    fetchShopsCollection()
 
   }
 
@@ -64,7 +64,7 @@ class HomeMapViewController: UIViewController {
 
     APIManager.shared.request { result in
 
-      for index in 0..<result.count { // Demo 用200筆不然我的火地又要爆掉ㄌ
+      for index in 0..<200 { // shopsTaipeiDemo用200筆不然我的火地又要爆掉ㄌ
 
         self.apiData.append(result[index])
 
@@ -92,16 +92,18 @@ class HomeMapViewController: UIViewController {
   }
 
   // MARK: - 把shops這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection
-  func fetchShopsTaipeiCollection() {
+  func fetchShopsCollection() {
 
-    CoffeeShopManager.shared.fetchShopsDemoOnFirebase { result  in
+    CoffeeShopManager.shared.fetchShopsTaipei { result  in
       switch result {
 
       case .success(let shopsData):
 
         self.shopsDemo = shopsData
 
-        self.publishMockReviewsCollection()
+        self.publishReviewsSubCollection()
+
+        self.publishFeaturesSubCollection()
 
       case .failure(let error):
         print("\(error)")
@@ -109,11 +111,13 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  func publishMockReviewsCollection() {
+  func publishReviewsSubCollection() {
 
     for index in 0..<shopsDemo.count {
 
-      for _ in 0..<10 { // Write 10 mock reviews
+      let randInt = Int.random(in: 5...10)
+
+      for _ in 0..<randInt { // Write 5 - 15 mock reviews
 
         ReviewManager.shared.publishReview(shop: &shopsDemo[index]) { result  in
 
@@ -128,8 +132,26 @@ class HomeMapViewController: UIViewController {
         }
       }
     }
-
   }
+
+  func publishFeaturesSubCollection() {
+
+    for index in 0..<shopsDemo.count {
+
+      FeatureManager.shared.publishFeature(shop: &shopsDemo[index]) { result in
+
+        switch result {
+
+        case .success(let result):
+          print("ok\(result)")
+
+        case .failure(let error):
+          print("\(error)")
+        }
+      }
+    }
+  }
+
 }
 
 // MARK: - CLLocationManagerDelegate

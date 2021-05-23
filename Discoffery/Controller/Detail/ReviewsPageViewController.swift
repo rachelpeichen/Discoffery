@@ -15,12 +15,10 @@ class ReviewsPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 }
-
-
 //
-//class HomeViewController: UIViewController {
+// class HomeViewController: UIViewController {
 //
-//  private enum ButtonSet: String {
+// private enum ButtonSet: String {
 //
 //    case map = "地圖模式"
 //

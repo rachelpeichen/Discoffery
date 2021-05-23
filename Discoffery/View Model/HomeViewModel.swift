@@ -98,7 +98,6 @@ class HomeViewModel {
       shopAnnotation.coordinate.latitude = shopsData[index].latitude
 
       shopAnnotation.title = shopsData[index].name
-
       shopAnnotations.append(shopAnnotation)
     }
     self.onShopsAnnotations?(shopAnnotations)
