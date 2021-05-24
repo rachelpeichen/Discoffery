@@ -33,7 +33,7 @@ final class Box<T> {
   }
 }
 
-// Boxing：使用屬性觀察器通知觀察器值已經更改。
+// Boxing：使用屬性觀察器通知觀察器值已經更改。現在還沒用過QQ
 // 1. 每個Box都會有一個Listener，當值被更改了就會通知Box。
 //
 // 2. Box具有泛型值，當didSet觀察到任何的更改，就會通知Listener。

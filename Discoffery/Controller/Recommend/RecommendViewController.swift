@@ -8,5 +8,11 @@
 import UIKit
 
 class RecommendViewController: UIViewController {
-  
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view.
+    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
+  }
 }

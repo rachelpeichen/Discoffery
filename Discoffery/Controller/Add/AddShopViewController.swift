@@ -13,8 +13,7 @@ class AddShopViewController: FormViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    form +++ Section("必填資訊")
-
+    form +++ Section(header:"必填資訊", footer:"快寫喔")
       <<< TextRow("店名") { row in
         row.title = row.tag
         row.placeholder = "請輸入名稱"
@@ -50,10 +49,10 @@ class AddShopViewController: FormViewController {
     form +++ Section("選填資訊：環境設施")
 
       // MARK: 這個要再改
-//      <<< ButtonRow("鄰近捷運站") { (row: ButtonRow) -> Void in
-//        row.title = row.tag
-//        row.presentationMode = .segueName(segueName: "HiddenMRTRowsControllerSegue", onDismiss: nil)
-//      }
+      //      <<< ButtonRow("鄰近捷運站") { (row: ButtonRow) -> Void in
+      //        row.title = row.tag
+      //        row.presentationMode = .segueName(segueName: "HiddenMRTRowsControllerSegue", onDismiss: nil)
+      //      }
 
       <<< PickerInputRow<String>("時間限制") {
         $0.title = $0.tag

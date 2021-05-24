@@ -23,6 +23,7 @@ class CollectionViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setupTableView()
+    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
   }
 
   // MARK: Functions

@@ -20,18 +20,20 @@ struct CoffeeShop: Codable {
   var music: Double
   var url: String
   var address: String
-
-  // Call API: String; Decode from Firebase: Double
-  var latitude: Double
-  var longitude: Double
-  
   var limitedTime: String
   var socket: String
   var standingDesk: String
   var mrt: String
   var openTime: String
 
+  // Call API: String; Decode from Firebase: Double
+  var latitude: Double
+  var longitude: Double
+
+  // Call API: No these variables! Only decoding from Firebase need these!
+
   enum CodingKeys: String, CodingKey {
+
     case id
     case name
     case city
@@ -43,13 +45,15 @@ struct CoffeeShop: Codable {
     case music
     case url
     case address
-    case latitude
-    case longitude
     case limitedTime = "limited_time"
     case socket
     case standingDesk = "standing_desk"
     case mrt
     case openTime = "open_time"
+
+    case latitude
+    case longitude
+
   }
 
   var toDict: [String: Any] {

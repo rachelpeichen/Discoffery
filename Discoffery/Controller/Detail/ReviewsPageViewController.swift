@@ -11,7 +11,9 @@ class ReviewsPageViewController: UIViewController {
 
   // MARK: Outlets
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var cafeName: UILabel!
+
+  @IBOutlet weak var cafeNameLabel: UILabel!
+
   @IBAction func didTapBackButton(_ sender: Any) {
     self.dismiss(animated: true, completion: nil)
   }
@@ -19,10 +21,13 @@ class ReviewsPageViewController: UIViewController {
   // MARK: Properties
   var reviews: [Review]?
 
+  var shopName = "Cafe Name"
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
+    cafeNameLabel.text = shopName
   }
 
   // MARK: Functions
@@ -46,7 +51,14 @@ extension ReviewsPageViewController: UITableViewDataSource {
     if let cell = tableView.dequeueReusableCell(
         withIdentifier: "reviewCell", for: indexPath) as? ReviewCell {
 
-      cell.comment.text = "很隱密的一家日式咖啡廳，環境很放鬆、很安靜，手沖咖啡很好喝，但品項很少，也沒有特色甜點，只適合辦公或K書。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。是會一直想光顧的咖啡店。"
+      guard let singleReview = reviews?[indexPath.row] else { return ReviewCell() }
+
+      cell.postTIme.text = singleReview.postTime
+      cell.rateStars.rating = singleReview.rating
+      cell.recommendItem1.text = singleReview.recommendItems[0]
+      cell.recommendItem2.text = singleReview.recommendItems[1]
+      cell.userName.text = singleReview.userName
+      cell.comment.text = singleReview.comment
 
       return cell
     }

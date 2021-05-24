@@ -72,6 +72,7 @@ class HomeViewModel {
     let metersPerLonDegree = (Double.pi / 180) * 6371000 * cos(latitude / 180)
 
     let lowerLon = longitude - (distance / metersPerLonDegree) // 經度下限
+
     let upperLon = longitude + (distance / metersPerLonDegree) // 經度上限
 
 //    var temp: [CoffeeShop] = []
@@ -95,9 +96,11 @@ class HomeViewModel {
       let shopAnnotation = MKPointAnnotation()
 
       shopAnnotation.coordinate.longitude = shopsData[index].longitude
+
       shopAnnotation.coordinate.latitude = shopsData[index].latitude
 
       shopAnnotation.title = shopsData[index].name
+
       shopAnnotations.append(shopAnnotation)
     }
     self.onShopsAnnotations?(shopAnnotations)

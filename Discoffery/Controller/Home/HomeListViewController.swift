@@ -43,7 +43,8 @@ class HomeListViewController: UIViewController {
       self?.tableView.reloadData()
     }
   }
-  
+
+  // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
     let selectedRow = sender as? Int
@@ -53,8 +54,7 @@ class HomeListViewController: UIViewController {
       detailVC.shop = self.shopsDataForList[selectedRow!]
     }
   }
-  
-  // MARK: - Functions
+
   func setupTableView() {
     
     tableView.delegate = self

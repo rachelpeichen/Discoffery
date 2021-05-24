@@ -74,6 +74,7 @@ class CoffeeShopManager {
 
           do {
             if let shopFilterd = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+              
               shopsFilterd.append(shopFilterd)
             }
 
@@ -105,6 +106,7 @@ class CoffeeShopManager {
 
           do {
             if let shopTaipei =  try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
               shopsTaipei.append(shopTaipei)
             }
 
@@ -114,16 +116,12 @@ class CoffeeShopManager {
         }
 
         print(shopsTaipei.count)
-
         completion(.success(shopsTaipei))
       }
     }
   }
 
 }
-
-
-
 // func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 //
 //  // Update location from original String to GeoPoint -> 現在暫時用不到了因為GeoPoint不能查經度

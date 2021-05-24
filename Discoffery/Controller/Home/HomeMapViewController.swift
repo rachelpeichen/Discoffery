@@ -90,7 +90,7 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  // MARK: - 把shops這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection
+  // MARK: - 把shops這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection 這裏其實要寫在ViewModel!!!!!!!!但之後沒用到就算ㄌ = =
   func fetchShopsCollection() {
 
     CoffeeShopManager.shared.fetchShopsTaipei { result  in
@@ -118,7 +118,7 @@ class HomeMapViewController: UIViewController {
 
       for _ in 0..<randInt { // Write 5 - 15 mock reviews
 
-        ReviewManager.shared.publishReview(shop: &shopsDemo[index]) { result  in
+        ReviewManager.shared.publishMockReviews(shop: &shopsDemo[index]) { result  in
 
           switch result {
 
@@ -225,10 +225,11 @@ extension HomeMapViewController: MKMapViewDelegate {
       annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
     }
 
-    annotationView?.markerTintColor = .brown
+    annotationView?.markerTintColor = UIColor.init(named: "B1")
 
     return annotationView
   }
+
 }
 
 //  func updateGeoPointOnFirebase(with shop: inout CoffeeShop) {

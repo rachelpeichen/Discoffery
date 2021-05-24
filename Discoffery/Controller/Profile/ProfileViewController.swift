@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setUpProfileImageLayout()
+    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
   }
 
   // MARK: Functions

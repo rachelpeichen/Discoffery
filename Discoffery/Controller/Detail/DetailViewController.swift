@@ -30,7 +30,9 @@ class DetailViewController: UIViewController {
   // MARK: Properties
   var shop: CoffeeShop?
 
-  var review: Review?
+  var shopName = "Cafe Name"
+
+  var reviews: [Review]?
   
   var feature: Feature?
 
@@ -42,6 +44,10 @@ class DetailViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setupTableView()
+
+    if let shop = shop {
+      fetchReviewsForShop(shop: shop)
+    }
   }
 
   // MARK: Functions
@@ -49,7 +55,29 @@ class DetailViewController: UIViewController {
 
     if let reviewsVC = segue.destination as? ReviewsPageViewController {
 
-//      reviewsVC.reviews = self.review!
+      guard reviews != nil else { return }
+
+      reviewsVC.reviews = self.reviews
+
+      reviewsVC.shopName = self.shopName
+    }
+  }
+
+  // MARK: TODO這個是否能夠寫到HomeViewModel去～
+  func fetchReviewsForShop(shop: CoffeeShop) {
+
+    ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
+
+      switch result {
+
+      case .success(let getReviews):
+
+        self?.reviews = getReviews
+
+      case .failure(let error):
+
+        print("fetchReviewsForShop: \(error)")
+      }
     }
   }
 
@@ -66,9 +94,7 @@ class DetailViewController: UIViewController {
     tableView.register(UINib(nibName: "WriteReviewCell", bundle: nil), forCellReuseIdentifier: "writeReviewCell")
 
     tableView.estimatedRowHeight = 280
-
     tableView.rowHeight = UITableView.automaticDimension
-
     tableView.separatorStyle = .none
 
     tableView.reloadData()
@@ -79,7 +105,9 @@ extension DetailViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-    guard shop != nil else { return 0}
+    guard shop != nil else { return 0 }
+
+    shopName = shop!.name
 
     return shopsDetail.count
   }
@@ -159,12 +187,15 @@ extension DetailViewController: UITableViewDelegate {
     switch indexPath.row {
 
     case 1:
+
       performSegue(withIdentifier: "navigateToReviewsVC", sender: indexPath.row)
 
     case 4: // 大地圖
+
       print("default")
 
     default:
+
       print("default")
     }
   }
