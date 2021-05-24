@@ -7,18 +7,20 @@
 
 import UIKit
 import Cosmos
+import JGProgressHUD
 
 class WriteReviewCell: ShopDetailBasicCell {
 
-  @IBOutlet weak var rateStars: CosmosView!
-
   @IBOutlet weak var uploadPhotosButton: UIButton!
 
+  @IBOutlet weak var addRecommednItemButton: UIButton!
+  
+  @IBOutlet weak var rateStars: CosmosView!
+
+  // MARK: 先做拿到評價 評分 一個推薦品
   @IBOutlet weak var reviewComment: UITextField!
 
   @IBOutlet weak var recommendItemTextField: UITextField!
-
-  @IBOutlet weak var addRecommednItemButton: UIButton!
 
   @IBOutlet weak var sendReviewButton: UIButton!
 

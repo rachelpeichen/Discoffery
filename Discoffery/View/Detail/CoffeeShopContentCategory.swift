@@ -10,10 +10,15 @@ import Foundation
 enum CoffeeShopContentCategory {
 
   case images
+
   case description
+
   case recommend
+
   case feature
+
   case route
+  
   case writeReview
 
   func identifier() -> String {

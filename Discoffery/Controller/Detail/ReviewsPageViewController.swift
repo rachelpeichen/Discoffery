@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewsPageViewController: UIViewController {
+class ReviewsPageViewController: UIViewController, UITableViewDelegate {
 
   // MARK: Outlets
   @IBOutlet weak var tableView: UITableView!
@@ -33,6 +33,10 @@ class ReviewsPageViewController: UIViewController {
 
   // MARK: Functions
   private func setupTableView() {
+
+    tableView.delegate = self
+
+    tableView.dataSource = self
 
     tableView.estimatedRowHeight = 200
 

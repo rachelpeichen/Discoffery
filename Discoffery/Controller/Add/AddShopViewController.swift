@@ -9,11 +9,37 @@ import Eureka
 
 class AddShopViewController: FormViewController {
 
+  func showAlert() {
+
+    let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
+
+    let defaultAction = UIAlertAction(title: "要Ｒ", style: .destructive, handler: nil)
+
+    let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
+
+    alertController.addAction(defaultAction)
+
+    alertController.addAction(cancelAction)
+
+    present(alertController, animated: true)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
+    form +++ Section()
+
+      <<< ButtonRow("我寫好ㄌ") { (row: ButtonRow) -> Void in
+        row.title = row.tag
+
+      } .onCellSelection { [weak self] cell, row in
+
+        self!.showAlert()
+      }
+
     form +++ Section(header:"必填資訊", footer:"快寫喔")
+
       <<< TextRow("店名") { row in
         row.title = row.tag
         row.placeholder = "請輸入名稱"
@@ -99,32 +125,6 @@ class AddShopViewController: FormViewController {
         return NameRow("名稱") {
           $0.placeholder = $0.tag
         }
-      }
-
-      form +++ Section()
-
-        <<< ButtonRow("我寫好ㄌ") { (row: ButtonRow) -> Void in
-
-          row.title = row.tag
-
-        } .onCellSelection { [weak self] cell, row in
-
-          showAlert()
-        }
-
-      func showAlert() {
-
-        let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
-
-        let defaultAction = UIAlertAction(title: "讚啦", style: .default, handler: nil)
-
-        let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
-
-        alertController.addAction(defaultAction)
-
-        alertController.addAction(cancelAction)
-
-        present(alertController, animated: true)
       }
     }
   }

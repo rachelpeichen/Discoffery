@@ -44,6 +44,24 @@ class CoffeeShopManager {
     }
   }
 
+  func publishNewShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+
+    //  Add a new collection to Firebase
+    let docRef = database.collection("newShopsDemo").document()
+
+    shop.id = docRef.documentID
+
+    docRef.setData(shop.toDict) { error in
+
+      if let error = error {
+        completion(.failure(error))
+
+      } else {
+        completion(.success("Success"))
+      }
+    }
+  }
+
   func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
     // Find all shops within input meter of user's current location

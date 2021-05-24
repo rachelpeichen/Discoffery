@@ -170,7 +170,7 @@ extension HomeListViewController: UITableViewDataSource {
       cell.distance.text = "距離" + String(distance) + "公尺"
 
       // 先暫時用它ㄉ
-      cell.starsView.rating = shop.quiet
+      cell.starsView.rating = shop.cheap
 
       // 這邊是我的Features
       // 營業時間還沒弄原本資料有的會是空的
@@ -179,8 +179,8 @@ extension HomeListViewController: UITableViewDataSource {
       cell.featureTwo.text = feature?[0].socket
 
       // 這個要計算最多推ㄉ 先顯示就好
-      cell.itemOne.text = "燕麥奶拿鐵"
-      cell.itemTwo.text = "冷萃咖啡"
+      cell.itemOne.text = "馥列白"
+      cell.itemTwo.text = "摩卡可可碎片星冰樂"
       
       cell.selectionStyle = .none
       

@@ -8,12 +8,11 @@ import Foundation
 
 struct User: Codable {
 
-  var id: String // User.documentID
-  var appleId: String
-  var blockList: [String]
-  var profileImage: String // Now only mock data
-
-  var savedShops: String // a sub-collection
+  var id: String = "default"// User.documentID
+  var appleId: String = "default"
+  var blockList: [String] = ["default","default2"]
+  var profileImage: String = "default" // Now only mock data
+  var savedShops: String = "default" // A sub-collection
 
   enum CodingKeys: String, CodingKey {
     case id

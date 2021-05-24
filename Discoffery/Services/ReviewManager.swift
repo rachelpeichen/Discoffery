@@ -49,6 +49,27 @@ class ReviewManager {
     }
   }
 
+  func publishUserReview(shop: CoffeeShop, review: inout UserReview, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("reviews").document()
+
+    review.id = docRef.documentID
+
+    review.parentId = shop.id
+
+    review.postTime = Date().millisecondsSince1970
+
+    docRef.setData(review.toDict) { error in
+
+      if let error = error {
+        completion(.failure(error))
+
+      } else {
+        completion(.success("Success"))
+      }
+    }
+  }
+
   func publishMockReviews(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     // Mock data
@@ -67,13 +88,17 @@ class ReviewManager {
     var review = Review()
 
     review.id = docRef.documentID
+    
     review.parentId = shop.id
 
     review.userName = mockUserName.randomElement()!
+
     review.rating = mockRating.randomElement()!
+
     review.comment = mockComment.randomElement()!
+
     review.recommendItems = [mockItems.randomElement()!, mockItems.randomElement()!]
-    review.postTime = mockTime.randomElement()!
+    // review.postTime = mockTime.randomElement()!
 
     docRef.setData(review.toDict) { error in
 

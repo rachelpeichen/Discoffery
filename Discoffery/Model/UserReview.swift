@@ -1,24 +1,29 @@
 //
-//  Review.swift
+//  UserReview.swift
 //  Discoffery
 //
-//  Created by Pei Pei on 2021/5/23.
+//  Created by Pei Pei on 2021/5/25.
 //
 
 import Foundation
 
-// MARK: 這是送mock reviews的 然後postTime格式不對 之後要改掉
-struct Review: Codable {
+struct UserReview: Codable {
 
-  var id: String = "default"            // Review.documentID
-  var parentId: String = "default"      // CoffeeShop.documentID
-  var user: String = "default"          // User.documentID
+  var id: String            // Review.documentID
 
-  var userName: String = "default"
-  var rating: Double = 4
-  var comment: String = "default"
-  var recommendItems: [String] = ["default"]
-  var postTime: String = "default"
+  var parentId: String      // CoffeeShop.documentID
+
+  var user: String          // User.documentID
+
+  var userName: String
+
+  var rating: Double
+
+  var comment: String
+
+  var recommendItems: [String]
+
+  var postTime: Int64
 
   enum CodingKeys: String, CodingKey {
 

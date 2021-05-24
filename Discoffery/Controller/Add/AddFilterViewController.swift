@@ -23,6 +23,7 @@ class AddFilterViewController: FormViewController {
         row.placeholder = "嘎哩ㄍㄟㄍㄟ"
 
       }.cellSetup { cell, row in
+
         cell.height = { 44 }
       }
 
@@ -31,6 +32,7 @@ class AddFilterViewController: FormViewController {
         $0.cellProvider = CellProvider<SwitchCell>(nibName: "SwitchCell", bundle: Bundle.main)
 
       }.cellSetup { cell, row in
+
         cell.height = { 44 }
       }
 
@@ -49,7 +51,7 @@ class AddFilterViewController: FormViewController {
 
       let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
 
-      let defaultAction = UIAlertAction(title: "讚啦", style: .default, handler: nil)
+      let defaultAction = UIAlertAction(title: "要Ｒ", style: .destructive, handler: nil)
 
       let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
 

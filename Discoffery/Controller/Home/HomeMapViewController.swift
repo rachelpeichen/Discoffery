@@ -53,7 +53,6 @@ class HomeMapViewController: UIViewController {
     }
        //  fetchAPIdata()
        //  fetchShopsCollection()
-
   }
 
   // MARK: - Functions
@@ -82,9 +81,11 @@ class HomeMapViewController: UIViewController {
       switch result {
 
       case .success:
+
         print("🥴Publish To Firebase Success!!")
 
       case .failure(let error):
+
         print("\(error)")
       }
     }
@@ -105,6 +106,7 @@ class HomeMapViewController: UIViewController {
        self.publishFeaturesSubCollection()
 
       case .failure(let error):
+
         print("\(error)")
       }
     }
@@ -123,9 +125,11 @@ class HomeMapViewController: UIViewController {
           switch result {
 
           case .success(let result):
+
             print("\(result)")
 
           case .failure(let error):
+
             print("\(error)")
           }
         }
@@ -143,16 +147,17 @@ class HomeMapViewController: UIViewController {
         switch result {
 
         case .success(let result):
+
           print("\(result)")
 
         case .failure(let error):
+
           print("\(error)")
         }
       }
     }
     print("ok")
   }
-
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -167,17 +172,21 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     switch manager.authorizationStatus {
 
     case .restricted:
+
       print("⛔️ Location access was restricted.")
 
     case .denied:
+
       print("🚫 User denied access to location.")
 
     case .notDetermined:
+
       print("❓Location status not determined.")
 
       manager.requestWhenInUseAuthorization()
 
     case .authorizedAlways, .authorizedWhenInUse:
+
       print("👌🏻Location status is OK.")
 
       homeViewModel?.getShopAroundUser()
@@ -185,6 +194,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
       setUpMapView()
 
     default:
+
       print("🙄 蝦小")
     }
   }
@@ -198,7 +208,9 @@ extension HomeMapViewController: HomeViewModelDelegate {
     homeViewModel?.delegate = self
 
     mapView.delegate = self
+
     mapView.showsUserLocation = true
+
     mapView.userTrackingMode = .follow
 
     mapView.region = MKCoordinateRegion(
@@ -229,7 +241,6 @@ extension HomeMapViewController: MKMapViewDelegate {
 
     return annotationView
   }
-
 }
 
 //  func updateGeoPointOnFirebase(with shop: inout CoffeeShop) {

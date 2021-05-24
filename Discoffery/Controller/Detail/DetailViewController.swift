@@ -33,6 +33,8 @@ class DetailViewController: UIViewController {
   var shopName = "Cafe Name"
 
   var reviews: [Review] = []
+
+  var reviewsCount = 0
   
   var feature = Feature()
 
@@ -75,6 +77,8 @@ class DetailViewController: UIViewController {
       case .success(let getReviews):
 
         self?.reviews = getReviews
+
+        self?.reviewsCount = getReviews.count
 
       case .failure(let error):
 
@@ -138,13 +142,14 @@ extension DetailViewController: UITableViewDataSource {
 
         cell.name.text = shop?.name
         cell.address.text = shop?.address
+        cell.reviewsCount.text = "(\(reviewsCount))"
 
         // 先暫時用它ㄉ評分假的
         cell.rateStars.rating = shop?.cheap ?? 4
         cell.averageRatings.text = String(shop?.cheap ?? 4)
 
         // MARK: 營業時間還沒有弄～ＴＡＴ
-        cell.openingHours.text = shop?.limitedTime
+        cell.openingHours.text = "因爲疫情暫時關閉"
 
         cell.selectionStyle = .none
 
@@ -167,7 +172,6 @@ extension DetailViewController: UITableViewDataSource {
     case 3:
       // 環境特色：先寫死三個Firebase上面的假資料
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
-
 
         cell.feature = self.feature
 

@@ -83,6 +83,7 @@ class HomeViewModel {
 //      }
 //    }
 //    shopsData = temp
+
     // 簡潔寫法！
     shopsData = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
   }

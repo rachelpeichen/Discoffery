@@ -54,11 +54,8 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="營業時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UT-TQ-8CB">
-                        <rect key="frame" x="73" y="77.5" width="120" height="19"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="120" id="RDY-iP-5zB"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="營業時間" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UT-TQ-8CB">
+                        <rect key="frame" x="73" y="77.5" width="320" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -122,6 +119,7 @@
                     <constraint firstAttribute="trailing" secondItem="Dlv-qA-nc3" secondAttribute="trailing" constant="16" id="VU9-QH-Zoo"/>
                     <constraint firstItem="PMM-mu-0lx" firstAttribute="top" secondItem="Dlv-qA-nc3" secondAttribute="bottom" constant="8" id="aFX-h0-4IJ"/>
                     <constraint firstItem="KQl-sx-A9r" firstAttribute="top" secondItem="2v1-g6-reu" secondAttribute="bottom" constant="8" id="mBm-zv-dds"/>
+                    <constraint firstAttribute="trailing" secondItem="2UT-TQ-8CB" secondAttribute="trailing" constant="16" id="nAo-5O-8m5"/>
                     <constraint firstItem="PMM-mu-0lx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nKj-io-vRU"/>
                     <constraint firstAttribute="bottom" secondItem="KQl-sx-A9r" secondAttribute="bottom" constant="16" id="qxd-iw-meV"/>
                     <constraint firstItem="KQl-sx-A9r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="r0B-h6-ooY"/>
