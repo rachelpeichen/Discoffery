@@ -19,9 +19,6 @@ class ShopImagesCell: ShopDetailBasicCell {
     super.awakeFromNib()
     // Initialization code
 
-    collectionView.dataSource = self
-    collectionView.delegate = self
-
     setupCollectionView()
   }
 
@@ -36,7 +33,12 @@ class ShopImagesCell: ShopDetailBasicCell {
 
     collectionView.register(UINib(nibName: "ShopImagesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "imagesCollectionCell")
 
+    collectionView.dataSource = self
+
+    collectionView.delegate = self
+
     collectionView.isScrollEnabled = true
+
     collectionView.showsHorizontalScrollIndicator = true
   }
 }

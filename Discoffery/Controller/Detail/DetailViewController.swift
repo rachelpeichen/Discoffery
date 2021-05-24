@@ -32,9 +32,9 @@ class DetailViewController: UIViewController {
 
   var shopName = "Cafe Name"
 
-  var reviews: [Review]?
+  var reviews: [Review] = []
   
-  var feature: Feature?
+  var feature = Feature()
 
   private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
@@ -43,9 +43,11 @@ class DetailViewController: UIViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
+    
     setupTableView()
 
     if let shop = shop {
+
       fetchReviewsForShop(shop: shop)
     }
   }
@@ -63,7 +65,7 @@ class DetailViewController: UIViewController {
     }
   }
 
-  // MARK: TODO這個是否能夠寫到HomeViewModel去～
+  // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchReviewsForShop(shop: CoffeeShop) {
 
     ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
@@ -83,6 +85,10 @@ class DetailViewController: UIViewController {
 
   private func setupTableView() {
 
+    tableView.delegate = self
+
+    tableView.dataSource = self
+
     tableView.register(UINib(nibName: "ShopImagesCell", bundle: nil), forCellReuseIdentifier: "shopImagesCell")
 
     tableView.register(UINib(nibName: "ShopDescriptionCell", bundle: nil), forCellReuseIdentifier: "shopDescriptionCell")
@@ -94,7 +100,9 @@ class DetailViewController: UIViewController {
     tableView.register(UINib(nibName: "WriteReviewCell", bundle: nil), forCellReuseIdentifier: "writeReviewCell")
 
     tableView.estimatedRowHeight = 280
+
     tableView.rowHeight = UITableView.automaticDimension
+
     tableView.separatorStyle = .none
 
     tableView.reloadData()
@@ -120,14 +128,22 @@ extension DetailViewController: UITableViewDataSource {
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopImagesCell", for: indexPath) as? ShopImagesCell {
 
         cell.selectionStyle = .none
+
         return cell
       }
 
     case 1:
+
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopDescriptionCell", for: indexPath) as? ShopDescriptionCell {
 
         cell.name.text = shop?.name
         cell.address.text = shop?.address
+
+        // 先暫時用它ㄉ評分假的
+        cell.rateStars.rating = shop?.cheap ?? 4
+        cell.averageRatings.text = String(shop?.cheap ?? 4)
+
+        // MARK: 營業時間還沒有弄～ＴＡＴ
         cell.openingHours.text = shop?.limitedTime
 
         cell.selectionStyle = .none
@@ -136,7 +152,12 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 2:
+      // 推薦商品：還沒有弄，先寫假的三個
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
+
+        let mockArr = ["摩卡可可碎片星冰樂", "馥列白", "醇濃抹茶那堤"]
+
+        cell.configure(with: mockArr)
 
         cell.selectionStyle = .none
 
@@ -144,10 +165,15 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 3:
-
+      // 環境特色：先寫死三個Firebase上面的假資料
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
 
-        cell.categoryLabel.text = "特色服務"
+
+        cell.feature = self.feature
+
+        let featureArr = [self.feature.atmosphere, self.feature.socket, self.feature.timeLimit]
+
+        cell.configure(with: featureArr)
 
         cell.selectionStyle = .none
         
@@ -155,17 +181,18 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 4:
-
+      // 地圖
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopRouteCell", for: indexPath) as? ShopRouteCell {
 
         cell.address.text = shop?.address
+
         cell.selectionStyle = .none
 
         return cell
       }
 
     case 5:
-
+      // 寫評論
       if let cell = tableView.dequeueReusableCell(withIdentifier: "writeReviewCell", for: indexPath) as? WriteReviewCell {
 
         cell.selectionStyle = .none
@@ -174,8 +201,10 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     default:
+
       return UITableViewCell()
     }
+
     return UITableViewCell()
   }
 }

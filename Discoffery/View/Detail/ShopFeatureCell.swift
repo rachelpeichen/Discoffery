@@ -9,44 +9,79 @@ import UIKit
 
 class ShopFeatureCell: ShopDetailBasicCell {
 
-  var features: [String] = []
+  // MARK: Properties
+  var feature = Feature()
 
-  @IBOutlet weak var categoryLabel: UILabel!
+  var featureArr = [String]()
 
   @IBOutlet weak var collectionView: UICollectionView!
+  
+  @IBOutlet weak var categoryLabel: UILabel!
 
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    super.awakeFromNib()
+    // Initialization code
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
+    setupCollectionView()
+  }
+
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    // Configure the view for the selected state
+  }
 
   // MARK: Functions
+
+  func configure(with featureArr: [String]) {
+      // 調整大小
+      self.featureArr = featureArr
+
+      self.collectionView.reloadData()
+
+      self.collectionView.layoutIfNeeded()
+  }
+  
   private func setupCollectionView() {
 
-    collectionView.backgroundColor = UIColor.white
+    collectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
+
+    collectionView.delegate = self
+
+    collectionView.dataSource = self
   }
 }
 
 extension ShopFeatureCell: UICollectionViewDataSource {
 
+  // MARK: 先寫死三個
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-    features.count
+    return 3
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: FeatureCollectionViewCell.self), for: indexPath) as? FeatureCollectionViewCell
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
 
-    let featureToShow = features[indexPath.row]
+      cell.layoutFeatureCollectionViewCell(feature: featureArr[indexPath.row])
 
-    cell?.layoutFeatureCollectionViewCell(hashTag: featureToShow)
-
-    return cell ?? FeatureCollectionViewCell()
+      return cell
+    }
+    return FeatureCollectionViewCell()
   }
+}
+
+extension ShopFeatureCell: UICollectionViewDelegateFlowLayout {
+
+  // MARK: 以字體內容去調整每個cell的大小
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+    let textSize: CGSize = featureArr[indexPath.row]
+
+      .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+
+    return CGSize(width: textSize.width + 25, height: collectionView.bounds.size.height)
+  }
+}
+
+extension ShopFeatureCell: UICollectionViewDelegate {
 }

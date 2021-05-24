@@ -31,35 +31,4 @@ enum CoffeeShopContentCategory {
     case .writeReview: return String(describing: WriteReviewCell.self)
     }
   }
-//
-//  func cellForIndexPath(_ indexPath: IndexPath, tableView: UITableView, data: CoffeeShop) -> UITableViewCell {
-//
-//    let cell = tableView.dequeueReusableCell(withIdentifier: identifier(), for: indexPath)
-//
-//    guard let basicCell = cell as? ShopDetailBasicCell else { return cell }
-//
-//    switch self {
-//
-//    case .description:
-//
-//      basicCell.layoutCell(product: data)
-//
-//    case .recommend:
-//
-//      basicCell.layoutCell(category: rawValue, content: "")
-//
-//    case .feature:
-//
-//      basicCell.layoutCell(category: rawValue, content: "")
-//
-//    case .route:
-//
-//      basicCell.layoutCell(category: rawValue, content: "")
-//
-//    case .writeReview:
-//
-//      basicCell.layoutCell(category: rawValue, content: "")
-//    }
-//    return basicCell
-//  }
 }

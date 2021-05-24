@@ -19,7 +19,9 @@ class HomeListViewController: UIViewController {
   var shopsDataForList: [CoffeeShop] = []
 
   var reviews: [Review] = []
-  
+
+  var featureDic: [String: [Feature]] = [:] // 用shop.id去對
+
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
   var mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
@@ -39,31 +41,80 @@ class HomeListViewController: UIViewController {
     homeViewModel?.getShopsData = { [weak self] shopsData in
       
       self?.shopsDataForList = shopsData
-      
+
+      for index in 0..<shopsData.count {
+
+        self?.fetchFeatureForShop(shop: shopsData[index])
+      }
+
       self?.tableView.reloadData()
     }
   }
 
   // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
+
     let selectedRow = sender as? Int
+
+    let selectedShop = shopsDataForList[selectedRow!]
+
+    let featureForSelectedShop = featureDic[selectedShop.id]![0]
     
     if let detailVC = segue.destination as? DetailViewController {
       
-      detailVC.shop = self.shopsDataForList[selectedRow!]
+      detailVC.shop = selectedShop
+
+      detailVC.feature = featureForSelectedShop
+    }
+  }
+
+  // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  func fetchReviewsForShop(shop: CoffeeShop) {
+
+    ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
+
+      switch result {
+
+      case .success(let getReviews):
+
+        self?.reviews = getReviews
+
+      case .failure(let error):
+
+        print("fetchReviewsForShop: \(error)")
+      }
+    }
+  }
+
+  func fetchFeatureForShop(shop: CoffeeShop) {
+
+    FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
+
+      switch result {
+
+      case .success(let getFeature):
+
+        self?.featureDic[shop.id] = getFeature
+
+      case .failure(let error):
+
+        print("fetchFeatureForShop: \(error)")
+      }
     }
   }
 
   func setupTableView() {
     
     tableView.delegate = self
+
     tableView.dataSource = self
     
     tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
     
     tableView.estimatedRowHeight = 280
+
     tableView.rowHeight = UITableView.automaticDimension
+    
     tableView.separatorStyle = .none
     
     tableView.reloadData()
@@ -108,18 +159,29 @@ extension HomeListViewController: UITableViewDataSource {
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
       
       let shop = shopsDataForList[indexPath.row]
+
+      let feature = featureDic[shop.id]
       
       let distance = Int(calDistanceBetweenTwoLocations(location1Lat: userCurrentCoordinate.latitude, location1Lon: userCurrentCoordinate.longitude, location2Lat: shop.latitude, location2Lon: shop.longitude))
       
       cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
       cell.cafeName.text = shop.name
-      cell.starsView.rating = 4.3
+
       cell.distance.text = "距離" + String(distance) + "公尺"
-      cell.openHours.text = shop.limitedTime
-      cell.featureOne.text = "插座：" + shop.socket
-      cell.featureTwo.text = "冷氣超涼讚啦"
+
+      // 先暫時用它ㄉ
+      cell.starsView.rating = shop.quiet
+
+      // 這邊是我的Features
+      // 營業時間還沒弄原本資料有的會是空的
+      cell.openHours.text = shop.openTime
+      cell.featureOne.text = feature?[0].atmosphere
+      cell.featureTwo.text = feature?[0].socket
+
+      // 這個要計算最多推ㄉ 先顯示就好
       cell.itemOne.text = "燕麥奶拿鐵"
       cell.itemTwo.text = "冷萃咖啡"
+      
       cell.selectionStyle = .none
       
       return cell

@@ -15,6 +15,7 @@ class ReviewsPageViewController: UIViewController {
   @IBOutlet weak var cafeNameLabel: UILabel!
 
   @IBAction func didTapBackButton(_ sender: Any) {
+
     self.dismiss(animated: true, completion: nil)
   }
 
@@ -34,6 +35,7 @@ class ReviewsPageViewController: UIViewController {
   private func setupTableView() {
 
     tableView.estimatedRowHeight = 200
+
     tableView.rowHeight = UITableView.automaticDimension
 
     tableView.reloadData()
@@ -54,10 +56,15 @@ extension ReviewsPageViewController: UITableViewDataSource {
       guard let singleReview = reviews?[indexPath.row] else { return ReviewCell() }
 
       cell.postTIme.text = singleReview.postTime
+
       cell.rateStars.rating = singleReview.rating
+
       cell.recommendItem1.text = singleReview.recommendItems[0]
+
       cell.recommendItem2.text = singleReview.recommendItems[1]
+
       cell.userName.text = singleReview.userName
+
       cell.comment.text = singleReview.comment
 
       return cell

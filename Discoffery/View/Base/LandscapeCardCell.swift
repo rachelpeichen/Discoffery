@@ -24,20 +24,42 @@ class LandscapeCardCell: UITableViewCell {
     super.awakeFromNib()
     // Initialization code
 
-    // corner radius
-    cafeMainImage.layer.cornerRadius = 20
+    layoutMainImage()
 
-    // shadow: 現在被吃掉ㄌQQ
-    cafeMainImage.layer.masksToBounds = true
-    cafeMainImage.layer.shadowColor = UIColor.darkGray.cgColor
-    cafeMainImage.layer.shadowOffset = CGSize(width: 3, height: 3)
-    cafeMainImage.layer.shadowOpacity = 0.3
-    cafeMainImage.layer.shadowRadius = 4.0
+    layoutFeatureLabel()
+
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
 
     // Configure the view for the selected state
+  }
+
+  func layoutMainImage() {
+    // corner radius
+    cafeMainImage.layer.cornerRadius = 20
+
+    // shadow: 現在被吃掉ㄌQQ
+    cafeMainImage.layer.masksToBounds = true
+
+    cafeMainImage.layer.shadowColor = UIColor.darkGray.cgColor
+
+    cafeMainImage.layer.shadowOffset = CGSize(width: 3, height: 3)
+
+    cafeMainImage.layer.shadowOpacity = 0.3
+
+    cafeMainImage.layer.shadowRadius = 4.0
+  }
+
+  func layoutFeatureLabel() {
+
+    featureOne.layer.cornerRadius = 10
+
+    featureTwo.layer.cornerRadius = 10
+
+    itemOne.layer.cornerRadius = 10
+
+    itemTwo.layer.cornerRadius = 10
   }
 }

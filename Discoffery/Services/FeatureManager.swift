@@ -17,6 +17,37 @@ class FeatureManager {
   lazy var database = Firestore.firestore()
 
   // MARK: - Functions
+  func fetchFeatureForShop(shop: CoffeeShop, completion: @escaping (Result<[Feature], Error>) -> Void) {
+
+    let docRef = Firestore.firestore().collection("shopsTaipeiDemo").document(shop.id).collection("features")
+
+    docRef.getDocuments() { querySnapshot, error in
+
+      if let error = error {
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        var feature:[Feature] = []
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let getFeature = try document.data(as: Feature.self, decoder: Firestore.Decoder()) {
+
+              feature.append(getFeature)
+            }
+
+          } catch {
+            completion(.failure(error))
+          }
+        }
+
+        completion(.success(feature))
+      }
+    }
+  }
+
   func publishFeature(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     // Mock data

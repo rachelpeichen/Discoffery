@@ -134,6 +134,7 @@
                 <outlet property="name" destination="Dlv-qA-nc3" id="yzf-FD-9ph"/>
                 <outlet property="openingHours" destination="2UT-TQ-8CB" id="9vj-KK-tJM"/>
                 <outlet property="openingStatus" destination="2v1-g6-reu" id="YdQ-KN-VNS"/>
+                <outlet property="rateStars" destination="PMM-mu-0lx" id="0FZ-Lg-cWO"/>
                 <outlet property="reviewsCount" destination="VHf-Ia-YPz" id="P5u-Gn-NmY"/>
             </connections>
             <point key="canvasLocation" x="205.07246376811597" y="118.19196428571428"/>

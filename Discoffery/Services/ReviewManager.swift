@@ -17,7 +17,6 @@ class ReviewManager {
   lazy var database = Firestore.firestore()
 
   // MARK: - Functions
-
   func fetchReviewsForShop(shop: CoffeeShop, completion: @escaping (Result<[Review], Error>) -> Void) {
 
     let docRef = Firestore.firestore().collection("shopsTaipeiDemo").document(shop.id).collection("reviews")
@@ -49,9 +48,6 @@ class ReviewManager {
       }
     }
   }
-
-
-
 
   func publishMockReviews(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
