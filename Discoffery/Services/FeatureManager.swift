@@ -52,23 +52,34 @@ class FeatureManager {
 
     // Mock data
     let mockSocket = ["無插座", "有插座", "每個座位都有插座"]
+
     let mockTimeLimit = ["不限時", "有限時", "視營業情況限時"]
-    let mockAtmosphere = ["很chill", "文青風格", "店貓很可愛", "安靜悠閒"]
+
+    let mockSpecials0 = ["文青風格","店貓很可愛","環境舒適悠閒","提供外帶","提供外送","冠軍拉花"]
+
+    let mockSpecials1 = ["販售咖啡豆","手沖咖啡教學","店員親切","可集點累積換飲品","北歐風裝潢","老屋咖啡廳"]
+
     let mockBool = [true, false]
 
-    // Add a sub-collection named "features" to every documents in "shop" collection
+    // Add a sub-collection named "features" to every documents in "shopsTaipeiDemo" collection
     let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("features").document()
 
     var feature = Feature()
 
     feature.id = docRef.documentID
+
     feature.parentId = shop.id
 
     feature.socket = mockSocket.randomElement()!
+
     feature.timeLimit = mockTimeLimit.randomElement()!
-    feature.atmosphere = mockAtmosphere.randomElement()!
+
+    feature.special = [mockSpecials0.randomElement()!, mockSpecials1.randomElement()!]
+
     feature.wifi = mockBool.randomElement()!
+
     feature.petFriendly = mockBool.randomElement()!
+
     feature.outdoorSeats = mockBool.randomElement()!
 
     docRef.setData(feature.toDict) { error in

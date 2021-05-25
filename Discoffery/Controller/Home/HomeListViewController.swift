@@ -18,7 +18,8 @@ class HomeListViewController: UIViewController {
   
   var shopsDataForList: [CoffeeShop] = []
 
-  var reviews: [Review] = []
+  // 這個現在沒用到會壞掉
+  var reviews: [[Review]] = [[]]
 
   var featureDic: [String: [Feature]] = [:] // 用shop.id去對
 
@@ -44,10 +45,21 @@ class HomeListViewController: UIViewController {
 
       for index in 0..<shopsData.count {
 
-        self?.fetchFeatureForShop(shop: shopsData[index])
-      }
+        // self?.fetchReviewsForShop(shop: shopsData[index])
 
-      self?.tableView.reloadData()
+        self?.fetchFeatureForShop(shop: shopsData[index])
+
+        let distance = self?.calDistanceBetweenTwoLocations(
+          location1Lat: self!.userCurrentCoordinate.latitude,
+          location1Lon: self!.userCurrentCoordinate.longitude,
+          location2Lat: shopsData[index].latitude,
+          location2Lon: shopsData[index].longitude
+        )
+
+        // 把distance給一個沒用到的Double屬性
+        self?.shopsDataForList[index].cheap = distance!
+      }
+      self?.shopsDataForList.sort(by: { $0.cheap < $1.cheap })
     }
   }
 
@@ -71,13 +83,16 @@ class HomeListViewController: UIViewController {
   // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchReviewsForShop(shop: CoffeeShop) {
 
+    // 這個現在沒用到
     ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
 
       switch result {
 
       case .success(let getReviews):
 
-        self?.reviews = getReviews
+        self?.reviews.append(getReviews)
+
+        self?.tableView.reloadData()
 
       case .failure(let error):
 
@@ -95,6 +110,8 @@ class HomeListViewController: UIViewController {
       case .success(let getFeature):
 
         self?.featureDic[shop.id] = getFeature
+        
+        self?.tableView.reloadData()
 
       case .failure(let error):
 
@@ -125,20 +142,25 @@ class HomeListViewController: UIViewController {
     // Use Haversine Formula to calculate the distance in meter between two locations
     // φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km)
     let lat1 = location1Lat
+
     let lat2 = location2Lat
     
     let lon1 = location1Lon
+
     let lon2 = location2Lon
     
     let earthRadius = 6371000.0
     
     let φ1 = lat1 * Double.pi / 180 // φ, λ in radians
+
     let φ2 = lat2 * Double.pi / 180
     
     let Δφ = (lat2 - lat1) * Double.pi / 180
+
     let Δλ = (lon2 - lon1) * Double.pi / 180
     
     let parameterA = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2)
+    
     let parameterC = 2 * atan2(sqrt(parameterA), sqrt(1 - parameterA))
     
     let distance = earthRadius * parameterC
@@ -150,6 +172,7 @@ class HomeListViewController: UIViewController {
 extension HomeListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
     return shopsDataForList.count
   }
   
@@ -161,26 +184,30 @@ extension HomeListViewController: UITableViewDataSource {
       let shop = shopsDataForList[indexPath.row]
 
       let feature = featureDic[shop.id]
-      
+
       let distance = Int(calDistanceBetweenTwoLocations(location1Lat: userCurrentCoordinate.latitude, location1Lon: userCurrentCoordinate.longitude, location2Lat: shop.latitude, location2Lon: shop.longitude))
       
       cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
+      
       cell.cafeName.text = shop.name
 
       cell.distance.text = "距離" + String(distance) + "公尺"
 
-      // 先暫時用它ㄉ
-      cell.starsView.rating = shop.cheap
+      // MARK: 還沒算出全部評價的平均先給隨機ㄉ
+      cell.starsView.rating = Double.random(in: 1...5)
 
-      // 這邊是我的Features
-      // 營業時間還沒弄原本資料有的會是空的
-      cell.openHours.text = shop.openTime
-      cell.featureOne.text = feature?[0].atmosphere
-      cell.featureTwo.text = feature?[0].socket
+      // MARK: 營業時間還沒有弄～ＴＡＴ
+      cell.openHours.text = "疫情暫時關閉"
 
-      // 這個要計算最多推ㄉ 先顯示就好
-      cell.itemOne.text = "馥列白"
-      cell.itemTwo.text = "摩卡可可碎片星冰樂"
+      // MARK: 先寫死我的兩個特色
+      cell.featureOne.text = feature?[0].special[0]
+
+      cell.featureTwo.text = feature?[0].special[1]
+
+      // MARK: 這個原本要計算最多推ㄉ 先顯示就好
+      cell.itemOne.text = "冷萃咖啡"
+
+      cell.itemTwo.text = "燕麥奶拿鐵"
       
       cell.selectionStyle = .none
       

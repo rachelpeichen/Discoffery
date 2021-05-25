@@ -51,15 +51,17 @@ class HomeMapViewController: UIViewController {
 
       self?.shopsDataForMap = shopsData
     }
-       //  fetchAPIdata()
-       //  fetchShopsCollection()
+
+    // fetchAPIdata()
+    
+    // fetchShopsCollection()
   }
 
   // MARK: - Functions
-
-  // MARK: - Publish API data to Firebase (only used at first time)
   func fetchAPIdata() {
 
+    //  Publish API data to Firebase (only used at first time)
+    // 這裏其實要寫在ViewModel!!!!!!!!但之後沒用到就算ㄌ? = =
     APIManager.shared.request { result in
 
       for index in 0..<200 { // shopsTaipeiDemo用200筆不然我的火地又要爆掉ㄌ
@@ -67,10 +69,8 @@ class HomeMapViewController: UIViewController {
         self.apiData.append(result[index])
 
         self.publishToFirebase(with: &self.apiData[index])
-
-        // self.updateGeoPointOnFirebase(with: &self.apiData[index])
       }
-      print("[apiData]存ㄌ\(String(describing: self.apiData.count))筆資料 = \(self.apiData)")
+      print("[apiData] has \(String(describing: self.apiData.count))筆資料 = \(self.apiData)")
     }
   }
 
@@ -91,7 +91,7 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  // MARK: - 把shops這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection 這裏其實要寫在ViewModel!!!!!!!!但之後沒用到就算ㄌ = =
+  // MARK: - 把shopsTaipeiDemo這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection
   func fetchShopsCollection() {
 
     CoffeeShopManager.shared.fetchShopsTaipei { result  in
@@ -101,9 +101,9 @@ class HomeMapViewController: UIViewController {
 
         self.shopsDemo = shopsData
 
-       self.publishReviewsSubCollection()
+        // self.publishReviewSubCollection()
 
-       self.publishFeaturesSubCollection()
+        self.publishFeatureSubCollection()
 
       case .failure(let error):
 
@@ -112,13 +112,13 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  func publishReviewsSubCollection() {
+  func publishReviewSubCollection() {
 
     for index in 0..<shopsDemo.count {
 
-      let randInt = Int.random(in: 5...10)
+      let randInt = Int.random(in: 3...10)
 
-      for _ in 0..<randInt { // Write 5 - 15 mock reviews
+      for _ in 0..<randInt { // Write 3 - 10 mock reviews
 
         ReviewManager.shared.publishMockReviews(shop: &shopsDemo[index]) { result  in
 
@@ -134,11 +134,12 @@ class HomeMapViewController: UIViewController {
           }
         }
       }
+
     }
-    print("ok")
+
   }
 
-  func publishFeaturesSubCollection() {
+  func publishFeatureSubCollection() {
 
     for index in 0..<shopsDemo.count {
 
@@ -156,8 +157,9 @@ class HomeMapViewController: UIViewController {
         }
       }
     }
-    print("ok")
+
   }
+
 }
 
 // MARK: - CLLocationManagerDelegate

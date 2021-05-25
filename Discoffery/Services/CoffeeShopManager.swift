@@ -42,6 +42,7 @@ class CoffeeShopManager {
         completion(.success("Success"))
       }
     }
+
   }
 
   func publishNewShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {

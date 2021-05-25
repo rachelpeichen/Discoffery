@@ -11,6 +11,7 @@ class CollectionViewController: UIViewController {
 
   // MARK: Outlets
   @IBOutlet weak var addNewCategory: UIBarButtonItem!
+
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: Properties
@@ -23,6 +24,7 @@ class CollectionViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setupTableView()
+
     navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
   }
 
@@ -32,7 +34,9 @@ class CollectionViewController: UIViewController {
     tableView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellReuseIdentifier: "collectionCell")
 
     tableView.estimatedRowHeight = 300
+
     tableView.rowHeight = UITableView.automaticDimension
+
     tableView.separatorStyle = .none
 
     tableView.reloadData()
@@ -42,6 +46,7 @@ class CollectionViewController: UIViewController {
 extension CollectionViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
     return 3
   }
 

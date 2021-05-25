@@ -122,8 +122,8 @@ class AddShopViewController: FormViewController {
       }
       $0.multivaluedRowToInsertAt = { index in
 
-        return NameRow("名稱") {
-          $0.placeholder = $0.tag
+        return NameRow() {
+          $0.placeholder = "名稱"
         }
       }
     }

@@ -7,29 +7,31 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
-
-  var sharedHomeViewModel = HomeViewModel()
+class HomeViewController: UIViewController { 
 
   // MARK: - Outlets
   @IBOutlet weak var mapContainerView: UIView!
+
   @IBOutlet weak var listContainerView: UIView!
-  @IBOutlet weak var searchButton: UIButton!
+
+  // MARK: - Properties
+  var sharedHomeViewModel = HomeViewModel()
 
   @IBAction func changeLayout(_ sender: UIButton) {
 
     if listContainerView.isHidden == true {
 
       listContainerView.isHidden = false
+
       mapContainerView.isHidden = true
 
     } else if listContainerView.isHidden == false {
+
       listContainerView.isHidden = true
+
       mapContainerView.isHidden = false
     }
   }
-
-  // MARK: - Properties
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -37,6 +39,7 @@ class HomeViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     mapContainerView.isHidden = false
+
     listContainerView.isHidden = true
   }
 

@@ -136,7 +136,7 @@
                                             <imageReference key="image" image="map" catalog="system" symbolScale="large"/>
                                         </state>
                                         <connections>
-                                            <action selector="changeLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xkr-gX-awm"/>
+                                            <action selector="changeLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rax-yP-DA4"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discoffery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajq-IS-WNg">
@@ -220,9 +220,8 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="tNL-bZ-Jq2"/>
                     <connections>
-                        <outlet property="listContainerView" destination="B4f-bV-tby" id="6Yh-gE-Xw8"/>
-                        <outlet property="mapContainerView" destination="CMF-Qf-NgS" id="u8h-JZ-zz1"/>
-                        <outlet property="searchButton" destination="q7a-cE-zF6" id="8dT-L5-n6W"/>
+                        <outlet property="listContainerView" destination="B4f-bV-tby" id="wOD-Xe-Bwt"/>
+                        <outlet property="mapContainerView" destination="CMF-Qf-NgS" id="aUF-Fy-3fC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -356,7 +355,7 @@
                                     <action selector="onTapShareButton:" destination="ZyS-FM-3Fj" eventType="touchUpInside" id="hVG-ss-e6e"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SE-s5-VOg">
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SE-s5-VOg">
                                 <rect key="frame" x="329" y="16" width="24" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="X6i-sw-qeX"/>
@@ -387,6 +386,7 @@
                     <navigationItem key="navigationItem" id="qaJ-z1-4ws"/>
                     <size key="freeformSize" width="414" height="605"/>
                     <connections>
+                        <outlet property="saveButton" destination="9SE-s5-VOg" id="Via-SP-Dwc"/>
                         <outlet property="tableView" destination="jfW-TD-NoX" id="dHr-Xl-ljx"/>
                         <segue destination="zhm-Vg-yPG" kind="showDetail" identifier="navigateToReviewsVC" id="Qpr-Hr-yoV"/>
                     </connections>

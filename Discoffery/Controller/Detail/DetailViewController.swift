@@ -13,18 +13,23 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
 
   @IBAction func onTapBackButton(_ sender: Any) {
+    
     self.dismiss(animated: true, completion: nil)
   }
 
-  let activityVC = UIActivityViewController(activityItems: ["我還不知道要怎ㄇ拿到值= ="], applicationActivities: nil)
+  let activityVC = UIActivityViewController(activityItems: ["ㄩㄇ？"], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
     // 現在的分享無法帶入資訊
     present(activityVC, animated: true, completion: nil)
   }
+  @IBOutlet weak var saveButton: UIButton!
 
-  @IBAction func saveToCollection(_ sender: Any) {
+  @IBAction func saveToCollection(_ sender: UIButton) {
     // 加入該用戶的收藏
+    sender.setImage(UIImage(named: "like_fill"), for: .normal)
+    
+    showAlert()
   }
 
   // MARK: Properties
@@ -67,6 +72,17 @@ class DetailViewController: UIViewController {
     }
   }
 
+  private func showAlert() {
+
+    let alertController = UIAlertController(title: "Discoffery", message: "成功加到收藏", preferredStyle: .alert)
+
+    let cancelAction = UIAlertAction(title: "朕知道ㄌ", style: .cancel, handler: nil)
+
+    alertController.addAction(cancelAction)
+
+    present(alertController, animated: true)
+  }
+
   // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchReviewsForShop(shop: CoffeeShop) {
 
@@ -78,7 +94,11 @@ class DetailViewController: UIViewController {
 
         self?.reviews = getReviews
 
+        self?.reviews.sort(by: { $0.postTime > $1.postTime })
+
         self?.reviewsCount = getReviews.count
+
+        self?.tableView.reloadData()
 
       case .failure(let error):
 
@@ -129,6 +149,7 @@ extension DetailViewController: UITableViewDataSource {
     switch indexPath.row {
 
     case 0:
+
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopImagesCell", for: indexPath) as? ShopImagesCell {
 
         cell.selectionStyle = .none
@@ -141,12 +162,15 @@ extension DetailViewController: UITableViewDataSource {
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopDescriptionCell", for: indexPath) as? ShopDescriptionCell {
 
         cell.name.text = shop?.name
+
         cell.address.text = shop?.address
+
         cell.reviewsCount.text = "(\(reviewsCount))"
 
-        // 先暫時用它ㄉ評分假的
-        cell.rateStars.rating = shop?.cheap ?? 4
-        cell.averageRatings.text = String(shop?.cheap ?? 4)
+        // MARK: 還沒算出全部評價的平均先給隨機ㄉ
+        cell.rateStars.rating = Double.random(in: 1...5)
+
+        cell.averageRatings.text = String(cell.rateStars.rating)
 
         // MARK: 營業時間還沒有弄～ＴＡＴ
         cell.openingHours.text = "因爲疫情暫時關閉"
@@ -175,7 +199,7 @@ extension DetailViewController: UITableViewDataSource {
 
         cell.feature = self.feature
 
-        let featureArr = [self.feature.atmosphere, self.feature.socket, self.feature.timeLimit]
+        let featureArr = [self.feature.special[0], self.feature.special[1], self.feature.timeLimit]
 
         cell.configure(with: featureArr)
 
@@ -225,11 +249,11 @@ extension DetailViewController: UITableViewDelegate {
 
     case 4: // 大地圖
 
-      print("default")
+      print("點到地圖")
 
     default:
 
-      print("default")
+      print("點到第 \(indexPath.row)個 Row")
     }
   }
 }

@@ -59,7 +59,7 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       guard let singleReview = reviews?[indexPath.row] else { return ReviewCell() }
 
-      cell.postTIme.text = singleReview.postTime
+      cell.postTIme.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
 
       cell.rateStars.rating = singleReview.rating
 

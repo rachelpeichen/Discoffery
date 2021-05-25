@@ -10,26 +10,26 @@ import Foundation
 class AddViewModel {
 
   // MARK: - Properties
-  var newShop: CoffeeShop = CoffeeShop(
-    id: "",
-    name: "",
-    city: "",
-    wifi: 0,
-    seat: 0,
-    quiet: 0,
-    tasty: 0,
-    cheap: 0,
-    music: 0,
-    url: "",
-    address: "",
-    limitedTime: "",
-    socket: "",
-    standingDesk: "",
-    mrt: "",
-    openTime: "",
-    latitude: 0,
-    longitude: 0
-  )
+//  var newShop: CoffeeShop = CoffeeShop(
+//    id: "",
+//    name: "",
+//    city: "",
+//    wifi: 0,
+//    seat: 0,
+//    quiet: 0,
+//    tasty: 0,
+//    cheap: 0,
+//    music: 0,
+//    url: "",
+//    address: "",
+//    limitedTime: "",
+//    socket: "",
+//    standingDesk: "",
+//    mrt: "",
+//    openTime: "",
+//    latitude: 0,
+//    longitude: 0
+//  )
 
   var onPublished: (()->())?
 
@@ -54,7 +54,7 @@ class AddViewModel {
     }
   }
 
-  func publishUserReview(shop: CoffeeShop, review: inout UserReview) {
+  func publishUserReview(shop: CoffeeShop, review: inout Review) {
 
     ReviewManager.shared.publishUserReview(shop: shop, review: &review) { result in
 
