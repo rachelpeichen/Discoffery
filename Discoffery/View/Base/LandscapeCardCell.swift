@@ -10,6 +10,8 @@ import Cosmos
 
 class LandscapeCardCell: UITableViewCell {
 
+  @IBOutlet weak var imageContainerView: UIView!
+
   @IBOutlet weak var cafeMainImage: UIImageView!
 
   @IBOutlet weak var cafeName: UILabel!
@@ -32,9 +34,7 @@ class LandscapeCardCell: UITableViewCell {
     super.awakeFromNib()
     // Initialization code
 
-    layoutMainImage()
-
-    layoutFeatureLabel()
+    layoutLandscapeCardCell()
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,41 +43,32 @@ class LandscapeCardCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  func layoutMainImage() {
+  func layoutLandscapeCardCell() {
 
-    // corner radius
-    cafeMainImage.layer.cornerRadius = 20
+    layoutImageView(for: cafeMainImage, with: imageContainerView)
 
-    // shadow
-    cafeMainImage.layer.shadowColor = UIColor.darkGray.cgColor
-
-    cafeMainImage.layer.shadowOffset = .zero
-
-    cafeMainImage.layer.shadowOpacity = 0.3
-
-    cafeMainImage.layer.shadowRadius = 4.0
-
-    cafeMainImage.layer.shadowPath = UIBezierPath(rect: cafeMainImage.bounds).cgPath
+    layoutFeatureLabel()
   }
 
   func layoutFeatureLabel() {
 
+    featureOne.clipsToBounds = true
+
     featureOne.layer.cornerRadius = 5
 
-    featureOne.layer.masksToBounds = true
 
-    featureOne.layer.shadowColor = UIColor.darkGray.cgColor
+    featureTwo.clipsToBounds = true
 
-    featureOne.layer.shadowOffset = CGSize(width: 5, height: 5)
+    featureTwo.layer.cornerRadius = 6
 
-    featureOne.layer.shadowOpacity = 0.3
 
-    featureOne.layer.shadowRadius = 4.0
+    itemOne.clipsToBounds = true
 
-    featureTwo.layer.cornerRadius = 10
+    itemOne.layer.cornerRadius = 15
 
-    itemOne.layer.cornerRadius = 10
 
-    itemTwo.layer.cornerRadius = 10
+    itemTwo.clipsToBounds = true
+
+    itemTwo.layer.cornerRadius = 20
   }
 }

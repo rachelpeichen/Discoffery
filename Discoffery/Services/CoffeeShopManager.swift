@@ -61,6 +61,7 @@ class CoffeeShopManager {
         completion(.success("Success"))
       }
     }
+    
   }
 
   func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
@@ -105,6 +106,7 @@ class CoffeeShopManager {
         completion(.success(shopsFilterd))
       }
     }
+
   }
 
   func fetchShopsTaipei(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
@@ -124,7 +126,7 @@ class CoffeeShopManager {
         for document in querySnapshot!.documents {
 
           do {
-            if let shopTaipei =  try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+            if let shopTaipei = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
 
               shopsTaipei.append(shopTaipei)
             }

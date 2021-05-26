@@ -33,6 +33,8 @@ class DetailViewController: UIViewController {
   }
 
   // MARK: Properties
+  var addViewModel = AddViewModel()
+
   var shop: CoffeeShop?
 
   var shopName = "Cafe Name"
@@ -50,7 +52,6 @@ class DetailViewController: UIViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    
     setupTableView()
 
     if let shop = shop {
@@ -72,18 +73,7 @@ class DetailViewController: UIViewController {
     }
   }
 
-  private func showAlert() {
-
-    let alertController = UIAlertController(title: "Discoffery", message: "成功加到收藏", preferredStyle: .alert)
-
-    let cancelAction = UIAlertAction(title: "朕知道ㄌ", style: .cancel, handler: nil)
-
-    alertController.addAction(cancelAction)
-
-    present(alertController, animated: true)
-  }
-
-  // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  // MARK: TODO--這個fetchReviewsForShop是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchReviewsForShop(shop: CoffeeShop) {
 
     ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
@@ -105,6 +95,17 @@ class DetailViewController: UIViewController {
         print("fetchReviewsForShop: \(error)")
       }
     }
+  }
+
+  private func showAlert() {
+
+    let alertController = UIAlertController(title: "Discoffery", message: "成功加到收藏", preferredStyle: .alert)
+
+    let cancelAction = UIAlertAction(title: "朕知道ㄌ", style: .cancel, handler: nil)
+
+    alertController.addAction(cancelAction)
+
+    present(alertController, animated: true)
   }
 
   private func setupTableView() {
@@ -223,6 +224,8 @@ extension DetailViewController: UITableViewDataSource {
       // 寫評論
       if let cell = tableView.dequeueReusableCell(withIdentifier: "writeReviewCell", for: indexPath) as? WriteReviewCell {
 
+        cell.delegate = self
+
         cell.selectionStyle = .none
 
         return cell
@@ -251,9 +254,60 @@ extension DetailViewController: UITableViewDelegate {
 
       print("點到地圖")
 
+    case 5:
+
+      print("點到寫評論的cell")
+
     default:
 
       print("點到第 \(indexPath.row)個 Row")
     }
   }
+}
+
+// MARK: WriteReviewCellDelegate
+extension DetailViewController: WriteReviewCellDelegate {
+
+  func sendReview(inputReview: inout Review) {
+
+    guard let shop = shop else { return }
+
+    addViewModel.publishUserReview(shop: shop, review: &inputReview)
+  }
+
+  func sendRecommendItem(inputItem: inout RecommendItem) {
+
+    guard let shop = shop else { return }
+
+    // 檢查這個推薦品是否已經在火地上？ 有的話在已有推薦品doc下count加一 沒有的話創一個新doc
+
+    let group = DispatchGroup()
+
+    let serial = DispatchQueue(label: "myQ")
+
+    var localInputItem = inputItem
+
+    var itemDidExist = false
+
+    group.enter()
+
+    serial.async {
+
+      itemDidExist = self.addViewModel.checkIfRecommendItemExist(shop: shop, item: localInputItem)
+    }
+
+    group.notify(queue: .main) {
+
+      if !itemDidExist {
+
+        self.addViewModel.updateRecommendItemCount(shop: shop, item: localInputItem)
+
+      } else {
+
+        self.addViewModel.publishRecommendItem(shop: shop, item: &localInputItem)
+      }
+    }
+    
+  }
+
 }

@@ -15,7 +15,7 @@ struct RecommendItem: Codable {
 
   var item: String = "default"
 
-  var count: Double = 1
+  var count: Double = 0
 
   enum CodingKeys: String, CodingKey {
 

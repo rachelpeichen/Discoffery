@@ -21,7 +21,7 @@ struct Review: Codable {
 
   var comment: String = "default"
 
-  var recommendItems: [String] = ["default"]
+  var recommendItems: [String] = [""]
 
   var postTime: Int64 = 0
 

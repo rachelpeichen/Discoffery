@@ -73,6 +73,7 @@ class ReviewManager {
         completion(.success("Success"))
       }
     }
+
   }
 
   func publishMockReviews(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
@@ -126,5 +127,7 @@ class ReviewManager {
         completion(.success("Success"))
       }
     }
+
   }
+
 }

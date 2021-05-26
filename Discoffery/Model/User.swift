@@ -19,7 +19,6 @@ struct User: Codable {
 
   // var blockList: [String] = ["default","default2"]
 
-
   enum CodingKeys: String, CodingKey {
 
     case id

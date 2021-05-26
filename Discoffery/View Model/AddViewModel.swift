@@ -9,32 +9,9 @@ import Foundation
 
 class AddViewModel {
 
-  // MARK: - Properties
-//  var newShop: CoffeeShop = CoffeeShop(
-//    id: "",
-//    name: "",
-//    city: "",
-//    wifi: 0,
-//    seat: 0,
-//    quiet: 0,
-//    tasty: 0,
-//    cheap: 0,
-//    music: 0,
-//    url: "",
-//    address: "",
-//    limitedTime: "",
-//    socket: "",
-//    standingDesk: "",
-//    mrt: "",
-//    openTime: "",
-//    latitude: 0,
-//    longitude: 0
-//  )
-
-  var onPublished: (()->())?
+  var didCheckExistItems: (() -> Void)?
 
   // MARK: - Functions
-
   func publishNewShop(shop: inout CoffeeShop) {
 
     CoffeeShopManager.shared.publishNewShop(shop: &shop) { result in
@@ -43,8 +20,6 @@ class AddViewModel {
 
       case .success:
 
-        self.onPublished?()
-
         print("🥴Publish New Shop To Firebase Success!!")
 
       case .failure(let error):
@@ -52,6 +27,7 @@ class AddViewModel {
         print("publishNewShop.failure\(error)")
       }
     }
+
   }
 
   func publishUserReview(shop: CoffeeShop, review: inout Review) {
@@ -69,5 +45,53 @@ class AddViewModel {
         print("publishUserReview.failure: \(error)")
       }
     }
+
   }
+
+  func publishRecommendItem(shop: CoffeeShop, item: inout RecommendItem) {
+
+    RecommendItemManager.shared.publishUserRecommendItem(shop: shop, item: &item) { result in
+
+      switch result {
+
+      case .success:
+
+        print("🥴Publish Recommend Item To Firebase Success!!")
+
+      case .failure(let error):
+
+        print("publishRecommendItem: \(error)")
+      }
+    }
+
+  }
+
+  func checkIfRecommendItemExist(shop: CoffeeShop, item: RecommendItem) -> Bool {
+
+    var didExist = false
+
+    RecommendItemManager.shared.checkIfRecommendItemExist(shop: shop, item: item) { result in
+
+      switch result {
+
+      case .success(let existingItems):
+
+        print("火地上已經有重複ㄉ推薦品ㄌ\(existingItems)")
+
+        didExist = true
+
+      case .failure(let error):
+
+        print("火地上還沒有這項推薦品ㄛ \(error)")
+      }
+    }
+    return didExist
+  }
+
+  func updateRecommendItemCount(shop: CoffeeShop, item: RecommendItem) {
+
+    RecommendItemManager.shared.updateRecommendItemCount(shop: shop, item: item)
+  }
+
 }
+
