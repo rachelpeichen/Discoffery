@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78182BFB265E420100056E92 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182BFA265E420100056E92 /* CustomTextField.swift */; };
+		78182BFB265E420100056E92 /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182BFA265E420100056E92 /* CustomUITextField.swift */; };
+		78182C03265F3D5700056E92 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C02265F3D5700056E92 /* CustomUIButton.swift */; };
+		78182C07265F3E5700056E92 /* CustomUIButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78182C06265F3E5700056E92 /* CustomUIButton.xib */; };
 		7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C949265295D30048B5F5 /* ShopImagesCell.swift */; };
 		7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C94A265295D30048B5F5 /* ShopImagesCell.xib */; };
 		7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C94E2652BD740048B5F5 /* ProfileCell.swift */; };
@@ -87,7 +89,9 @@
 
 /* Begin PBXFileReference section */
 		0EE685447FE78E3B98775556 /* Pods-Discoffery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Discoffery.debug.xcconfig"; path = "Target Support Files/Pods-Discoffery/Pods-Discoffery.debug.xcconfig"; sourceTree = "<group>"; };
-		78182BFA265E420100056E92 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		78182BFA265E420100056E92 /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
+		78182C02265F3D5700056E92 /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
+		78182C06265F3E5700056E92 /* CustomUIButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomUIButton.xib; sourceTree = "<group>"; };
 		7839C949265295D30048B5F5 /* ShopImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCell.swift; sourceTree = "<group>"; };
 		7839C94A265295D30048B5F5 /* ShopImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCell.xib; sourceTree = "<group>"; };
 		7839C94E2652BD740048B5F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -185,9 +189,11 @@
 		78182BFD265E473200056E92 /* CustomNativeUI */ = {
 			isa = PBXGroup;
 			children = (
-				78182BFA265E420100056E92 /* CustomTextField.swift */,
+				78182BFA265E420100056E92 /* CustomUITextField.swift */,
 				7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */,
 				7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */,
+				78182C02265F3D5700056E92 /* CustomUIButton.swift */,
+				78182C06265F3E5700056E92 /* CustomUIButton.xib */,
 			);
 			path = CustomNativeUI;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				78DF2524265251FE00F47A04 /* ShopFeatureCell.xib in Resources */,
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
 				78DEC3032655A5C900726A5D /* ExampleCell.xib in Resources */,
+				78182C07265F3E5700056E92 /* CustomUIButton.xib in Resources */,
 				78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */,
 				7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */,
 				78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */,
@@ -612,6 +619,7 @@
 			files = (
 				7839C95F2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift in Sources */,
 				7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */,
+				78182C03265F3D5700056E92 /* CustomUIButton.swift in Sources */,
 				78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */,
 				7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */,
 				7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */,
@@ -634,7 +642,7 @@
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
 				78DEC3002655A5A900726A5D /* ExampleCardCell.swift in Sources */,
 				78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */,
-				78182BFB265E420100056E92 /* CustomTextField.swift in Sources */,
+				78182BFB265E420100056E92 /* CustomUITextField.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				78B2FCF7265A1849005C9D1D /* Review.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,

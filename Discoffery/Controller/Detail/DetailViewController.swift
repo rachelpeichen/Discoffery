@@ -20,13 +20,13 @@ class DetailViewController: UIViewController {
   let activityVC = UIActivityViewController(activityItems: ["ㄩㄇ？"], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
-    // 現在的分享無法帶入資訊
+    // MARK: 現在的分享無法帶入資訊
     present(activityVC, animated: true, completion: nil)
   }
   @IBOutlet weak var saveButton: UIButton!
 
   @IBAction func saveToCollection(_ sender: UIButton) {
-    // 加入該用戶的收藏
+    // MARK: 加入該用戶的收藏
     sender.setImage(UIImage(named: "like_fill"), for: .normal)
     
     showAlert()
@@ -73,7 +73,7 @@ class DetailViewController: UIViewController {
     }
   }
 
-  // MARK: TODO--這個fetchReviewsForShop是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  // MARK: TODO 這個fetchReviewsForShop是否能夠寫到HomeViewModel去?! 現在趕時間ＴＡＴ先放在這
   func fetchReviewsForShop(shop: CoffeeShop) {
 
     ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
@@ -221,7 +221,7 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 5:
-      // 寫評論
+
       if let cell = tableView.dequeueReusableCell(withIdentifier: "writeReviewCell", for: indexPath) as? WriteReviewCell {
 
         cell.delegate = self
@@ -250,17 +250,13 @@ extension DetailViewController: UITableViewDelegate {
 
       performSegue(withIdentifier: "navigateToReviewsVC", sender: indexPath.row)
 
-    case 4: // 大地圖
+    case 4:
 
-      print("點到地圖")
-
-    case 5:
-
-      print("點到寫評論的cell")
+      print("Map did select.")
 
     default:
 
-      print("點到第 \(indexPath.row)個 Row")
+      print("Row No.\(indexPath.row) did select.")
     }
   }
 }
@@ -279,35 +275,9 @@ extension DetailViewController: WriteReviewCellDelegate {
 
     guard let shop = shop else { return }
 
-    // 檢查這個推薦品是否已經在火地上？ 有的話在已有推薦品doc下count加一 沒有的話創一個新doc
+    let localInputItem = inputItem // inout parameter can't be used in closure, so copy one
 
-    let group = DispatchGroup()
-
-    let serial = DispatchQueue(label: "myQ")
-
-    var localInputItem = inputItem
-
-    var itemDidExist = false
-
-    group.enter()
-
-    serial.async {
-
-      itemDidExist = self.addViewModel.checkIfRecommendItemExist(shop: shop, item: localInputItem)
-    }
-
-    group.notify(queue: .main) {
-
-      if !itemDidExist {
-
-        self.addViewModel.updateRecommendItemCount(shop: shop, item: localInputItem)
-
-      } else {
-
-        self.addViewModel.publishRecommendItem(shop: shop, item: &localInputItem)
-      }
-    }
-    
+    addViewModel.checkIfRecommendItemExist(shop: shop, item: localInputItem)
   }
 
 }

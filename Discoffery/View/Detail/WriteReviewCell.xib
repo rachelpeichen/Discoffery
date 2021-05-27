@@ -59,7 +59,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="請輸入評價" adjustsFontSizeToFit="NO" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="V0r-k3-iFa" customClass="CustomTextField" customModule="Discoffery" customModuleProvider="target">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="請輸入評價" adjustsFontSizeToFit="NO" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="V0r-k3-iFa" customClass="CustomUITextField" customModule="Discoffery" customModuleProvider="target">
                         <rect key="frame" x="16" y="112" width="288" height="80"/>
                         <color key="tintColor" name="G1"/>
                         <constraints>
@@ -72,7 +72,7 @@
                             <action selector="didEndEditingComment:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="xTc-Mk-q7f"/>
                         </connections>
                     </textField>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入名稱" adjustsFontSizeToFit="NO" minimumFontSize="11" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NM4-X1-fZd" customClass="CustomTextField" customModule="Discoffery" customModuleProvider="target">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入名稱" adjustsFontSizeToFit="NO" minimumFontSize="11" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NM4-X1-fZd" customClass="CustomUITextField" customModule="Discoffery" customModuleProvider="target">
                         <rect key="frame" x="16" y="231" width="160" height="40"/>
                         <color key="tintColor" name="G1"/>
                         <constraints>
@@ -129,14 +129,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1ft-Sf-B0X">
-                        <rect key="frame" x="0.0" y="279" width="299" height="42"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                        <color key="textColor" systemColor="labelColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24N-N3-jq5">
                         <rect key="frame" x="181" y="241" width="123" height="20"/>
                         <constraints>
@@ -154,15 +146,12 @@
                     <constraint firstItem="xRy-eZ-0fb" firstAttribute="leading" secondItem="hdI-UO-rG4" secondAttribute="trailing" id="D1T-qL-rYa"/>
                     <constraint firstAttribute="trailing" secondItem="24N-N3-jq5" secondAttribute="trailing" constant="16" id="KrS-qd-fLR"/>
                     <constraint firstItem="EJb-UY-tzX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Kv2-f0-5xO"/>
-                    <constraint firstAttribute="trailing" secondItem="1ft-Sf-B0X" secondAttribute="trailing" constant="21" id="L7D-7v-Ugx"/>
                     <constraint firstItem="zTJ-Dj-x8E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="QCP-x9-IWf"/>
                     <constraint firstItem="24N-N3-jq5" firstAttribute="centerY" secondItem="NM4-X1-fZd" secondAttribute="centerY" id="QfE-1Z-kWz"/>
                     <constraint firstItem="NM4-X1-fZd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ScE-z1-dMz"/>
-                    <constraint firstItem="1ft-Sf-B0X" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Sii-EC-6Rw"/>
                     <constraint firstItem="hdI-UO-rG4" firstAttribute="leading" secondItem="ICm-pg-tZC" secondAttribute="leading" id="VJr-Th-7tk"/>
                     <constraint firstItem="zTJ-Dj-x8E" firstAttribute="top" secondItem="EFV-ad-fza" secondAttribute="bottom" constant="16" id="ZhC-Vs-Pxn"/>
                     <constraint firstAttribute="bottom" secondItem="zTJ-Dj-x8E" secondAttribute="bottom" constant="16" id="bVD-ly-I7o"/>
-                    <constraint firstItem="EFV-ad-fza" firstAttribute="top" secondItem="1ft-Sf-B0X" secondAttribute="bottom" constant="8" symbolic="YES" id="bWW-N5-1B2"/>
                     <constraint firstItem="ICm-pg-tZC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="dhP-E3-kWI"/>
                     <constraint firstItem="NM4-X1-fZd" firstAttribute="top" secondItem="EJb-UY-tzX" secondAttribute="bottom" constant="8" id="g6b-Ev-7HP"/>
                     <constraint firstItem="xRy-eZ-0fb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="52" id="iDn-zL-k8u"/>
@@ -173,7 +162,6 @@
                     <constraint firstItem="EJb-UY-tzX" firstAttribute="top" secondItem="V0r-k3-iFa" secondAttribute="bottom" constant="16" id="re3-ed-Azs"/>
                     <constraint firstItem="ICm-pg-tZC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="sVJ-gT-mTX"/>
                     <constraint firstItem="EFV-ad-fza" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="vWH-38-aBe"/>
-                    <constraint firstItem="1ft-Sf-B0X" firstAttribute="top" secondItem="NM4-X1-fZd" secondAttribute="bottom" constant="8" symbolic="YES" id="xeh-Pd-h9x"/>
                     <constraint firstAttribute="trailingMargin" secondItem="xRy-eZ-0fb" secondAttribute="trailing" constant="80" id="xoO-6w-Bfn"/>
                     <constraint firstItem="hdI-UO-rG4" firstAttribute="top" secondItem="ICm-pg-tZC" secondAttribute="bottom" constant="16" id="z5V-yU-v9q"/>
                     <constraint firstItem="zTJ-Dj-x8E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="363" id="zwr-if-BdO"/>
@@ -191,6 +179,11 @@
             <point key="canvasLocation" x="37.681159420289859" y="148.66071428571428"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="xRy-eZ-0fb">
+            <size key="intrinsicContentSize" width="110" height="18"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow.up.square.fill" catalog="system" width="128" height="114"/>
         <image name="photo" catalog="system" width="128" height="93"/>
@@ -201,9 +194,6 @@
         <namedColor name="G2">
             <color red="0.41800001263618469" green="0.43799999356269836" blue="0.3619999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

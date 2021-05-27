@@ -9,8 +9,6 @@ import Foundation
 
 class AddViewModel {
 
-  var didCheckExistItems: (() -> Void)?
-
   // MARK: - Functions
   func publishNewShop(shop: inout CoffeeShop) {
 
@@ -20,7 +18,7 @@ class AddViewModel {
 
       case .success:
 
-        print("🥴Publish New Shop To Firebase Success!!")
+        print("Publish 🥴New Shop To Firebase Success")
 
       case .failure(let error):
 
@@ -38,7 +36,7 @@ class AddViewModel {
 
       case .success:
         
-        print("🥴Publish Review To Firebase Success!!")
+        print("Publish 🥴Review To Firebase Success")
 
       case .failure(let error):
 
@@ -56,7 +54,7 @@ class AddViewModel {
 
       case .success:
 
-        print("🥴Publish Recommend Item To Firebase Success!!")
+        print("Publish 🥴Recommend Item To Firebase Success")
 
       case .failure(let error):
 
@@ -66,26 +64,27 @@ class AddViewModel {
 
   }
 
-  func checkIfRecommendItemExist(shop: CoffeeShop, item: RecommendItem) -> Bool {
+  func checkIfRecommendItemExist(shop: CoffeeShop, item: RecommendItem) {
 
-    var didExist = false
-
-    RecommendItemManager.shared.checkIfRecommendItemExist(shop: shop, item: item) { result in
+    RecommendItemManager.shared.checkIfRecommendItemExist(shop: shop, item: item) { [weak self] result in
 
       switch result {
 
-      case .success(let existingItems):
+      case .success(let didExistItem):
 
-        print("火地上已經有重複ㄉ推薦品ㄌ\(existingItems)")
+        print("This item already exists on Firebase: \(didExistItem), go update item count.")
 
-        didExist = true
+        self?.updateRecommendItemCount(shop: shop, item: didExistItem)
 
       case .failure(let error):
 
-        print("火地上還沒有這項推薦品ㄛ \(error)")
+        print("Same item not found on Firebase: \(error), go publish item.")
+
+        var publishItem = item
+
+        self?.publishRecommendItem(shop: shop, item: &publishItem)
       }
     }
-    return didExist
   }
 
   func updateRecommendItemCount(shop: CoffeeShop, item: RecommendItem) {
@@ -94,4 +93,3 @@ class AddViewModel {
   }
 
 }
-

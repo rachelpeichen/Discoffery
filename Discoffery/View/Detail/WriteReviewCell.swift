@@ -7,7 +7,6 @@
 
 import UIKit
 import Cosmos
-import IQKeyboardManagerSwift
 
 protocol WriteReviewCellDelegate: AnyObject {
 
@@ -45,31 +44,19 @@ class WriteReviewCell: ShopDetailBasicCell {
         self.inputRating = rating
 
         self.sendReviewButton.isEnabled = true
+
+        self.sendReviewButton.tintColor = .green
       }
     }
   }
 
-  // 拍照按鈕還沒弄
+  // MARK: 拍照按鈕還沒弄
   @IBOutlet weak var uploadPhotosButton: UIButton!
 
   // 只先給輸入一個 其他用按鈕寫死ㄉ按鈕也還沒弄
   @IBOutlet weak var addRecommednItemButton: UIButton!
 
-  @IBOutlet weak var sendReviewButton: UIButton! {
-    
-    // MARK: 這裡現在改不動顏色！！
-    didSet {
-
-      if sendReviewButton.isEnabled == true {
-
-        sendReviewButton.tintColor = .green
-
-      } else if sendReviewButton.isEnabled == false {
-
-        sendReviewButton.tintColor = .red
-      }
-    }
-  }
+  @IBOutlet weak var sendReviewButton: UIButton!
 
   // MARK: - Outlets' Action
   @IBAction func didEndEditingComment(_ sender: UITextField) {
@@ -79,7 +66,7 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   @IBAction func didEndEditingItem(_ sender: UITextField) {
 
-    inputItem.append(sender.text ?? "mdfk")
+    inputItem.append(sender.text ?? "none")
   }
 
   @IBAction func finishEditingReview(_ sender: UIButton!) {
@@ -95,13 +82,12 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     delegate?.sendReview(inputReview: &wrappedReview)
 
-    // If the user did provide recommend item then publish
-
+    // If the user did provide recommend item then we can publish
     if !inputItem.isEmpty {
 
-      for (index,item) in inputItem.enumerated() {
+      for (index, item) in inputItem.enumerated() {
 
-        print("index is = \(index) & item is = \(item)")
+         print("index = \(index) & item = \(item)")
 
         wrappedRecommendItem.item = item
 
@@ -119,7 +105,7 @@ class WriteReviewCell: ShopDetailBasicCell {
     // Initialization code
     sendReviewButton.isEnabled = false
 
-    sendReviewButton.tintColor = .red
+    sendReviewButton.tintColor = .lightGray
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {

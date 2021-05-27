@@ -9,6 +9,11 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
+enum RecommendItemError: Error {
+
+  case notExistError
+}
+
 class RecommendItemManager {
 
   // MARK: - Properties
@@ -92,12 +97,30 @@ class RecommendItemManager {
 
       } else {
 
-        for document in querySnapshot!.documents {
+        if querySnapshot!.documents.isEmpty {
 
-          print("\(document.documentID) => \(document.data())")
+          completion(.failure(RecommendItemError.notExistError))
+
+        } else {
+
+          var didExistItem = RecommendItem()
+
+          for document in querySnapshot!.documents {
+
+            do {
+              if let item = try document.data(as: RecommendItem.self, decoder: Firestore.Decoder()) {
+
+                didExistItem = item
+              }
+
+            } catch {
+
+              completion(.failure(error))
+            }
+          }
+
+          completion(.success(didExistItem))
         }
-
-        completion(.success(item))
       }
     }
 
@@ -108,8 +131,21 @@ class RecommendItemManager {
     let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems").document(item.id)
 
     docRef.updateData([
-      "count": FieldValue.increment(Int64(1))
-    ])
+
+      "count": FieldValue.increment(Int64(1)),
+
+      // "lastUpdated": FieldValue.serverTimestamp()
+    ]) { error in
+
+      if let error = error {
+
+        print("Error updating document: \(error)")
+
+      } else {
+
+        print("Document successfully updated")
+      }
+    }
   }
 
 }

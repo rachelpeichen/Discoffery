@@ -65,7 +65,7 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       cell.recommendItem1.text = singleReview.recommendItems[0]
 
-      cell.recommendItem2.text = singleReview.recommendItems[1]
+//      cell.recommendItem2.text = singleReview.recommendItems[1]
 
       cell.userName.text = singleReview.userName
 
