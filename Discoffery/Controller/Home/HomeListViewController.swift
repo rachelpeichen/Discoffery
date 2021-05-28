@@ -197,17 +197,19 @@ extension HomeListViewController: UITableViewDataSource {
       cell.starsView.rating = Double.random(in: 1...5)
 
       // MARK: 營業時間還沒有弄～ＴＡＴ
-      cell.openHours.text = "疫情暫時關閉"
+      cell.openHours.text = "疫情暫停營業"
 
       // MARK: 先寫死我的兩個特色
-      cell.featureOne.text = feature?[0].special[0]
+      cell.feature1.setTitle(feature?[0].special[0], for: .normal)
 
-      cell.featureTwo.text = feature?[0].special[1]
+      cell.feature2.setTitle(feature?[0].special[1], for: .normal)
 
-      // MARK: 這個原本要計算最多推ㄉ 先顯示就好
-      cell.itemOne.text = "冷萃咖啡"
+      cell.feature3.setTitle("還沒有第三個特色啦幹", for: .normal)
 
-      cell.itemTwo.text = "燕麥奶拿鐵"
+      // MARK: 這個要計算最多推ㄉ 先顯示就好
+      cell.item1.setTitle("冷萃咖啡", for: .normal)
+
+      cell.item2.setTitle("燕麥奶拿鐵", for: .normal)
       
       cell.selectionStyle = .none
       

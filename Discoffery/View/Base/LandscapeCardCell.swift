@@ -22,14 +22,16 @@ class LandscapeCardCell: UITableViewCell {
 
   @IBOutlet weak var openHours: UILabel!
 
-  @IBOutlet weak var featureOne: UILabel!
+  @IBOutlet weak var feature1: CustomUIButton!
 
-  @IBOutlet weak var featureTwo: UILabel!
+  @IBOutlet weak var feature2: CustomUIButton!
 
-  @IBOutlet weak var itemOne: UILabel!
+  @IBOutlet weak var feature3: CustomUIButton!
 
-  @IBOutlet weak var itemTwo: UILabel!
+  @IBOutlet weak var item1: CustomUIButton!
 
+  @IBOutlet weak var item2: CustomUIButton!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -46,29 +48,5 @@ class LandscapeCardCell: UITableViewCell {
   func layoutLandscapeCardCell() {
 
     layoutImageView(for: cafeMainImage, with: imageContainerView)
-
-    layoutFeatureLabel()
-  }
-
-  func layoutFeatureLabel() {
-
-    featureOne.clipsToBounds = true
-
-    featureOne.layer.cornerRadius = 5
-
-
-    featureTwo.clipsToBounds = true
-
-    featureTwo.layer.cornerRadius = 6
-
-
-    itemOne.clipsToBounds = true
-
-    itemOne.layer.cornerRadius = 15
-
-
-    itemTwo.clipsToBounds = true
-
-    itemTwo.layer.cornerRadius = 20
   }
 }

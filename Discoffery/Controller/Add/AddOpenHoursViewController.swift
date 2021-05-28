@@ -7,19 +7,32 @@
 
 import Eureka
 
+protocol AddOpenHoursViewControllerDelegate {
+
+  func finishAddOpenHours(openHours: [String: Any?])
+}
+
 class AddOpenHoursViewController: FormViewController {
 
-  let weekDays = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
+  // MARK: - Properties
+  var delegate: AddOpenHoursViewControllerDelegate?
+
+  var openHours: [String: Any?]?
+
+  let weekDays = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    // Do any additional setup after loading the view.
+    openHours = form.values(includeHidden: true)
 
+    // Do any additional setup after loading the view.
     form +++ Section("請選擇營業日 / 不選表示公休")
 
     for day in weekDays {
+
       form +++ SwitchRow(day) {
+
         $0.title = $0.tag
         $0.cellProvider = CellProvider<SwitchCell>(nibName: "SwitchCell", bundle: Bundle.main)
       }
@@ -34,43 +47,50 @@ class AddOpenHoursViewController: FormViewController {
       }
 
       <<< TimeInlineRow() {
-        $0.tag = day + "open"
+        $0.tag = day + "_open"
         $0.title = "Open"
         $0.value = Date()
       }
 
       <<< TimeInlineRow() {
-        $0.tag = day + "close"
+        $0.tag = day + "_close"
         $0.title = "Close"
         $0.value = Date()
       }
     }
 
-    form +++ Section("神秘ㄉ部分")
+    form +++ Section("特殊營業時間")
 
       <<< SwitchRow("不定期公休") {
-        $0.title = $0.tag
+        $0.title = "不定期公休"
+        $0.tag = "noRegularClose"
         $0.value = true
         $0.cellProvider = CellProvider<SwitchCell>(nibName: "SwitchCell", bundle: Bundle.main)
+
         showAlert()
       }
 
-      <<< ButtonRow("我寫好ㄌ") { (row: ButtonRow) -> Void in
-
-        row.title = row.tag
+      <<< ButtonRow("我寫好ㄌ") {(row: ButtonRow) -> Void in
+        row.title = "我寫好ㄌ"
+        row.tag = "finish"
 
       } .onCellSelection { [weak self] cell, row in
 
         showAlert()
+
+        // MARK: Get user's input of opening hours
+        self?.openHours = self?.form.values()
+        
+        self?.delegate?.finishAddOpenHours(openHours: (self?.openHours)!)
       }
 
     func showAlert() {
 
-      let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
+      let alertController = UIAlertController(title: "Discoffery", message: "營業時間填寫完畢", preferredStyle: .alert)
 
-      let defaultAction = UIAlertAction(title: "讚啦", style: .default, handler: nil)
+      let defaultAction = UIAlertAction(title: "完成送出", style: .destructive, handler: nil)
 
-      let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
+      let cancelAction = UIAlertAction(title: "取消重填", style: .cancel, handler: nil)
 
       alertController.addAction(defaultAction)
 

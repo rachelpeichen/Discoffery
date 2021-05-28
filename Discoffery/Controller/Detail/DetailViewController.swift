@@ -171,9 +171,8 @@ extension DetailViewController: UITableViewDataSource {
         // MARK: 還沒算出全部評價的平均先給隨機ㄉ
         cell.rateStars.rating = Double.random(in: 1...5)
 
-        cell.averageRatings.text = String(cell.rateStars.rating)
+        cell.averageRatings.text = String(Double(cell.rateStars.rating).rounded())
 
-        // MARK: 營業時間還沒有弄～ＴＡＴ
         cell.openingHours.text = "因爲疫情暫時關閉"
 
         cell.selectionStyle = .none

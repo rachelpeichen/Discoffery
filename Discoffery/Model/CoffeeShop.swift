@@ -9,42 +9,42 @@ import Foundation
 
 struct CoffeeShop: Codable {
 
-  var id: String
+  var id: String = "default"
 
-  var name: String
+  var name: String = "default"
 
-  var city: String
+  var city: String = "default"
 
-  var wifi: Double
+  var wifi: Double = 0
 
-  var seat: Double
+  var seat: Double = 0
 
-  var quiet: Double
+  var quiet: Double = 0
 
-  var tasty: Double
+  var tasty: Double = 0
 
-  var cheap: Double
+  var cheap: Double = 0
 
-  var music: Double
+  var music: Double = 0
 
-  var url: String
+  var url: String = "default"
 
-  var address: String
+  var address: String = "default"
 
-  var limitedTime: String
+  var limitedTime: String = "default"
 
-  var socket: String
+  var socket: String = "default"
 
-  var standingDesk: String
+  var standingDesk: String = "default"
 
-  var mrt: String
+  var mrt: String = "default"
 
-  var openTime: String
+  var openTime: String = "default"
 
   // MARK: Call API: use String; Decode from Firebase: use Double
-  var latitude: Double
+  var latitude: Double = 0
 
-  var longitude: Double
+  var longitude: Double = 0
 
   enum CodingKeys: String, CodingKey {
 

@@ -31,7 +31,7 @@ class AddFeatureViewController: FormViewController {
 
     form +++ MultivaluedSection(multivaluedOptions:
                                   [.Insert, .Delete],
-                                header: "自己填特色啦",
+                                header: "自己填",
                                 footer: "按 ＋ 新增按 - 刪掉") {
       $0.tag = "textfields"
       $0.addButtonProvider = { section in
@@ -47,7 +47,9 @@ class AddFeatureViewController: FormViewController {
         }
       }
     }
-    
+
+    form +++ Section()
+      
       <<< ButtonRow("我寫好ㄌ") { (row: ButtonRow) -> Void in
 
         row.title = row.tag

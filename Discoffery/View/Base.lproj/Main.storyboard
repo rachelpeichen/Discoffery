@@ -24,7 +24,7 @@
                     <connections>
                         <segue destination="z9C-tc-Uq0" kind="showDetail" identifier="HiddenMRTRowsControllerSegue" id="BlF-i3-uMQ"/>
                         <segue destination="Ly1-PZ-5Cp" kind="showDetail" identifier="AddFeatureControllerSegue" id="aXH-0r-hth"/>
-                        <segue destination="ag4-Zt-LH6" kind="showDetail" identifier="OpenHoursNavigationControllerSegue" id="mZz-YE-EhL"/>
+                        <segue destination="ag4-Zt-LH6" kind="showDetail" identifier="OpenHoursVCSegue" id="mZz-YE-EhL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAi-5R-rmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
