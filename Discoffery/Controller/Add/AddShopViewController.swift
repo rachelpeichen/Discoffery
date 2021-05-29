@@ -28,6 +28,14 @@ class AddShopViewController: FormViewController {
 
   var parsedOpenHours: String?
 
+  var shopId: String?
+
+  // MARK: - Functions
+  @IBAction func backToMainPage(_ sender: UIBarButtonItem) {
+
+    self.dismiss(animated: true, completion: nil)
+  }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     if segue.identifier == "OpenHoursVCSegue"{
@@ -43,7 +51,30 @@ class AddShopViewController: FormViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    tableView.backgroundColor = UIColor.init(named: "G3")
+    //    tableView.backgroundColor = .lightGray
+
+
+
+    if tableView == nil {
+      tableView = UITableView(frame: view.bounds, style: UITableView.Style.plain)
+      tableView?.autoresizingMask = UIView.AutoresizingMask.flexibleWidth.union(.flexibleHeight)
+    }
+
+    PickerInlineRow<String>.InlineRow.defaultCellUpdate = { cell, _ in
+      cell.textLabel?.font = .systemFont(ofSize: 18)
+      cell.backgroundColor = .B3
+    }
+
+    TextRow.defaultCellSetup = { cell, row in
+      cell.titleLabel?.font = .systemFont(ofSize: 18)
+      cell.textLabel?.textColor = .G1
+      cell.tintColor = .B3
+    }
+
+    TextRow.defaultCellUpdate = { cell, row in
+      cell.textField.font = .systemFont(ofSize: 18)
+      cell.textField.textColor = .G1
+    }
 
     form +++
 
@@ -53,31 +84,13 @@ class AddShopViewController: FormViewController {
         row.title = "店名"
         row.tag = "name"
         row.placeholder = "請輸入名稱"
-
-      }.cellSetup({ cell, row in
-        cell.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        cell.titleLabel?.textColor = UIColor.init(named: "G1")
-        cell.tintColor = UIColor.init(named: "B1")
-
-      }).cellUpdate({ cell, row in
-        cell.textField.font = .systemFont(ofSize: 18)
-        cell.textField.textColor = UIColor.init(named: "G1")
-      })
+      }
 
       <<< TextRow("地址") { row in
         row.title = "地址"
         row.tag = "address"
         row.placeholder = "請輸入地址"
-
-      }.cellSetup({ cell, row in
-        cell.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        cell.titleLabel?.textColor = UIColor.init(named: "G1")
-        cell.tintColor = UIColor.init(named: "B1")
-
-      }).cellUpdate({ cell, row in // update 是textfield的
-        cell.textField.font = .systemFont(ofSize: 18)
-        cell.textField.textColor = UIColor.init(named: "G1")
-      })
+      }
 
       <<< SegmentedRow<Int>() {
         $0.title = "評分"
@@ -85,8 +98,9 @@ class AddShopViewController: FormViewController {
         $0.options = [1, 2, 3, 4, 5]
 
       }.cellSetup({ cell, row in
-        cell.titleLabel?.font = .boldSystemFont(ofSize: 18)
-        cell.titleLabel?.textColor = UIColor.init(named: "B1")
+        cell.titleLabel?.font = .systemFont(ofSize: 18)
+        cell.textLabel?.textColor = .G1
+        cell.tintColor = .B3
       })
 
       <<< ButtonRow("營業時間") { row in
@@ -97,12 +111,17 @@ class AddShopViewController: FormViewController {
           presentVC.dismiss(animated: true)
         })
       }.cellSetup({ cell, row in
+        cell.textLabel?.font = .systemFont(ofSize: 18)
+        cell.textLabel?.textColor = .G1
+        cell.tintColor = .B3
 
+      }).onCellSelection({ cell, row in
+        cell.textLabel?.textColor = .B1
       })
     
     form +++
 
-      Section("選填資訊")
+      Section("選填資訊：評價")
 
       <<< TextAreaRow("評論") {
         $0.title = "評論"
@@ -112,6 +131,7 @@ class AddShopViewController: FormViewController {
 
       }.cellUpdate({ cell, row in
         cell.textView.font = .systemFont(ofSize: 18)
+        cell.textView.textColor = .G1
         cell.placeholderLabel?.font = .systemFont(ofSize: 18)
       })
 
@@ -129,9 +149,8 @@ class AddShopViewController: FormViewController {
         $0.value = $0.options.first
 
       }.cellSetup({ cell, row in
-        cell.textLabel?.font = .boldSystemFont(ofSize: 18)
-        cell.tintColor = UIColor.init(named: "B1")
-        cell.textLabel?.textColor = UIColor.init(named: "G1")
+        cell.textLabel?.font = .systemFont(ofSize: 18)
+        cell.textLabel?.textColor = .G1
       })
 
       <<< PickerInputRow<String>("插座") {
@@ -142,22 +161,19 @@ class AddShopViewController: FormViewController {
         $0.options.append("每個座位都有插座")
         $0.options.append("部分座位有插座")
         $0.value = $0.options.first
-      }
 
-      <<< ButtonRow("特色服務") { (row: ButtonRow) -> Void in
-        row.title = "特色服務"
-        row.tag = "feature"
-        row.presentationMode = .segueName(segueName:
-                                            "AddFeatureControllerSegue",
-                                          onDismiss: nil)
-      }
+      }.cellSetup({ cell, row in
+        cell.textLabel?.font = .systemFont(ofSize: 18)
+        cell.tintColor = .B1
+        cell.textLabel?.textColor = .G1
+      })
 
     form +++
 
       MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
-                         header: "選填資訊：輸入推薦飲料或餐點",
-                         footer: "左滑可以刪除") {
-        $0.tag = "items"
+                         header: "選填資訊：推薦飲料或餐點",
+                         footer: "") {
+        $0.tag = "customItems"
 
         $0.addButtonProvider = { _ in
 
@@ -167,10 +183,12 @@ class AddShopViewController: FormViewController {
 
           }.cellUpdate { cell, _ in
             cell.textLabel?.textAlignment = .left
+            cell.textLabel?.font = .systemFont(ofSize: 18)
 
           }.cellSetup { cell, _ in
             cell.imageView?.image = UIImage(named: "plus")
-
+            cell.textLabel?.font = .systemFont(ofSize: 18)
+            cell.tintColor = .G1
           }
         }
 
@@ -178,8 +196,48 @@ class AddShopViewController: FormViewController {
 
           return TextRow() {
             $0.placeholder = "品項名稱"
+
+          } .cellUpdate { cell, row in
+            cell.textField.font = .systemFont(ofSize: 18)
+            cell.textField.textColor = .G1
           }
         }
+      }
+
+    form +++
+
+      MultivaluedSection(multivaluedOptions: [.Insert, .Delete],
+                         header: "選填資訊：店家特色",
+                         footer: "") {
+        $0.tag = "customFeatures"
+
+        $0.addButtonProvider = { _ in
+
+          return ButtonRow() {
+
+            $0.title = "新增特色"
+
+          }.cellUpdate { cell, _ in
+            cell.textLabel?.textAlignment = .left
+            cell.textLabel?.font = .systemFont(ofSize: 18)
+
+          }.cellSetup { cell, _ in
+            cell.imageView?.image = UIImage(named: "plus")
+            cell.textLabel?.font = .systemFont(ofSize: 18)
+            cell.tintColor = .G1
+          }
+        }
+
+        $0.multivaluedRowToInsertAt = { _ in
+
+          return TextRow() {
+            $0.placeholder = "特色"
+
+          } .cellUpdate { cell, row in
+            cell.textField.font = .systemFont(ofSize: 18)
+            cell.textField.textColor = .G1
+          }
+        }  
       }
     //    form +++
     //
@@ -195,77 +253,88 @@ class AddShopViewController: FormViewController {
       <<< ButtonRow("送出") { (row: ButtonRow) -> Void in
         row.title = "送出"
         row.tag = "send"
+        row.disabled = true
 
       }.cellSetup({ cell, row in
-        cell.backgroundColor =  UIColor.init(named: "B3")
-        cell.tintColor = UIColor.init(named: "B1")
+        cell.backgroundColor = .G2
+        cell.tintColor = .white
 
-      }).onCellSelection { [weak self] (cell, row) in
+      }).onCellSelection { [weak self] cell, row in
+
+
+
         self?.showAlert()
 
         // MARK: Get user's input and wrap as my struct type  
         guard let dict = self?.form.values(includeHidden: true) else { return }
 
+        print(dict)
+
         var newShop = self?.parseInputToShop(inputDic: dict)
 
-        // MARK: 要檢查必填的都有了才能送出！
+        var newShopReview = self?.parseInputToReview(inputDic: dict)
+
+        var newShopFeature = self?.parseInputToFeature(inputDic: dict)
+
+        // MARK: Publish to Firebase
         self?.addViewModel.publishNewShop(shop: &(newShop)!)
 
-        //        let newShopReview = self?.parseInputToReview(inputDic: dict) as Any
-        //        let newShopFeature = self?.parseInputToFeature(inputDic: dict) as Any
-        //        let newShopRecommendItem = self?.parseInputToRecommendItem(inputDic: dict) as Any
+        self?.addViewModel.onFetchNewShop = { result  in
+          self?.shopId = result
+        }
+
+        // MARK: 這裡和Detail Page 送 review一樣 拿到shop.id 才能去Po 現在無法思考 0528
+        //self?.addViewModel.publishNewShopReview(shopId: (self?.shopId)!, review: &(newShopReview!))
+        //self?.addViewModel.publishNewShopFeature(shopId: (self?.shopId)!, feature: &(newShopFeature!))
+        // self?.parseInputToRecommendItem(inputDic: dict)
+
       }
   }
 
   // MARK: Functions
   func parseInputToShop(inputDic: [String: Any?]) -> CoffeeShop {
 
-    wrappedNewShop.name = inputDic["name"] as! String
+    wrappedNewShop.name = inputDic["name"] as? String ?? "Unknown Name"
 
-    wrappedNewShop.address = inputDic["address"] as! String
+    wrappedNewShop.address = inputDic["address"] as? String ?? "Unknown Address"
 
-    wrappedNewShop.socket = inputDic["socket"] as! String
+    wrappedNewShop.socket = inputDic["socket"] as? String ?? "Unknown"
 
-    wrappedNewShop.limitedTime = inputDic["timeLimit"] as! String
+    wrappedNewShop.limitedTime = inputDic["timeLimit"] as? String ?? "Unknown"
 
-    wrappedNewShop.openTime = parsedOpenHours ?? "Opening Time Unknown"
+    wrappedNewShop.openTime = parsedOpenHours ?? "Unknown"
 
     return wrappedNewShop
   }
 
   func parseInputToReview(inputDic: [String: Any?]) -> Review {
 
-    wrappedNewShopReview.comment = inputDic["comment"] as! String
+    wrappedNewShopReview.comment = inputDic["comment"] as? String ?? "Unknown Name"
 
-    wrappedNewShopReview.rating = inputDic["rating"] as! Double
+    wrappedNewShopReview.rating = inputDic["rating"] as? Double ?? 3
 
-    wrappedNewShopReview.recommendItems = inputDic["items"] as! [String]
+    wrappedNewShopReview.recommendItems = inputDic["customItems"] as? [String] ?? [""]
 
     return wrappedNewShopReview
   }
 
-  func parseInputToRecommendItem(inputDic: [String: Any?]) -> RecommendItem {
-
-    // MARK: 確認有輸入推薦品才可送 還沒
+  func parseInputToRecommendItem(inputDic: [String: Any?]) {
 
     for item in inputDic["items"] as! [String] {
 
       wrappedNewShopRecommendItem.item = item
 
-      print(wrappedNewShopRecommendItem.item)
-
-      // MARK: 這裡送上去 還沒
+      addViewModel.publishNewShopRecommendItem(shopId: shopId!, item: &wrappedNewShopRecommendItem)
     }
-    return wrappedNewShopRecommendItem
   }
 
   func parseInputToFeature(inputDic: [String: Any?]) -> Feature {
 
-    // MARK: 確認有輸入特色才可送
+    wrappedNewShopFeature.socket = inputDic["socket"] as? String ?? "Unknown"
 
-    wrappedNewShopFeature.socket = inputDic["socket"] as! String
+    wrappedNewShopFeature.timeLimit = inputDic["timeLimit"] as? String ?? "Unknown"
 
-    wrappedNewShopFeature.timeLimit = inputDic["timeLimit"] as! String
+    wrappedNewShopFeature.special = inputDic["customFeatures"] as? [String] ?? [""]
 
     return wrappedNewShopFeature
   }

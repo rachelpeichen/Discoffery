@@ -53,9 +53,7 @@
 		78B2FD28265A8EA9005C9D1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */; };
 		78B2FD2B265AC08D005C9D1D /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */; };
 		78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */; };
-		78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */; };
 		78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */; };
-		78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */; };
 		78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2942654388300726A5D /* WeekDaysCell.xib */; };
 		78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */; };
 		78DEC2B8265500A100726A5D /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2B7265500A000726A5D /* SwitchCell.xib */; };
@@ -81,6 +79,7 @@
 		78DF25432652670900F47A04 /* ShopRouteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DF25412652670900F47A04 /* ShopRouteCell.xib */; };
 		78DF25472652717000F47A04 /* ShopImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF25452652717000F47A04 /* ShopImagesCollectionViewCell.swift */; };
 		78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */; };
+		78E0B9CF2660C66700AEE38F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */; };
 		78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DD264BFCA300DF4190 /* AppDelegate.swift */; };
 		78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */; };
 		78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72E1264BFCA300DF4190 /* HomeViewController.swift */; };
@@ -137,9 +136,7 @@
 		78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPageViewController.swift; sourceTree = "<group>"; };
-		78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenMRTRowsViewController.swift; sourceTree = "<group>"; };
 		78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomCheckRow&Cell.swift"; sourceTree = "<group>"; };
-		78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeatureViewController.swift; sourceTree = "<group>"; };
 		78DEC2942654388300726A5D /* WeekDaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekDaysCell.xib; sourceTree = "<group>"; };
 		78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOpenHoursViewController.swift; sourceTree = "<group>"; };
 		78DEC2B7265500A000726A5D /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
@@ -165,6 +162,7 @@
 		78DF25412652670900F47A04 /* ShopRouteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopRouteCell.xib; sourceTree = "<group>"; };
 		78DF25452652717000F47A04 /* ShopImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCollectionViewCell.xib; sourceTree = "<group>"; };
+		78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		78FA72DA264BFCA300DF4190 /* Discoffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discoffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FA72DD264BFCA300DF4190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,8 +206,6 @@
 				7839C9682652E59B0048B5F5 /* AddShopViewController.swift */,
 				7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */,
 				7884FB782653A3F60093F666 /* AddCategoryViewController.swift */,
-				78DEC280265411F900726A5D /* HiddenMRTRowsViewController.swift */,
-				78DEC28C265431DD00726A5D /* AddFeatureViewController.swift */,
 				78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */,
 				78182C12265F87DB00056E92 /* ImagePickerController.swift */,
 				78182C0F265F869F00056E92 /* ImageRow.swift */,
@@ -323,6 +319,7 @@
 			children = (
 				78A31105265C275E00441FE7 /* Date+Extension.swift */,
 				783B2343265D60F400F88687 /* UIView+Extension.swift */,
+				78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -648,20 +645,19 @@
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
 				78DEC3002655A5A900726A5D /* ExampleCardCell.swift in Sources */,
-				78DEC28D265431DD00726A5D /* AddFeatureViewController.swift in Sources */,
 				78182C10265F86A000056E92 /* ImageRow.swift in Sources */,
 				78182BFB265E420100056E92 /* CustomUITextField.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				78B2FCF7265A1849005C9D1D /* Review.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,
 				78A31129265C2AAF00441FE7 /* AddViewModel.swift in Sources */,
-				78DEC281265411F900726A5D /* HiddenMRTRowsViewController.swift in Sources */,
 				787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */,
 				78848654264D223D00FA33F9 /* Box.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
 				78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */,
 				78DF251826524DE700F47A04 /* ShopDetailBasicCell.swift in Sources */,
 				78DF25382652625200F47A04 /* WriteReviewCell.swift in Sources */,
+				78E0B9CF2660C66700AEE38F /* UIColor+Extension.swift in Sources */,
 				78B2FD20265A7B23005C9D1D /* FeatureManager.swift in Sources */,
 				78DF25472652717000F47A04 /* ShopImagesCollectionViewCell.swift in Sources */,
 				78DF251426524AD100F47A04 /* CoffeeShopContentCategory.swift in Sources */,

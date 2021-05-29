@@ -48,7 +48,28 @@ class FeatureManager {
     }
   }
 
-  func publishFeature(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+  func publishNewShopFeature(shopId: String, feature: inout Feature, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("newShopsDemo").document(shopId).collection("features").document()
+
+    feature.id = docRef.documentID
+
+    feature.parentId = shopId
+
+    docRef.setData(feature.toDict) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Success"))
+      }
+    }
+  }
+
+  func publishMockFeature(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     // Mock data
     let mockSocket = ["無插座", "有插座", "每個座位都有插座"]

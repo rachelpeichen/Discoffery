@@ -76,6 +76,30 @@ class ReviewManager {
 
   }
 
+  func publishNewShopReview(shopId: String, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("newShopsDemo").document(shopId).collection("reviews").document()
+
+    review.id = docRef.documentID
+
+    review.parentId = shopId
+
+    review.postTime = Date().millisecondsSince1970
+
+    docRef.setData(review.toDict) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Success"))
+      }
+    }
+
+  }
+
   func publishMockReviews(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     // MARK: Mock Reviews

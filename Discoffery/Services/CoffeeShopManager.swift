@@ -12,6 +12,7 @@ import CoreLocation
 
 enum FirebaseError: Error {
   case documentError
+  case notExistError
 }
 
 enum OtherError: Error {
@@ -142,6 +143,46 @@ class CoffeeShopManager {
     }
   }
 
+  func fetchNewShops(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void){
+    // 把shopsTaipei 這個collection裡面所有的文件抓下來後暫存 再寫入reviews這個sub-collection
+
+    let docRef = Firestore.firestore().collection("newShopsDemo")
+
+    docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
+
+      if let error = error {
+
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        if querySnapshot!.documents.isEmpty {
+
+          completion(.failure(FirebaseError.notExistError))
+
+        } else {
+
+          var newShop = CoffeeShop()
+
+          for document in querySnapshot!.documents {
+
+            do {
+              if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
+                newShop = shop
+              }
+
+            } catch {
+
+              completion(.failure(error))
+            }
+          }
+          
+          completion(.success(newShop))
+        }
+      }
+    }
+  }
 }
 // func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 //

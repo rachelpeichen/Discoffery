@@ -24,7 +24,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
   override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 
     let cellAttributesArray = super.layoutAttributesForElements(in: rect)
-    //Oth position cellAttr is InConvience Emoji Cell, from 1st onwards info cells are there, thats why we start count from 2nd position.
+    // Oth position cellAttr is InConvience Emoji Cell, from 1st onwards info cells are there, thats why we start count from 2nd position.
 
     if(cellAttributesArray != nil && cellAttributesArray!.count > 1) {
 
@@ -38,7 +38,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         let prevCellMaxX: CGFloat = prevLayoutAttributes.frame.maxX
 
-        //UIEdgeInset 30 from left
+        // UIEdgeInset 30 from left
         let collectionViewSectionWidth = self.collectionViewContentSize.width - leftEdgeInset
 
         let currentCellExpectedMaxX = prevCellMaxX + maximumSpacing + (currentLayoutAttributes.frame.size.width)

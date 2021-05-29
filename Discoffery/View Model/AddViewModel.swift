@@ -9,7 +9,29 @@ import Foundation
 
 class AddViewModel {
 
+  var onFetchNewShop: ((String) -> Void)?
+
   // MARK: - Functions
+  func fetchNewShop(name: String){
+
+    CoffeeShopManager.shared.fetchNewShops(name: name, completion: { result in
+
+      switch result {
+
+      case .success(let newShop):
+
+        self.onFetchNewShop!(newShop.id)
+
+        print("🥴fetchNewShop Success")
+
+      case .failure(let error):
+
+        print("publishNewShop.failure\(error)")
+      }
+    })
+  }
+
+
   func publishNewShop(shop: inout CoffeeShop) {
 
     CoffeeShopManager.shared.publishNewShop(shop: &shop) { result in
@@ -25,6 +47,60 @@ class AddViewModel {
         print("publishNewShop.failure\(error)")
       }
     }
+
+  }
+
+  func publishNewShopReview(shopId: String, review: inout Review) {
+
+    ReviewManager.shared.publishNewShopReview(shopId: shopId, review: &review) {result in
+
+      switch result {
+
+      case .success:
+
+        print("Publish 🥴New ShopReview To Firebase Success")
+
+      case .failure(let error):
+
+        print("publishNewShop.failure\(error)")
+      }
+    }
+  }
+
+  func publishNewShopFeature(shopId: String, feature: inout Feature) {
+
+    FeatureManager.shared.publishNewShopFeature(shopId: shopId, feature: &feature) { result in
+
+      switch result {
+
+      case .success:
+
+        print("Publish 🥴New NewShopFeature To Firebase Success")
+
+      case .failure(let error):
+
+        print("publishNewShop.failure\(error)")
+      }
+    }
+
+  }
+
+  func publishNewShopRecommendItem(shopId: String, item: inout RecommendItem) {
+
+    RecommendItemManager.shared.publishNewShopRecommendItem(shopId: shopId, item: &item) { result in
+
+      switch result {
+
+      case .success:
+
+        print("Publish 🥴NewShopRecommendItem To Firebase Success")
+
+      case .failure(let error):
+
+        print("publishNewShop.failure\(error)")
+      }
+    }
+
 
   }
 

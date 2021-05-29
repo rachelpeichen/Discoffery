@@ -234,7 +234,6 @@ extension DetailViewController: UITableViewDataSource {
 
       return UITableViewCell()
     }
-
     return UITableViewCell()
   }
 }

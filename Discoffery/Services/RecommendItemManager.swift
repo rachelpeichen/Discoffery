@@ -50,8 +50,31 @@ class RecommendItemManager {
           }
         }
 
-        print(items.count)
         completion(.success(items))
+      }
+    }
+
+  }
+
+  func publishNewShopRecommendItem(shopId: String, item: inout RecommendItem, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("newShopsDemo").document(shopId).collection("recommendItems").document()
+
+    item.id = docRef.documentID
+
+    item.parentId = shopId
+
+    item.count = 1
+
+    docRef.setData(item.toDict) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Success"))
       }
     }
 

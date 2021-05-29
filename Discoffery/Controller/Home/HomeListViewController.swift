@@ -23,6 +23,8 @@ class HomeListViewController: UIViewController {
 
   var featureDic: [String: [Feature]] = [:] // 用shop.id去對
 
+  var onFeature: (([String]) -> Void)?
+
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
   var mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
@@ -127,8 +129,10 @@ class HomeListViewController: UIViewController {
     tableView.dataSource = self
     
     tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
+
+    tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil), forCellReuseIdentifier: "shopFeatureCell")
     
-    tableView.estimatedRowHeight = 280
+    tableView.estimatedRowHeight = 320
 
     tableView.rowHeight = UITableView.automaticDimension
     
@@ -177,13 +181,11 @@ extension HomeListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
+
     if let cell = tableView.dequeueReusableCell(
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
       
       let shop = shopsDataForList[indexPath.row]
-
-      let feature = featureDic[shop.id]
 
       let distance = Int(calDistanceBetweenTwoLocations(location1Lat: userCurrentCoordinate.latitude, location1Lon: userCurrentCoordinate.longitude, location2Lat: shop.latitude, location2Lon: shop.longitude))
       
@@ -196,21 +198,18 @@ extension HomeListViewController: UITableViewDataSource {
       // MARK: 還沒算出全部評價的平均先給隨機ㄉ
       cell.starsView.rating = Double.random(in: 1...5)
 
-      // MARK: 營業時間還沒有弄～ＴＡＴ
       cell.openHours.text = "疫情暫停營業"
 
-      // MARK: 先寫死我的兩個特色
-      cell.feature1.setTitle(feature?[0].special[0], for: .normal)
+      guard let feature = featureDic[shop.id] else { return UITableViewCell() }
 
-      cell.feature2.setTitle(feature?[0].special[1], for: .normal)
+      cell.features = feature[0].special
 
-      cell.feature3.setTitle("還沒有第三個特色啦幹", for: .normal)
+      cell.features.append("摩卡可可脆片星冰樂")
 
-      // MARK: 這個要計算最多推ㄉ 先顯示就好
-      cell.item1.setTitle("冷萃咖啡", for: .normal)
+      cell.features.append("檸檬塔")
 
-      cell.item2.setTitle("燕麥奶拿鐵", for: .normal)
-      
+      cell.features.append("焦糖海鹽肉桂捲")
+
       cell.selectionStyle = .none
       
       return cell

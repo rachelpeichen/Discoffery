@@ -21,7 +21,7 @@ class CustomUIButton: UIButton {
     self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
      cornerRadius: self.layer.cornerRadius).cgPath
 
-    self.layer.shadowOffset = CGSize(width: 0, height: 2)
+    self.layer.shadowOffset = CGSize(width: 0, height: 3)
 
     self.layer.shadowOpacity = 0.5
 

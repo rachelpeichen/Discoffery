@@ -143,7 +143,7 @@ class HomeMapViewController: UIViewController {
 
     for index in 0..<shopsDemo.count {
 
-      FeatureManager.shared.publishFeature(shop: &shopsDemo[index]) { result in
+      FeatureManager.shared.publishMockFeature(shop: &shopsDemo[index]) { result in
 
         switch result {
 

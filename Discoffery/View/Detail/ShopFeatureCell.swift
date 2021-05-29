@@ -15,8 +15,6 @@ class ShopFeatureCell: ShopDetailBasicCell {
   var featureArr = [String]()
 
   @IBOutlet weak var collectionView: UICollectionView!
-  
-  @IBOutlet weak var categoryLabel: UILabel!
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -31,9 +29,8 @@ class ShopFeatureCell: ShopDetailBasicCell {
   }
 
   // MARK: Functions
-
   func configure(with featureArr: [String]) {
-      // 調整大小
+    
       self.featureArr = featureArr
 
       self.collectionView.reloadData()
@@ -79,7 +76,7 @@ extension ShopFeatureCell: UICollectionViewDelegateFlowLayout {
 
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
-    return CGSize(width: textSize.width + 25, height: collectionView.bounds.size.height)
+    return CGSize(width: textSize.width + 30, height: collectionView.bounds.size.height)
   }
 }
 
