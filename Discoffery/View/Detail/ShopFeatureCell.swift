@@ -9,7 +9,7 @@ import UIKit
 
 class ShopFeatureCell: ShopDetailBasicCell {
 
-  // MARK: Properties
+  // MARK: - Properties
   var feature = Feature()
 
   var featureArr = [String]()
@@ -28,7 +28,7 @@ class ShopFeatureCell: ShopDetailBasicCell {
     // Configure the view for the selected state
   }
 
-  // MARK: Functions
+  // MARK: - Functions
   func configure(with featureArr: [String]) {
     
       self.featureArr = featureArr

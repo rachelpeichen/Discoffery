@@ -11,7 +11,13 @@ import Cosmos
 class LandscapeCardCell: UITableViewCell {
 
   // MARK: - Properties
-  var features: [String] = []
+  var featuresArr: [String] = [] {
+
+    didSet {
+
+      collectionView.reloadData()
+    }
+  }
 
   @IBOutlet weak var imageContainerView: UIView!
 
@@ -42,7 +48,7 @@ class LandscapeCardCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  // MARK: Functions
+  // MARK: - Functions
   func layoutLandscapeCardCell() {
 
     layoutImageView(for: cafeMainImage, with: imageContainerView)
@@ -61,14 +67,14 @@ class LandscapeCardCell: UITableViewCell {
 extension LandscapeCardCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return features.count
+    return featuresArr.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
 
-      let feature = features[indexPath.row]
+      let feature = featuresArr[indexPath.row]
       
       cell.layoutFeatureCollectionViewCell(feature: feature)
 
@@ -83,7 +89,7 @@ extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
   // MARK: 以字體內容去調整每個cell的大小
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-    let textSize: CGSize = features[indexPath.row]
+    let textSize: CGSize = featuresArr[indexPath.row]
 
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 

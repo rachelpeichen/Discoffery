@@ -22,7 +22,7 @@ class RecommendItemManager {
   lazy var database = Firestore.firestore()
 
   // MARK: - Functions
-  func fetchRecommendItem(shop: CoffeeShop, completion: @escaping (Result<[RecommendItem], Error>) -> Void) {
+  func fetchRecommendItemForShop(shop: CoffeeShop, completion: @escaping (Result<[RecommendItem], Error>) -> Void) {
 
     let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems")
 
@@ -34,7 +34,9 @@ class RecommendItemManager {
 
       } else {
 
-        var items = [RecommendItem]()
+       //var itemsForShopDic: [String: [RecommendItem]] = [:]
+
+        var items: [RecommendItem] = []
 
         for document in querySnapshot!.documents {
 
@@ -43,6 +45,8 @@ class RecommendItemManager {
 
               items.append(item)
             }
+
+            // itemsForShopDic[shop.id] = items
 
           } catch {
 
@@ -78,6 +82,38 @@ class RecommendItemManager {
       }
     }
 
+  }
+
+  func publishMockRecommendItem(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+
+    // MARK: Mock RecommendItem
+    let mockItems1 = ["冷萃咖啡", "檸檬塔", "卡布奇諾", "單品手沖咖啡", "燕麥奶拿鐵", "可麗露", "馥列白", "海鹽焦糖拿鐵"]
+
+    let mockItems2 = ["完美日曬耶加雪菲", "莊園級拿鐵", "榛果風味拿鐵", "小農鮮奶咖啡", "白蘭地生巧克力蛋糕", "法式布蕾", "抹茶巴斯克乳酪", "提拉米蘇"]
+
+    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems").document()
+
+    var recommendItem = RecommendItem()
+
+    recommendItem.id = docRef.documentID
+
+    recommendItem.parentId = shop.id
+
+    recommendItem.count = 1
+
+    recommendItem.item = mockItems2.randomElement()!
+
+    docRef.setData(recommendItem.toDict) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Success"))
+      }
+    }
   }
 
   func publishUserRecommendItem(shop: CoffeeShop, item: inout RecommendItem, completion: @escaping (Result<String, Error>) -> Void) {

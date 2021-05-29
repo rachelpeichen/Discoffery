@@ -20,13 +20,13 @@ class DetailViewController: UIViewController {
   let activityVC = UIActivityViewController(activityItems: ["ㄩㄇ？"], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
-    // MARK: 現在的分享無法帶入資訊
+    // MARK: 現在的分享無法帶入資訊:還沒做
     present(activityVC, animated: true, completion: nil)
   }
   @IBOutlet weak var saveButton: UIButton!
 
   @IBAction func saveToCollection(_ sender: UIButton) {
-    // MARK: 加入該用戶的收藏
+    // MARK: 加入該用戶的收藏:還沒做
     sender.setImage(UIImage(named: "like_fill"), for: .normal)
     
     showAlert()
@@ -44,6 +44,8 @@ class DetailViewController: UIViewController {
   var reviewsCount = 0
   
   var feature = Feature()
+
+  var recommendItemsArr: [RecommendItem] = []
 
   private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
@@ -168,8 +170,7 @@ extension DetailViewController: UITableViewDataSource {
 
         cell.reviewsCount.text = "(\(reviewsCount))"
 
-        // MARK: 還沒算出全部評價的平均先給隨機ㄉ
-        cell.rateStars.rating = Double.random(in: 1...5)
+        cell.rateStars.rating = Double.random(in: 1...5)  // 還沒算出全部評價的平均先給隨機ㄉ
 
         cell.averageRatings.text = String(Double(cell.rateStars.rating).rounded())
 
@@ -181,12 +182,16 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 2:
-      // 推薦商品：還沒有弄，先寫假的三個
+
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
 
-        let mockArr = ["摩卡可可碎片星冰樂", "馥列白", "醇濃抹茶那堤"]
+        guard recommendItemsArr != nil else { return UITableViewCell() }
 
-        cell.configure(with: mockArr)
+        var itemsArr = [""]
+
+        itemsArr.append(contentsOf: recommendItemsArr.map { $0.item })
+
+        cell.configure(with: itemsArr)
 
         cell.selectionStyle = .none
 
@@ -194,7 +199,7 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 3:
-      // 環境特色：先寫死三個Firebase上面的假資料
+
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
 
         cell.feature = self.feature

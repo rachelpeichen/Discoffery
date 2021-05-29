@@ -24,11 +24,12 @@ class FeatureManager {
     docRef.getDocuments() { querySnapshot, error in
 
       if let error = error {
+        
         print("Error getting documents: \(error)")
 
       } else {
 
-        var feature:[Feature] = []
+        var feature: [Feature] = []
 
         for document in querySnapshot!.documents {
 

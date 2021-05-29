@@ -26,18 +26,41 @@ extension UIView {
 
   func addShadow() {
 
-      clipsToBounds = true
+    clipsToBounds = true
 
     layer.cornerRadius = frame.height / 1.5
 
-      layer.masksToBounds = false
+    layer.masksToBounds = false
 
-      layer.shadowOffset = CGSize.init(width: 0, height: 3)
+    layer.shadowOffset = CGSize.init(width: 0, height: 3)
 
-      layer.shadowColor = UIColor.black.cgColor
+    layer.shadowColor = UIColor.black.cgColor
 
-      layer.shadowRadius = 3.0
+    layer.shadowRadius = 3.0
 
-      layer.shadowOpacity = 0.25
+    layer.shadowOpacity = 0.25
   }
+}
+
+extension UITextView {
+
+//  var numberOfLines: Int {
+//
+//    // Get number of lines
+//    let numberOfGlyphs = self.layoutManager.numberOfGlyphs
+//
+//    var index = 0, numberOfLines = 0
+//
+//    var lineRange = NSRange(location: NSNotFound, length: 0)
+//
+//    while index < numberOfGlyphs {
+//
+//      self.layoutManager.lineFragmentRect(forGlyphAt: index,
+//                                          effectiveRange: &lineRange)
+//      index = NSMaxRange(lineRange)
+//
+//      numberOfLines += 1
+//    }
+//    return numberOfLines
+//  }
 }

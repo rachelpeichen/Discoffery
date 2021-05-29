@@ -53,15 +53,14 @@ class HomeMapViewController: UIViewController {
     }
 
     // fetchAPIdata()
-    
-    // fetchShopsCollection()
+    // fetchShopsTaipeiDemo()
   }
 
   // MARK: - Functions
   func fetchAPIdata() {
 
     //  Publish API data to Firebase (only used at first time)
-    // 這裏其實要寫在ViewModel!!!!!!!!但之後沒用到就算ㄌ? = =
+    // 這裏要放到別的地方但之後沒用到就算ㄌ? = =
     APIManager.shared.request { result in
 
       for index in 0..<200 { // shopsTaipeiDemo用200筆不然我的火地又要爆掉ㄌ
@@ -92,18 +91,16 @@ class HomeMapViewController: UIViewController {
   }
 
   // MARK: - 把shopsTaipeiDemo這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection
-  func fetchShopsCollection() {
+  func fetchShopsTaipeiDemo() {
 
-    CoffeeShopManager.shared.fetchShopsTaipei { result  in
+    CoffeeShopManager.shared.fetchShopsTaipeiDemo { result  in
       switch result {
 
       case .success(let shopsData):
 
         self.shopsDemo = shopsData
 
-        // self.publishReviewSubCollection()
-
-        self.publishFeatureSubCollection()
+        self.publishMockRecommendItem()
 
       case .failure(let error):
 
@@ -112,7 +109,7 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  func publishReviewSubCollection() {
+  func publishMockReviews() {
 
     for index in 0..<shopsDemo.count {
 
@@ -139,7 +136,7 @@ class HomeMapViewController: UIViewController {
 
   }
 
-  func publishFeatureSubCollection() {
+  func publishMockFeature() {
 
     for index in 0..<shopsDemo.count {
 
@@ -158,6 +155,27 @@ class HomeMapViewController: UIViewController {
       }
     }
 
+  }
+
+  func publishMockRecommendItem() {
+
+    for index in 0..<shopsDemo.count {
+
+      RecommendItemManager.shared.publishMockRecommendItem(shop: &shopsDemo[index]) { result in
+
+        switch result {
+
+        case .success(let result):
+
+          print("\(result)")
+
+        case .failure(let error):
+
+          print("\(error)")
+        }
+      }
+    }
+    
   }
 
 }

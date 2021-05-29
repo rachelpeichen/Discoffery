@@ -18,12 +18,9 @@ class HomeListViewController: UIViewController {
   
   var shopsDataForList: [CoffeeShop] = []
 
-  // 這個現在沒用到會壞掉
-  var reviews: [[Review]] = [[]]
+  var featureDic: [String: [Feature]] = [:] // Use shop.id as key
 
-  var featureDic: [String: [Feature]] = [:] // 用shop.id去對
-
-  var onFeature: (([String]) -> Void)?
+  var recommendItemsDic: [String: [RecommendItem]] = [:]
 
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
@@ -51,6 +48,8 @@ class HomeListViewController: UIViewController {
 
         self?.fetchFeatureForShop(shop: shopsData[index])
 
+        self?.fetchRecommendItemForShop(shop: shopsData[index])
+
         let distance = self?.calDistanceBetweenTwoLocations(
           location1Lat: self!.userCurrentCoordinate.latitude,
           location1Lon: self!.userCurrentCoordinate.longitude,
@@ -73,36 +72,20 @@ class HomeListViewController: UIViewController {
     let selectedShop = shopsDataForList[selectedRow!]
 
     let featureForSelectedShop = featureDic[selectedShop.id]![0]
+
+    let recommendItemsForSelectedShop = recommendItemsDic[selectedShop.id]!
     
     if let detailVC = segue.destination as? DetailViewController {
       
       detailVC.shop = selectedShop
 
       detailVC.feature = featureForSelectedShop
+
+      detailVC.recommendItemsArr = recommendItemsForSelectedShop
     }
   }
 
   // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
-  func fetchReviewsForShop(shop: CoffeeShop) {
-
-    // 這個現在沒用到
-    ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
-
-      switch result {
-
-      case .success(let getReviews):
-
-        self?.reviews.append(getReviews)
-
-        self?.tableView.reloadData()
-
-      case .failure(let error):
-
-        print("fetchReviewsForShop: \(error)")
-      }
-    }
-  }
-
   func fetchFeatureForShop(shop: CoffeeShop) {
 
     FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
@@ -120,6 +103,26 @@ class HomeListViewController: UIViewController {
         print("fetchFeatureForShop: \(error)")
       }
     }
+  }
+
+  func fetchRecommendItemForShop(shop: CoffeeShop) {
+
+    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
+
+      switch result {
+
+      case .success(let getItems):
+
+        self.recommendItemsDic[shop.id] = getItems
+
+        self.tableView.reloadData()
+
+      case .failure(let error):
+
+        print("fetchFeatureForShop: \(error)")
+      }
+    }
+
   }
 
   func setupTableView() {
@@ -195,23 +198,21 @@ extension HomeListViewController: UITableViewDataSource {
 
       cell.distance.text = "距離" + String(distance) + "公尺"
 
-      // MARK: 還沒算出全部評價的平均先給隨機ㄉ
-      cell.starsView.rating = Double.random(in: 1...5)
+      cell.starsView.rating = Double.random(in: 1...5)  // 還沒算出全部評價的平均先給隨機ㄉ
 
       cell.openHours.text = "疫情暫停營業"
 
-      guard let feature = featureDic[shop.id] else { return UITableViewCell() }
+      guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
 
-      cell.features = feature[0].special
+      cell.featuresArr = featureArr[0].special
 
-      cell.features.append("摩卡可可脆片星冰樂")
+      // MARK: 要去對recommentItems裡面的shop.id是否是現在這個cell的
+      guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
 
-      cell.features.append("檸檬塔")
-
-      cell.features.append("焦糖海鹽肉桂捲")
+      cell.featuresArr.append(contentsOf: recommendItemsArr.map { $0.item })
 
       cell.selectionStyle = .none
-      
+
       return cell
     }
     return UITableViewCell()

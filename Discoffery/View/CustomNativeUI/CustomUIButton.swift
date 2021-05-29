@@ -29,18 +29,3 @@ class CustomUIButton: UIButton {
   }
 
 }
-
-//func layoutImageView(for imageView: UIImageView, with containerView: UIView) {
-//
-//  imageView.clipsToBounds = true
-//
-//  imageView.layer.cornerRadius = 20
-//
-//  containerView.layer.shadowOpacity = 0.5
-//
-//  containerView.layer.shadowRadius = 3.0
-//
-//  containerView.layer.shadowColor = UIColor.black.cgColor
-//
-//  containerView.layer.shadowOffset = CGSize(width: 0, height: 3)
-//}
