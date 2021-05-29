@@ -16,20 +16,17 @@ class HomeMapViewController: UIViewController {
   // MARK: - Properties
   var homeViewModel: HomeViewModel?
 
-  var apiData: [CoffeeShop] = []
-
-  var userCurrentCoordinate = CLLocationCoordinate2D() // For drawing map
+  var userCurrentCoordinate = CLLocationCoordinate2D()
 
   var shopsDataForMap: [CoffeeShop] = []
 
-  var shopsDemo: [CoffeeShop] = []
+  var selectedAnnotation: MKPointAnnotation?
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view
-
     // 1:  When enter we check auth status
     locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
 
@@ -51,133 +48,7 @@ class HomeMapViewController: UIViewController {
 
       self?.shopsDataForMap = shopsData
     }
-
-    // fetchAPIdata()
-    // fetchShopsTaipeiDemo()
   }
-
-  // MARK: - Functions
-  func fetchAPIdata() {
-
-    //  Publish API data to Firebase (only used at first time)
-    // 這裏要放到別的地方但之後沒用到就算ㄌ? = =
-    APIManager.shared.request { result in
-
-      for index in 0..<200 { // shopsTaipeiDemo用200筆不然我的火地又要爆掉ㄌ
-
-        self.apiData.append(result[index])
-
-        self.publishToFirebase(with: &self.apiData[index])
-      }
-      print("[apiData] has \(String(describing: self.apiData.count))筆資料 = \(self.apiData)")
-    }
-  }
-
-  func publishToFirebase(with shop: inout CoffeeShop) {
-
-    CoffeeShopManager.shared.publishShop(shop: &shop) { result in
-
-      switch result {
-
-      case .success:
-
-        print("🥴Publish To Firebase Success!!")
-
-      case .failure(let error):
-
-        print("\(error)")
-      }
-    }
-  }
-
-  // MARK: - 把shopsTaipeiDemo這個collection裡面所有的文件抓下來後再寫入reviews這個sub-collection
-  func fetchShopsTaipeiDemo() {
-
-    CoffeeShopManager.shared.fetchShopsTaipeiDemo { result  in
-      switch result {
-
-      case .success(let shopsData):
-
-        self.shopsDemo = shopsData
-
-        self.publishMockRecommendItem()
-
-      case .failure(let error):
-
-        print("\(error)")
-      }
-    }
-  }
-
-  func publishMockReviews() {
-
-    for index in 0..<shopsDemo.count {
-
-      let randInt = Int.random(in: 3...10)
-
-      for _ in 0..<randInt { // Write 3 - 10 mock reviews
-
-        ReviewManager.shared.publishMockReviews(shop: &shopsDemo[index]) { result  in
-
-          switch result {
-
-          case .success(let result):
-
-            print("\(result)")
-
-          case .failure(let error):
-
-            print("\(error)")
-          }
-        }
-      }
-
-    }
-
-  }
-
-  func publishMockFeature() {
-
-    for index in 0..<shopsDemo.count {
-
-      FeatureManager.shared.publishMockFeature(shop: &shopsDemo[index]) { result in
-
-        switch result {
-
-        case .success(let result):
-
-          print("\(result)")
-
-        case .failure(let error):
-
-          print("\(error)")
-        }
-      }
-    }
-
-  }
-
-  func publishMockRecommendItem() {
-
-    for index in 0..<shopsDemo.count {
-
-      RecommendItemManager.shared.publishMockRecommendItem(shop: &shopsDemo[index]) { result in
-
-        switch result {
-
-        case .success(let result):
-
-          print("\(result)")
-
-        case .failure(let error):
-
-          print("\(error)")
-        }
-      }
-    }
-    
-  }
-
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -193,21 +64,21 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
     case .restricted:
 
-      print("⛔️ Location access was restricted.")
+      print("Location access was restricted.")
 
     case .denied:
 
-      print("🚫 User denied access to location.")
+      print("User denied access to location.")
 
     case .notDetermined:
 
-      print("❓Location status not determined.")
+      print("Location status not determined.")
 
       manager.requestWhenInUseAuthorization()
 
     case .authorizedAlways, .authorizedWhenInUse:
 
-      print("👌🏻Location status is OK.")
+      print("Location authorization is confirmed.")
 
       homeViewModel?.getShopAroundUser()
 
@@ -215,7 +86,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
     default:
 
-      print("🙄 蝦小")
+      print("Unknown Error")
     }
   }
 }
@@ -244,6 +115,15 @@ extension HomeMapViewController: HomeViewModelDelegate {
 // MARK: - MKMapViewDelegate
 extension HomeMapViewController: MKMapViewDelegate {
 
+  func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+
+    selectedAnnotation = view.annotation as? MKPointAnnotation
+
+    print(selectedAnnotation?.title)
+
+    // 選到時可用title去查是哪個
+  }
+
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 
     let identifier = "MyMarker"
@@ -262,18 +142,3 @@ extension HomeMapViewController: MKMapViewDelegate {
     return annotationView
   }
 }
-
-//  func updateGeoPointOnFirebase(with shop: inout CoffeeShop) {
-//
-//    CoffeeShopManager.shared.updateShopGeoPoint(shop: &shop) { result in
-//
-//      switch result {
-//
-//      case .success:
-//        print("🍈Update Geo on Firebase Success!!")
-//
-//      case .failure(let error):
-//        print("\(error)")
-//      }
-//    }
-//  }

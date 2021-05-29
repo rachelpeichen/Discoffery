@@ -11,12 +11,8 @@ import FirebaseFirestoreSwift
 import CoreLocation
 
 enum FirebaseError: Error {
-  case documentError
-  case notExistError
-}
 
-enum OtherError: Error {
-  case youKnowNothingError(String)
+  case notExistError
 }
 
 class CoffeeShopManager {
@@ -27,25 +23,6 @@ class CoffeeShopManager {
   lazy var database = Firestore.firestore()
 
   // MARK: - Functions
-  func publishShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
-
-    //  Add a new collection to Firebase
-    let docRef = database.collection("shopsTaipeiDemo").document()
-    
-    shop.id = docRef.documentID
-
-    docRef.setData(shop.toDict) { error in
-
-      if let error = error {
-        completion(.failure(error))
-        
-      } else {
-        completion(.success("Success"))
-      }
-    }
-
-  }
-
   func publishNewShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
 
     //  Add a new collection to Firebase
@@ -110,35 +87,43 @@ class CoffeeShopManager {
 
   }
 
-  func fetchShopsTaipeiDemo(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
-    // 把shopsTaipei 這個collection裡面所有的文件抓下來後暫存 再寫入reviews這個sub-collection
+
+  func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void){
 
     let docRef = Firestore.firestore().collection("shopsTaipeiDemo")
 
-    docRef.getDocuments() { querySnapshot, error in
+    docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
 
       if let error = error {
+
         print("Error getting documents: \(error)")
 
       } else {
 
-        var shopsTaipei = [CoffeeShop]()
+        if querySnapshot!.documents.isEmpty {
 
-        for document in querySnapshot!.documents {
+          completion(.failure(FirebaseError.notExistError))
 
-          do {
-            if let shopTaipei = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+        } else {
 
-              shopsTaipei.append(shopTaipei)
+          var selectedShop = CoffeeShop()
+
+          for document in querySnapshot!.documents {
+
+            do {
+              if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
+                selectedShop = shop
+              }
+
+            } catch {
+
+              completion(.failure(error))
             }
-
-          } catch {
-            completion(.failure(error))
           }
-        }
 
-        print(shopsTaipei.count)
-        completion(.success(shopsTaipei))
+          completion(.success(selectedShop))
+        }
       }
     }
   }
@@ -183,23 +168,6 @@ class CoffeeShopManager {
       }
     }
   }
+
 }
-// func updateShopGeoPoint(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
-//
-//  // Update location from original String to GeoPoint -> 現在暫時用不到了因為GeoPoint不能查經度
-//  let location = GeoPoint(latitude: shop.latitude, longitude: shop.longitude)
-//
-//  let updateField: [String: Any] = ["location": location]
-//
-//  let updatedDocRef = database.collection("shops").document(shop.id)
-//
-//  updatedDocRef.updateData(updateField) { error in
-//
-//    if let error = error {
-//      completion(.failure(error))
-//
-//    } else {
-//      completion(.success("success"))
-//    }
-//  }
-//}
+

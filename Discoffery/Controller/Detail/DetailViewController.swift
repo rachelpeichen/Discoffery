@@ -187,7 +187,7 @@ extension DetailViewController: UITableViewDataSource {
 
         guard recommendItemsArr != nil else { return UITableViewCell() }
 
-        var itemsArr = [""]
+        var itemsArr: [String] = []
 
         itemsArr.append(contentsOf: recommendItemsArr.map { $0.item })
 
@@ -201,8 +201,6 @@ extension DetailViewController: UITableViewDataSource {
     case 3:
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
-
-        cell.feature = self.feature
 
         let featureArr = [self.feature.special[0], self.feature.special[1], self.feature.timeLimit]
 

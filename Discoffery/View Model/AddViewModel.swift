@@ -12,7 +12,7 @@ class AddViewModel {
   var onFetchNewShop: ((String) -> Void)?
 
   // MARK: - Functions
-  func fetchNewShop(name: String){
+  func fetchNewShop(name: String) {
 
     CoffeeShopManager.shared.fetchNewShops(name: name, completion: { result in
 

@@ -18,9 +18,9 @@ class FeatureCollectionViewCell: UICollectionViewCell {
     featureBtn.addShadow()
   }
 
-  func layoutFeatureCollectionViewCell(feature: String) {
+  func layoutFeatureCollectionViewCell(from: String) {
 
-    featureBtn.setTitle(feature, for: .normal)
+    featureBtn.setTitle(from, for: .normal)
   }
 
 }

@@ -28,7 +28,7 @@ extension UIView {
 
     clipsToBounds = true
 
-    layer.cornerRadius = frame.height / 1.5
+    layer.cornerRadius = 10
 
     layer.masksToBounds = false
 

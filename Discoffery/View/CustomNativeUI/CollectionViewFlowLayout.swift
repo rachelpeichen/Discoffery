@@ -26,7 +26,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
     let cellAttributesArray = super.layoutAttributesForElements(in: rect)
     // Oth position cellAttr is InConvience Emoji Cell, from 1st onwards info cells are there, thats why we start count from 2nd position.
 
-    if(cellAttributesArray != nil && cellAttributesArray!.count > 1) {
+    if cellAttributesArray != nil && cellAttributesArray!.count > 1 {
 
       for i in 1..<(cellAttributesArray!.count) {
 
@@ -38,7 +38,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         let prevCellMaxX: CGFloat = prevLayoutAttributes.frame.maxX
 
-        // UIEdgeInset 30 from left
+        // UIEdgeInset 10 from left
         let collectionViewSectionWidth = self.collectionViewContentSize.width - leftEdgeInset
 
         let currentCellExpectedMaxX = prevCellMaxX + maximumSpacing + (currentLayoutAttributes.frame.size.width)
@@ -70,7 +70,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
         // print(currentLayoutAttributes.frame)
       }
-      //print("Main For Loop End")
+      // print("Main For Loop End")
     }
     // self.shiftCellsToCenter()
     return cellAttributesArray

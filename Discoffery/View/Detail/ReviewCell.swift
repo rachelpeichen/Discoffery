@@ -64,7 +64,7 @@ extension ReviewCell: UICollectionViewDataSource {
 
       let feature = recommendItems[indexPath.row]
 
-      cell.layoutFeatureCollectionViewCell(feature: feature)
+      cell.layoutFeatureCollectionViewCell(from: feature)
 
       return cell
     }

@@ -202,14 +202,21 @@ extension HomeListViewController: UITableViewDataSource {
 
       cell.openHours.text = "疫情暫停營業"
 
-      guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
-
-      cell.featuresArr = featureArr[0].special
-
-      // MARK: 要去對recommentItems裡面的shop.id是否是現在這個cell的
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
 
-      cell.featuresArr.append(contentsOf: recommendItemsArr.map { $0.item })
+      var itemLayoutArr: [String] = []
+
+      itemLayoutArr.append(contentsOf: recommendItemsArr.map { $0.item })
+
+      cell.configureItem(with: itemLayoutArr)
+
+      guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
+
+      var featureLayoutArr = featureArr[0].special
+
+      featureLayoutArr.append(featureArr[0].timeLimit)
+
+      cell.configureFeature(with: featureLayoutArr)
 
       cell.selectionStyle = .none
 

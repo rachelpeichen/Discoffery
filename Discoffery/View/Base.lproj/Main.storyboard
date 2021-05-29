@@ -758,6 +758,11 @@
             <point key="canvasLocation" x="2359" y="367"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="IZa-50-1iL">
+            <size key="intrinsicContentSize" width="100" height="16"/>
+        </designable>
+    </designables>
     <resources>
         <image name="back" width="256" height="256"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

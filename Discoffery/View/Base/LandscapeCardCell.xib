@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="landscapeCardCell" rowHeight="451" id="KGk-i7-Jjw" customClass="LandscapeCardCell" customModule="Discoffery" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="336" height="518"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="landscapeCardCell" rowHeight="412" id="KGk-i7-Jjw" customClass="LandscapeCardCell" customModule="Discoffery" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="336" height="479"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="336" height="518"/>
+                <rect key="frame" x="0.0" y="0.0" width="336" height="479"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-l6-ta9" userLabel="ImageContainerView">
@@ -108,13 +108,26 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-fC-fgH">
-                        <rect key="frame" x="0.0" y="365.5" width="316" height="120"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-fC-fgH">
+                        <rect key="frame" x="0.0" y="365.5" width="316" height="48"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="120" id="9ow-u9-iok"/>
+                            <constraint firstAttribute="height" constant="48" id="3R8-bQ-SQc"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kit-7m-qAS">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PzH-Wx-ekJ">
+                        <rect key="frame" x="0.0" y="413.5" width="316" height="48"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="WLA-2M-KYt"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dSQ-2d-jH2">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -128,32 +141,36 @@
                     <constraint firstItem="Jom-l6-ta9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ANz-vo-HKx"/>
                     <constraint firstItem="3G0-dX-BbF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="AxC-qZ-8sd"/>
                     <constraint firstAttribute="trailing" secondItem="Jom-l6-ta9" secondAttribute="trailing" constant="16" id="FFz-2N-Oxc"/>
-                    <constraint firstAttribute="trailing" secondItem="VFC-fC-fgH" secondAttribute="trailing" constant="16" id="GiD-BY-Lma"/>
-                    <constraint firstAttribute="bottom" secondItem="VFC-fC-fgH" secondAttribute="bottom" constant="16" id="QwD-dV-Uq5"/>
+                    <constraint firstAttribute="bottom" secondItem="PzH-Wx-ekJ" secondAttribute="bottom" constant="8" id="Jbw-4C-Ff5"/>
                     <constraint firstAttribute="trailing" secondItem="Gsb-AW-Lk5" secondAttribute="trailing" constant="20" id="UBX-nH-IMP"/>
-                    <constraint firstItem="VFC-fC-fgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YAh-XD-MzQ"/>
+                    <constraint firstItem="PzH-Wx-ekJ" firstAttribute="top" secondItem="VFC-fC-fgH" secondAttribute="bottom" id="Uu9-Mq-lEu"/>
                     <constraint firstAttribute="trailing" secondItem="e4a-3y-2Gq" secondAttribute="trailing" constant="16" id="YwD-2o-aD4"/>
                     <constraint firstItem="Gsb-AW-Lk5" firstAttribute="centerY" secondItem="gop-nG-Abn" secondAttribute="centerY" id="bj2-Oa-klg"/>
-                    <constraint firstItem="VFC-fC-fgH" firstAttribute="top" secondItem="9PV-Ic-siS" secondAttribute="bottom" constant="8" id="c4l-qU-VgH"/>
                     <constraint firstItem="e4a-3y-2Gq" firstAttribute="top" secondItem="3G0-dX-BbF" secondAttribute="bottom" constant="8" id="cMd-Dj-twY"/>
                     <constraint firstItem="gop-nG-Abn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cfc-lZ-dMZ"/>
+                    <constraint firstAttribute="trailing" secondItem="VFC-fC-fgH" secondAttribute="trailing" constant="16" id="dGL-am-YCQ"/>
+                    <constraint firstItem="VFC-fC-fgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="e6e-h7-UFU"/>
                     <constraint firstItem="9PV-Ic-siS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="338" id="eON-mr-2yr"/>
                     <constraint firstItem="e4a-3y-2Gq" firstAttribute="leading" secondItem="9PV-Ic-siS" secondAttribute="trailing" constant="8" id="g8j-Hn-bYX"/>
                     <constraint firstItem="9PV-Ic-siS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="j9s-Yf-bFm"/>
+                    <constraint firstAttribute="trailing" secondItem="PzH-Wx-ekJ" secondAttribute="trailing" constant="16" id="rdV-xx-zAB"/>
+                    <constraint firstItem="VFC-fC-fgH" firstAttribute="top" secondItem="9PV-Ic-siS" secondAttribute="bottom" constant="8" id="uPg-gE-NkQ"/>
                     <constraint firstItem="gop-nG-Abn" firstAttribute="top" secondItem="Jom-l6-ta9" secondAttribute="bottom" constant="20" id="uT9-0t-daR"/>
+                    <constraint firstItem="PzH-Wx-ekJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vP5-jB-e1H"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cafeMainImage" destination="ydg-7M-Gq9" id="Yo6-ib-cAl"/>
                 <outlet property="cafeName" destination="gop-nG-Abn" id="h3O-ak-9w1"/>
-                <outlet property="collectionView" destination="VFC-fC-fgH" id="BYV-CV-7bL"/>
                 <outlet property="distance" destination="Gsb-AW-Lk5" id="F9A-aX-24C"/>
+                <outlet property="featureCollectionView" destination="PzH-Wx-ekJ" id="8hI-0c-Bag"/>
                 <outlet property="imageContainerView" destination="Jom-l6-ta9" id="OVk-fs-dgV"/>
                 <outlet property="openHours" destination="e4a-3y-2Gq" id="lrz-lO-XfL"/>
+                <outlet property="recommendItemCollectionView" destination="VFC-fC-fgH" id="BYV-CV-7bL"/>
                 <outlet property="starsView" destination="3G0-dX-BbF" id="7ZR-jy-qBr"/>
             </connections>
-            <point key="canvasLocation" x="-84.057971014492765" y="189.50892857142856"/>
+            <point key="canvasLocation" x="-84.057971014492765" y="176.45089285714286"/>
         </tableViewCell>
     </objects>
     <designables>

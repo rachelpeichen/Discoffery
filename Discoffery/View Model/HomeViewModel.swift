@@ -75,16 +75,6 @@ class HomeViewModel {
 
     let upperLon = longitude + (distance / metersPerLonDegree) // 經度上限
 
-//    var temp: [CoffeeShop] = []
-//    for shop in shopFilteredByLat {
-//
-//      if shop.longitude >= lowerLon && shop.longitude <= upperLon {
-//        temp.append(shop)
-//      }
-//    }
-//    shopsData = temp
-
-    // 簡潔寫法！
     shopsData = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
   }
 
@@ -106,52 +96,21 @@ class HomeViewModel {
     }
     self.onShopsAnnotations?(shopAnnotations)
   }
-}
 
-//    //  將用戶的placemark轉成地址 現在用不到
-//    CLGeocoder().reverseGeocodeLocation(userLocation) { placemark, error in
-//      if error != nil {
-//
-//        print(error as Any)
-//      } else {
-//
-//        // geocoder returns CLPlacemark objects, which contain both the coordinate and the original information that you provided
-//        if let placemark = placemark?[0] {
-//
-//          var address = ""
-//
-//          if placemark.subThoroughfare != nil {
-//
-//            address += placemark.subThoroughfare! + " "
-//          }
-//
-//          if placemark.thoroughfare != nil {
-//
-//            address += placemark.thoroughfare! + "\n"
-//          }
-//
-//          if placemark.subLocality != nil {
-//
-//            address += placemark.subLocality! + "\n"
-//          }
-//
-//          if placemark.subAdministrativeArea != nil {
-//
-//            address += placemark.subAdministrativeArea! + "\n"
-//          }
-//
-//          if placemark.postalCode != nil {
-//
-//            address += placemark.postalCode! + "\n"
-//          }
-//
-//          if placemark.country != nil {
-//
-//            address += placemark.country!
-//          }
-//          print("-----😛-----\(address)")
-//        }
-//      }
-//    }
-//  }
-// }
+  func fetchShopSelectedOnMap(name: String) {
+
+    CoffeeShopManager.shared.fetchShopSelectedOnMap(name: name, completion: { result in
+
+      switch result {
+
+      case .success(let newShop):
+
+        print("🥴fetchShopSelectedOnMap Success")
+
+      case .failure(let error):
+
+        print("publishNewShop.failure\(error)")
+      }
+    })
+  }
+}

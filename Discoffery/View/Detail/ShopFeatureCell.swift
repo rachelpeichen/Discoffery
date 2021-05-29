@@ -12,7 +12,7 @@ class ShopFeatureCell: ShopDetailBasicCell {
   // MARK: - Properties
   var feature = Feature()
 
-  var featureArr = [String]()
+  var featureArr: [String] = []
 
   @IBOutlet weak var collectionView: UICollectionView!
 
@@ -50,16 +50,16 @@ class ShopFeatureCell: ShopDetailBasicCell {
 
 extension ShopFeatureCell: UICollectionViewDataSource {
 
-  // MARK: 先寫死三個
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+
+    return featureArr.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
 
-      cell.layoutFeatureCollectionViewCell(feature: featureArr[indexPath.row])
+      cell.layoutFeatureCollectionViewCell(from: featureArr[indexPath.row])
 
       return cell
     }
@@ -69,7 +69,7 @@ extension ShopFeatureCell: UICollectionViewDataSource {
 
 extension ShopFeatureCell: UICollectionViewDelegateFlowLayout {
 
-  // MARK: 以字體內容去調整每個cell的大小
+  // MARK: Resize each cell by their text
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
     let textSize: CGSize = featureArr[indexPath.row]

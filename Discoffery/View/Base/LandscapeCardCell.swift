@@ -11,19 +11,17 @@ import Cosmos
 class LandscapeCardCell: UITableViewCell {
 
   // MARK: - Properties
-  var featuresArr: [String] = [] {
+  var itemLayoutArr: [String] = []
 
-    didSet {
-
-      collectionView.reloadData()
-    }
-  }
+  var featureLayoutArr: [String] = []
 
   @IBOutlet weak var imageContainerView: UIView!
 
   @IBOutlet weak var cafeMainImage: UIImageView!
 
-  @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var recommendItemCollectionView: UICollectionView!
+
+  @IBOutlet weak var featureCollectionView: UICollectionView!
 
   @IBOutlet weak var cafeName: UILabel!
 
@@ -54,54 +52,110 @@ class LandscapeCardCell: UITableViewCell {
     layoutImageView(for: cafeMainImage, with: imageContainerView)
   }
 
+  func configureFeature(with featureArr: [String]) {
+
+    self.featureLayoutArr = featureArr
+
+    self.featureCollectionView.reloadData()
+
+    self.featureCollectionView.layoutIfNeeded()
+  }
+
+  func configureItem(with itemArr: [String]) {
+
+    self.itemLayoutArr = itemArr
+
+    self.recommendItemCollectionView.reloadData()
+
+    self.recommendItemCollectionView.layoutIfNeeded()
+  }
+
   private func setupCollectionView() {
 
-    collectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
+    recommendItemCollectionView.register(UINib(nibName: "RecommendItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendItemCollectionCell")
 
-    collectionView.delegate = self
+    featureCollectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
 
-    collectionView.dataSource = self
+    recommendItemCollectionView.delegate = self
+
+    recommendItemCollectionView.dataSource = self
+
+    featureCollectionView.delegate = self
+
+    featureCollectionView.dataSource = self
   }
 }
 
 extension LandscapeCardCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return featuresArr.count
+
+    if collectionView == self.recommendItemCollectionView {
+
+      return itemLayoutArr.count
+    }
+
+    return featureLayoutArr.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
+    if collectionView == self.recommendItemCollectionView {
 
-      let feature = featuresArr[indexPath.row]
-      
-      cell.layoutFeatureCollectionViewCell(feature: feature)
+      if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendItemCollectionCell", for: indexPath) as? RecommendItemCollectionViewCell {
 
-      return cell
+        let item = itemLayoutArr[indexPath.row]
+
+        cell.layoutRecommendItemCollectionViewCell(from: item)
+
+        return cell
+      }
+
+    } else {
+
+      if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
+
+        let feature = featureLayoutArr[indexPath.row]
+
+        cell.layoutFeatureCollectionViewCell(from: feature)
+
+        return cell
+      }
     }
     return FeatureCollectionViewCell()
   }
+
 }
 
 extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
 
-  // MARK: 以字體內容去調整每個cell的大小
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-    let textSize: CGSize = featuresArr[indexPath.row]
+    if  collectionView == self.recommendItemCollectionView {
 
-      .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+      let textSize: CGSize = itemLayoutArr[indexPath.row]
 
-    return CGSize(width: textSize.width + 22, height: 45)
+        .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+
+      return CGSize(width: textSize.width + 30, height: 45)
+
+    } else {
+
+      let textSize: CGSize = featureLayoutArr[indexPath.row]
+
+        .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+
+      return CGSize(width: textSize.width + 30, height: 45)
+    }
+
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-      return 0
+    return 0
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-      return 0
+    return 0
   }
 }
 

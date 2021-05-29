@@ -13,6 +13,8 @@
 		78182C07265F3E5700056E92 /* CustomUIButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78182C06265F3E5700056E92 /* CustomUIButton.xib */; };
 		78182C10265F86A000056E92 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C0F265F869F00056E92 /* ImageRow.swift */; };
 		78182C13265F87DB00056E92 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C12265F87DB00056E92 /* ImagePickerController.swift */; };
+		781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */; };
+		781CD7E42662BFD8005076CD /* RecommendItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 781CD7E22662BFD8005076CD /* RecommendItemCollectionViewCell.xib */; };
 		7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C949265295D30048B5F5 /* ShopImagesCell.swift */; };
 		7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C94A265295D30048B5F5 /* ShopImagesCell.xib */; };
 		7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C94E2652BD740048B5F5 /* ProfileCell.swift */; };
@@ -29,7 +31,6 @@
 		7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */; };
 		7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */; };
 		7879ECCB265C12AE00BEAA73 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */; };
-		787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CA9264D8655001AC268 /* AddressGeocoder.swift */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
 		78848609264C051900FA33F9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78848608264C051900FA33F9 /* MapKit.framework */; };
 		7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884860E264C09AF00FA33F9 /* HomeMapViewController.swift */; };
@@ -41,7 +42,6 @@
 		78848654264D223D00FA33F9 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848653264D223D00FA33F9 /* Box.swift */; };
 		7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884865E264D36EA00FA33F9 /* HomeViewModel.swift */; };
 		78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848666264D3A7100FA33F9 /* CoffeeShop.swift */; };
-		7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884866A264D4D0000FA33F9 /* APIManager.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
 		78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A31105265C275E00441FE7 /* Date+Extension.swift */; };
 		78A31129265C2AAF00441FE7 /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A31128265C2AAF00441FE7 /* AddViewModel.swift */; };
@@ -97,6 +97,8 @@
 		78182C06265F3E5700056E92 /* CustomUIButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomUIButton.xib; sourceTree = "<group>"; };
 		78182C0F265F869F00056E92 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		78182C12265F87DB00056E92 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		781CD7E22662BFD8005076CD /* RecommendItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		7839C949265295D30048B5F5 /* ShopImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCell.swift; sourceTree = "<group>"; };
 		7839C94A265295D30048B5F5 /* ShopImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCell.xib; sourceTree = "<group>"; };
 		7839C94E2652BD740048B5F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -113,7 +115,6 @@
 		7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCollectionViewCell.xib; sourceTree = "<group>"; };
 		7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
-		787C2CA9264D8655001AC268 /* AddressGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressGeocoder.swift; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
 		78848608264C051900FA33F9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7884860E264C09AF00FA33F9 /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		78848653264D223D00FA33F9 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		7884865E264D36EA00FA33F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		78848666264D3A7100FA33F9 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
-		7884866A264D4D0000FA33F9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		78A31105265C275E00441FE7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		78A31128265C2AAF00441FE7 /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
@@ -291,6 +291,8 @@
 				7839C95E2652CA4F0048B5F5 /* ProtraitCardCollectionCell.xib */,
 				7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */,
 				7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */,
+				781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */,
+				781CD7E22662BFD8005076CD /* RecommendItemCollectionViewCell.xib */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -306,8 +308,6 @@
 		78848669264D3EEF00FA33F9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				7884866A264D4D0000FA33F9 /* APIManager.swift */,
-				787C2CA9264D8655001AC268 /* AddressGeocoder.swift */,
 				787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */,
 				78DEC2BA2655088C00726A5D /* LocationManager.swift */,
 				78B2FD1B265A3326005C9D1D /* ReviewManager.swift */,
@@ -536,6 +536,7 @@
 				7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */,
 				78DF25392652625200F47A04 /* WriteReviewCell.xib in Resources */,
 				78DF25432652670900F47A04 /* ShopRouteCell.xib in Resources */,
+				781CD7E42662BFD8005076CD /* RecommendItemCollectionViewCell.xib in Resources */,
 				78DF250D2652120D00F47A04 /* Collection.storyboard in Resources */,
 				78DF2524265251FE00F47A04 /* ShopFeatureCell.xib in Resources */,
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
@@ -629,7 +630,6 @@
 				78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */,
 				7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */,
 				7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */,
-				7884866B264D4D0000FA33F9 /* APIManager.swift in Sources */,
 				7879ECCB265C12AE00BEAA73 /* CollectionViewFlowLayout.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,
@@ -638,6 +638,7 @@
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
 				78DF24ED26520B6A00F47A04 /* ProfileViewController.swift in Sources */,
+				781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */,
 				787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */,
 				78DF2523265251FE00F47A04 /* ShopFeatureCell.swift in Sources */,
 				78B2FD1C265A3326005C9D1D /* ReviewManager.swift in Sources */,
@@ -655,7 +656,6 @@
 				78B2FCF7265A1849005C9D1D /* Review.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,
 				78A31129265C2AAF00441FE7 /* AddViewModel.swift in Sources */,
-				787C2CAA264D8655001AC268 /* AddressGeocoder.swift in Sources */,
 				78848654264D223D00FA33F9 /* Box.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
 				78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */,
