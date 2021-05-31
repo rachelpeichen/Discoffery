@@ -28,6 +28,7 @@ class LocationManager {
     delegate = locationManager.delegate
 
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
     locationManager.startUpdatingLocation()
     
     guard let currentLocation = locationManager.location else { return }
@@ -36,6 +37,7 @@ class LocationManager {
     onCurrentCoordinate?(currentLocation.coordinate)
 
     let latitude = Double(currentLocation.coordinate.latitude)
+    
     let longitude = Double(currentLocation.coordinate.longitude)
 
     // Pass to HomeMapViewModel for fetching data on Firebase

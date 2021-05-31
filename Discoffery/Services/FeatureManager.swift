@@ -19,7 +19,7 @@ class FeatureManager {
   // MARK: - Functions
   func fetchFeatureForShop(shop: CoffeeShop, completion: @escaping (Result<[Feature], Error>) -> Void) {
 
-    let docRef = Firestore.firestore().collection("shopsTaipeiDemo").document(shop.id).collection("features")
+    let docRef = Firestore.firestore().collection("shopsTaichung").document(shop.id).collection("features")
 
     docRef.getDocuments() { querySnapshot, error in
 

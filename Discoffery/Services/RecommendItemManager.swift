@@ -24,7 +24,7 @@ class RecommendItemManager {
   // MARK: - Functions
   func fetchRecommendItemForShop(shop: CoffeeShop, completion: @escaping (Result<[RecommendItem], Error>) -> Void) {
     
-    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems")
+    let docRef = database.collection("shopsTaichung").document(shop.id).collection("recommendItems")
     
     docRef.getDocuments() { querySnapshot, error in
       
@@ -86,7 +86,7 @@ class RecommendItemManager {
   
   func publishUserRecommendItem(shop: CoffeeShop, item: inout RecommendItem, completion: @escaping (Result<String, Error>) -> Void) {
     
-    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems").document()
+    let docRef = database.collection("shopsTaichung").document(shop.id).collection("recommendItems").document()
     
     item.id = docRef.documentID
     
@@ -110,7 +110,7 @@ class RecommendItemManager {
   
   func checkIfRecommendItemExist(shop: CoffeeShop, item: RecommendItem, completion: @escaping (Result<RecommendItem, Error>) -> Void) {
     
-    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems")
+    let docRef = database.collection("shopsTaichung").document(shop.id).collection("recommendItems")
     
     let queryByItem = docRef.whereField("item", isEqualTo: item.item)
     
@@ -155,7 +155,7 @@ class RecommendItemManager {
   
   func updateRecommendItemCount(shop: CoffeeShop, item: RecommendItem) {
     
-    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("recommendItems").document(item.id)
+    let docRef = database.collection("shopsTaichung").document(shop.id).collection("recommendItems").document(item.id)
     
     docRef.updateData([
       

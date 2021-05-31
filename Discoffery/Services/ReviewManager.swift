@@ -19,7 +19,7 @@ class ReviewManager {
   // MARK: - Functions
   func fetchReviewsForShop(shop: CoffeeShop, completion: @escaping (Result<[Review], Error>) -> Void) {
 
-    let docRef = Firestore.firestore().collection("shopsTaipeiDemo").document(shop.id).collection("reviews")
+    let docRef = Firestore.firestore().collection("shopsTaichung").document(shop.id).collection("reviews")
 
     docRef.getDocuments() { querySnapshot, error in
 
@@ -54,7 +54,7 @@ class ReviewManager {
 
   func publishUserReview(shop: CoffeeShop, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("shopsTaipeiDemo").document(shop.id).collection("reviews").document()
+    let docRef = database.collection("shopsTaichung").document(shop.id).collection("reviews").document()
 
     review.id = docRef.documentID
 

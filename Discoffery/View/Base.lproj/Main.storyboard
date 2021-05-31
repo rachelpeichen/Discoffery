@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="9XD-ug-KZO" customClass="AddShopViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="acm-Kf-T6M">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ROZ-HB-Re8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -42,7 +42,7 @@
             <objects>
                 <viewController id="ag4-Zt-LH6" customClass="AddOpenHoursViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r0g-xE-88D">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="zVI-Cn-ytL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -57,7 +57,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRZ-Ez-G0e" userLabel="TopBGView">
@@ -322,23 +322,37 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vIW-W3-sXA">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="693"/>
                             </mapView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qp-fH-w7f">
+                                <rect key="frame" x="0.0" y="543" width="414" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="ByO-jZ-cDc"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Yv2-YH-AbN" kind="embed" id="Fft-kU-TFQ"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s8g-Us-ssZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="8Qp-fH-w7f" firstAttribute="trailing" secondItem="s8g-Us-ssZ" secondAttribute="trailing" id="BMK-sf-M8H"/>
                             <constraint firstItem="vIW-W3-sXA" firstAttribute="leading" secondItem="GYW-JY-pWB" secondAttribute="leading" id="ELZ-8h-ShN"/>
                             <constraint firstAttribute="trailing" secondItem="vIW-W3-sXA" secondAttribute="trailing" id="ORM-kX-KXa"/>
                             <constraint firstItem="vIW-W3-sXA" firstAttribute="top" secondItem="GYW-JY-pWB" secondAttribute="top" id="hkr-ub-UFM"/>
+                            <constraint firstItem="8Qp-fH-w7f" firstAttribute="leading" secondItem="s8g-Us-ssZ" secondAttribute="leading" id="lqO-wG-Mmd"/>
                             <constraint firstAttribute="bottom" secondItem="vIW-W3-sXA" secondAttribute="bottom" id="lxA-2L-A9n"/>
+                            <constraint firstItem="8Qp-fH-w7f" firstAttribute="bottom" secondItem="s8g-Us-ssZ" secondAttribute="bottom" id="yT9-YR-3gn"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="vIW-W3-sXA" id="mV2-0Q-cAX"/>
+                        <outlet property="selecetedShopContainerView" destination="8Qp-fH-w7f" id="gp6-J5-jYo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVC-5k-mb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266.6666666666667" y="874.88839285714278"/>
+            <point key="canvasLocation" x="356.52173913043481" y="932.47767857142856"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Kyn-8Z-Dgb">
@@ -422,7 +436,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQO-dw-GWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="602.89855072463774" y="1435.3794642857142"/>
+            <point key="canvasLocation" x="1254" y="1536"/>
         </scene>
         <!--Reviews Page View Controller-->
         <scene sceneID="VSp-Zv-y9D">
@@ -672,7 +686,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LwV-kg-c9S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="876"/>
+            <point key="canvasLocation" x="1254" y="933"/>
         </scene>
         <!--Recommend-->
         <scene sceneID="Aph-xr-5aY">
@@ -757,12 +771,73 @@
             </objects>
             <point key="canvasLocation" x="2359" y="367"/>
         </scene>
+        <!--Selected Shop View Controller-->
+        <scene sceneID="jT1-na-ii5">
+            <objects>
+                <viewController id="Yv2-YH-AbN" customClass="SelectedShopViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="5P3-MA-Qyl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEz-Ok-mYm">
+                                <rect key="frame" x="16" y="16" width="382" height="120"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_sq2" translatesAutoresizingMaskIntoConstraints="NO" id="Bbr-xZ-YY8">
+                                        <rect key="frame" x="16" y="16" width="80" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="FAy-vD-VDb"/>
+                                            <constraint firstAttribute="height" constant="80" id="mud-D9-QGr"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoz-Ky-eqX">
+                                        <rect key="frame" x="112" y="16" width="43" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="hUB-hT-941"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kle-69-Cxl">
+                                        <rect key="frame" x="330.5" y="16" width="35.5" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="epI-qz-BP3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Bbr-xZ-YY8" firstAttribute="leading" secondItem="EEz-Ok-mYm" secondAttribute="leading" constant="16" id="2Tb-yV-Vqz"/>
+                                    <constraint firstItem="uoz-Ky-eqX" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="16" id="BZc-1w-2u5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Kle-69-Cxl" secondAttribute="trailing" constant="16" id="Son-mv-SNW"/>
+                                    <constraint firstAttribute="height" constant="120" id="UIl-Sd-VTr"/>
+                                    <constraint firstItem="Kle-69-Cxl" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="Usp-HI-Tiz"/>
+                                    <constraint firstItem="Bbr-xZ-YY8" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="qPb-oa-7Uk"/>
+                                    <constraint firstItem="uoz-Ky-eqX" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="vtS-S5-wy7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EEz-Ok-mYm" firstAttribute="top" secondItem="5P3-MA-Qyl" secondAttribute="top" constant="16" id="Md1-oj-HgN"/>
+                            <constraint firstAttribute="trailing" secondItem="EEz-Ok-mYm" secondAttribute="trailing" constant="16" id="cEP-Ux-6MI"/>
+                            <constraint firstItem="EEz-Ok-mYm" firstAttribute="leading" secondItem="5P3-MA-Qyl" secondAttribute="leading" constant="16" id="kn3-lY-tFA"/>
+                            <constraint firstAttribute="bottom" secondItem="EEz-Ok-mYm" secondAttribute="bottom" constant="16" id="z5d-SD-drL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="EEz-Ok-mYm" id="1Du-u4-K5z"/>
+                        <outlet property="selectedShopName" destination="uoz-Ky-eqX" id="2EL-Jl-mAi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xyL-er-EmN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="356.52173913043481" y="1315.8482142857142"/>
+        </scene>
     </scenes>
-    <designables>
-        <designable name="IZa-50-1iL">
-            <size key="intrinsicContentSize" width="100" height="16"/>
-        </designable>
-    </designables>
     <resources>
         <image name="back" width="256" height="256"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
@@ -777,6 +852,7 @@
         <image name="line.horizontal.3.decrease" catalog="system" width="128" height="73"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="map" catalog="system" width="128" height="110"/>
+        <image name="mock_sq2" width="2205" height="2336"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>

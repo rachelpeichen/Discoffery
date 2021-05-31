@@ -40,7 +40,7 @@ class HomeViewModel {
 
     LocationManager.shared.trackLocation { latitude, longitude in
 
-      filterShopWithinDistance(latitude: latitude, longitude: longitude)
+      filterShopWithinDistance(latitude: latitude, longitude: longitude, distanceInMeters: 1500)
     }
   }
 

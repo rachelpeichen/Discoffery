@@ -37,7 +37,9 @@ class HomeListViewController: UIViewController {
       
       self.userCurrentCoordinate = coordinate
     }
-    
+
+    // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！
+
     homeViewModel?.getShopsData = { [weak self] shopsData in
       
       self?.shopsDataForList = shopsData
