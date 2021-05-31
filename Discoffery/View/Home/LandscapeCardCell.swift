@@ -10,11 +10,7 @@ import Cosmos
 
 class LandscapeCardCell: UITableViewCell {
 
-  // MARK: - Properties
-  var itemLayoutArr: [String] = []
-
-  var featureLayoutArr: [String] = []
-
+  // MARK: - Outlets
   @IBOutlet weak var imageContainerView: UIView!
 
   @IBOutlet weak var cafeMainImage: UIImageView!
@@ -30,6 +26,11 @@ class LandscapeCardCell: UITableViewCell {
   @IBOutlet weak var distance: UILabel!
 
   @IBOutlet weak var openHours: UILabel!
+
+  // MARK: - Properties
+  var itemLayoutArr: [String] = []
+
+  var featureLayoutArr: [String] = []
 
   override func awakeFromNib() {
     super.awakeFromNib()

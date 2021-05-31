@@ -24,7 +24,7 @@
                         <color key="textColor" name="G1"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="4.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBK-lq-b3K">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="4.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBK-lq-b3K">
                         <rect key="frame" x="130" y="50.5" width="22" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="LvW-vB-3uj"/>
@@ -42,7 +42,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atu-xk-TNf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atu-xk-TNf">
                         <rect key="frame" x="160" y="50" width="31" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -60,7 +60,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="(30)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHf-Ia-YPz">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="(30)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHf-Ia-YPz">
                         <rect key="frame" x="191" y="49.5" width="28" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="3nK-T1-dTt"/>
@@ -69,7 +69,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMM-mu-0lx" customClass="CosmosView" customModule="Cosmos">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PMM-mu-0lx" customClass="CosmosView" customModule="Cosmos">
                         <rect key="frame" x="16" y="50.5" width="110" height="16"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -138,11 +138,6 @@
             <point key="canvasLocation" x="205.07246376811597" y="118.19196428571428"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="PMM-mu-0lx">
-            <size key="intrinsicContentSize" width="110" height="18"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

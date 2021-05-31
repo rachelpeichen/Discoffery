@@ -9,13 +9,15 @@ import UIKit
 
 class ShopFeatureCell: ShopDetailBasicCell {
 
+  // MARK: - Outlets
+  @IBOutlet weak var collectionView: UICollectionView!
+
   // MARK: - Properties
   var feature = Feature()
 
   var featureArr: [String] = []
 
-  @IBOutlet weak var collectionView: UICollectionView!
-
+  // MARK: - View Life Cycle
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code

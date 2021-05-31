@@ -14,8 +14,9 @@ class HomeViewController: UIViewController {
 
   @IBOutlet weak var listContainerView: UIView!
 
-  // MARK: - Properties
-  var sharedHomeViewModel = HomeViewModel()
+  @IBAction func didTouchSearchBtn(_ sender: UIButton) {
+    
+  }
 
   @IBAction func changeLayout(_ sender: UIButton) {
 
@@ -32,6 +33,9 @@ class HomeViewController: UIViewController {
       mapContainerView.isHidden = false
     }
   }
+
+  // MARK: - Properties
+  var sharedHomeViewModel = HomeViewModel()
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {

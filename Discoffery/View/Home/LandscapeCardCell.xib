@@ -51,7 +51,7 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowOnText" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3G0-dX-BbF" customClass="CosmosView" customModule="Cosmos">
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3G0-dX-BbF" customClass="CosmosView" customModule="Cosmos">
                         <rect key="frame" x="16" y="314" width="100" height="16"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <accessibility key="accessibilityConfiguration">
@@ -173,11 +173,6 @@
             <point key="canvasLocation" x="-84.057971014492765" y="176.45089285714286"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="3G0-dX-BbF">
-            <size key="intrinsicContentSize" width="100" height="16"/>
-        </designable>
-    </designables>
     <resources>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

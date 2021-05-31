@@ -9,9 +9,18 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  @IBAction func skipLogin(_ sender: Any) {
 
-        // Do any additional setup after loading the view.
-    }
+    performSegue(withIdentifier: "navigateToIntroVC", sender: sender)
+  }
+
+  @IBAction func onTappedLoginBtn(_ sender: Any) {
+
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view.
+  }
 }

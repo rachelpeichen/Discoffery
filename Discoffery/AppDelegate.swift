@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
     
     IQKeyboardManager.shared.enable = true
+
+    Thread.sleep(forTimeInterval: 2.0)
     
     return true
   }
