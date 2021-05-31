@@ -8,6 +8,11 @@
 import UIKit
 import Cosmos
 
+protocol SelectedShopViewControllerDelegate: AnyObject {
+
+  func didTouchSelectedVC(_ sender: Any)
+}
+
 class SelectedShopViewController: UIViewController {
 
   // MARK: - Outlets
@@ -27,12 +32,20 @@ class SelectedShopViewController: UIViewController {
 
   @IBOutlet weak var featureThreeBtn: CustomUIButton!
 
+  @IBAction func didTouchSelectedVC(_ sender: Any) {
+
+    delegate?.didTouchSelectedVC(sender)
+  }
+
+
   // MARK: - Properties
+  weak var delegate: SelectedShopViewControllerDelegate?
+
   var selectedShop: CoffeeShop?
 
   var selectedShopfeature: Feature?
 
-  var selectedShopRecommendItem: RecommendItem?
+  var selectedShopRecommendItem: [RecommendItem]?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -40,7 +53,8 @@ class SelectedShopViewController: UIViewController {
     // Do any additional setup after loading the view.
   }
 
-  func setUpSelectedShopVC(shop: CoffeeShop, feature: Feature, recommendItem: RecommendItem) {
+  // MARK: - Functions
+  func setUpSelectedShopVC(shop: CoffeeShop, feature: Feature, recommendItem: [RecommendItem]) {
 
     selectedShop = shop
 
@@ -59,13 +73,18 @@ class SelectedShopViewController: UIViewController {
 
     backgroundView.addShadow()
 
-    averageRating.rating = Double.random(in: 1...5)
+    if let selectedShop = selectedShop {
 
-    distanceLabel.text = "\(selectedShop!.cheap.rounded().formattedValue)公尺"
+      averageRating.rating = selectedShop.tasty  // 還沒算出全部評價的平均先用api的
 
-    selectedShopName.text = selectedShop?.name
+      distanceLabel.text = "\(selectedShop.cheap.rounded().formattedValue)公尺"
 
-    featureOneBtn.setTitle(selectedShopRecommendItem?.item, for: .normal)
+      selectedShopName.text = selectedShop.name
+    }
+
+    let assignedItem = selectedShopRecommendItem?[0]
+
+    featureOneBtn.setTitle(assignedItem?.item, for: .normal)
 
     featureTwoBtn.setTitle(selectedShopfeature?.special[0], for: .normal)
 

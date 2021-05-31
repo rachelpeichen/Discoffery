@@ -32,7 +32,8 @@ class HomeMapViewController: UIViewController {
 
   var selectedShopVC: SelectedShopViewController?
 
-  
+  var selectedAnnotationIndex: Int?
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,9 +87,33 @@ class HomeMapViewController: UIViewController {
   // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-    if let destinationVC = segue.destination as? SelectedShopViewController {
+    if segue.identifier == "selectedShopVC" {
 
-      selectedShopVC = destinationVC
+      if let destinationVC = segue.destination as? SelectedShopViewController {
+
+        selectedShopVC = destinationVC
+
+        destinationVC.delegate = self
+       }
+
+    } else if segue.identifier == "navigateSelectedShopVCToDetailVC" {
+
+      guard selectedAnnotationIndex != nil else { return }
+
+      let selectedShopToDetailVC = shopsDataForMap[selectedAnnotationIndex!]
+
+      if let detailVC = segue.destination as? DetailViewController {
+
+        detailVC.shop = selectedShopToDetailVC
+
+        guard let featureArr = featureDic[selectedShopToDetailVC.id] else { return }
+
+        detailVC.feature = featureArr[0]
+
+        guard let recommendItemsArr = recommendItemsDic[selectedShopToDetailVC.id] else { return }
+
+        detailVC.recommendItemsArr = recommendItemsArr
+      }
     }
   }
 
@@ -230,6 +255,17 @@ extension HomeMapViewController: MKMapViewDelegate {
     
     selectedAnnotation = view.annotation as? MKPointAnnotation
 
+    for (index, item) in shopsDataForMap.enumerated() {
+
+      if let title = selectedAnnotation?.title {
+
+        if item.name == title {
+
+          selectedAnnotationIndex = index
+        }
+      }
+    }
+
     for shop in shopsDataForMap {
 
       if shop.name == selectedAnnotation?.title {
@@ -243,7 +279,7 @@ extension HomeMapViewController: MKMapViewDelegate {
 
           feature: selectedsShopFeature![0],
 
-          recommendItem: selectedShopRecommendItem![0]
+          recommendItem: selectedShopRecommendItem!
         )
 
         selecetedShopContainerView.isHidden = false
@@ -268,4 +304,15 @@ extension HomeMapViewController: MKMapViewDelegate {
     
     return annotationView
   }
+}
+
+// MARK: - HomeMapViewModelDelegate
+
+extension HomeMapViewController: SelectedShopViewControllerDelegate {
+
+  func didTouchSelectedVC(_ sender: Any) {
+    
+    performSegue(withIdentifier: "navigateSelectedShopVCToDetailVC", sender: sender)
+  }
+
 }

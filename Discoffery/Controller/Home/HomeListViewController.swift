@@ -39,7 +39,6 @@ class HomeListViewController: UIViewController {
     }
 
     // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！
-
     homeViewModel?.getShopsData = { [weak self] shopsData in
       
       self?.shopsDataForList = shopsData
@@ -51,9 +50,13 @@ class HomeListViewController: UIViewController {
         self?.fetchRecommendItemForShop(shop: shopsData[index])
 
         let distance = self?.calDistanceBetweenTwoLocations(
+
           location1Lat: self!.userCurrentCoordinate.latitude,
+
           location1Lon: self!.userCurrentCoordinate.longitude,
+
           location2Lat: shopsData[index].latitude,
+
           location2Lon: shopsData[index].longitude
         )
 
@@ -197,7 +200,7 @@ extension HomeListViewController: UITableViewDataSource {
 
       cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
 
-      cell.starsView.rating = Double.random(in: 1...5)  // 還沒算出全部評價的平均先給隨機ㄉ
+      cell.starsView.rating = shop.tasty  // 還沒算出全部評價的平均 先用他原本api的
 
       cell.openHours.text = "疫情暫停營業"
 

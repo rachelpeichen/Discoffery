@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-  // MARK: Outlets
+  // MARK: - Outlets
   @IBOutlet weak var tableView: UITableView!
 
   @IBAction func onTapBackButton(_ sender: Any) {
@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
 
-  let activityVC = UIActivityViewController(activityItems: ["ㄩㄇ？"], applicationActivities: nil)
+  let activityVC = UIActivityViewController(activityItems: ["跟你分享～"], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
     // MARK: 現在的分享無法帶入資訊:還沒做
@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
     showAlert()
   }
 
-  // MARK: Properties
+  // MARK: - Properties
   var addViewModel = AddViewModel()
 
   var shop: CoffeeShop?
@@ -49,7 +49,7 @@ class DetailViewController: UIViewController {
 
   private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
-  // MARK: Life Cycle
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -66,8 +66,6 @@ class DetailViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     if let reviewsVC = segue.destination as? ReviewsPageViewController {
-
-      guard reviews != nil else { return }
 
       reviewsVC.reviews = self.reviews
 
@@ -140,9 +138,9 @@ extension DetailViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-    guard shop != nil else { return 0 }
+    guard let shop = shop else { return 0 }
 
-    shopName = shop!.name
+    shopName = shop.name
 
     return shopsDetail.count
   }
@@ -170,7 +168,7 @@ extension DetailViewController: UITableViewDataSource {
 
         cell.reviewsCount.text = "(\(reviewsCount))"
 
-        cell.rateStars.rating = Double.random(in: 1...5)  // 還沒算出全部評價的平均先給隨機ㄉ
+        cell.rateStars.rating = shop?.tasty ?? 1  // 還沒算出全部評價的平均先用api的
 
         cell.averageRatings.text = String(Double(cell.rateStars.rating).rounded())
 
@@ -184,8 +182,6 @@ extension DetailViewController: UITableViewDataSource {
     case 2:
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
-
-        guard recommendItemsArr != nil else { return UITableViewCell() }
 
         var itemsArr: [String] = []
 
@@ -212,7 +208,7 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 4:
-      // 地圖
+      // TODO: 地圖
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopRouteCell", for: indexPath) as? ShopRouteCell {
 
         cell.address.text = shop?.address

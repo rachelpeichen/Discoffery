@@ -329,7 +329,7 @@
                                     <constraint firstAttribute="height" constant="150" id="ByO-jZ-cDc"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="Yv2-YH-AbN" kind="embed" id="Fft-kU-TFQ"/>
+                                    <segue destination="Yv2-YH-AbN" kind="embed" identifier="selectedShopVC" id="Fft-kU-TFQ"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -348,6 +348,7 @@
                     <connections>
                         <outlet property="mapView" destination="vIW-W3-sXA" id="mV2-0Q-cAX"/>
                         <outlet property="selecetedShopContainerView" destination="8Qp-fH-w7f" id="gp6-J5-jYo"/>
+                        <segue destination="ZyS-FM-3Fj" kind="showDetail" identifier="navigateSelectedShopVCToDetailVC" id="eZZ-T9-njY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVC-5k-mb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -436,14 +437,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQO-dw-GWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="1536"/>
+            <point key="canvasLocation" x="1058" y="1547"/>
         </scene>
         <!--Reviews Page View Controller-->
         <scene sceneID="VSp-Zv-y9D">
             <objects>
                 <viewController modalTransitionStyle="flipHorizontal" id="zhm-Vg-yPG" customClass="ReviewsPageViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JL1-Qy-WCf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="646"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dor-ML-f5m">
@@ -483,7 +484,7 @@
                                 </constraints>
                             </view>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rn3-SA-fWG">
-                                <rect key="frame" x="0.0" y="140" width="414" height="499"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="506"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
@@ -632,6 +633,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Q9s-Qh-0rw"/>
+                    <size key="freeformSize" width="414" height="700"/>
                     <connections>
                         <outlet property="cafeNameLabel" destination="4KS-hW-kNa" id="Icf-Pu-CgW"/>
                         <outlet property="tableView" destination="rn3-SA-fWG" id="QLW-Eh-Bfj"/>
@@ -639,7 +641,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMb-rw-8uH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="602.89855072463774" y="1987.8348214285713"/>
+            <point key="canvasLocation" x="1058" y="2153"/>
         </scene>
         <!--Home List View Controller-->
         <scene sceneID="Vci-Ee-MkJ">
@@ -774,7 +776,7 @@
         <!--Selected Shop View Controller-->
         <scene sceneID="jT1-na-ii5">
             <objects>
-                <viewController id="Yv2-YH-AbN" customClass="SelectedShopViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectedShopViewController" id="Yv2-YH-AbN" customClass="SelectedShopViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5P3-MA-Qyl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -782,6 +784,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEz-Ok-mYm">
                                 <rect key="frame" x="16" y="10" width="382" height="120"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEU-ab-tI1" userLabel="tapButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="WLK-8x-jeu"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="didTouchSelectedVC:" destination="Yv2-YH-AbN" eventType="touchUpInside" id="tl4-pf-F45"/>
+                                        </connections>
+                                    </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_sq2" translatesAutoresizingMaskIntoConstraints="NO" id="Bbr-xZ-YY8">
                                         <rect key="frame" x="16" y="16" width="90" height="90"/>
                                         <constraints>
@@ -868,15 +879,19 @@
                                     <constraint firstItem="Bbr-xZ-YY8" firstAttribute="leading" secondItem="EEz-Ok-mYm" secondAttribute="leading" constant="16" id="2Tb-yV-Vqz"/>
                                     <constraint firstItem="rEv-eo-Z6f" firstAttribute="leading" secondItem="AsG-9a-bGK" secondAttribute="trailing" constant="8" id="2ya-0L-6rs"/>
                                     <constraint firstItem="rEv-eo-Z6f" firstAttribute="top" secondItem="hLY-SC-ZOB" secondAttribute="bottom" constant="8" id="5i0-kL-KAF"/>
+                                    <constraint firstItem="VEU-ab-tI1" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" id="6Fe-aS-YvY"/>
                                     <constraint firstItem="uoz-Ky-eqX" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="BZc-1w-2u5"/>
+                                    <constraint firstItem="VEU-ab-tI1" firstAttribute="leading" secondItem="EEz-Ok-mYm" secondAttribute="leading" id="D2g-hh-WP1"/>
                                     <constraint firstItem="LfS-0X-Can" firstAttribute="top" secondItem="hLY-SC-ZOB" secondAttribute="bottom" constant="8" id="FI4-bt-hWa"/>
                                     <constraint firstItem="AsG-9a-bGK" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="Hs5-Y0-JZY"/>
+                                    <constraint firstAttribute="trailing" secondItem="VEU-ab-tI1" secondAttribute="trailing" id="IOi-vJ-3qP"/>
                                     <constraint firstItem="LfS-0X-Can" firstAttribute="leading" secondItem="rEv-eo-Z6f" secondAttribute="trailing" constant="8" id="L2W-gm-By4"/>
                                     <constraint firstItem="hLY-SC-ZOB" firstAttribute="top" secondItem="uoz-Ky-eqX" secondAttribute="bottom" constant="8" id="M9R-kr-ICF"/>
                                     <constraint firstAttribute="trailing" secondItem="Kle-69-Cxl" secondAttribute="trailing" constant="16" id="Son-mv-SNW"/>
                                     <constraint firstAttribute="height" constant="120" id="UIl-Sd-VTr"/>
                                     <constraint firstItem="Kle-69-Cxl" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="Usp-HI-Tiz"/>
                                     <constraint firstItem="AsG-9a-bGK" firstAttribute="top" secondItem="hLY-SC-ZOB" secondAttribute="bottom" constant="8" id="fCE-3P-CNt"/>
+                                    <constraint firstAttribute="bottom" secondItem="VEU-ab-tI1" secondAttribute="bottom" id="l90-N1-AX5"/>
                                     <constraint firstItem="Bbr-xZ-YY8" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="qPb-oa-7Uk"/>
                                     <constraint firstItem="hLY-SC-ZOB" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="rX0-Gh-XZT"/>
                                     <constraint firstItem="uoz-Ky-eqX" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="vtS-S5-wy7"/>
@@ -903,9 +918,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyL-er-EmN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="356.52173913043481" y="1315.8482142857142"/>
+            <point key="canvasLocation" x="330" y="1407"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eZZ-T9-njY"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="256" height="256"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
