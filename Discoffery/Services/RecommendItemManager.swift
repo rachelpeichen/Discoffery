@@ -22,6 +22,42 @@ class RecommendItemManager {
   lazy var database = Firestore.firestore()
   
   // MARK: - Functions
+  func queryShopByRecommendItem(item: String, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
+
+    let docRef = database.collection("shopsTaichung")
+
+    let queryByItem = docRef.whereField("item", isEqualTo: item)
+
+    queryByItem.getDocuments() { querySnapshot, error in
+
+      if let error = error {
+
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        var shopsFiltered: [CoffeeShop] = []
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
+              shopsFiltered.append(shop)
+            }
+
+          } catch {
+
+            completion(.failure(error))
+          }
+        }
+
+        completion(.success(shopsFiltered))
+      }
+    }
+
+  }
+
   func fetchRecommendItemForShop(shop: CoffeeShop, completion: @escaping (Result<[RecommendItem], Error>) -> Void) {
     
     let docRef = database.collection("shopsTaichung").document(shop.id).collection("recommendItems")
@@ -34,8 +70,6 @@ class RecommendItemManager {
         
       } else {
         
-        //var itemsForShopDic: [String: [RecommendItem]] = [:]
-        
         var items: [RecommendItem] = []
         
         for document in querySnapshot!.documents {
@@ -45,8 +79,6 @@ class RecommendItemManager {
               
               items.append(item)
             }
-            
-            // itemsForShopDic[shop.id] = items
             
           } catch {
             

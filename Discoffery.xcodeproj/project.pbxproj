@@ -21,6 +21,7 @@
 		781CD83F26650E9C005076CD /* KeywordsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD83D26650E9C005076CD /* KeywordsCollectionViewCell.swift */; };
 		781CD84026650E9C005076CD /* KeywordsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 781CD83E26650E9C005076CD /* KeywordsCollectionViewCell.xib */; };
 		781CD844266513E1005076CD /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD843266513E1005076CD /* IntroductionViewController.swift */; };
+		781CD84926653EAC005076CD /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD84826653EAB005076CD /* SearchViewModel.swift */; };
 		7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C949265295D30048B5F5 /* ShopImagesCell.swift */; };
 		7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C94A265295D30048B5F5 /* ShopImagesCell.xib */; };
 		7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C94E2652BD740048B5F5 /* ProfileCell.swift */; };
@@ -109,6 +110,7 @@
 		781CD83D26650E9C005076CD /* KeywordsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordsCollectionViewCell.swift; sourceTree = "<group>"; };
 		781CD83E26650E9C005076CD /* KeywordsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeywordsCollectionViewCell.xib; sourceTree = "<group>"; };
 		781CD843266513E1005076CD /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		781CD84826653EAB005076CD /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		7839C949265295D30048B5F5 /* ShopImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCell.swift; sourceTree = "<group>"; };
 		7839C94A265295D30048B5F5 /* ShopImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCell.xib; sourceTree = "<group>"; };
 		7839C94E2652BD740048B5F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -245,6 +247,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		781CD84626652AE2005076CD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				781CD8342664F4E7005076CD /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		7839C9672652E5580048B5F5 /* Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +271,7 @@
 		78848615264C11F400FA33F9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				781CD84626652AE2005076CD /* Search */,
 				7839C9672652E5580048B5F5 /* Add */,
 				78848619264C123200FA33F9 /* Home */,
 				78DF24D7265206A900F47A04 /* Detail */,
@@ -293,6 +304,7 @@
 			children = (
 				7884865E264D36EA00FA33F9 /* HomeViewModel.swift */,
 				78A31128265C2AAF00441FE7 /* AddViewModel.swift */,
+				781CD84826653EAB005076CD /* SearchViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -317,7 +329,6 @@
 				78848611264C09EC00FA33F9 /* HomeListViewController.swift */,
 				7809E4462661E9EE002DB983 /* LoginViewController.swift */,
 				781CD80F2664AD46005076CD /* SelectedShopViewController.swift */,
-				781CD8342664F4E7005076CD /* SearchViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -666,6 +677,7 @@
 				78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */,
 				7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */,
 				7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */,
+				781CD84926653EAC005076CD /* SearchViewModel.swift in Sources */,
 				7879ECCB265C12AE00BEAA73 /* CollectionViewFlowLayout.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,

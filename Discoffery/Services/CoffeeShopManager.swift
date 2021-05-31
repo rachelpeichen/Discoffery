@@ -71,9 +71,9 @@ class CoffeeShopManager {
         for document in querySnapshot!.documents {
 
           do {
-            if let shopFilterd = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+            if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
               
-              shopsFilterd.append(shopFilterd)
+              shopsFilterd.append(shop)
             }
 
           } catch {
