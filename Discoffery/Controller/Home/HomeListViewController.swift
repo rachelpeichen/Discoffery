@@ -46,8 +46,6 @@ class HomeListViewController: UIViewController {
 
       for index in 0..<shopsData.count {
 
-        // self?.fetchReviewsForShop(shop: shopsData[index])
-
         self?.fetchFeatureForShop(shop: shopsData[index])
 
         self?.fetchRecommendItemForShop(shop: shopsData[index])
@@ -60,7 +58,7 @@ class HomeListViewController: UIViewController {
         )
 
         // 把distance給一個沒用到的Double屬性
-        self?.shopsDataForList[index].cheap = distance!
+        self?.shopsDataForList[index].cheap = distance! 
       }
       self?.shopsDataForList.sort(by: { $0.cheap < $1.cheap })
     }
@@ -87,7 +85,7 @@ class HomeListViewController: UIViewController {
     }
   }
 
-  // MARK: TODO--這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchFeatureForShop(shop: CoffeeShop) {
 
     FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
@@ -159,7 +157,8 @@ class HomeListViewController: UIViewController {
     let lon2 = location2Lon
     
     let earthRadius = 6371000.0
-    
+
+    // swiftlint:disable identifier_name
     let φ1 = lat1 * Double.pi / 180 // φ, λ in radians
 
     let φ2 = lat2 * Double.pi / 180
@@ -191,14 +190,12 @@ extension HomeListViewController: UITableViewDataSource {
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
       
       let shop = shopsDataForList[indexPath.row]
-
-      let distance = Int(calDistanceBetweenTwoLocations(location1Lat: userCurrentCoordinate.latitude, location1Lon: userCurrentCoordinate.longitude, location2Lat: shop.latitude, location2Lon: shop.longitude))
       
       cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
       
       cell.cafeName.text = shop.name
 
-      cell.distance.text = "距離" + String(distance) + "公尺"
+      cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
 
       cell.starsView.rating = Double.random(in: 1...5)  // 還沒算出全部評價的平均先給隨機ㄉ
 
