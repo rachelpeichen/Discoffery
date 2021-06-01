@@ -11,20 +11,31 @@ import Cosmos
 class ReviewCell: UITableViewCell {
 
   // MARK: - Properties
-  var recommendItems: [String] = []
+  var recommendItems: [String] = [] {
+
+    didSet {
+      layoutItemLabels()
+    }
+  }
 
   // MARK: - Outlets
-  @IBOutlet weak var collectionView: UICollectionView!
-
   @IBOutlet weak var userImage: UIImageView!
 
   @IBOutlet weak var userName: UILabel!
 
   @IBOutlet weak var rateStars: CosmosView!
 
-  @IBOutlet weak var postTIme: UILabel!
+  @IBOutlet weak var postTime: UILabel!
 
   @IBOutlet weak var comment: UILabel!
+
+  @IBOutlet weak var itemOne: PaddingLabel!
+
+  @IBOutlet weak var itemTwo: PaddingLabel!
+
+  @IBOutlet weak var itemThree: PaddingLabel!
+
+  @IBOutlet weak var noItemLabel: UILabel!
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -32,7 +43,7 @@ class ReviewCell: UITableViewCell {
 
     userImage.layer.cornerRadius = 25
 
-    setupCollectionView()
+    layoutItemLabels()
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,49 +52,80 @@ class ReviewCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  // MARK: - Functions
-  private func setupCollectionView() {
+  func layoutItemLabels() {
 
-    collectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
+    switch recommendItems.count {
 
-    collectionView.delegate = self
+    case 0:
 
-    collectionView.dataSource = self
-  }
-}
+      noItemLabel.isHidden = false
 
-extension ReviewCell: UICollectionViewDataSource {
+      itemOne.isHidden = true
 
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return recommendItems.count
-  }
+      itemTwo.isHidden = true
 
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+      itemThree.isHidden = true
 
-    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
+    case 1:
 
-      let feature = recommendItems[indexPath.row]
+      noItemLabel.isHidden = true
 
-      cell.layoutFeatureCollectionViewCell(from: feature)
+      itemOne.isHidden = false
 
-      return cell
+      itemOne.text = recommendItems[0]
+
+      itemTwo.isHidden = true
+
+      itemThree.isHidden = true
+
+    case 2:
+
+      noItemLabel.isHidden = true
+
+      itemOne.isHidden = false
+
+      itemOne.text = recommendItems[0]
+
+      itemTwo.isHidden = false
+
+      itemTwo.text = recommendItems[1]
+
+      itemThree.isHidden = true
+
+    case 3:
+
+      noItemLabel.isHidden = true
+
+      itemOne.isHidden = false
+
+      itemOne.text = recommendItems[0]
+
+      itemTwo.isHidden = false
+
+      itemTwo.text = recommendItems[1]
+
+      itemThree.isHidden = false
+
+      itemThree.text = recommendItems[2]
+
+    default:
+
+      noItemLabel.isHidden = true
+
+      itemOne.isHidden = false
+
+      itemOne.text = recommendItems[0]
+
+      itemTwo.isHidden = false
+
+      itemTwo.text = recommendItems[1]
+
+      itemThree.isHidden = false
+
+      itemThree.text = recommendItems[2]
+
     }
-    return FeatureCollectionViewCell()
+
   }
-}
 
-extension ReviewCell: UICollectionViewDelegateFlowLayout {
-
-  // MARK: 以字體內容去調整每個cell的大小
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-    let textSize: CGSize = recommendItems[indexPath.row]
-
-      .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
-
-    return CGSize(width: textSize.width + 22, height: 45)
-  }
-}
-
-extension ReviewCell: UICollectionViewDelegate {
 }

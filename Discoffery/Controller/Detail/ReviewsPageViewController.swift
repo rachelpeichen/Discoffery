@@ -61,13 +61,20 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       cell.recommendItems = singleReview.recommendItems
 
-      cell.postTIme.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
+      cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
 
       cell.rateStars.rating = singleReview.rating
 
       cell.userName.text = singleReview.userName
 
-      cell.comment.text = singleReview.comment
+      if singleReview.comment == "" {
+
+        cell.comment.text = "該用戶無填寫評論"
+
+      } else {
+        
+        cell.comment.text = singleReview.comment
+      }
 
       return cell
     }
