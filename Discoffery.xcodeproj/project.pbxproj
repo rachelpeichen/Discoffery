@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		7809E4472661E9EE002DB983 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E4462661E9EE002DB983 /* LoginViewController.swift */; };
 		78182BFB265E420100056E92 /* CustomUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182BFA265E420100056E92 /* CustomUITextField.swift */; };
-		78182C03265F3D5700056E92 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C02265F3D5700056E92 /* CustomUIButton.swift */; };
-		78182C07265F3E5700056E92 /* CustomUIButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78182C06265F3E5700056E92 /* CustomUIButton.xib */; };
 		78182C10265F86A000056E92 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C0F265F869F00056E92 /* ImageRow.swift */; };
 		78182C13265F87DB00056E92 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C12265F87DB00056E92 /* ImagePickerController.swift */; };
 		781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */; };
@@ -30,7 +28,6 @@
 		7839C9642652D42C0048B5F5 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C9622652D42C0048B5F5 /* CollectionCell.swift */; };
 		7839C9652652D42C0048B5F5 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C9632652D42C0048B5F5 /* CollectionCell.xib */; };
 		7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C9682652E59B0048B5F5 /* AddShopViewController.swift */; };
-		7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */; };
 		783B2344265D60F400F88687 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2343265D60F400F88687 /* UIView+Extension.swift */; };
 		783B2347265E172100F88687 /* RecommendItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2346265E172100F88687 /* RecommendItem.swift */; };
 		783B236A265E299400F88687 /* RecommendItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2369265E299400F88687 /* RecommendItemManager.swift */; };
@@ -50,6 +47,7 @@
 		7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884865E264D36EA00FA33F9 /* HomeViewModel.swift */; };
 		78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848666264D3A7100FA33F9 /* CoffeeShop.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
+		78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A01E9326666D0C00E4B43C /* PaddingLabel.swift */; };
 		78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A31105265C275E00441FE7 /* Date+Extension.swift */; };
 		78A31129265C2AAF00441FE7 /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A31128265C2AAF00441FE7 /* AddViewModel.swift */; };
 		78AEDFAA26596CFE000570C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78AEDFA926596CFE000570C7 /* Assets.xcassets */; };
@@ -98,8 +96,6 @@
 		0EE685447FE78E3B98775556 /* Pods-Discoffery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Discoffery.debug.xcconfig"; path = "Target Support Files/Pods-Discoffery/Pods-Discoffery.debug.xcconfig"; sourceTree = "<group>"; };
 		7809E4462661E9EE002DB983 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		78182BFA265E420100056E92 /* CustomUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUITextField.swift; sourceTree = "<group>"; };
-		78182C02265F3D5700056E92 /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
-		78182C06265F3E5700056E92 /* CustomUIButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomUIButton.xib; sourceTree = "<group>"; };
 		78182C0F265F869F00056E92 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		78182C12265F87DB00056E92 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -119,7 +115,6 @@
 		7839C9622652D42C0048B5F5 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		7839C9632652D42C0048B5F5 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
 		7839C9682652E59B0048B5F5 /* AddShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopViewController.swift; sourceTree = "<group>"; };
-		7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFilterViewController.swift; sourceTree = "<group>"; };
 		783B2343265D60F400F88687 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		783B2346265E172100F88687 /* RecommendItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItem.swift; sourceTree = "<group>"; };
 		783B2369265E299400F88687 /* RecommendItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemManager.swift; sourceTree = "<group>"; };
@@ -139,6 +134,7 @@
 		7884865E264D36EA00FA33F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		78848666264D3A7100FA33F9 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		78A01E9326666D0C00E4B43C /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		78A31105265C275E00441FE7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		78A31128265C2AAF00441FE7 /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
 		78AEDFA926596CFE000570C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,8 +202,7 @@
 				78182BFA265E420100056E92 /* CustomUITextField.swift */,
 				7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */,
 				7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */,
-				78182C02265F3D5700056E92 /* CustomUIButton.swift */,
-				78182C06265F3E5700056E92 /* CustomUIButton.xib */,
+				78A01E9326666D0C00E4B43C /* PaddingLabel.swift */,
 			);
 			path = CustomNativeUI;
 			sourceTree = "<group>";
@@ -259,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				7839C9682652E59B0048B5F5 /* AddShopViewController.swift */,
-				7839C96C2653510C0048B5F5 /* AddFilterViewController.swift */,
 				7884FB782653A3F60093F666 /* AddCategoryViewController.swift */,
 				78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */,
 				78182C12265F87DB00056E92 /* ImagePickerController.swift */,
@@ -587,7 +581,6 @@
 				78DF250D2652120D00F47A04 /* Collection.storyboard in Resources */,
 				78DF2524265251FE00F47A04 /* ShopFeatureCell.xib in Resources */,
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
-				78182C07265F3E5700056E92 /* CustomUIButton.xib in Resources */,
 				78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */,
 				781CD84026650E9C005076CD /* KeywordsCollectionViewCell.xib in Resources */,
 				7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */,
@@ -673,7 +666,6 @@
 			files = (
 				7839C95F2652CA4F0048B5F5 /* ProtraitCardCollectionCell.swift in Sources */,
 				7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */,
-				78182C03265F3D5700056E92 /* CustomUIButton.swift in Sources */,
 				78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */,
 				7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */,
 				7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */,
@@ -682,8 +674,8 @@
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,
 				78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */,
-				7839C96D2653510C0048B5F5 /* AddFilterViewController.swift in Sources */,
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
+				78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
 				78DF24ED26520B6A00F47A04 /* ProfileViewController.swift in Sources */,
 				781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */,

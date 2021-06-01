@@ -38,29 +38,37 @@ extension UIView {
 
     layer.shadowRadius = 3.0
 
-    layer.shadowOpacity = 0.25
+    layer.shadowOpacity = 0.5
   }
+
 }
 
 extension UITextView {
 
-//  var numberOfLines: Int {
-//
-//    // Get number of lines
-//    let numberOfGlyphs = self.layoutManager.numberOfGlyphs
-//
-//    var index = 0, numberOfLines = 0
-//
-//    var lineRange = NSRange(location: NSNotFound, length: 0)
-//
-//    while index < numberOfGlyphs {
-//
-//      self.layoutManager.lineFragmentRect(forGlyphAt: index,
-//                                          effectiveRange: &lineRange)
-//      index = NSMaxRange(lineRange)
-//
-//      numberOfLines += 1
-//    }
-//    return numberOfLines
-//  }
+  // MARK: 還沒實作
+
+  public var lineCount: Int {
+
+    let numberOfGlyphs = layoutManager.numberOfGlyphs
+
+    var index = 0, numberOfLines = 0
+
+    var lineRange = NSRange(location: NSNotFound, length: 0)
+
+    while index < numberOfGlyphs {
+
+      layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
+
+      index = NSMaxRange(lineRange)
+
+      numberOfLines += 1
+    }
+
+    // Take into account newlines at the bottom.
+    if layoutManager.extraLineFragmentUsedRect != CGRect.zero {
+
+      numberOfLines += 1
+    }
+    return numberOfLines
+  }
 }

@@ -6,6 +6,7 @@
 //
 
 import Eureka
+import JGProgressHUD
 
 // swiftlint:disable function_body_length
 // swiftlint:disable force_cast
@@ -29,6 +30,8 @@ class AddShopViewController: FormViewController {
   var parsedOpenHours: String?
 
   var shopId: String?
+
+  let testview = UIView()
 
   // MARK: - Functions
   @IBAction func backToMainPage(_ sender: UIBarButtonItem) {
@@ -256,38 +259,23 @@ class AddShopViewController: FormViewController {
         row.disabled = true
 
       }.cellSetup({ cell, row in
-        cell.backgroundColor = .G2
-        cell.tintColor = .white
+        cell.backgroundColor = .B4
+
+        cell.tintColor = .darkGray
 
       }).onCellSelection { [weak self] cell, row in
-
-
-
-        self?.showAlert()
 
         // MARK: Get user's input and wrap as my struct type  
         guard let dict = self?.form.values(includeHidden: true) else { return }
 
-        print(dict)
-
         var newShop = self?.parseInputToShop(inputDic: dict)
 
-        var newShopReview = self?.parseInputToReview(inputDic: dict)
-
-        var newShopFeature = self?.parseInputToFeature(inputDic: dict)
-
-        // MARK: Publish to Firebase
         self?.addViewModel.publishNewShop(shop: &(newShop)!)
 
         self?.addViewModel.onFetchNewShop = { result  in
+
           self?.shopId = result
         }
-
-        // MARK: 這裡和Detail Page 送 review一樣 拿到shop.id 才能去Po 現在無法思考 0528
-        //self?.addViewModel.publishNewShopReview(shopId: (self?.shopId)!, review: &(newShopReview!))
-        //self?.addViewModel.publishNewShopFeature(shopId: (self?.shopId)!, feature: &(newShopFeature!))
-        // self?.parseInputToRecommendItem(inputDic: dict)
-
       }
   }
 
@@ -337,21 +325,6 @@ class AddShopViewController: FormViewController {
     wrappedNewShopFeature.special = inputDic["customFeatures"] as? [String] ?? [""]
 
     return wrappedNewShopFeature
-  }
-
-  func showAlert() {
-
-    let alertController = UIAlertController(title: "Discoffery", message: "確定要新增ㄇ", preferredStyle: .alert)
-
-    let defaultAction = UIAlertAction(title: "要Ｒ", style: .destructive, handler: nil)
-
-    let cancelAction = UIAlertAction(title: "先不要好ㄌ", style: .cancel, handler: nil)
-
-    alertController.addAction(defaultAction)
-
-    alertController.addAction(cancelAction)
-
-    present(alertController, animated: true)
   }
 }
 

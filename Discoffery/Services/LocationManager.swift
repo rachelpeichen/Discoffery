@@ -19,6 +19,14 @@ class LocationManager {
 
   var currentLocation: CLLocation?
 
+//  var currentCoordinate = CLLocationCoordinate2D() {
+//
+//    didSet {
+//
+//      onCurrentCoordinate?(currentCoordinate)
+//    }
+//  } 跟昨天亂寫code一樣的概念？
+
   var onCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
   // MARK: - Functions

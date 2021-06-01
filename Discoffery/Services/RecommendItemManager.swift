@@ -24,7 +24,7 @@ class RecommendItemManager {
   // MARK: - Functions
   func queryShopByRecommendItem(item: String, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
-    let docRef = database.collection("shopsTaichung")
+    let docRef = database.collectionGroup("recommendItems")
 
     let queryByItem = docRef.whereField("item", isEqualTo: item)
 
@@ -35,6 +35,8 @@ class RecommendItemManager {
         print("Error getting documents: \(error)")
 
       } else {
+
+        print("ellllse")
 
         var shopsFiltered: [CoffeeShop] = []
 

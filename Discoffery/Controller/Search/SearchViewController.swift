@@ -20,7 +20,18 @@ class SearchViewController: UIViewController {
   }
 
   // MARK: - Properties
+  var searchViewModel =  SearchViewModel()
+
+  var inputKeyword: String?
+
+  var isSearchBarEmpty: Bool {
+
+    return searchController.searchBar.text?.isEmpty ?? true
+  }
+
   var searchController: UISearchController!
+
+  var filteredShops: [CoffeeShop] = []
 
   var hardCodeKeywordsArr: [String] = ["冷萃咖啡", "檸檬塔", "卡布奇諾", "單品手沖咖啡", "燕麥奶拿鐵", "可麗露", "馥列白", "海鹽焦糖拿鐵", "黃金曼巴", "花香耶加雪菲", "精品檸檬冷萃"]
 
@@ -31,6 +42,8 @@ class SearchViewController: UIViewController {
     // Do any additional setup after loading the view.
 
     setupCollectionView()
+
+    configureSearchController()
   }
 
   // MARK: - Functions
@@ -39,6 +52,10 @@ class SearchViewController: UIViewController {
     searchController = UISearchController(searchResultsController: nil)
 
     searchController.searchResultsUpdater = self
+
+    searchController.obscuresBackgroundDuringPresentation = false
+
+    searchBar.delegate = self
   }
 
   private func setupCollectionView() {
@@ -51,6 +68,29 @@ class SearchViewController: UIViewController {
 
     collectionView.layoutIfNeeded()
   }
+}
+extension SearchViewController: UISearchResultsUpdating {
+
+  func updateSearchResults(for searchController: UISearchController) {
+    print("do sth")
+  }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+    print("searchBarSearchButtonClicked")
+
+    print(searchBar.text!)
+
+    searchBar.resignFirstResponder()
+
+    searchBar.endEditing(true)
+
+    searchViewModel.queryShopByRecommendItem(item: searchBar.text!)
+  }
+
 }
 
 extension SearchViewController: UICollectionViewDataSource {
@@ -93,3 +133,4 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 extension SearchViewController: UICollectionViewDelegate {
   // Do sth
 }
+

@@ -78,7 +78,7 @@ extension ShopFeatureCell: UICollectionViewDelegateFlowLayout {
 
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
-    return CGSize(width: textSize.width + 30, height: collectionView.bounds.size.height)
+    return CGSize(width: textSize.width + 30, height: 45)
   }
 }
 

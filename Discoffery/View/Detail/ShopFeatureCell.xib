@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Eh9-bc-lV3" customClass="DynamicHeightCollectionView" customModule="Discoffery" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
+                        <rect key="frame" x="0.0" y="0.0" width="304" height="201"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XMU-RG-rh5">
@@ -33,7 +33,7 @@
                 <constraints>
                     <constraint firstItem="Eh9-bc-lV3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6m0-jo-ce4"/>
                     <constraint firstAttribute="bottom" secondItem="Eh9-bc-lV3" secondAttribute="bottom" id="SwH-ab-Ojm"/>
-                    <constraint firstAttribute="trailing" secondItem="Eh9-bc-lV3" secondAttribute="trailing" id="obl-J9-BUa"/>
+                    <constraint firstAttribute="trailing" secondItem="Eh9-bc-lV3" secondAttribute="trailing" constant="16" id="obl-J9-BUa"/>
                     <constraint firstItem="Eh9-bc-lV3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tEB-po-6jn"/>
                 </constraints>
             </tableViewCellContentView>

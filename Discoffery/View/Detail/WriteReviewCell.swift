@@ -7,6 +7,7 @@
 
 import UIKit
 import Cosmos
+import JGProgressHUD
 
 protocol WriteReviewCellDelegate: AnyObject {
 
@@ -24,16 +25,16 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   var wrappedRecommendItem = RecommendItem()
 
-  var inputComment: String?
-
   var inputItem: [String] = []
 
   var inputRating: Double?
 
   // MARK: - Outlets
-  @IBOutlet weak var reviewComment: UITextField!
+  @IBOutlet weak var reviewComment: UITextView!
 
   @IBOutlet weak var recommendItem: UITextField!
+
+  @IBOutlet weak var recommendItem2: UITextField!
 
   @IBOutlet weak var rateStars: CosmosView! {
 
@@ -45,7 +46,7 @@ class WriteReviewCell: ShopDetailBasicCell {
 
         self.sendReviewButton.isEnabled = true
 
-        self.sendReviewButton.tintColor = .green
+        self.sendReviewButton.backgroundColor = .B4
       }
     }
   }
@@ -54,15 +55,15 @@ class WriteReviewCell: ShopDetailBasicCell {
   @IBOutlet weak var uploadPhotosButton: UIButton!
 
   // 只先給輸入一個 其他用按鈕寫死ㄉ按鈕也還沒弄
-  @IBOutlet weak var addRecommednItemButton: UIButton!
+
+  @IBAction func addNewRecommendItem(_ sender: Any) {
+
+    recommendItem2.isHidden = false
+  }
 
   @IBOutlet weak var sendReviewButton: UIButton!
 
   // MARK: - Outlets' Action
-  @IBAction func didEndEditingComment(_ sender: UITextField) {
-
-    inputComment = sender.text
-  }
 
   @IBAction func didEndEditingItem(_ sender: UITextField) {
 
@@ -71,14 +72,16 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   @IBAction func finishEditingReview(_ sender: UIButton!) {
 
+    showSuccessAlert()
+
     // The user can send review only when rating is provided
     guard let inputRating = inputRating else { return }
 
     wrappedReview.rating = inputRating
 
-    wrappedReview.comment = inputComment ?? "User didn't write comment."
+    wrappedReview.comment = reviewComment.text ?? "User didn't write comment."
 
-    wrappedReview.recommendItems = inputItem ?? [""]
+    wrappedReview.recommendItems = inputItem
 
     delegate?.sendReview(inputReview: &wrappedReview)
 
@@ -105,11 +108,50 @@ class WriteReviewCell: ShopDetailBasicCell {
     // Initialization code
     sendReviewButton.isEnabled = false
 
-    sendReviewButton.tintColor = .lightGray
+    sendReviewButton.addShadow()
+
+    reviewComment.addShadow()
+
+    recommendItem2.isHidden = true
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
     // Configure the view for the selected state
   }
+
+  // MARK: - Functions 待整理
+
+  func showSuccessAlert() {
+
+    let hud = JGProgressHUD()
+
+    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+
+    hud.textLabel.text = "Success"
+
+    hud.show(in: self, animated: true)
+
+    hud.dismiss(afterDelay: 2.0)
+
+    reviewComment.text = ""
+
+    recommendItem.text = ""
+
+    recommendItem2.text = ""
+  }
 }
+
+// extension WriteReviewCell: UITextViewDelegate {
+//
+//  func textViewDidChange(_ textView: UITextView) {
+//      // Refresh tableView cell
+//      if textView.numberOfLines > 2 { // textView in storyboard has two lines, so we match the design
+//          // Animated height update
+//          DispatchQueue.main.async {
+//              self.tableView?.beginUpdates()
+//              self.tableView?.endUpdates()
+//          }
+//      }
+//  }
+//}

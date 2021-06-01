@@ -26,17 +26,16 @@ class SelectedShopViewController: UIViewController {
 
   @IBOutlet weak var averageRating: CosmosView!
 
-  @IBOutlet weak var featureOneBtn: CustomUIButton!
+  @IBOutlet weak var featureOne: UILabel!
 
-  @IBOutlet weak var featureTwoBtn: CustomUIButton!
+  @IBOutlet weak var featureTwo: UILabel!
 
-  @IBOutlet weak var featureThreeBtn: CustomUIButton!
+  @IBOutlet weak var featureThree: UILabel!
 
   @IBAction func didTouchSelectedVC(_ sender: Any) {
 
     delegate?.didTouchSelectedVC(sender)
   }
-
 
   // MARK: - Properties
   weak var delegate: SelectedShopViewControllerDelegate?
@@ -69,25 +68,31 @@ class SelectedShopViewController: UIViewController {
 
     imageView.clipsToBounds = true
 
-    imageView.layer.cornerRadius = 20
+    imageView.layer.cornerRadius = 10
 
     backgroundView.addShadow()
 
     if let selectedShop = selectedShop {
 
-      averageRating.rating = selectedShop.tasty  // 還沒算出全部評價的平均先用api的
+      averageRating.rating = selectedShop.tasty  // TODO: 還沒算出全部評價的平均先用api的
 
       distanceLabel.text = "\(selectedShop.cheap.rounded().formattedValue)公尺"
 
       selectedShopName.text = selectedShop.name
     }
 
-    let assignedItem = selectedShopRecommendItem?[0]
+    if let selectedShopRecommendItem = selectedShopRecommendItem {
 
-    featureOneBtn.setTitle(assignedItem?.item, for: .normal)
+      let assignedItem = selectedShopRecommendItem[0]
 
-    featureTwoBtn.setTitle(selectedShopfeature?.special[0], for: .normal)
+      featureOne.text = assignedItem.item
+    }
 
-    featureThreeBtn.setTitle(selectedShopfeature?.special[1], for: .normal)
+    if let selectedShopfeature = selectedShopfeature {
+
+      featureTwo.text = selectedShopfeature.special[0]
+
+      featureThree.text = selectedShopfeature.special[1]
+    }
   }
 }
