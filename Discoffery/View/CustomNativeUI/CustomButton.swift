@@ -132,6 +132,6 @@ class CustomBtn: UIButton {
 
     self.layer.shadowOpacity = 0.5
 
-    self.layer.shadowRadius = 3.0
+    self.layer.shadowRadius = 1.0
   }
 }

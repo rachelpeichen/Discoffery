@@ -29,13 +29,9 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   var inputRating: Double?
 
+  var inputComment: String?
+
   // MARK: - Outlets
-  @IBOutlet weak var reviewComment: UITextView!
-
-  @IBOutlet weak var recommendItem: UITextField!
-
-  @IBOutlet weak var recommendItem2: UITextField!
-
   @IBOutlet weak var rateStars: CosmosView! {
 
     didSet {
@@ -46,29 +42,16 @@ class WriteReviewCell: ShopDetailBasicCell {
 
         self.sendReviewButton.isEnabled = true
 
-        self.sendReviewButton.backgroundColor = .B4
+        self.sendReviewButton.backgroundColor = .B3
       }
     }
   }
 
-  // MARK: 拍照按鈕還沒弄
-  @IBOutlet weak var uploadPhotosButton: UIButton!
-
-  // 只先給輸入一個 其他用按鈕寫死ㄉ按鈕也還沒弄
-
-  @IBAction func addNewRecommendItem(_ sender: Any) {
-
-    recommendItem2.isHidden = false
-  }
+  @IBOutlet weak var commentTextView: UITextView!
 
   @IBOutlet weak var sendReviewButton: UIButton!
 
   // MARK: - Outlets' Action
-
-  @IBAction func didEndEditingItem(_ sender: UITextField) {
-
-    inputItem.append(sender.text ?? "none")
-  }
 
   @IBAction func finishEditingReview(_ sender: UIButton!) {
 
@@ -79,7 +62,7 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     wrappedReview.rating = inputRating
 
-    wrappedReview.comment = reviewComment.text ?? "User didn't write comment."
+    wrappedReview.comment = inputComment ?? "User didn't write comment."
 
     wrappedReview.recommendItems = inputItem
 
@@ -90,7 +73,7 @@ class WriteReviewCell: ShopDetailBasicCell {
 
       for (index, item) in inputItem.enumerated() {
 
-         print("index = \(index) & item = \(item)")
+        print("index = \(index) & item = \(item)")
 
         wrappedRecommendItem.item = item
 
@@ -106,13 +89,7 @@ class WriteReviewCell: ShopDetailBasicCell {
     super.awakeFromNib()
 
     // Initialization code
-    sendReviewButton.isEnabled = false
-
-    sendReviewButton.layoutViewWithShadow()
-
-    reviewComment.layoutViewWithShadow()
-
-    recommendItem2.isHidden = true
+    layoutWriteReviewCell()
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -121,6 +98,22 @@ class WriteReviewCell: ShopDetailBasicCell {
   }
 
   // MARK: - Functions 待整理
+  func layoutWriteReviewCell() {
+
+    sendReviewButton.isEnabled = false
+
+    sendReviewButton.layoutViewWithShadow()
+
+    commentTextView.delegate = self
+
+    commentTextView.layer.borderColor = UIColor.G2?.cgColor
+
+    commentTextView.layer.borderWidth = 0.5
+
+    commentTextView.clipsToBounds = true
+
+    commentTextView.layer.cornerRadius = 10
+  }
 
   func showSuccessAlert() {
 
@@ -134,24 +127,30 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     hud.dismiss(afterDelay: 2.0)
 
-    reviewComment.text = ""
-
-    recommendItem.text = ""
-
-    recommendItem2.text = ""
+    commentTextView.text = ""
   }
 }
 
-// extension WriteReviewCell: UITextViewDelegate {
-//
-//  func textViewDidChange(_ textView: UITextView) {
-//      // Refresh tableView cell
-//      if textView.numberOfLines > 2 { // textView in storyboard has two lines, so we match the design
-//          // Animated height update
-//          DispatchQueue.main.async {
-//              self.tableView?.beginUpdates()
-//              self.tableView?.endUpdates()
-//          }
-//      }
-//  }
-//}
+// MARK: UITextViewDelegate
+extension WriteReviewCell: UITextViewDelegate {
+
+  func textViewDidChange(_ textView: UITextView) {
+
+    let fixedWidth = textView.frame.size.width
+
+    textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+
+    let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+
+    var newFrame = textView.frame
+
+    newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+
+    textView.frame = newFrame
+  }
+
+  func textViewDidEndEditing(_ textView: UITextView) {
+
+    inputComment = textView.text
+  }
+}
