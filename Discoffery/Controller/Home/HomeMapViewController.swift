@@ -18,8 +18,6 @@ class HomeMapViewController: UIViewController {
   // MARK: - Properties
   var homeViewModel: HomeViewModel?
   
-  var userCurrentCoordinate = CLLocationCoordinate2D()
-  
   var shopsDataForMap: [CoffeeShop] = []
 
   var featureDic: [String: [Feature]] = [:]
@@ -44,8 +42,8 @@ class HomeMapViewController: UIViewController {
     
     // 2: Get user's current coordinate for drawing map
     LocationManager.shared.onCurrentCoordinate = { coordinate in
-      
-      self.userCurrentCoordinate = coordinate
+
+      self.homeViewModel?.userCurrentCoordinate = coordinate
     }
     
     // 3: Fetch shops within distance on Firebase
@@ -65,19 +63,21 @@ class HomeMapViewController: UIViewController {
 
           self?.fetchRecommendItemForShop(shop: shopsData[index])
 
-          let distance = self?.calDistanceBetweenTwoLocations(
+          if let coordinate = self?.homeViewModel?.userCurrentCoordinate {
 
-            location1Lat: self!.userCurrentCoordinate.latitude,
+           if let distance = self?.calDistanceBetweenTwoLocations(
 
-            location1Lon: self!.userCurrentCoordinate.longitude,
+              location1Lat: coordinate.latitude,
 
-            location2Lat: shopsData[index].latitude,
+              location1Lon: coordinate.longitude,
 
-            location2Lon: shopsData[index].longitude
-          )
+              location2Lat: shopsData[index].latitude,
 
-          // 把distance給一個沒用到的Double屬性
-          self?.shopsDataForMap[index].cheap = distance!
+              location2Lon: shopsData[index].longitude) {
+
+            self?.shopsDataForMap[index].cheap = distance
+           }
+          }
         }
       }
     }
@@ -94,7 +94,7 @@ class HomeMapViewController: UIViewController {
         selectedShopVC = destinationVC
 
         destinationVC.delegate = self
-       }
+      }
 
     } else if segue.identifier == "navigateSelectedShopVCToDetailVC" {
 
@@ -215,7 +215,12 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     case .authorizedAlways, .authorizedWhenInUse:
       
       print("Location authorization is confirmed.")
-      
+
+//      LocationManager.shared.onCurrentCoordinate = { coordinate in
+//
+//        self.userCurrentCoordinate = coordinate
+//      }
+
       homeViewModel?.getShopAroundUser()
       
       setUpMapView()
@@ -239,12 +244,14 @@ extension HomeMapViewController: HomeViewModelDelegate {
     mapView.showsUserLocation = true
     
     mapView.userTrackingMode = .follow
-    
-    mapView.region = MKCoordinateRegion(
-      center: userCurrentCoordinate,
-      latitudinalMeters: 500,
-      longitudinalMeters: 500
-    )
+
+    if let coordinate = homeViewModel?.userCurrentCoordinate {
+
+      mapView.region = MKCoordinateRegion(
+        center: coordinate,
+        latitudinalMeters: 500,
+        longitudinalMeters: 500)
+    }
   }
 }
 

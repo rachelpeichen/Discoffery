@@ -33,14 +33,9 @@ class HomeListViewController: UIViewController {
     // Do any additional setup after loading the view.
     setupTableView()
     
-    LocationManager.shared.onCurrentCoordinate = { coordinate in
-      
-      self.userCurrentCoordinate = coordinate
-    }
-
     // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！
     homeViewModel?.getShopsData = { [weak self] shopsData in
-      
+
       self?.shopsDataForList = shopsData
 
       for index in 0..<shopsData.count {
@@ -49,19 +44,21 @@ class HomeListViewController: UIViewController {
 
         self?.fetchRecommendItemForShop(shop: shopsData[index])
 
-        let distance = self?.calDistanceBetweenTwoLocations(
+        if let coordinate = self?.homeViewModel?.userCurrentCoordinate {
 
-          location1Lat: self!.userCurrentCoordinate.latitude,
+         if let distance = self?.calDistanceBetweenTwoLocations(
 
-          location1Lon: self!.userCurrentCoordinate.longitude,
+            location1Lat: coordinate.latitude,
 
-          location2Lat: shopsData[index].latitude,
+            location1Lon: coordinate.longitude,
 
-          location2Lon: shopsData[index].longitude
-        )
+            location2Lat: shopsData[index].latitude,
 
-        // 把distance給一個沒用到的Double屬性
-        self?.shopsDataForList[index].cheap = distance! 
+            location2Lon: shopsData[index].longitude) {
+
+          self?.shopsDataForList[index].cheap = distance
+         }
+        }
       }
       self?.shopsDataForList.sort(by: { $0.cheap < $1.cheap })
     }

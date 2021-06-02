@@ -17,7 +17,7 @@ import UIKit
 
   @IBInspectable var rightInset: CGFloat = 7.0
 
-  @IBInspectable var cornerRadius: CGFloat = 15
+  @IBInspectable var cornerRadius: CGFloat = 10
 
   override func drawText(in rect: CGRect) {
 

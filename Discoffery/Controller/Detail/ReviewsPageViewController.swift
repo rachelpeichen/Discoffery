@@ -67,7 +67,7 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       cell.userName.text = singleReview.userName
 
-      if singleReview.comment == "" {
+      if singleReview.comment.isEmpty {
 
         cell.comment.text = "該用戶無填寫評論"
 

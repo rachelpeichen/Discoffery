@@ -19,20 +19,20 @@ class LocationManager {
 
   var currentLocation: CLLocation?
 
-//  var currentCoordinate = CLLocationCoordinate2D() {
-//
-//    didSet {
-//
-//      onCurrentCoordinate?(currentCoordinate)
-//    }
-//  } 跟昨天亂寫code一樣的概念？
-
   var onCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
+
+  var currentCoordinate = CLLocationCoordinate2D() {
+
+    didSet {
+
+      onCurrentCoordinate?(currentCoordinate)
+    }
+  } 
 
   // MARK: - Functions
   func trackLocation(completion: (_ latitude: Double, _ longitude: Double) -> Void) {
-    // Only executed if CLAuthorizationStatus = .authorizedAlways || .authorizedWhenInUse
 
+    // Only executed if CLAuthorizationStatus = .authorizedAlways || .authorizedWhenInUse
     delegate = locationManager.delegate
 
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
