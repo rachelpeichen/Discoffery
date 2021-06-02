@@ -7,25 +7,10 @@
 
 import UIKit
 
-protocol AddItemCollectionViewCellDelegate: AnyObject {
-
-  func removeAddedItem(index: Int)
-}
 
 class AddItemCollectionViewCell: UICollectionViewCell {
-
-  // MARK: - Properties
-  weak var delegate: AddItemCollectionViewCellDelegate?
-
-  // MARK: - Outlets
+  
   @IBOutlet weak var addedItemLabel: PaddingLabel!
-
-  @IBAction func onTapRemoveItemBtn(_ sender: UIButton) {
-
-    delegate?.removeAddedItem( index: sender.tag)
-  }
-
-  @IBOutlet weak var removeItemBtn: UIButton!
 
   override func awakeFromNib() {
     super.awakeFromNib()

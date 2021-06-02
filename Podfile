@@ -7,28 +7,18 @@ target 'Discoffery' do
 
   # Pods for Discoffery
   pod 'SwiftLint'
-
-  pod 'SnapKit', '~> 5.0.0'
 	
   pod 'Kingfisher'
 
   pod 'MJRefresh'
 
   pod 'IQKeyboardManagerSwift'
-
-  pod 'JGProgressHUD'
-
-  pod 'Alamofire', '~> 5.2'
   
   pod 'Cosmos', '~> 23.0'
-
-  pod 'KeychainAccess'
 
   pod 'Eureka'
 
   pod 'PopupDialog'
-  
-  pod 'VerticalCardSwiper'
 
   pod 'GeoFire/Utils'
   # add pods for desired Firebase products

@@ -9,14 +9,10 @@ import UIKit
 import MapKit
 
 class ShopRouteCell: ShopDetailBasicCell {
-
+  
   @IBOutlet weak var mapView: MKMapView!
 
-  @IBOutlet weak var walkingTimes: UILabel!
-
   @IBOutlet weak var address: UILabel!
-
-  @IBOutlet weak var distance: UILabel!
 
   @IBOutlet weak var checkRouteButton: UIButton!
   
@@ -29,9 +25,5 @@ class ShopRouteCell: ShopDetailBasicCell {
     super.setSelected(selected, animated: animated)
 
     // Configure the view for the selected state
-  }
-
-  func showRoute(){
-
   }
 }

@@ -41,13 +41,13 @@
                                 <real key="value" value="18"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
-                                <color key="value" red="0.79468148949999995" green="0.59905749559999999" blue="0.49388539790000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" name="B1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
-                                <color key="value" red="0.79468148949999995" green="0.59905749559999999" blue="0.49388539790000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" name="B1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
-                                <color key="value" red="0.79468148949999995" green="0.59905749559999999" blue="0.49388539790000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" name="B1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="rating">
                                 <real key="value" value="0.0"/>
@@ -84,11 +84,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTJ-Dj-x8E" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
-                        <rect key="frame" x="16" y="469" width="120" height="40"/>
+                        <rect key="frame" x="16" y="469" width="100" height="40"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Ebl-iD-5Ia"/>
-                            <constraint firstAttribute="width" constant="120" id="PYW-3E-w4A"/>
+                            <constraint firstAttribute="width" constant="100" id="PYW-3E-w4A"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <state key="normal" title="完成送出">
@@ -176,19 +176,36 @@
                         </connections>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24N-N3-jq5">
-                        <rect key="frame" x="117.5" y="153.5" width="122" height="20"/>
+                        <rect key="frame" x="117.5" y="151.5" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="1jB-28-uC5"/>
+                            <constraint firstAttribute="width" constant="24" id="1dI-Sy-87u"/>
+                            <constraint firstAttribute="height" constant="24" id="1jB-28-uC5"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                        <color key="tintColor" name="B2"/>
-                        <state key="normal" title=" 新增推薦品項" image="plus.circle.fill" catalog="system">
-                            <color key="titleColor" name="B1"/>
+                        <color key="tintColor" name="B3"/>
+                        <state key="normal" image="plus">
+                            <color key="titleColor" name="G1"/>
                         </state>
                         <connections>
                             <action selector="addItemCollectionCell:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HUp-Lp-NHE"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增推薦品項" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTq-DN-mlC">
+                        <rect key="frame" x="145.5" y="154.5" width="98" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="y1t-TE-sdE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biu-jl-nXS">
+                        <rect key="frame" x="16" y="2" width="288" height="1"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="j3H-HO-HyV"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="zTJ-Dj-x8E" secondAttribute="bottom" constant="16" id="1LE-2a-e7g"/>
@@ -198,6 +215,7 @@
                     <constraint firstAttribute="trailing" secondItem="8Kk-5c-4EP" secondAttribute="trailing" constant="16" id="7TO-an-GHR"/>
                     <constraint firstItem="KMz-Jv-TKd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="8VN-NM-b7G"/>
                     <constraint firstItem="xGy-WW-HBZ" firstAttribute="top" secondItem="S2i-sc-D5T" secondAttribute="bottom" constant="16" id="BEq-qF-Gfr"/>
+                    <constraint firstItem="RTq-DN-mlC" firstAttribute="leading" secondItem="24N-N3-jq5" secondAttribute="trailing" constant="4" id="Brj-Wa-nT1"/>
                     <constraint firstItem="8Kk-5c-4EP" firstAttribute="top" secondItem="B45-jg-yYO" secondAttribute="bottom" constant="16" id="Cce-1f-7a2"/>
                     <constraint firstItem="oTR-2u-Z7Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Dv4-31-FLN"/>
                     <constraint firstItem="zTJ-Dj-x8E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="GWP-P2-8lM"/>
@@ -209,13 +227,17 @@
                     <constraint firstItem="xRy-eZ-0fb" firstAttribute="centerY" secondItem="hdI-UO-rG4" secondAttribute="centerY" id="O2q-E5-szX"/>
                     <constraint firstItem="B45-jg-yYO" firstAttribute="centerX" secondItem="KMz-Jv-TKd" secondAttribute="centerX" id="OPR-a8-1ai"/>
                     <constraint firstItem="xGy-WW-HBZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Qyp-Ub-Zoq"/>
+                    <constraint firstItem="biu-jl-nXS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SwY-U5-03V"/>
                     <constraint firstAttribute="trailing" secondItem="xGy-WW-HBZ" secondAttribute="trailing" constant="16" id="Ymc-N4-8Gi"/>
                     <constraint firstItem="EFV-ad-fza" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eRl-gO-0DN"/>
+                    <constraint firstItem="biu-jl-nXS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="fAb-fo-VTY"/>
                     <constraint firstItem="EJb-UY-tzX" firstAttribute="top" secondItem="hdI-UO-rG4" secondAttribute="bottom" constant="16" id="fda-Hh-jLe"/>
                     <constraint firstItem="B45-jg-yYO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iww-Td-Ifv"/>
+                    <constraint firstItem="RTq-DN-mlC" firstAttribute="centerY" secondItem="24N-N3-jq5" secondAttribute="centerY" id="l4w-ge-o0B"/>
                     <constraint firstItem="EFV-ad-fza" firstAttribute="top" secondItem="8Kk-5c-4EP" secondAttribute="bottom" constant="16" id="lxs-dA-Ypa"/>
                     <constraint firstItem="KMz-Jv-TKd" firstAttribute="leading" secondItem="oTR-2u-Z7Q" secondAttribute="trailing" constant="8" id="mgT-Qh-ma5"/>
                     <constraint firstAttribute="bottom" secondItem="KMz-Jv-TKd" secondAttribute="bottom" constant="470.5" id="mvC-Qq-ouX"/>
+                    <constraint firstAttribute="trailing" secondItem="biu-jl-nXS" secondAttribute="trailing" constant="16" id="svb-7c-LyZ"/>
                     <constraint firstItem="24N-N3-jq5" firstAttribute="centerY" secondItem="S2i-sc-D5T" secondAttribute="centerY" id="vlT-T9-cF0"/>
                     <constraint firstItem="S2i-sc-D5T" firstAttribute="top" secondItem="EJb-UY-tzX" secondAttribute="bottom" constant="16" id="x9i-RY-KIJ"/>
                     <constraint firstItem="hdI-UO-rG4" firstAttribute="top" secondItem="KMz-Jv-TKd" secondAttribute="bottom" constant="20" id="xD1-7z-Gvb"/>
@@ -243,13 +265,13 @@
     </designables>
     <resources>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="plus" width="32" height="32"/>
         <image name="write" width="32" height="32"/>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="B2">
-            <color red="0.79500001668930054" green="0.59899997711181641" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="B3">
+            <color red="0.86500000953674316" green="0.74400001764297485" blue="0.66100001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

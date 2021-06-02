@@ -42,7 +42,7 @@ class ShopFeatureCell: ShopDetailBasicCell {
   
   private func setupCollectionView() {
 
-    collectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
+    collectionView.register(UINib(nibName: FeatureCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: FeatureCollectionViewCell.identifier)
 
     collectionView.delegate = self
 
@@ -60,7 +60,7 @@ extension ShopFeatureCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeatureCollectionViewCell.identifier, for: indexPath) as? FeatureCollectionViewCell {
 
       cell.layoutFeatureCollectionViewCell(from: featureArr[indexPath.row])
 

@@ -701,13 +701,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDG-PA-cjd">
-                                                    <rect key="frame" x="74" y="154" width="324" height="181"/>
+                                                    <rect key="frame" x="74" y="154" width="324" height="178"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" name="G1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUy-57-SiX" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="108" width="39.5" height="30"/>
+                                                    <rect key="frame" x="74" y="108" width="53.5" height="30"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="9x8-eE-gvF"/>
@@ -717,14 +717,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCU-OJ-zHa" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="185" y="113.5" width="39.5" height="19.5"/>
+                                                    <rect key="frame" x="213" y="108.5" width="53.5" height="29.5"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" name="G1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDh-N7-Flv" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="129.5" y="113.5" width="39.5" height="19.5"/>
+                                                    <rect key="frame" x="143.5" y="108.5" width="53.5" height="29.5"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" name="G1"/>
@@ -739,30 +739,40 @@
                                                     <color key="textColor" name="G1"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-YW-ZSN">
+                                                    <rect key="frame" x="16" y="348" width="382" height="1"/>
+                                                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="XYL-35-a51"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IZa-50-1iL" firstAttribute="leading" secondItem="EpP-FT-Hl2" secondAttribute="trailing" constant="8" id="1Hd-fm-l4a"/>
                                                 <constraint firstItem="Zdp-cc-8Xs" firstAttribute="top" secondItem="aQT-7r-8wr" secondAttribute="top" constant="20" id="6Le-1z-MoI"/>
                                                 <constraint firstItem="EpP-FT-Hl2" firstAttribute="leading" secondItem="aQT-7r-8wr" secondAttribute="leading" constant="16" id="8zE-wC-tfn"/>
+                                                <constraint firstAttribute="bottom" secondItem="bkc-YW-ZSN" secondAttribute="bottom" constant="2" id="Eev-VS-EdD"/>
                                                 <constraint firstAttribute="trailing" secondItem="SDG-PA-cjd" secondAttribute="trailing" constant="16" id="IQT-lK-4lr"/>
                                                 <constraint firstItem="pDh-N7-Flv" firstAttribute="centerY" secondItem="hUy-57-SiX" secondAttribute="centerY" id="Myl-zM-fQf"/>
                                                 <constraint firstItem="Upb-Wy-fAr" firstAttribute="leading" secondItem="jP9-Gt-9iJ" secondAttribute="trailing" constant="8" id="NbZ-TP-44j"/>
                                                 <constraint firstItem="hUy-57-SiX" firstAttribute="leading" secondItem="jP9-Gt-9iJ" secondAttribute="leading" id="NmF-U9-vDv"/>
-                                                <constraint firstAttribute="bottom" secondItem="SDG-PA-cjd" secondAttribute="bottom" constant="16" id="Sdm-Ts-Aok"/>
                                                 <constraint firstItem="hUy-57-SiX" firstAttribute="top" secondItem="jP9-Gt-9iJ" secondAttribute="bottom" constant="16" id="XkU-gr-2aK"/>
                                                 <constraint firstItem="RCU-OJ-zHa" firstAttribute="centerY" secondItem="pDh-N7-Flv" secondAttribute="centerY" id="Y5E-k8-agX"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zdp-cc-8Xs" secondAttribute="trailing" constant="16" id="Z2p-6x-Jei"/>
                                                 <constraint firstItem="TsZ-DP-Hd9" firstAttribute="top" secondItem="aQT-7r-8wr" secondAttribute="top" constant="20" id="Zc4-S8-0qS"/>
                                                 <constraint firstItem="TsZ-DP-Hd9" firstAttribute="leading" secondItem="EpP-FT-Hl2" secondAttribute="trailing" constant="8" id="cd6-uw-9iw"/>
                                                 <constraint firstItem="SDG-PA-cjd" firstAttribute="leading" secondItem="jP9-Gt-9iJ" secondAttribute="leading" id="fTP-ut-NEB"/>
+                                                <constraint firstAttribute="trailing" secondItem="bkc-YW-ZSN" secondAttribute="trailing" constant="16" id="hYf-ti-U7q"/>
                                                 <constraint firstItem="Upb-Wy-fAr" firstAttribute="centerY" secondItem="jP9-Gt-9iJ" secondAttribute="centerY" id="hgd-dg-YDW"/>
                                                 <constraint firstItem="SDG-PA-cjd" firstAttribute="top" secondItem="hUy-57-SiX" secondAttribute="bottom" constant="16" id="iAK-0h-Zdu"/>
                                                 <constraint firstItem="jP9-Gt-9iJ" firstAttribute="top" secondItem="IZa-50-1iL" secondAttribute="bottom" constant="8" id="iYv-88-cJH"/>
+                                                <constraint firstItem="bkc-YW-ZSN" firstAttribute="top" secondItem="SDG-PA-cjd" secondAttribute="bottom" constant="16" id="kMR-TD-9nz"/>
                                                 <constraint firstItem="IZa-50-1iL" firstAttribute="top" secondItem="TsZ-DP-Hd9" secondAttribute="bottom" constant="8" id="neD-Pi-HSb"/>
                                                 <constraint firstItem="jP9-Gt-9iJ" firstAttribute="leading" secondItem="TsZ-DP-Hd9" secondAttribute="leading" id="pPY-dY-Pv2"/>
                                                 <constraint firstItem="RCU-OJ-zHa" firstAttribute="leading" secondItem="pDh-N7-Flv" secondAttribute="trailing" constant="16" id="smg-IY-yec"/>
                                                 <constraint firstItem="pDh-N7-Flv" firstAttribute="leading" secondItem="hUy-57-SiX" secondAttribute="trailing" constant="16" id="vOV-EC-Fml"/>
                                                 <constraint firstItem="EpP-FT-Hl2" firstAttribute="top" secondItem="aQT-7r-8wr" secondAttribute="top" constant="20" id="xHI-Qo-bUD"/>
+                                                <constraint firstItem="bkc-YW-ZSN" firstAttribute="leading" secondItem="aQT-7r-8wr" secondAttribute="leading" constant="16" id="ybR-Fg-NXh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1032,7 +1042,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-1q-WOj" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="104" y="68" width="35.5" height="30"/>
+                                        <rect key="frame" x="104" y="68" width="49.5" height="30"/>
                                         <color key="backgroundColor" name="B5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="aoC-Ya-oDv"/>
@@ -1042,7 +1052,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ium-Dg-awL" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="147.5" y="68" width="35.5" height="30"/>
+                                        <rect key="frame" x="161.5" y="68" width="49.5" height="30"/>
                                         <color key="backgroundColor" name="B5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4UU-sy-Wo4"/>
@@ -1052,7 +1062,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfL-bO-2uO" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="191" y="68" width="35.5" height="30"/>
+                                        <rect key="frame" x="219" y="68" width="49.5" height="30"/>
                                         <color key="backgroundColor" name="B5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bEY-gI-Y82"/>
@@ -1113,22 +1123,28 @@
     </scenes>
     <designables>
         <designable name="D5B-1q-WOj">
-            <size key="intrinsicContentSize" width="35.5" height="17"/>
+            <size key="intrinsicContentSize" width="49.5" height="27"/>
+        </designable>
+        <designable name="IZa-50-1iL">
+            <size key="intrinsicContentSize" width="100" height="16"/>
         </designable>
         <designable name="RCU-OJ-zHa">
-            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
+        </designable>
+        <designable name="hLY-SC-ZOB">
+            <size key="intrinsicContentSize" width="90" height="14"/>
         </designable>
         <designable name="hUy-57-SiX">
-            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
         </designable>
         <designable name="ium-Dg-awL">
-            <size key="intrinsicContentSize" width="35.5" height="17"/>
+            <size key="intrinsicContentSize" width="49.5" height="27"/>
         </designable>
         <designable name="jfL-bO-2uO">
-            <size key="intrinsicContentSize" width="35.5" height="17"/>
+            <size key="intrinsicContentSize" width="49.5" height="27"/>
         </designable>
         <designable name="pDh-N7-Flv">
-            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
         </designable>
         <designable name="ueu-lU-MD1">
             <size key="intrinsicContentSize" width="70" height="22"/>
@@ -1181,6 +1197,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

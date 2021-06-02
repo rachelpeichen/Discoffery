@@ -75,7 +75,7 @@ class LandscapeCardCell: UITableViewCell {
 
     recommendItemCollectionView.register(UINib(nibName: "RecommendItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "recommendItemCollectionCell")
 
-    featureCollectionView.register(UINib(nibName: "FeatureCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "featureCollectionCell")
+    featureCollectionView.register(UINib(nibName: FeatureCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: FeatureCollectionViewCell.identifier)
 
     recommendItemCollectionView.delegate = self
 
@@ -114,7 +114,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
     } else {
 
-      if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featureCollectionCell", for: indexPath) as? FeatureCollectionViewCell {
+      if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeatureCollectionViewCell.identifier, for: indexPath) as? FeatureCollectionViewCell {
 
         let feature = featureLayoutArr[indexPath.row]
 

@@ -6,7 +6,7 @@
 //
 
 import Eureka
-import JGProgressHUD
+import PopupDialog
 
 // swiftlint:disable function_body_length
 // swiftlint:disable force_cast
@@ -267,6 +267,8 @@ class AddShopViewController: FormViewController {
 
         // MARK: Get user's input and wrap as my struct type  
         guard let dict = self?.form.values(includeHidden: true) else { return }
+
+        self?.showSuccessDialog(title: "新增成功", message: "好想吃火雞肉飯")
 
         var newShop = self?.parseInputToShop(inputDic: dict)
 

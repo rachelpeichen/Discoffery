@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYP-Wx-IrP" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                        <rect key="frame" x="4" y="4" width="58" height="28"/>
+                        <rect key="frame" x="0.0" y="4" width="54" height="28"/>
                         <color key="backgroundColor" name="B3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="13h-It-hq0"/>
@@ -44,32 +44,27 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Dl-bB-aIa">
-                        <rect key="frame" x="70" y="7" width="22" height="22"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="minus" translatesAutoresizingMaskIntoConstraints="NO" id="Gpg-ZN-nV8">
+                        <rect key="frame" x="62" y="5" width="26" height="26"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="22" id="OML-pq-dMa"/>
-                            <constraint firstAttribute="height" constant="22" id="ceP-5a-CpB"/>
+                            <constraint firstAttribute="height" constant="26" id="e9S-uG-fjH"/>
+                            <constraint firstAttribute="width" constant="26" id="rVF-4C-IHn"/>
                         </constraints>
-                        <state key="normal" image="minus"/>
-                        <connections>
-                            <action selector="onTapRemoveItemBtn:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ude-ig-eSc"/>
-                        </connections>
-                    </button>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="4Dl-bB-aIa" firstAttribute="centerY" secondItem="IYP-Wx-IrP" secondAttribute="centerY" id="Iq7-i7-Hwo"/>
-                <constraint firstAttribute="trailing" secondItem="4Dl-bB-aIa" secondAttribute="trailing" constant="4" id="hCO-Jg-re1"/>
+                <constraint firstItem="Gpg-ZN-nV8" firstAttribute="centerY" secondItem="IYP-Wx-IrP" secondAttribute="centerY" id="66n-jC-nrU"/>
+                <constraint firstAttribute="trailing" secondItem="Gpg-ZN-nV8" secondAttribute="trailing" constant="8" id="dO6-4y-twk"/>
                 <constraint firstAttribute="bottom" secondItem="IYP-Wx-IrP" secondAttribute="bottom" constant="4" id="o2i-EE-P1c"/>
+                <constraint firstItem="Gpg-ZN-nV8" firstAttribute="leading" secondItem="IYP-Wx-IrP" secondAttribute="trailing" constant="8" id="pfR-tc-2lm"/>
                 <constraint firstItem="IYP-Wx-IrP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="qOf-Na-DiU"/>
-                <constraint firstItem="IYP-Wx-IrP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="raS-yP-i0y"/>
-                <constraint firstItem="4Dl-bB-aIa" firstAttribute="leading" secondItem="IYP-Wx-IrP" secondAttribute="trailing" constant="8" id="zju-7c-Edr"/>
+                <constraint firstItem="IYP-Wx-IrP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="raS-yP-i0y"/>
             </constraints>
             <size key="customSize" width="96" height="36"/>
             <connections>
                 <outlet property="addedItemLabel" destination="IYP-Wx-IrP" id="gAe-dQ-DNS"/>
-                <outlet property="removeItemBtn" destination="4Dl-bB-aIa" id="FnF-q2-Owp"/>
             </connections>
             <point key="canvasLocation" x="28.985507246376812" y="72.991071428571431"/>
         </collectionViewCell>
@@ -80,7 +75,7 @@
         </designable>
     </designables>
     <resources>
-        <image name="minus" width="16" height="16"/>
+        <image name="minus" width="32" height="32"/>
         <namedColor name="B3">
             <color red="0.86500000953674316" green="0.74400001764297485" blue="0.66100001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

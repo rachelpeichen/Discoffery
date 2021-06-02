@@ -25,6 +25,8 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   var wrappedRecommendItem = RecommendItem()
 
+  var endEditItem: String?
+
   var inputItemArr: [String] = []
 
   var inputRating: Double?
@@ -62,24 +64,25 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     if let addItem = sender.text {
 
-      inputItemArr.append(addItem)
+      endEditItem = addItem
     }
-    // 刪除就是把array的資料拿掉 按鈕要reload
   }
 
   @IBAction func addItemCollectionCell(_ sender: UIButton) {
 
-    addItemTextField.text = ""
+    if let endEditItem = endEditItem {
 
-    showSuccessAlert()
+      inputItemArr.append(endEditItem)
 
-    collectionView.reloadData()
+      addItemTextField.text = ""
+
+      collectionView.reloadData()
+    }
   }
 
   @IBAction func finishEditingReview(_ sender: UIButton!) {
-
+    
     showSuccessAlert()
-
     // The user can send review only when rating is provided
     guard let inputRating = inputRating else { return }
 
@@ -104,7 +107,15 @@ class WriteReviewCell: ShopDetailBasicCell {
 
         delegate?.sendRecommendItem(inputItem: &wrappedRecommendItem)
       }
+      rateStars.rating = 0
+
+      addItemTextField.text = ""
+
+      commentTextView.text = ""
+
       inputItemArr.removeAll()
+
+      collectionView.reloadData()
     }
   }
 
@@ -140,11 +151,19 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     sendReviewButton.layoutViewWithShadow()
 
+    addItemTextField.clipsToBounds = true
+
+    addItemTextField.layer.cornerRadius = 10
+
+    addItemTextField.layer.borderWidth = 0.5
+
+    addItemTextField.layer.borderColor = UIColor.B5?.cgColor
+
     commentTextView.delegate = self
 
-    commentTextView.layer.borderColor = UIColor.B1?.cgColor
-
     commentTextView.layer.borderWidth = 0.5
+
+    commentTextView.layer.borderColor = UIColor.B5?.cgColor
 
     commentTextView.clipsToBounds = true
 
@@ -157,13 +176,11 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
 
-    hud.textLabel.text = "Success"
+    hud.textLabel.text = "新增評論成功"
 
-    hud.show(in: self, animated: true)
+    hud.show(in: self, animated: true )
 
     hud.dismiss(afterDelay: 2.0)
-
-    commentTextView.text = ""
   }
 }
 
@@ -207,9 +224,7 @@ extension WriteReviewCell: UICollectionViewDelegateFlowLayout {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
 
-      cell.delegate = self
-
-      removeAddedItem(index: indexPath.row)
+      inputItemArr.remove(at: indexPath.row)
 
       collectionView.reloadData()
     }
@@ -218,19 +233,6 @@ extension WriteReviewCell: UICollectionViewDelegateFlowLayout {
 
 extension WriteReviewCell: UICollectionViewDelegate {
 }
-
-// MARK: - AddItemCollectionViewCellDelegate
-extension WriteReviewCell: AddItemCollectionViewCellDelegate {
-
-  func removeAddedItem(index: Int) {
-
-    inputItemArr.remove(at: index)
-
-    collectionView.reloadData()
-  }
-}
-
-
 
 // MARK: - UITextViewDelegate
 extension WriteReviewCell: UITextViewDelegate {
