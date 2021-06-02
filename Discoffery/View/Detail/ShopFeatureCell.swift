@@ -50,6 +50,7 @@ class ShopFeatureCell: ShopDetailBasicCell {
   }
 }
 
+// MARK: - UICollectionViewDataSource
 extension ShopFeatureCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,6 +70,7 @@ extension ShopFeatureCell: UICollectionViewDataSource {
   }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ShopFeatureCell: UICollectionViewDelegateFlowLayout {
 
   // MARK: Resize each cell by their text

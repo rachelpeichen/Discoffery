@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7809E4472661E9EE002DB983 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7809E4462661E9EE002DB983 /* LoginViewController.swift */; };
+		781733BF26678ACF0004C9CB /* AddItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781733BD26678ACF0004C9CB /* AddItemCollectionViewCell.swift */; };
+		781733C026678ACF0004C9CB /* AddItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 781733BE26678ACF0004C9CB /* AddItemCollectionViewCell.xib */; };
 		78182C10265F86A000056E92 /* ImageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C0F265F869F00056E92 /* ImageRow.swift */; };
 		78182C13265F87DB00056E92 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78182C12265F87DB00056E92 /* ImagePickerController.swift */; };
 		781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */; };
@@ -95,6 +97,8 @@
 /* Begin PBXFileReference section */
 		0EE685447FE78E3B98775556 /* Pods-Discoffery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Discoffery.debug.xcconfig"; path = "Target Support Files/Pods-Discoffery/Pods-Discoffery.debug.xcconfig"; sourceTree = "<group>"; };
 		7809E4462661E9EE002DB983 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		781733BD26678ACF0004C9CB /* AddItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		781733BE26678ACF0004C9CB /* AddItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddItemCollectionViewCell.xib; sourceTree = "<group>"; };
 		78182C0F265F869F00056E92 /* ImageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRow.swift; sourceTree = "<group>"; };
 		78182C12265F87DB00056E92 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		781CD7E12662BFD8005076CD /* RecommendItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +200,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		781733C226678AEE0004C9CB /* Write Review */ = {
+			isa = PBXGroup;
+			children = (
+				78DF25362652625200F47A04 /* WriteReviewCell.swift */,
+				78DF25372652625200F47A04 /* WriteReviewCell.xib */,
+				781733BD26678ACF0004C9CB /* AddItemCollectionViewCell.swift */,
+				781733BE26678ACF0004C9CB /* AddItemCollectionViewCell.xib */,
+			);
+			path = "Write Review";
+			sourceTree = "<group>";
+		};
+		781733C326678B1A0004C9CB /* All Reviews Page */ = {
+			isa = PBXGroup;
+			children = (
+				78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */,
+			);
+			path = "All Reviews Page";
+			sourceTree = "<group>";
+		};
 		78182BFD265E473200056E92 /* CustomNativeUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,18 +462,17 @@
 		78DF251A265251B600F47A04 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				781733C326678B1A0004C9CB /* All Reviews Page */,
+				781733C226678AEE0004C9CB /* Write Review */,
 				78DF251326524AD100F47A04 /* CoffeeShopContentCategory.swift */,
 				78DF251B265251E100F47A04 /* ShopDescriptionCell.swift */,
 				78DF25412652670900F47A04 /* ShopRouteCell.xib */,
 				78DF251C265251E100F47A04 /* ShopDescriptionCell.xib */,
 				78DF2521265251FE00F47A04 /* ShopFeatureCell.swift */,
 				78DF2522265251FE00F47A04 /* ShopFeatureCell.xib */,
-				78DF25362652625200F47A04 /* WriteReviewCell.swift */,
-				78DF25372652625200F47A04 /* WriteReviewCell.xib */,
 				78DF25402652670900F47A04 /* ShopRouteCell.swift */,
 				7839C949265295D30048B5F5 /* ShopImagesCell.swift */,
 				7839C94A265295D30048B5F5 /* ShopImagesCell.xib */,
-				78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */,
 				78DF25452652717000F47A04 /* ShopImagesCollectionViewCell.swift */,
 				78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */,
 			);
@@ -592,6 +614,7 @@
 				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
 				78FA72E5264BFCA300DF4190 /* Main.storyboard in Resources */,
 				78B2FD28265A8EA9005C9D1D /* GoogleService-Info.plist in Resources */,
+				781733C026678ACF0004C9CB /* AddItemCollectionViewCell.xib in Resources */,
 				7839C9652652D42C0048B5F5 /* CollectionCell.xib in Resources */,
 				78DF24F926520D9500F47A04 /* Profile.storyboard in Resources */,
 			);
@@ -673,6 +696,7 @@
 				7879ECCB265C12AE00BEAA73 /* CollectionViewFlowLayout.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,
+				781733BF26678ACF0004C9CB /* AddItemCollectionViewCell.swift in Sources */,
 				78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */,
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */,

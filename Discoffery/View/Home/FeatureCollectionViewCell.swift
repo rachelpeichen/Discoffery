@@ -22,5 +22,4 @@ class FeatureCollectionViewCell: UICollectionViewCell {
 
     featureBtn.setTitle(from, for: .normal)
   }
-
 }

@@ -11,15 +11,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="writeReviewCell" rowHeight="508" id="KGk-i7-Jjw" customClass="WriteReviewCell" customModule="Discoffery" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="writeReviewCell" rowHeight="525" id="KGk-i7-Jjw" customClass="WriteReviewCell" customModule="Discoffery" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="508"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="評分（必填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdI-UO-rG4">
-                        <rect key="frame" x="16" y="57.5" width="98" height="23"/>
+                        <rect key="frame" x="16" y="74.5" width="98" height="23"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="Rtb-0D-jyh"/>
                         </constraints>
@@ -27,8 +27,8 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xRy-eZ-0fb" customClass="CosmosView" customModule="Cosmos">
-                        <rect key="frame" x="114" y="60" width="110" height="18"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRy-eZ-0fb" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="114" y="77" width="110" height="18"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="275-U0-KVy"/>
@@ -55,7 +55,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="評價內容（選填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B45-jg-yYO">
-                        <rect key="frame" x="16" y="96.5" width="131" height="20"/>
+                        <rect key="frame" x="16" y="269.5" width="131" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="bjK-fI-f5v"/>
                         </constraints>
@@ -63,14 +63,8 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-5c-4EP">
-                        <rect key="frame" x="16" y="121" width="288" height="56"/>
-                        <color key="textColor" name="G1"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFV-ad-fza">
-                        <rect key="frame" x="16" y="416" width="135" height="20"/>
+                        <rect key="frame" x="16" y="433" width="135" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ehH-Vf-4wo"/>
                         </constraints>
@@ -81,7 +75,7 @@
                         </state>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推薦品項（選填）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJb-UY-tzX">
-                        <rect key="frame" x="16" y="184" width="131" height="18"/>
+                        <rect key="frame" x="16" y="113.5" width="131" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="oop-pl-0Tq"/>
                         </constraints>
@@ -89,29 +83,8 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24N-N3-jq5">
-                        <rect key="frame" x="16" y="218" width="122" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="1jB-28-uC5"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                        <color key="tintColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <state key="normal" title=" 新增推薦品項" image="plus.circle" catalog="system">
-                            <color key="titleColor" name="G1"/>
-                        </state>
-                    </button>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="CqQ-OR-Oia">
-                        <rect key="frame" x="16" y="254" width="288" height="146"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cyE-Yp-f1G">
-                            <size key="itemSize" width="128" height="128"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTJ-Dj-x8E" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
-                        <rect key="frame" x="16" y="452" width="120" height="40"/>
+                        <rect key="frame" x="16" y="469" width="120" height="40"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Ebl-iD-5Ia"/>
@@ -165,59 +138,119 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我要評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMz-Jv-TKd">
-                        <rect key="frame" x="44" y="16" width="73.5" height="21.5"/>
+                        <rect key="frame" x="44" y="16" width="75" height="38.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                         <color key="textColor" name="G1"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-5c-4EP">
+                        <rect key="frame" x="16" y="305.5" width="288" height="111.5"/>
+                        <color key="textColor" name="G1"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xGy-WW-HBZ">
+                        <rect key="frame" x="16" y="195.5" width="288" height="58"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="58" id="ztB-ta-kem"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fap-tp-wrt">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="品項名稱" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="S2i-sc-D5T">
+                        <rect key="frame" x="16" y="147.5" width="93.5" height="32"/>
+                        <color key="tintColor" name="G1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="tGZ-wB-8Cy"/>
+                        </constraints>
+                        <color key="textColor" name="G1"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="didEndAddItemText:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="Tjz-ep-ZQQ"/>
+                        </connections>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24N-N3-jq5">
+                        <rect key="frame" x="117.5" y="153.5" width="122" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="1jB-28-uC5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <color key="tintColor" name="B2"/>
+                        <state key="normal" title=" 新增推薦品項" image="plus.circle.fill" catalog="system">
+                            <color key="titleColor" name="B1"/>
+                        </state>
+                        <connections>
+                            <action selector="addItemCollectionCell:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HUp-Lp-NHE"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="zTJ-Dj-x8E" secondAttribute="bottom" constant="16" id="1LE-2a-e7g"/>
+                    <constraint firstItem="24N-N3-jq5" firstAttribute="leading" secondItem="S2i-sc-D5T" secondAttribute="trailing" constant="8" id="5BH-FY-dwc"/>
                     <constraint firstItem="EJb-UY-tzX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5hD-R1-twv"/>
+                    <constraint firstItem="S2i-sc-D5T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="76i-AM-dGc"/>
+                    <constraint firstAttribute="trailing" secondItem="8Kk-5c-4EP" secondAttribute="trailing" constant="16" id="7TO-an-GHR"/>
                     <constraint firstItem="KMz-Jv-TKd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="8VN-NM-b7G"/>
-                    <constraint firstItem="EJb-UY-tzX" firstAttribute="top" secondItem="8Kk-5c-4EP" secondAttribute="bottom" constant="16" id="CX7-2A-BFh"/>
+                    <constraint firstItem="xGy-WW-HBZ" firstAttribute="top" secondItem="S2i-sc-D5T" secondAttribute="bottom" constant="16" id="BEq-qF-Gfr"/>
+                    <constraint firstItem="8Kk-5c-4EP" firstAttribute="top" secondItem="B45-jg-yYO" secondAttribute="bottom" constant="16" id="Cce-1f-7a2"/>
                     <constraint firstItem="oTR-2u-Z7Q" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Dv4-31-FLN"/>
-                    <constraint firstItem="CqQ-OR-Oia" firstAttribute="top" secondItem="24N-N3-jq5" secondAttribute="bottom" constant="16" id="E8F-9n-J9e"/>
                     <constraint firstItem="zTJ-Dj-x8E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="GWP-P2-8lM"/>
+                    <constraint firstItem="B45-jg-yYO" firstAttribute="top" secondItem="xGy-WW-HBZ" secondAttribute="bottom" constant="16" id="HOe-Rn-WVP"/>
                     <constraint firstItem="xRy-eZ-0fb" firstAttribute="leading" secondItem="hdI-UO-rG4" secondAttribute="trailing" id="I4j-JW-3Wz"/>
                     <constraint firstItem="zTJ-Dj-x8E" firstAttribute="top" secondItem="EFV-ad-fza" secondAttribute="bottom" constant="16" id="I8f-HA-XeN"/>
+                    <constraint firstItem="8Kk-5c-4EP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ISY-Q6-TCA"/>
                     <constraint firstItem="hdI-UO-rG4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JlE-uO-wqu"/>
                     <constraint firstItem="xRy-eZ-0fb" firstAttribute="centerY" secondItem="hdI-UO-rG4" secondAttribute="centerY" id="O2q-E5-szX"/>
-                    <constraint firstItem="24N-N3-jq5" firstAttribute="top" secondItem="EJb-UY-tzX" secondAttribute="bottom" constant="16" id="PoS-xJ-x3C"/>
-                    <constraint firstItem="24N-N3-jq5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XEH-iY-AR7"/>
+                    <constraint firstItem="B45-jg-yYO" firstAttribute="centerX" secondItem="KMz-Jv-TKd" secondAttribute="centerX" id="OPR-a8-1ai"/>
+                    <constraint firstItem="xGy-WW-HBZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Qyp-Ub-Zoq"/>
+                    <constraint firstAttribute="trailing" secondItem="xGy-WW-HBZ" secondAttribute="trailing" constant="16" id="Ymc-N4-8Gi"/>
                     <constraint firstItem="EFV-ad-fza" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="eRl-gO-0DN"/>
-                    <constraint firstItem="8Kk-5c-4EP" firstAttribute="top" secondItem="B45-jg-yYO" secondAttribute="bottom" constant="16" id="fZm-Aj-Goq"/>
-                    <constraint firstItem="CqQ-OR-Oia" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ici-0M-TOa"/>
-                    <constraint firstItem="B45-jg-yYO" firstAttribute="top" secondItem="hdI-UO-rG4" secondAttribute="bottom" constant="16" id="kN8-LU-eYa"/>
+                    <constraint firstItem="EJb-UY-tzX" firstAttribute="top" secondItem="hdI-UO-rG4" secondAttribute="bottom" constant="16" id="fda-Hh-jLe"/>
+                    <constraint firstItem="B45-jg-yYO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="iww-Td-Ifv"/>
+                    <constraint firstItem="EFV-ad-fza" firstAttribute="top" secondItem="8Kk-5c-4EP" secondAttribute="bottom" constant="16" id="lxs-dA-Ypa"/>
                     <constraint firstItem="KMz-Jv-TKd" firstAttribute="leading" secondItem="oTR-2u-Z7Q" secondAttribute="trailing" constant="8" id="mgT-Qh-ma5"/>
                     <constraint firstAttribute="bottom" secondItem="KMz-Jv-TKd" secondAttribute="bottom" constant="470.5" id="mvC-Qq-ouX"/>
-                    <constraint firstAttribute="trailing" secondItem="CqQ-OR-Oia" secondAttribute="trailing" constant="16" id="qnh-ek-gcw"/>
-                    <constraint firstItem="8Kk-5c-4EP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="rSk-AY-wn2"/>
+                    <constraint firstItem="24N-N3-jq5" firstAttribute="centerY" secondItem="S2i-sc-D5T" secondAttribute="centerY" id="vlT-T9-cF0"/>
+                    <constraint firstItem="S2i-sc-D5T" firstAttribute="top" secondItem="EJb-UY-tzX" secondAttribute="bottom" constant="16" id="x9i-RY-KIJ"/>
                     <constraint firstItem="hdI-UO-rG4" firstAttribute="top" secondItem="KMz-Jv-TKd" secondAttribute="bottom" constant="20" id="xD1-7z-Gvb"/>
-                    <constraint firstAttribute="trailing" secondItem="8Kk-5c-4EP" secondAttribute="trailing" constant="16" id="xee-47-5Em"/>
                     <constraint firstItem="oTR-2u-Z7Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="yPN-ki-9Xm"/>
-                    <constraint firstItem="EFV-ad-fza" firstAttribute="top" secondItem="CqQ-OR-Oia" secondAttribute="bottom" constant="16" id="z8x-9k-k3k"/>
-                    <constraint firstItem="B45-jg-yYO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="zNx-a6-nGf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addItemTextField" destination="S2i-sc-D5T" id="5XU-TV-DaB"/>
+                <outlet property="collectionView" destination="xGy-WW-HBZ" id="52J-q0-t1k"/>
                 <outlet property="commentTextView" destination="8Kk-5c-4EP" id="uqD-0Q-owM"/>
                 <outlet property="rateStars" destination="xRy-eZ-0fb" id="hEq-z4-2Lu"/>
                 <outlet property="sendReviewButton" destination="zTJ-Dj-x8E" id="3XV-oR-O6J"/>
             </connections>
-            <point key="canvasLocation" x="31.884057971014496" y="184.82142857142856"/>
+            <point key="canvasLocation" x="31.884057971014496" y="189.84375"/>
         </tableViewCell>
     </objects>
     <designables>
+        <designable name="xRy-eZ-0fb">
+            <size key="intrinsicContentSize" width="110" height="18"/>
+        </designable>
         <designable name="zTJ-Dj-x8E">
             <size key="intrinsicContentSize" width="66" height="32"/>
         </designable>
     </designables>
     <resources>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="write" width="32" height="32"/>
+        <namedColor name="B1">
+            <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="B2">
+            <color red="0.79500001668930054" green="0.59899997711181641" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
