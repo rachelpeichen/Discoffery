@@ -70,7 +70,7 @@ class SelectedShopViewController: UIViewController {
 
     imageView.layer.cornerRadius = 10
 
-    backgroundView.addShadow()
+    backgroundView.layoutViewWithShadow()
 
     if let selectedShop = selectedShop {
 

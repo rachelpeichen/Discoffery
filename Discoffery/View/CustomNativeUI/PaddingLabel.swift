@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: No shadow effect is preferable.
 @IBDesignable class PaddingLabel: UILabel {
 
   @IBInspectable var topInset: CGFloat = 5.0
@@ -25,8 +26,7 @@ import UIKit
       top: topInset,
       left: leftInset,
       bottom: bottomInset,
-      right: rightInset
-    )
+      right: rightInset)
 
     super.drawText(in: rect.inset(by: insets))
   }
@@ -37,8 +37,7 @@ import UIKit
 
     return CGSize(
       width: size.width + leftInset + rightInset,
-      height: size.height + topInset + bottomInset
-    )
+      height: size.height + topInset + bottomInset)
   }
 
   override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines num:Int) -> CGRect {

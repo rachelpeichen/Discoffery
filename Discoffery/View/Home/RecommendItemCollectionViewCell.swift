@@ -15,7 +15,7 @@ class RecommendItemCollectionViewCell: UICollectionViewCell {
     super.awakeFromNib()
     // Initialization code
 
-    itemBtn.addShadow()
+    itemBtn.layoutViewWithShadow()
   }
 
   func layoutRecommendItemCollectionViewCell(from: String) {

@@ -19,7 +19,7 @@ class KeywordsCollectionViewCell: UICollectionViewCell {
     super.awakeFromNib()
 
     // Initialization code
-    keywordBtn.addShadow()
+    keywordBtn.layoutViewWithShadow()
 
   }
 

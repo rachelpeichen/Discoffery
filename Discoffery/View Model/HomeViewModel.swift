@@ -19,7 +19,7 @@ class HomeViewModel {
   // MARK: - Properties
   weak var delegate: HomeViewModelDelegate?
 
-  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)? //Only HomeMapVC use this
+  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)? // Only HomeMapVC use this
   
   var getShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
 
@@ -32,8 +32,8 @@ class HomeViewModel {
       getShopsData?(shopsData)
     }
   }
-  // MARK: LINE 35 -54在亂寫？ＱＡＱ
-  var distanceBetweenUserAndShop: Double?
+
+//  var distanceBetweenUserAndShop: Double?
 
   var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this
 

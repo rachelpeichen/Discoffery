@@ -50,7 +50,7 @@ class LandscapeCardCell: UITableViewCell {
   // MARK: - Functions
   func layoutLandscapeCardCell() {
 
-    layoutImageView(for: cafeMainImage, with: imageContainerView)
+    layoutImageViewWithShadow(for: cafeMainImage, with: imageContainerView)
   }
 
   func configureFeature(with featureArr: [String]) {

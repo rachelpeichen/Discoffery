@@ -18,7 +18,7 @@ class HomeListViewController: UIViewController {
   
   var shopsDataForList: [CoffeeShop] = []
 
-  var featureDic: [String: [Feature]] = [:] // Use shop.id as key
+  var featureDic: [String: [Feature]] = [:] // Use shop.id as key to find [Feature] belongs to which shop
 
   var recommendItemsDic: [String: [RecommendItem]] = [:]
 
@@ -33,7 +33,7 @@ class HomeListViewController: UIViewController {
     // Do any additional setup after loading the view.
     setupTableView()
     
-    // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！
+    // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！ LocationManager也是 所以直接去拿HomeViewModel的屬性
     homeViewModel?.getShopsData = { [weak self] shopsData in
 
       self?.shopsDataForList = shopsData
@@ -60,13 +60,14 @@ class HomeListViewController: UIViewController {
          }
         }
       }
-      self?.shopsDataForList.sort(by: { $0.cheap < $1.cheap })
+      self?.shopsDataForList.sort { $0.cheap < $1.cheap }
     }
   }
 
   // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+    // MARK: 處理驚嘆號
     let selectedRow = sender as? Int
 
     let selectedShop = shopsDataForList[selectedRow!]

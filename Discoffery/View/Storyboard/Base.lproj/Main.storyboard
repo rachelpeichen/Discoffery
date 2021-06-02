@@ -481,20 +481,52 @@
                                     <segue destination="Yv2-YH-AbN" kind="embed" identifier="selectedShopVC" id="Fft-kU-TFQ"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ueu-lU-MD1" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
+                                <rect key="frame" x="358" y="16" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Dkn-gZ-njb"/>
+                                    <constraint firstAttribute="width" constant="40" id="gpn-px-oGX"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="compass"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageLeftPadding">
+                                        <real key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageRightPadding">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageTopPadding">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="imageBottomPadding">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapCenterLocationBtn:" destination="5WJ-1z-I7g" eventType="touchUpInside" id="DYu-nY-mpT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s8g-Us-ssZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="s8g-Us-ssZ" firstAttribute="trailing" secondItem="ueu-lU-MD1" secondAttribute="trailing" constant="16" id="2Iu-pn-K8v"/>
                             <constraint firstItem="8Qp-fH-w7f" firstAttribute="trailing" secondItem="s8g-Us-ssZ" secondAttribute="trailing" id="BMK-sf-M8H"/>
                             <constraint firstItem="vIW-W3-sXA" firstAttribute="leading" secondItem="GYW-JY-pWB" secondAttribute="leading" id="ELZ-8h-ShN"/>
                             <constraint firstAttribute="trailing" secondItem="vIW-W3-sXA" secondAttribute="trailing" id="ORM-kX-KXa"/>
                             <constraint firstItem="vIW-W3-sXA" firstAttribute="top" secondItem="GYW-JY-pWB" secondAttribute="top" id="hkr-ub-UFM"/>
+                            <constraint firstItem="ueu-lU-MD1" firstAttribute="top" secondItem="GYW-JY-pWB" secondAttribute="top" constant="16" id="kIf-LE-m6P"/>
                             <constraint firstItem="8Qp-fH-w7f" firstAttribute="leading" secondItem="s8g-Us-ssZ" secondAttribute="leading" id="lqO-wG-Mmd"/>
                             <constraint firstAttribute="bottom" secondItem="vIW-W3-sXA" secondAttribute="bottom" id="lxA-2L-A9n"/>
-                            <constraint firstItem="8Qp-fH-w7f" firstAttribute="bottom" secondItem="s8g-Us-ssZ" secondAttribute="bottom" id="yT9-YR-3gn"/>
+                            <constraint firstItem="8Qp-fH-w7f" firstAttribute="bottom" secondItem="vIW-W3-sXA" secondAttribute="bottom" id="puE-fh-Caq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="centerLocationBtn" destination="ueu-lU-MD1" id="YWO-Rb-rsb"/>
                         <outlet property="mapView" destination="vIW-W3-sXA" id="mV2-0Q-cAX"/>
                         <outlet property="selecetedShopContainerView" destination="8Qp-fH-w7f" id="gp6-J5-jYo"/>
                         <segue destination="ZyS-FM-3Fj" kind="showDetail" identifier="navigateSelectedShopVCToDetailVC" id="eZZ-T9-njY"/>
@@ -502,7 +534,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVC-5k-mb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272" y="977"/>
+            <point key="canvasLocation" x="1271.0144927536232" y="976.67410714285711"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Kyn-8Z-Dgb">
@@ -1104,6 +1136,9 @@
         <designable name="pDh-N7-Flv">
             <size key="intrinsicContentSize" width="53.5" height="29.5"/>
         </designable>
+        <designable name="ueu-lU-MD1">
+            <size key="intrinsicContentSize" width="70" height="22"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="eZZ-T9-njY"/>
@@ -1111,6 +1146,7 @@
     <resources>
         <image name="back" width="256" height="256"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="compass" width="16" height="16"/>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="heart" catalog="system" width="128" height="109"/>

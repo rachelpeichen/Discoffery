@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
 
-  func layoutImageView(for imageView: UIImageView, with containerView: UIView) {
+  func layoutImageViewWithShadow(for imageView: UIImageView, with containerView: UIView) {
 
     imageView.clipsToBounds = true
 
@@ -24,7 +24,7 @@ extension UIView {
     containerView.layer.shadowOffset = CGSize(width: 0, height: 3)
   }
 
-  func addShadow() {
+  func layoutViewWithShadow() {
 
     clipsToBounds = true
 
@@ -40,7 +40,6 @@ extension UIView {
 
     layer.shadowOpacity = 0.5
   }
-
 }
 
 extension UITextView {

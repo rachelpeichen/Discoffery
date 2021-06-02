@@ -15,7 +15,7 @@ class FeatureCollectionViewCell: UICollectionViewCell {
     super.awakeFromNib()
     // Initialization code
 
-    featureBtn.addShadow()
+    featureBtn.layoutViewWithShadow()
   }
 
   func layoutFeatureCollectionViewCell(from: String) {

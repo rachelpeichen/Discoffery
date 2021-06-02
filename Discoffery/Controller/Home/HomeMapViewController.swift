@@ -15,6 +15,16 @@ class HomeMapViewController: UIViewController {
   
   @IBOutlet weak var selecetedShopContainerView: UIView!
 
+  @IBOutlet weak var centerLocationBtn: CustomBtn!
+
+  @IBAction func onTapCenterLocationBtn(_ sender: Any) {
+
+    if let coordinate = self.homeViewModel?.userCurrentCoordinate {
+
+      mapView.setCenter(coordinate, animated: true)
+    }
+  }
+  
   // MARK: - Properties
   var homeViewModel: HomeViewModel?
   
@@ -65,18 +75,18 @@ class HomeMapViewController: UIViewController {
 
           if let coordinate = self?.homeViewModel?.userCurrentCoordinate {
 
-           if let distance = self?.calDistanceBetweenTwoLocations(
+            if let distance = self?.calDistanceBetweenTwoLocations(
 
-              location1Lat: coordinate.latitude,
+                location1Lat: coordinate.latitude,
 
-              location1Lon: coordinate.longitude,
+                location1Lon: coordinate.longitude,
 
-              location2Lat: shopsData[index].latitude,
+                location2Lat: shopsData[index].latitude,
 
-              location2Lon: shopsData[index].longitude) {
+                location2Lon: shopsData[index].longitude) {
 
-            self?.shopsDataForMap[index].cheap = distance
-           }
+              self?.shopsDataForMap[index].cheap = distance
+            }
           }
         }
       }
@@ -150,7 +160,6 @@ class HomeMapViewController: UIViewController {
         print("fetchFeatureForShop: \(error)")
       }
     }
-
   }
 
   func calDistanceBetweenTwoLocations(location1Lat: Double, location1Lon: Double, location2Lat: Double, location2Lon: Double) -> Double {
@@ -184,7 +193,6 @@ class HomeMapViewController: UIViewController {
 
     return distance
   }
-
 }
 
 // MARK: - CLLocationManagerDelegate
@@ -215,11 +223,6 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     case .authorizedAlways, .authorizedWhenInUse:
       
       print("Location authorization is confirmed.")
-
-//      LocationManager.shared.onCurrentCoordinate = { coordinate in
-//
-//        self.userCurrentCoordinate = coordinate
-//      }
 
       homeViewModel?.getShopAroundUser()
       
@@ -273,53 +276,47 @@ extension HomeMapViewController: MKMapViewDelegate {
       }
     }
 
-    for shop in shopsDataForMap {
+    for shop in shopsDataForMap where shop.name == selectedAnnotation?.title {
 
-      if shop.name == selectedAnnotation?.title {
+      if let selectedShopRecommendItem = recommendItemsDic[shop.id] {
 
-        let selectedShopRecommendItem = recommendItemsDic[shop.id]
+        if let selectedsShopFeature = featureDic[shop.id] {
 
-        let selectedsShopFeature = featureDic[shop.id]
+          selectedShopVC?.setUpSelectedShopVC(
+            shop: shop,
+            feature: selectedsShopFeature[0],
+            recommendItem: selectedShopRecommendItem)
 
-        selectedShopVC?.setUpSelectedShopVC(
-          shop: shop,
-
-          feature: selectedsShopFeature![0],
-
-          recommendItem: selectedShopRecommendItem!
-        )
-
-        selecetedShopContainerView.isHidden = false
+          selecetedShopContainerView.isHidden = false
+        }
       }
     }
   }
-  
+
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-    
+
     let identifier = "MyMarker"
-    
+
     if annotation.isKind(of: MKUserLocation.self) { return nil }
-    
+
     var annotationView: MKMarkerAnnotationView? =
       mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
-    
+
     if annotationView == nil {
       annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
     }
-    
-    annotationView?.markerTintColor = UIColor.init(named: "B1")
-    
+
+    annotationView?.markerTintColor = .B2
+
     return annotationView
   }
 }
 
-// MARK: - HomeMapViewModelDelegate
-
+// MARK: - SelectedShopViewControllerDelegate
 extension HomeMapViewController: SelectedShopViewControllerDelegate {
 
   func didTouchSelectedVC(_ sender: Any) {
     
     performSegue(withIdentifier: "navigateSelectedShopVCToDetailVC", sender: sender)
   }
-
 }

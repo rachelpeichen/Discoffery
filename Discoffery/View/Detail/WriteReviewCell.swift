@@ -108,9 +108,9 @@ class WriteReviewCell: ShopDetailBasicCell {
     // Initialization code
     sendReviewButton.isEnabled = false
 
-    sendReviewButton.addShadow()
+    sendReviewButton.layoutViewWithShadow()
 
-    reviewComment.addShadow()
+    reviewComment.layoutViewWithShadow()
 
     recommendItem2.isHidden = true
   }
