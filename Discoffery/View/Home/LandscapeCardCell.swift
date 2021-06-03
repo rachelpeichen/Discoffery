@@ -93,10 +93,10 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
     if collectionView == self.recommendItemCollectionView {
 
-      return itemLayoutArr.count
+      return 2
     }
 
-    return featureLayoutArr.count
+    return 3
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

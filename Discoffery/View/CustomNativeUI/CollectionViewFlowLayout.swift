@@ -19,7 +19,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
 
   var tempCellAttributesArray = [UICollectionViewLayoutAttributes]()
 
-  let leftEdgeInset: CGFloat = 30
+  let leftEdgeInset: CGFloat = 16
 
   override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 
@@ -34,7 +34,7 @@ class CollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         let currentLayoutAttributes: UICollectionViewLayoutAttributes = cellAttributesArray![i]
 
-        let maximumSpacing: CGFloat = 8
+        let maximumSpacing: CGFloat = 4
 
         let prevCellMaxX: CGFloat = prevLayoutAttributes.frame.maxX
 

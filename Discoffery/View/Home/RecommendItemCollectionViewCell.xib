@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6DL-Jt-z8U">
-                        <rect key="frame" x="16" y="8" width="220" height="56"/>
+                        <rect key="frame" x="16" y="8" width="214" height="56"/>
                         <color key="backgroundColor" name="B5"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" name="G1"/>
@@ -31,7 +31,7 @@
                 <constraint firstItem="6DL-Jt-z8U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="3vi-ip-3W7"/>
                 <constraint firstItem="6DL-Jt-z8U" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="6rd-CU-rwL"/>
                 <constraint firstAttribute="bottom" secondItem="6DL-Jt-z8U" secondAttribute="bottom" constant="8" id="BGV-oe-FE8"/>
-                <constraint firstAttribute="trailing" secondItem="6DL-Jt-z8U" secondAttribute="trailing" constant="2" id="oah-ED-5eG"/>
+                <constraint firstAttribute="trailing" secondItem="6DL-Jt-z8U" secondAttribute="trailing" constant="8" id="oah-ED-5eG"/>
             </constraints>
             <size key="customSize" width="238" height="72"/>
             <connections>

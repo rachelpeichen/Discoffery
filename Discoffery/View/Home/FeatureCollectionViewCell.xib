@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyb-Tb-A5R">
-                        <rect key="frame" x="16" y="8" width="231" height="55"/>
+                        <rect key="frame" x="16" y="8" width="225" height="55"/>
                         <color key="backgroundColor" name="B5"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" name="G1"/>
@@ -28,10 +28,10 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="tyb-Tb-A5R" secondAttribute="trailing" constant="2" id="lz1-Tl-NlP"/>
-                <constraint firstItem="tyb-Tb-A5R" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="sq7-Nq-fML"/>
-                <constraint firstItem="tyb-Tb-A5R" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="vdb-Qr-Aj6"/>
-                <constraint firstAttribute="bottom" secondItem="tyb-Tb-A5R" secondAttribute="bottom" constant="8" id="xnD-aa-a5d"/>
+                <constraint firstAttribute="bottom" secondItem="tyb-Tb-A5R" secondAttribute="bottom" constant="8" id="Kt1-W7-CdF"/>
+                <constraint firstItem="tyb-Tb-A5R" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="VrS-Qr-RFm"/>
+                <constraint firstAttribute="trailing" secondItem="tyb-Tb-A5R" secondAttribute="trailing" constant="8" id="aUY-ji-Ff7"/>
+                <constraint firstItem="tyb-Tb-A5R" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="u8a-ff-ezF"/>
             </constraints>
             <size key="customSize" width="447" height="224"/>
             <connections>
