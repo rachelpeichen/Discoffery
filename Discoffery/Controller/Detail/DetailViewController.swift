@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PopupDialog
 
 class DetailViewController: UIViewController {
 
@@ -49,6 +50,8 @@ class DetailViewController: UIViewController {
 
   private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
+  let imagePicker = ImagePicker()
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -60,6 +63,8 @@ class DetailViewController: UIViewController {
 
       fetchReviewsForShop(shop: shop)
     }
+
+    imagePicker.imagePicker.delegate = self
   }
 
   // MARK: Functions
@@ -183,37 +188,24 @@ extension DetailViewController: UITableViewDataSource {
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
 
-        var itemsArr: [String] = []
+        var featureArr: [String] = []
 
-        itemsArr.append(contentsOf: recommendItemsArr.map { $0.item })
+        featureArr.append(contentsOf: recommendItemsArr.map { $0.item })
 
-        itemsArr.append(self.feature.special[0])
+        featureArr.append(self.feature.special[0])
 
-        itemsArr.append(self.feature.special[1])
+        featureArr.append(self.feature.special[1])
 
-        itemsArr.append(self.feature.timeLimit)
+        featureArr.append(self.feature.timeLimit)
 
-        itemsArr.append(self.feature.socket)
+        featureArr.append(self.feature.socket)
 
-        cell.configure(with: itemsArr)
+        cell.configure(with: featureArr)
 
         cell.selectionStyle = .none
 
         return cell
       }
-
-//    case 3:
-//
-//      if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
-//
-//        let featureArr = [self.feature.special[0], self.feature.special[1], self.feature.timeLimit]
-//
-//        cell.configure(with: featureArr)
-//
-//        cell.selectionStyle = .none
-//
-//        return cell
-//      }
 
     case 3:
       // TODO: 地圖
@@ -284,5 +276,40 @@ extension DetailViewController: WriteReviewCellDelegate {
 
     addViewModel.checkIfRecommendItemExist(shop: shop, item: localInputItem)
   }
+
+  func uploadImageBtnDidSelect() {
+
+    present(imagePicker, animated: true) {
+
+      self.imagePicker.showUploadImageMenu()
+    }
+  }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension DetailViewController: UIImagePickerControllerDelegate {
+
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+    // get uploaded photo
+    if let image = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage {
+
+      self.addViewModel.uploadImageFromUserReview(with: image)
+
+      // MARK: SHOW 成功po 照片 這裡還很醜不順
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          // code to execute after 1 second
+        self.dismiss(animated: true, completion: nil)
+
+        self.showSuccessDialog(title: "上傳照片成功", message: "好想吃火雞肉飯")
+
+        self.showAlert()
+      }
+    }
+  }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension DetailViewController: UINavigationControllerDelegate {
 
 }

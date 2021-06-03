@@ -7,7 +7,6 @@
 
 import UIKit
 
-// MARK: No shadow effect is preferable.
 @IBDesignable class PaddingLabel: UILabel {
 
   @IBInspectable var topInset: CGFloat = 5.0

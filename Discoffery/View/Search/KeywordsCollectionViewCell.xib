@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SM-he-xLe">
-                        <rect key="frame" x="0.0" y="8" width="238" height="75"/>
+                        <rect key="frame" x="16" y="8" width="214" height="75"/>
                         <color key="backgroundColor" name="B5"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" name="G1"/>
@@ -31,9 +31,9 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="2SM-he-xLe" secondAttribute="trailing" constant="8" id="JSO-bU-fkX"/>
+                <constraint firstItem="2SM-he-xLe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="M4F-Ft-JIs"/>
                 <constraint firstItem="2SM-he-xLe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="S38-aX-m6A"/>
-                <constraint firstItem="2SM-he-xLe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="auZ-bL-CbJ"/>
-                <constraint firstAttribute="trailing" secondItem="2SM-he-xLe" secondAttribute="trailing" id="eyx-JG-1kk"/>
                 <constraint firstAttribute="bottom" secondItem="2SM-he-xLe" secondAttribute="bottom" constant="8" id="uz5-KM-sLx"/>
             </constraints>
             <size key="customSize" width="238" height="91"/>

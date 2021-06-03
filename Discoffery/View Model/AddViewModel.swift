@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import UIKit
 
 class AddViewModel {
 
   var onFetchNewShop: ((String) -> Void)?
+
+  var onUploadImage: ((String) -> Void)?
 
   // MARK: - Functions
   func fetchNewShop(name: String) {
@@ -20,7 +23,7 @@ class AddViewModel {
 
       case .success(let newShop):
 
-        self.onFetchNewShop!(newShop.id)
+        self.onFetchNewShop?(newShop.id)
 
         print("🥴fetchNewShop Success")
 
@@ -119,7 +122,24 @@ class AddViewModel {
         print("publishUserReview.failure: \(error)")
       }
     }
+  }
 
+  func uploadImageFromUserReview(with image: UIImage) {
+
+    ReviewManager.shared.uploadImageFromUserReview(pickerImage: image) { result in
+      switch result {
+
+      case .success(let imageURL):
+
+        self.onUploadImage?(imageURL)
+
+        print("Upload 🥴 ImageFromUserReview To Firebase Success" + imageURL)
+
+      case .failure(let error):
+
+        print("publishRecommendItem: \(error)")
+      }
+    }
   }
 
   func publishRecommendItem(shop: CoffeeShop, item: inout RecommendItem) {

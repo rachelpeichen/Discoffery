@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 class ReviewManager {
 
@@ -16,7 +17,10 @@ class ReviewManager {
 
   lazy var database = Firestore.firestore()
 
+  lazy var storage = Storage.storage()
+
   // MARK: - Functions
+  // MARK: need update 監聽～～～！
   func fetchReviewsForShop(shop: CoffeeShop, completion: @escaping (Result<[Review], Error>) -> Void) {
 
     let docRef = Firestore.firestore().collection("shopsTaichung").document(shop.id).collection("reviews")
@@ -49,7 +53,6 @@ class ReviewManager {
         completion(.success(reviews))
       }
     }
-
   }
 
   func publishUserReview(shop: CoffeeShop, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
@@ -73,7 +76,38 @@ class ReviewManager {
         completion(.success("Success"))
       }
     }
+  }
 
+  func uploadImageFromUserReview(pickerImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let uuid = UUID().uuidString
+
+    guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
+
+    let storageRef = Storage.storage().reference()
+
+    let imageRef = storageRef.child("ImagesFromUserReview").child("\(uuid).jpg")
+
+    imageRef.putData(image, metadata: nil) { metadata, error in
+
+      if let error = error {
+
+        completion(.failure(error))
+      }
+      guard let metadata = metadata else {return}
+
+      imageRef.downloadURL { url, error in
+
+        if let url = url {
+
+          completion(.success(url.absoluteString))
+
+        } else if let error = error {
+
+          completion(.failure(error))
+        }
+      }
+    }
   }
 
   func publishNewShopReview(shopId: String, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
@@ -97,7 +131,5 @@ class ReviewManager {
         completion(.success("Success"))
       }
     }
-
   }
-
 }

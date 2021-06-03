@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
   }
 
   // MARK: - Properties
-  var searchViewModel =  SearchViewModel()
+  var searchViewModel = SearchViewModel()
 
   var inputKeyword: String?
 
@@ -124,10 +124,24 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     return CGSize(width: textSize.width + 30, height: 45)
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-      return 32
+  // MARK: Dynamic collection view height based on content -> 要像Detail View Page 一樣有table view cell 裡面有collection cell才行，參考ShopFeatureCell
+  func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+
+      // If the cell's size has to be exactly the content
+      // Size of the collection View, just return the
+      // collectionViewLayout's collectionViewContentSize.
+
+      collectionView.frame = CGRect(
+        x: 0,
+        y: 0,
+        width: targetSize.width,
+        height: 600)
+
+      collectionView.layoutIfNeeded()
+
+      // It Tells what size is required for the CollectionView
+      return collectionView.collectionViewLayout.collectionViewContentSize
   }
-  
 }
 
 extension SearchViewController: UICollectionViewDelegate {

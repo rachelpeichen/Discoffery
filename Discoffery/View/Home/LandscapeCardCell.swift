@@ -28,9 +28,9 @@ class LandscapeCardCell: UITableViewCell {
   @IBOutlet weak var openHours: UILabel!
 
   // MARK: - Properties
-  var itemLayoutArr: [String] = []
+  var itemArr: [String] = []
 
-  var featureLayoutArr: [String] = []
+  var featureArr: [String] = []
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -55,7 +55,7 @@ class LandscapeCardCell: UITableViewCell {
 
   func configureFeature(with featureArr: [String]) {
 
-    self.featureLayoutArr = featureArr
+    self.featureArr = featureArr
 
     self.featureCollectionView.reloadData()
 
@@ -64,7 +64,7 @@ class LandscapeCardCell: UITableViewCell {
 
   func configureItem(with itemArr: [String]) {
 
-    self.itemLayoutArr = itemArr
+    self.itemArr = itemArr
 
     self.recommendItemCollectionView.reloadData()
 
@@ -93,7 +93,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
     if collectionView == self.recommendItemCollectionView {
 
-      return itemLayoutArr.count
+      return 2 // 寫死為了版面好看
     }
 
     return 3
@@ -105,7 +105,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
       if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recommendItemCollectionCell", for: indexPath) as? RecommendItemCollectionViewCell {
 
-        let item = itemLayoutArr[indexPath.row]
+        let item = itemArr[indexPath.row]
 
         cell.layoutRecommendItemCollectionViewCell(from: item)
 
@@ -116,7 +116,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
       if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeatureCollectionViewCell.identifier, for: indexPath) as? FeatureCollectionViewCell {
 
-        let feature = featureLayoutArr[indexPath.row]
+        let feature = featureArr[indexPath.row]
 
         cell.layoutFeatureCollectionViewCell(from: feature)
 
@@ -134,7 +134,7 @@ extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
 
     if  collectionView == self.recommendItemCollectionView {
 
-      let textSize: CGSize = itemLayoutArr[indexPath.row]
+      let textSize: CGSize = itemArr[indexPath.row]
 
         .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
@@ -142,7 +142,7 @@ extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
 
     } else {
 
-      let textSize: CGSize = featureLayoutArr[indexPath.row]
+      let textSize: CGSize = featureArr[indexPath.row]
 
         .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 

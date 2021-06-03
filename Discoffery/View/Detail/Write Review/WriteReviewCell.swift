@@ -7,13 +7,15 @@
 
 import UIKit
 import Cosmos
-import JGProgressHUD
+// import JGProgressHUD
 
 protocol WriteReviewCellDelegate: AnyObject {
 
   func sendReview(inputReview: inout Review)
 
   func sendRecommendItem(inputItem: inout RecommendItem)
+
+  func uploadImageBtnDidSelect()
 }
 
 class WriteReviewCell: ShopDetailBasicCell {
@@ -80,9 +82,13 @@ class WriteReviewCell: ShopDetailBasicCell {
     }
   }
 
+  @IBAction func uploadImage(_ sender: UIButton) {
+
+    delegate?.uploadImageBtnDidSelect()
+  }
+
   @IBAction func finishEditingReview(_ sender: UIButton!) {
-    
-    showSuccessAlert()
+
     // The user can send review only when rating is provided
     guard let inputRating = inputRating else { return }
 
@@ -170,18 +176,18 @@ class WriteReviewCell: ShopDetailBasicCell {
     commentTextView.layer.cornerRadius = 10
   }
 
-  func showSuccessAlert() {
-
-    let hud = JGProgressHUD()
-
-    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-
-    hud.textLabel.text = "新增評論成功"
-
-    hud.show(in: self, animated: true )
-
-    hud.dismiss(afterDelay: 2.0)
-  }
+//  func showSuccessAlert() {
+//
+//    let hud = JGProgressHUD()
+//
+//    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+//
+//    hud.textLabel.text = "新增評論成功"
+//
+//    hud.show(in: self, animated: true )
+//
+//    hud.dismiss(afterDelay: 2.0)
+//  }
 }
 
 // MARK: - UICollectionViewDataSource

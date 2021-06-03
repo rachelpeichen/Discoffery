@@ -37,8 +37,6 @@
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
 		7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */; };
 		7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */; };
-		7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */; };
-		7879ECCB265C12AE00BEAA73 /* CollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
 		78848609264C051900FA33F9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78848608264C051900FA33F9 /* MapKit.framework */; };
 		7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884860E264C09AF00FA33F9 /* HomeMapViewController.swift */; };
@@ -51,6 +49,7 @@
 		7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884865E264D36EA00FA33F9 /* HomeViewModel.swift */; };
 		78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848666264D3A7100FA33F9 /* CoffeeShop.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
+		7891A88B2668C518001294DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891A88A2668C518001294DD /* ImagePicker.swift */; };
 		78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A01E9326666D0C00E4B43C /* PaddingLabel.swift */; };
 		78A01E97266753B400E4B43C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A01E96266753B300E4B43C /* CustomButton.swift */; };
 		78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A31105265C275E00441FE7 /* Date+Extension.swift */; };
@@ -129,8 +128,6 @@
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
 		7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCollectionViewCell.xib; sourceTree = "<group>"; };
-		7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
-		7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
 		78848608264C051900FA33F9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7884860E264C09AF00FA33F9 /* HomeMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +140,7 @@
 		7884865E264D36EA00FA33F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		78848666264D3A7100FA33F9 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		7891A88A2668C518001294DD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		78A01E9326666D0C00E4B43C /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		78A01E96266753B300E4B43C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		78A31105265C275E00441FE7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -228,10 +226,9 @@
 		78182BFD265E473200056E92 /* CustomNativeUI */ = {
 			isa = PBXGroup;
 			children = (
-				7879ECC7265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift */,
-				7879ECCA265C12AE00BEAA73 /* CollectionViewFlowLayout.swift */,
 				78A01E9326666D0C00E4B43C /* PaddingLabel.swift */,
 				78A01E96266753B300E4B43C /* CustomButton.swift */,
+				7891A88A2668C518001294DD /* ImagePicker.swift */,
 			);
 			path = CustomNativeUI;
 			sourceTree = "<group>";
@@ -708,9 +705,7 @@
 				7839C9692652E59B0048B5F5 /* AddShopViewController.swift in Sources */,
 				78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */,
 				7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */,
-				7879ECC8265C0E8C00BEAA73 /* DynamicHeightCollectionView.swift in Sources */,
 				781CD84926653EAC005076CD /* SearchViewModel.swift in Sources */,
-				7879ECCB265C12AE00BEAA73 /* CollectionViewFlowLayout.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,
 				781733BF26678ACF0004C9CB /* AddItemCollectionViewCell.swift in Sources */,
@@ -729,6 +724,7 @@
 				78B2FCFA265A1856005C9D1D /* Feature.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
+				7891A88B2668C518001294DD /* ImagePicker.swift in Sources */,
 				78182C10265F86A000056E92 /* ImageRow.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				781CD8352664F4E8005076CD /* SearchViewController.swift in Sources */,

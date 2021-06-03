@@ -12,7 +12,7 @@ class KeywordsCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var keywordBtn: UIButton!
 
   @IBAction func didTouchKeywordBtn(_ sender: UIButton) {
-
+    // 把文字帶入搜尋欄
   }
 
   override func awakeFromNib() {
@@ -20,16 +20,27 @@ class KeywordsCollectionViewCell: UICollectionViewCell {
 
     // Initialization code
     keywordBtn.layoutViewWithShadow()
+  }
 
+  override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+
+    setNeedsLayout()
+
+    layoutIfNeeded()
+
+    let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+
+    var frame = layoutAttributes.frame
+
+    frame.size.height = ceil(size.height)
+
+    layoutAttributes.frame = frame
+
+    return layoutAttributes
   }
 
   func layoutKeywordCollectionViewCell(from: String) {
 
     keywordBtn.setTitle(from, for: .normal)
-
-//    let buttonTitleSize = (from as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
-//
-//    keywordBtn.frame.size.width = buttonTitleSize.width + 30
   }
-
 }

@@ -19,7 +19,9 @@ target 'Discoffery' do
   pod 'Eureka'
 
   pod 'PopupDialog'
-
+  
+  pod 'JGProgressHUD'
+  
   pod 'GeoFire/Utils'
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
@@ -27,4 +29,6 @@ target 'Discoffery' do
   pod 'Firebase/Firestore'
 
   pod 'FirebaseFirestoreSwift'
+
+  pod 'Firebase/Storage'
 end
