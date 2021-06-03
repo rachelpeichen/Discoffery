@@ -77,38 +77,73 @@ class ReviewManager {
       }
     }
   }
+//
+//  typealias CompletionHandler = (_ error: Error?) -> Void
+//
+//  func uploadFile(filePath: URL, fileName: String, fileExtension: String, completionHandler: @escaping CompletionHandler) {
+//
+//    // Create a reference to the file you want to upload
+//
+//    let storageRef = Storage.storage().reference()
+//
+//    let imageRef = storageRef.child("images/\(fileName).\(fileExtension)")
+//
+//    // Upload the file to the path "images/fileName.fileExtension"
+//    let uploadTask = imageRef.putFile(from: filePath, metadata: nil) { metadata, error in
+//
+//      guard let metadata = metadata else {
+//        completionHandler(error)
+//        return
+//      }
+//
+//      // Metadata contains file metadata such as size, content-type.
+//      let size = metadata.size
+//
+//      // The upload succeeded
+//      completionHandler(nil)
+//
+//      // You can also access to download URL after upload.
+//      imageRef.downloadURL { url, error in
+//
+//        guard let downloadURL = url else {
+//          print(error)
+//          return
+//        }
+//      }
+//    }
+//  }
 
-  func uploadImageFromUserReview(pickerImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+    func uploadImageFromUserReview(pickerImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let uuid = UUID().uuidString
+      let uuid = UUID().uuidString // 現在存的是這個 之後好找嗎？
 
-    guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
+      guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
 
-    let storageRef = Storage.storage().reference()
+      let storageRef = Storage.storage().reference()
 
-    let imageRef = storageRef.child("ImagesFromUserReview").child("\(uuid).jpg")
+      let imageRef = storageRef.child("ImagesFromUserReview").child("\(uuid).jpg")
 
-    imageRef.putData(image, metadata: nil) { metadata, error in
+      imageRef.putData(image, metadata: nil) { metadata, error in
 
-      if let error = error {
-
-        completion(.failure(error))
-      }
-      guard let metadata = metadata else {return}
-
-      imageRef.downloadURL { url, error in
-
-        if let url = url {
-
-          completion(.success(url.absoluteString))
-
-        } else if let error = error {
+        if let error = error {
 
           completion(.failure(error))
         }
+        guard let metadata = metadata else {return}
+
+        imageRef.downloadURL { url, error in
+
+          if let url = url {
+
+            completion(.success(url.absoluteString))
+
+          } else if let error = error {
+
+            completion(.failure(error))
+          }
+        }
       }
     }
-  }
 
   func publishNewShopReview(shopId: String, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
 

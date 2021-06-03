@@ -7,6 +7,8 @@
 
 import UIKit
 import PopupDialog
+import JGProgressHUD
+import YPImagePicker
 
 class DetailViewController: UIViewController {
 
@@ -48,9 +50,15 @@ class DetailViewController: UIViewController {
 
   var recommendItemsArr: [RecommendItem] = []
 
-  private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
+  var uploadedImages: [String] = [] {
 
-  let imagePicker = ImagePicker()
+    didSet {
+      
+      tableView.reloadData()
+    }
+  }
+
+  private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -63,8 +71,6 @@ class DetailViewController: UIViewController {
 
       fetchReviewsForShop(shop: shop)
     }
-
-    imagePicker.imagePicker.delegate = self
   }
 
   // MARK: Functions
@@ -173,7 +179,7 @@ extension DetailViewController: UITableViewDataSource {
 
         cell.reviewsCount.text = "(\(reviewsCount))"
 
-        cell.rateStars.rating = shop?.tasty ?? 1  // 還沒算出全部評價的平均先用api的
+        cell.rateStars.rating = shop?.tasty ?? 1
 
         cell.averageRatings.text = String(Double(cell.rateStars.rating).rounded())
 
@@ -266,6 +272,8 @@ extension DetailViewController: WriteReviewCellDelegate {
     guard let shop = shop else { return }
 
     addViewModel.publishUserReview(shop: shop, review: &inputReview)
+
+    showSuccessDialog(animated: true, title: "新增評論成功ㄌ", message: "讚讚讚")
   }
 
   func sendRecommendItem(inputItem: inout RecommendItem) {
@@ -279,37 +287,46 @@ extension DetailViewController: WriteReviewCellDelegate {
 
   func uploadImageBtnDidSelect() {
 
-    present(imagePicker, animated: true) {
-
-      self.imagePicker.showUploadImageMenu()
-    }
+    setUpImagesPicker()
   }
-}
 
-// MARK: - UIImagePickerControllerDelegate
-extension DetailViewController: UIImagePickerControllerDelegate {
+  func setUpImagesPicker() {
 
-  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    var config = YPImagePickerConfiguration()
 
-    // get uploaded photo
-    if let image = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.originalImage.rawValue)] as? UIImage {
+    config.library.maxNumberOfItems = 3
 
-      self.addViewModel.uploadImageFromUserReview(with: image)
+    let picker = YPImagePicker(configuration: config)
 
-      // MARK: SHOW 成功po 照片 這裡還很醜不順
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-          // code to execute after 1 second
-        self.dismiss(animated: true, completion: nil)
+    present(picker, animated: true, completion: nil)
 
-        self.showSuccessDialog(title: "上傳照片成功", message: "好想吃火雞肉飯")
+    picker.didFinishPicking { [unowned picker] items, cancelled in
 
-        self.showAlert()
+      if cancelled {
+
+        picker.dismiss(animated: true, completion: nil)
       }
+
+      for item in items {
+
+        switch item {
+
+        case .photo(let photo):
+
+          self.addViewModel.uploadImageFromUserReview(with: photo.image)
+
+          self.addViewModel.onUploadImage = { result in
+
+            self.uploadedImages.append(result)
+          }
+        case .video(let video):
+
+          print("You cannot upload video lmao \(video)")
+        }
+      }
+      picker.dismiss(animated: true, completion: nil)
+
+      self.showStandardDialog(title: "新增相片成功", message: "讚讚讚")
     }
   }
-}
-
-// MARK: - UINavigationControllerDelegate
-extension DetailViewController: UINavigationControllerDelegate {
-
 }

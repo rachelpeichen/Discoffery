@@ -7,7 +7,7 @@
 
 import UIKit
 import Cosmos
-// import JGProgressHUD
+import Kingfisher
 
 protocol WriteReviewCellDelegate: AnyObject {
 
@@ -21,6 +21,7 @@ protocol WriteReviewCellDelegate: AnyObject {
 class WriteReviewCell: ShopDetailBasicCell {
 
   // MARK: - Properties
+  
   weak var delegate: WriteReviewCellDelegate?
 
   var wrappedReview = Review()
@@ -35,6 +36,8 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   var inputComment: String?
 
+  var uploadedImages: [String] = []
+
   // MARK: - Outlets
   @IBOutlet weak var collectionView: UICollectionView!
 
@@ -46,11 +49,17 @@ class WriteReviewCell: ShopDetailBasicCell {
 
         self.inputRating = rating
 
-        self.sendReviewButton.isEnabled = true
+        self.sendReviewBtn.isEnabled = true
 
-        self.sendReviewButton.backgroundColor = .B3
+        self.sendReviewBtn.backgroundColor = .B3
 
-        self.sendReviewButton.setTitleColor(.G1, for: .normal)
+        self.sendReviewBtn.setTitleColor(.G1, for: .normal)
+
+        self.uploadImageBtn.isEnabled = true
+
+        self.uploadImageBtn.setTitleColor(.G1, for: .normal)
+
+        self.uploadImageBtn.tintColor = .G1
       }
     }
   }
@@ -59,7 +68,15 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   @IBOutlet weak var addItemTextField: UITextField!
 
-  @IBOutlet weak var sendReviewButton: UIButton!
+  @IBOutlet weak var uploadImageBtn: UIButton!
+
+  @IBOutlet weak var sendReviewBtn: UIButton!
+
+  @IBOutlet weak var uploadImageOne: UIImageView!
+
+  @IBOutlet weak var uploadImageTwo: UIImageView!
+
+  @IBOutlet weak var uploadImageThree: UIImageView!
 
   // MARK: - Outlets Action
   @IBAction func didEndAddItemText(_ sender: UITextField) {
@@ -151,11 +168,17 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   func layoutWriteReviewCell() {
 
-    sendReviewButton.isEnabled = false
+    sendReviewBtn.isEnabled = false
 
-    sendReviewButton.setTitleColor(.lightGray, for: .disabled)
+    sendReviewBtn.setTitleColor(.lightGray, for: .disabled)
 
-    sendReviewButton.layoutViewWithShadow()
+    sendReviewBtn.layoutViewWithShadow()
+
+    sendReviewBtn.layoutViewWithShadow()
+
+    uploadImageBtn.isEnabled = false
+
+    uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
     addItemTextField.clipsToBounds = true
 
@@ -174,20 +197,13 @@ class WriteReviewCell: ShopDetailBasicCell {
     commentTextView.clipsToBounds = true
 
     commentTextView.layer.cornerRadius = 10
-  }
 
-//  func showSuccessAlert() {
+//    uploadImageOne.isHidden = true
 //
-//    let hud = JGProgressHUD()
+//    uploadImageTwo.isHidden = true
 //
-//    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-//
-//    hud.textLabel.text = "新增評論成功"
-//
-//    hud.show(in: self, animated: true )
-//
-//    hud.dismiss(afterDelay: 2.0)
-//  }
+//    uploadImageThree.isHidden = true
+  }
 }
 
 // MARK: - UICollectionViewDataSource

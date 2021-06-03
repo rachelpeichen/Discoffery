@@ -300,7 +300,12 @@ PODS:
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
   - PromisesObjC (1.2.12)
+  - PryntTrimmerView (4.0.2)
+  - SteviaLayout (4.7.3)
   - SwiftLint (0.43.1)
+  - YPImagePicker (4.5.0):
+    - PryntTrimmerView (~> 4.0.2)
+    - SteviaLayout (~> 4.7.3)
 
 DEPENDENCIES:
   - Cosmos (~> 23.0)
@@ -315,6 +320,7 @@ DEPENDENCIES:
   - MJRefresh
   - PopupDialog
   - SwiftLint
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
@@ -343,7 +349,10 @@ SPEC REPOS:
     - nanopb
     - PopupDialog
     - PromisesObjC
+    - PryntTrimmerView
+    - SteviaLayout
     - SwiftLint
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -371,8 +380,11 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  YPImagePicker: 6f410f475bd22fa8cd430495b54d4b2f15865c2d
 
-PODFILE CHECKSUM: f94a155767dda26ba2687dc43bb16ac01bbddbbf
+PODFILE CHECKSUM: dab1200d8abaeff8557dd5eee71c913714015be5
 
 COCOAPODS: 1.10.1

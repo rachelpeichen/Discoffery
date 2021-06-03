@@ -103,8 +103,6 @@ class AddViewModel {
         print("publishNewShop.failure\(error)")
       }
     }
-
-
   }
 
   func publishUserReview(shop: CoffeeShop, review: inout Review) {
@@ -124,23 +122,23 @@ class AddViewModel {
     }
   }
 
-  func uploadImageFromUserReview(with image: UIImage) {
+    func uploadImageFromUserReview(with image: UIImage) {
 
-    ReviewManager.shared.uploadImageFromUserReview(pickerImage: image) { result in
-      switch result {
+      ReviewManager.shared.uploadImageFromUserReview(pickerImage: image) { result in
+        switch result {
 
-      case .success(let imageURL):
+        case .success(let imageURL):
 
-        self.onUploadImage?(imageURL)
+          self.onUploadImage?(imageURL)
 
-        print("Upload 🥴 ImageFromUserReview To Firebase Success" + imageURL)
+          print("Upload 🥴 ImageFromUserReview To Firebase Success" + imageURL)
 
-      case .failure(let error):
+        case .failure(let error):
 
-        print("publishRecommendItem: \(error)")
+          print("publishRecommendItem: \(error)")
+        }
       }
     }
-  }
 
   func publishRecommendItem(shop: CoffeeShop, item: inout RecommendItem) {
 
@@ -187,5 +185,4 @@ class AddViewModel {
 
     RecommendItemManager.shared.updateRecommendItemCount(shop: shop, item: item)
   }
-
 }
