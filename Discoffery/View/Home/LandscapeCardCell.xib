@@ -51,13 +51,14 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isShadowOnText" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3G0-dX-BbF" customClass="CosmosView" customModule="Cosmos">
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3G0-dX-BbF" customClass="CosmosView" customModule="Cosmos">
                         <rect key="frame" x="16" y="314" width="100" height="16"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" notEnabled="YES"/>
                         </accessibility>
                         <constraints>
+                            <constraint firstAttribute="width" constant="100" id="VrX-ZJ-rok"/>
                             <constraint firstAttribute="height" constant="16" id="ZLZ-ta-Wnf"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -108,8 +109,8 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-fC-fgH" customClass="DynamicHeightCollectionView" customModule="Discoffery" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="361.5" width="332" height="48"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-fC-fgH">
+                        <rect key="frame" x="0.0" y="361.5" width="324" height="48"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="3R8-bQ-SQc"/>
@@ -122,12 +123,12 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PzH-Wx-ekJ">
-                        <rect key="frame" x="0.0" y="409.5" width="332" height="48"/>
+                        <rect key="frame" x="0.0" y="409.5" width="324" height="48"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="WLA-2M-KYt"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dSQ-2d-jH2">
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dSQ-2d-jH2">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -148,12 +149,12 @@
                     <constraint firstItem="Gsb-AW-Lk5" firstAttribute="centerY" secondItem="gop-nG-Abn" secondAttribute="centerY" id="bj2-Oa-klg"/>
                     <constraint firstItem="e4a-3y-2Gq" firstAttribute="top" secondItem="3G0-dX-BbF" secondAttribute="bottom" constant="8" id="cMd-Dj-twY"/>
                     <constraint firstItem="gop-nG-Abn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cfc-lZ-dMZ"/>
-                    <constraint firstAttribute="trailing" secondItem="VFC-fC-fgH" secondAttribute="trailing" id="dGL-am-YCQ"/>
+                    <constraint firstAttribute="trailing" secondItem="VFC-fC-fgH" secondAttribute="trailing" constant="8" id="dGL-am-YCQ"/>
                     <constraint firstItem="VFC-fC-fgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="e6e-h7-UFU"/>
                     <constraint firstItem="9PV-Ic-siS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="338" id="eON-mr-2yr"/>
                     <constraint firstItem="e4a-3y-2Gq" firstAttribute="leading" secondItem="9PV-Ic-siS" secondAttribute="trailing" constant="8" id="g8j-Hn-bYX"/>
                     <constraint firstItem="9PV-Ic-siS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="j9s-Yf-bFm"/>
-                    <constraint firstAttribute="trailing" secondItem="PzH-Wx-ekJ" secondAttribute="trailing" id="rdV-xx-zAB"/>
+                    <constraint firstAttribute="trailing" secondItem="PzH-Wx-ekJ" secondAttribute="trailing" constant="8" id="rdV-xx-zAB"/>
                     <constraint firstItem="VFC-fC-fgH" firstAttribute="top" secondItem="9PV-Ic-siS" secondAttribute="bottom" constant="4" id="uPg-gE-NkQ"/>
                     <constraint firstItem="gop-nG-Abn" firstAttribute="top" secondItem="Jom-l6-ta9" secondAttribute="bottom" constant="20" id="uT9-0t-daR"/>
                     <constraint firstItem="PzH-Wx-ekJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vP5-jB-e1H"/>

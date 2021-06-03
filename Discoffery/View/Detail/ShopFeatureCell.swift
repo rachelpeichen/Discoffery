@@ -30,6 +30,22 @@ class ShopFeatureCell: ShopDetailBasicCell {
     // Configure the view for the selected state
   }
 
+  // MARK: - Important
+  override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+
+      // If the cell's size has to be exactly the content
+      // Size of the collection View, just return the
+      // collectionViewLayout's collectionViewContentSize.
+
+      collectionView.frame = CGRect(x: 0, y: 0,
+                                     width: targetSize.width, height: 600)
+      collectionView.layoutIfNeeded()
+
+      // It Tells what size is required for the CollectionView
+      return collectionView.collectionViewLayout.collectionViewContentSize
+
+  }
+
   // MARK: - Functions
   func configure(with featureArr: [String]) {
     

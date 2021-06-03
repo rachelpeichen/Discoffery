@@ -31,7 +31,7 @@
                 <constraint firstItem="6DL-Jt-z8U" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="3vi-ip-3W7"/>
                 <constraint firstItem="6DL-Jt-z8U" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="6rd-CU-rwL"/>
                 <constraint firstAttribute="bottom" secondItem="6DL-Jt-z8U" secondAttribute="bottom" constant="8" id="BGV-oe-FE8"/>
-                <constraint firstAttribute="trailing" secondItem="6DL-Jt-z8U" secondAttribute="trailing" constant="8" id="oah-ED-5eG"/>
+                <constraint firstAttribute="trailing" secondItem="6DL-Jt-z8U" secondAttribute="trailing" constant="8" id="iKl-6q-Y9r"/>
             </constraints>
             <size key="customSize" width="238" height="72"/>
             <connections>

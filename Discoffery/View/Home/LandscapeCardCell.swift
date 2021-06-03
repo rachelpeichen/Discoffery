@@ -93,7 +93,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
     if collectionView == self.recommendItemCollectionView {
 
-      return 2
+      return itemLayoutArr.count
     }
 
     return 3
@@ -149,7 +149,17 @@ extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
       return CGSize(width: textSize.width + 30, height: 45)
     }
   }
-  
+
+  // Distance Between Item Cells
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+      return 8
+  }
+
+  // Cell Margin
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+      return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+  }
 }
 
 extension LandscapeCardCell: UICollectionViewDelegate {

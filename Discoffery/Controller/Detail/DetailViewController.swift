@@ -187,6 +187,14 @@ extension DetailViewController: UITableViewDataSource {
 
         itemsArr.append(contentsOf: recommendItemsArr.map { $0.item })
 
+        itemsArr.append(self.feature.special[0])
+
+        itemsArr.append(self.feature.special[1])
+
+        itemsArr.append(self.feature.timeLimit)
+
+        itemsArr.append(self.feature.socket)
+
         cell.configure(with: itemsArr)
 
         cell.selectionStyle = .none
@@ -194,20 +202,20 @@ extension DetailViewController: UITableViewDataSource {
         return cell
       }
 
+//    case 3:
+//
+//      if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
+//
+//        let featureArr = [self.feature.special[0], self.feature.special[1], self.feature.timeLimit]
+//
+//        cell.configure(with: featureArr)
+//
+//        cell.selectionStyle = .none
+//
+//        return cell
+//      }
+
     case 3:
-
-      if let cell = tableView.dequeueReusableCell(withIdentifier: "shopFeatureCell", for: indexPath) as? ShopFeatureCell {
-
-        let featureArr = [self.feature.special[0], self.feature.special[1], self.feature.timeLimit]
-
-        cell.configure(with: featureArr)
-
-        cell.selectionStyle = .none
-        
-        return cell
-      }
-
-    case 4:
       // TODO: 地圖
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopRouteCell", for: indexPath) as? ShopRouteCell {
 
@@ -218,7 +226,7 @@ extension DetailViewController: UITableViewDataSource {
         return cell
       }
 
-    case 5:
+    case 4:
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "writeReviewCell", for: indexPath) as? WriteReviewCell {
 
@@ -247,7 +255,7 @@ extension DetailViewController: UITableViewDelegate {
 
       performSegue(withIdentifier: "navigateToReviewsVC", sender: indexPath.row)
 
-    case 4:
+    case 3:
 
       print("Map did select.")
 

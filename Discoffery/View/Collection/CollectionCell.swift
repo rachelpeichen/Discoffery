@@ -36,6 +36,7 @@ class CollectionCell: UITableViewCell {
   private func setupCollectionView() {
 
     collectionView.backgroundColor = .white
+    
     collectionView.isScrollEnabled = true
 
     collectionView.register(UINib(nibName: "ProtraitCardCollectionCell", bundle: nil), forCellWithReuseIdentifier: "protraitCardCell")
@@ -46,9 +47,11 @@ class CollectionCell: UITableViewCell {
   private func setupCollectionViewLayout() {
 
     let flowLayout = UICollectionViewFlowLayout()
+
     flowLayout.scrollDirection = .horizontal
 
     flowLayout.itemSize = CGSize(width: 150, height: 250)
+
     flowLayout.minimumLineSpacing = 6.0
 
     collectionView.collectionViewLayout = flowLayout
