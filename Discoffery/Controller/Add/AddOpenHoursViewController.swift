@@ -6,8 +6,9 @@
 //
 
 import Eureka
+import PopupDialog
 
-protocol AddOpenHoursViewControllerDelegate {
+protocol AddOpenHoursViewControllerDelegate: AnyObject {
 
   func finishAddOpenHours(openHours: [String: Any?])
 }
@@ -15,7 +16,7 @@ protocol AddOpenHoursViewControllerDelegate {
 class AddOpenHoursViewController: FormViewController {
 
   // MARK: - Properties
-  var delegate: AddOpenHoursViewControllerDelegate?
+  weak var delegate: AddOpenHoursViewControllerDelegate?
 
   var openHours: [String: Any?]?
 
@@ -27,7 +28,14 @@ class AddOpenHoursViewController: FormViewController {
     openHours = form.values(includeHidden: true)
 
     // Do any additional setup after loading the view.
-    form +++ Section("請選擇營業日 / 不選表示公休")
+
+    TimeInlineRow.defaultCellSetup = { cell, row in
+      cell.textLabel?.font = .systemFont(ofSize: 16)
+      cell.textLabel?.textColor = .G1
+    }
+
+    form +++
+      Section("請選擇營業日 / 不選表示公休")
 
     for day in weekDays {
 
@@ -66,8 +74,6 @@ class AddOpenHoursViewController: FormViewController {
         $0.tag = "noRegularClose"
         $0.value = true
         $0.cellProvider = CellProvider<SwitchCell>(nibName: "SwitchCell", bundle: Bundle.main)
-
-        showAlert()
       }
 
       <<< ButtonRow("我寫好ㄌ") {(row: ButtonRow) -> Void in
@@ -76,27 +82,12 @@ class AddOpenHoursViewController: FormViewController {
 
       } .onCellSelection { [weak self] cell, row in
 
-        showAlert()
+        self?.showStandardDialog(title: "填寫完成☺️", message: "讚讚讚")
 
         // MARK: Get user's input of opening hours
         self?.openHours = self?.form.values()
         
         self?.delegate?.finishAddOpenHours(openHours: (self?.openHours)!)
       }
-
-    func showAlert() {
-
-      let alertController = UIAlertController(title: "Discoffery", message: "營業時間填寫完畢", preferredStyle: .alert)
-
-      let defaultAction = UIAlertAction(title: "完成送出", style: .destructive, handler: nil)
-
-      let cancelAction = UIAlertAction(title: "取消重填", style: .cancel, handler: nil)
-
-      alertController.addAction(defaultAction)
-
-      alertController.addAction(cancelAction)
-
-      present(alertController, animated: true)
-    }
   }
 }

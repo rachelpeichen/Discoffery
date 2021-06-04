@@ -49,7 +49,6 @@
 		7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884865E264D36EA00FA33F9 /* HomeViewModel.swift */; };
 		78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78848666264D3A7100FA33F9 /* CoffeeShop.swift */; };
 		7884FB792653A3F60093F666 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7884FB782653A3F60093F666 /* AddCategoryViewController.swift */; };
-		7891A88B2668C518001294DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891A88A2668C518001294DD /* ImagePicker.swift */; };
 		78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A01E9326666D0C00E4B43C /* PaddingLabel.swift */; };
 		78A01E97266753B400E4B43C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A01E96266753B300E4B43C /* CustomButton.swift */; };
 		78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A31105265C275E00441FE7 /* Date+Extension.swift */; };
@@ -63,8 +62,6 @@
 		78B2FD28265A8EA9005C9D1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */; };
 		78B2FD2B265AC08D005C9D1D /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */; };
 		78D4B3CC2658D1BC004EBB20 /* ReviewsPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */; };
-		78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */; };
-		78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2942654388300726A5D /* WeekDaysCell.xib */; };
 		78DEC2B52654DF6600726A5D /* AddOpenHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */; };
 		78DEC2B8265500A100726A5D /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DEC2B7265500A000726A5D /* SwitchCell.xib */; };
 		78DEC2BB2655088C00726A5D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEC2BA2655088C00726A5D /* LocationManager.swift */; };
@@ -140,7 +137,6 @@
 		7884865E264D36EA00FA33F9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		78848666264D3A7100FA33F9 /* CoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShop.swift; sourceTree = "<group>"; };
 		7884FB782653A3F60093F666 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
-		7891A88A2668C518001294DD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		78A01E9326666D0C00E4B43C /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		78A01E96266753B300E4B43C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		78A31105265C275E00441FE7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -154,8 +150,6 @@
 		78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsPageViewController.swift; sourceTree = "<group>"; };
-		78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomCheckRow&Cell.swift"; sourceTree = "<group>"; };
-		78DEC2942654388300726A5D /* WeekDaysCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekDaysCell.xib; sourceTree = "<group>"; };
 		78DEC2B42654DF6600726A5D /* AddOpenHoursViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOpenHoursViewController.swift; sourceTree = "<group>"; };
 		78DEC2B7265500A000726A5D /* SwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		78DEC2BA2655088C00726A5D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -228,7 +222,6 @@
 			children = (
 				78A01E9326666D0C00E4B43C /* PaddingLabel.swift */,
 				78A01E96266753B300E4B43C /* CustomButton.swift */,
-				7891A88A2668C518001294DD /* ImagePicker.swift */,
 			);
 			path = CustomNativeUI;
 			sourceTree = "<group>";
@@ -406,8 +399,6 @@
 		78DEC28326541E8400726A5D /* Add */ = {
 			isa = PBXGroup;
 			children = (
-				78DEC2892654207700726A5D /* CustomCheckRow&Cell.swift */,
-				78DEC2942654388300726A5D /* WeekDaysCell.xib */,
 				78DEC2B7265500A000726A5D /* SwitchCell.xib */,
 			);
 			path = Add;
@@ -617,7 +608,6 @@
 				78DF250D2652120D00F47A04 /* Collection.storyboard in Resources */,
 				78DF2524265251FE00F47A04 /* ShopFeatureCell.xib in Resources */,
 				78FA72EA264BFCA600DF4190 /* LaunchScreen.storyboard in Resources */,
-				78DEC2952654388300726A5D /* WeekDaysCell.xib in Resources */,
 				781CD84026650E9C005076CD /* KeywordsCollectionViewCell.xib in Resources */,
 				7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */,
 				78DF24DE265208A100F47A04 /* Recommend.storyboard in Resources */,
@@ -724,7 +714,6 @@
 				78B2FCFA265A1856005C9D1D /* Feature.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
-				7891A88B2668C518001294DD /* ImagePicker.swift in Sources */,
 				78182C10265F86A000056E92 /* ImageRow.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
 				781CD8352664F4E8005076CD /* SearchViewController.swift in Sources */,
@@ -747,7 +736,6 @@
 				78DF25472652717000F47A04 /* ShopImagesCollectionViewCell.swift in Sources */,
 				78DF251426524AD100F47A04 /* CoffeeShopContentCategory.swift in Sources */,
 				78A01E97266753B400E4B43C /* CustomButton.swift in Sources */,
-				78DEC28A2654207700726A5D /* CustomCheckRow&Cell.swift in Sources */,
 				7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */,
 				78DF25422652670900F47A04 /* ShopRouteCell.swift in Sources */,
 				78DF24D5265206A400F47A04 /* DetailViewController.swift in Sources */,

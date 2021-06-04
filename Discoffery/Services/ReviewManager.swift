@@ -55,7 +55,7 @@ class ReviewManager {
     }
   }
 
-  func publishUserReview(shop: CoffeeShop, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
+  func publishUserReview(shop: CoffeeShop, review: inout Review, uploadedImgURL: [String], completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("shopsTaichung").document(shop.id).collection("reviews").document()
 
@@ -64,6 +64,8 @@ class ReviewManager {
     review.parentId = shop.id
 
     review.postTime = Date().millisecondsSince1970
+
+    review.imgURL = uploadedImgURL
 
     docRef.setData(review.toDict) { error in
 
@@ -77,45 +79,10 @@ class ReviewManager {
       }
     }
   }
-//
-//  typealias CompletionHandler = (_ error: Error?) -> Void
-//
-//  func uploadFile(filePath: URL, fileName: String, fileExtension: String, completionHandler: @escaping CompletionHandler) {
-//
-//    // Create a reference to the file you want to upload
-//
-//    let storageRef = Storage.storage().reference()
-//
-//    let imageRef = storageRef.child("images/\(fileName).\(fileExtension)")
-//
-//    // Upload the file to the path "images/fileName.fileExtension"
-//    let uploadTask = imageRef.putFile(from: filePath, metadata: nil) { metadata, error in
-//
-//      guard let metadata = metadata else {
-//        completionHandler(error)
-//        return
-//      }
-//
-//      // Metadata contains file metadata such as size, content-type.
-//      let size = metadata.size
-//
-//      // The upload succeeded
-//      completionHandler(nil)
-//
-//      // You can also access to download URL after upload.
-//      imageRef.downloadURL { url, error in
-//
-//        guard let downloadURL = url else {
-//          print(error)
-//          return
-//        }
-//      }
-//    }
-//  }
 
     func uploadImageFromUserReview(pickerImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
 
-      let uuid = UUID().uuidString // 現在存的是這個 之後好找嗎？
+      let uuid = UUID().uuidString
 
       guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
 

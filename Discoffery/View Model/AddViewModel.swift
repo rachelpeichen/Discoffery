@@ -24,11 +24,9 @@ class AddViewModel {
       case .success(let newShop):
 
         self.onFetchNewShop?(newShop.id)
-
         print("🥴fetchNewShop Success")
 
       case .failure(let error):
-
         print("publishNewShop.failure\(error)")
       }
     })
@@ -42,11 +40,9 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish 🥴New Shop To Firebase Success")
 
       case .failure(let error):
-
         print("publishNewShop.failure\(error)")
       }
     }
@@ -60,11 +56,9 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish 🥴New ShopReview To Firebase Success")
 
       case .failure(let error):
-
         print("publishNewShop.failure\(error)")
       }
     }
@@ -77,11 +71,9 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish 🥴New NewShopFeature To Firebase Success")
 
       case .failure(let error):
-
         print("publishNewShop.failure\(error)")
       }
     }
@@ -95,28 +87,25 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish 🥴NewShopRecommendItem To Firebase Success")
 
       case .failure(let error):
-
         print("publishNewShop.failure\(error)")
       }
     }
   }
 
-  func publishUserReview(shop: CoffeeShop, review: inout Review) {
+  func publishUserReview(shop: CoffeeShop, review: inout Review, uploadedImgURL: [String]) {
 
-    ReviewManager.shared.publishUserReview(shop: shop, review: &review) { result in
+          ReviewManager.shared.publishUserReview(shop: shop, review: &review, uploadedImgURL: uploadedImgURL) { result in
 
       switch result {
 
       case .success:
-        
+        //
         print("Publish 🥴Review To Firebase Success")
 
       case .failure(let error):
-
         print("publishUserReview.failure: \(error)")
       }
     }
@@ -134,7 +123,6 @@ class AddViewModel {
           print("Upload 🥴 ImageFromUserReview To Firebase Success" + imageURL)
 
         case .failure(let error):
-
           print("publishRecommendItem: \(error)")
         }
       }
@@ -147,15 +135,12 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish 🥴Recommend Item To Firebase Success")
 
       case .failure(let error):
-
         print("publishRecommendItem: \(error)")
       }
     }
-
   }
 
   func checkIfRecommendItemExist(shop: CoffeeShop, item: RecommendItem) {

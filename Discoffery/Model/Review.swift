@@ -21,9 +21,11 @@ struct Review: Codable {
 
   var comment: String = "default"
 
-  var recommendItems: [String] = [""]
+  var recommendItems: [String] = []
 
   var postTime: Int64 = 0
+
+  var imgURL: [String] = []  // 存用戶傳的照片 現在mock的可能會爆掉：）
 
   enum CodingKeys: String, CodingKey {
 
@@ -42,6 +44,8 @@ struct Review: Codable {
     case recommendItems
 
     case postTime
+
+    case imgURL
   }
 
   var toDict: [String: Any] {
@@ -62,7 +66,9 @@ struct Review: Codable {
 
       "recommendItems": recommendItems as Any,
 
-      "postTime": postTime as Any
+      "postTime": postTime as Any,
+
+      "imgURL": imgURL as Any
     ]
   }
 

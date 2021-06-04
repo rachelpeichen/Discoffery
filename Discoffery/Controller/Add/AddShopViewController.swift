@@ -25,8 +25,73 @@ class AddShopViewController: UIViewController {
 
   var parsedOpenHours: String?
 
+  var endEditItem: String?
+
+  var inputItemArr: [String] = []
+
+  var inputRating: Double?
+
+  var inputComment: String?      
+
+  // MARK: - Outlets
+  @IBOutlet weak var collectionView: UICollectionView!
+
+  @IBOutlet weak var nameTextField: UITextField!
+
+  @IBOutlet weak var addressTextField: UITextField!
+
+  @IBOutlet weak var addItemTextField: UITextField!
+
+  @IBOutlet weak var commenTextView: UITextView!
+
+  @IBOutlet weak var rateStars: CosmosView! {
+
+    didSet{
+
+      rateStars.didFinishTouchingCosmos = { rating in
+        self.inputRating = rating
+      }
+    }
+  }
+
+  @IBOutlet var optionsBtn: [UIButton]!
+
+  @IBOutlet var sendBtn: UIButton!
 
   // MARK: - IBActions
+  @IBAction func navigateToAddOpenHoursVC(_ sender: Any) {
+
+    performSegue(withIdentifier: "OpenHoursVCSegue", sender: self)
+  }
+
+  @IBAction func didEndAddItemText(_ sender: UITextField) {
+
+    if let addedItem = sender.text {
+      endEditItem = addedItem
+    }
+  }
+
+  @IBAction func onTapAddItemBtn(_ sender: UIButton) {
+
+    if let endEditItem = endEditItem {
+
+      inputItemArr.append(endEditItem)
+
+      addItemTextField.text = ""
+
+      collectionView.reloadData()
+    }
+  }
+
+  @IBAction func onTapUploadImageBtn(_ sender: Any) {
+
+  }
+
+  @IBAction func onTapSendBtn(_ sender: Any) {
+
+    showSuccessDialog(title: "新增成功", message: "您送出的新店家資訊正在審核中，審核通過後就會更新到Discoffery了喔。")
+  }
+
   @IBAction func backToMainPage(_ sender: UIBarButtonItem) {
 
     self.dismiss(animated: true, completion: nil)
@@ -82,16 +147,37 @@ class AddShopViewController: UIViewController {
     }
   }
 
+  // MARK: Layout Style
+  func layoutAddShopVC() {
+
+    for btn in optionsBtn {
+
+      btn.layoutViewWithShadow()
+
+      btn.isEnabled = true
+    }
+  }
+  private func setupCollectionView() {
+
+    collectionView.register(UINib(nibName: "AddItemCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "addItemCollectionViewCell")
+
+    collectionView.delegate = self
+
+    collectionView.dataSource = self
+  }
+
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
 
+    layoutAddShopVC()
+
+    setupCollectionView()
+    // Do any additional setup after loading the view.
 
     //        // Get user's input and wrap as my struct type
     //        guard let dict = self?.form.values(includeHidden: true) else { return }
     //
-    //        self?.showSuccessDialog(title: "新增成功", message: "您送出的新店家資訊正在審核中，審核通過後就會更新到Discoffery了喔。")
     //
     //        var newShop = self?.parseInputToShop(inputDic: dict)
     //
@@ -120,7 +206,6 @@ class AddShopViewController: UIViewController {
       wrappedNewShopReview.rating = inputDic["rating"] as? Double ?? 3
 
       wrappedNewShopReview.recommendItems = inputDic["customItems"] as? [String] ?? [""]
-
       return wrappedNewShopReview
     }
 
@@ -158,5 +243,65 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
       return "\(key):\(value)"
 
     }) as Array).joined(separator: ";")
+  }
+}
+
+// MARK: - UICollectionViewDataSource
+extension AddShopViewController: UICollectionViewDataSource {
+
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+    return inputItemArr.count
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
+
+      cell.layoutAddItemCollectionViewCell(from: inputItemArr[indexPath.row])
+
+      return cell
+    }
+    return FeatureCollectionViewCell()
+  }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension AddShopViewController: UICollectionViewDelegateFlowLayout {
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+    let textSize: CGSize = inputItemArr[indexPath.row]
+
+      .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
+
+    return CGSize(width: textSize.width + 60, height: 40)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+    return 8
+  }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
+
+      inputItemArr.remove(at: indexPath.row)
+
+      collectionView.reloadData()
+    }
+  }
+}
+
+extension WriteReviewCell: UICollectionViewDelegate {
+}
+
+// MARK: - UITextViewDelegate
+extension AddShopViewController: UITextViewDelegate {
+
+  func textViewDidEndEditing(_ textView: UITextView) {
+
+    inputComment = textView.text
   }
 }

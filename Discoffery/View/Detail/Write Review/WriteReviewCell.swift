@@ -21,7 +21,6 @@ protocol WriteReviewCellDelegate: AnyObject {
 class WriteReviewCell: ShopDetailBasicCell {
 
   // MARK: - Properties
-  
   weak var delegate: WriteReviewCellDelegate?
 
   var wrappedReview = Review()
@@ -29,14 +28,6 @@ class WriteReviewCell: ShopDetailBasicCell {
   var wrappedRecommendItem = RecommendItem()
 
   var endEditItem: String?
-
-  var inputItemArr: [String] = []
-
-  var inputRating: Double?
-
-  var inputComment: String?
-
-  var uploadedImages: [String] = []
 
   // MARK: - Outlets
   @IBOutlet weak var collectionView: UICollectionView!
@@ -47,7 +38,7 @@ class WriteReviewCell: ShopDetailBasicCell {
 
       rateStars.didFinishTouchingCosmos = { rating in
 
-        self.inputRating = rating
+        self.wrappedReview.rating = rating
 
         self.sendReviewBtn.isEnabled = true
 
@@ -72,31 +63,26 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   @IBOutlet weak var sendReviewBtn: UIButton!
 
-  @IBOutlet weak var uploadImageOne: UIImageView!
+  @IBOutlet weak var uploadImgOne: UIImageView!
 
-  @IBOutlet weak var uploadImageTwo: UIImageView!
+  @IBOutlet weak var uploadImgTwo: UIImageView!
 
-  @IBOutlet weak var uploadImageThree: UIImageView!
+  @IBOutlet weak var uploadImgThree: UIImageView!
 
-  // MARK: - Outlets Action
+  // MARK: - IBActions
   @IBAction func didEndAddItemText(_ sender: UITextField) {
 
-    if let addItem = sender.text {
+    if let addedItem = sender.text {
 
-      endEditItem = addItem
+      wrappedReview.recommendItems.append(addedItem)
     }
   }
 
-  @IBAction func addItemCollectionCell(_ sender: UIButton) {
-
-    if let endEditItem = endEditItem {
-
-      inputItemArr.append(endEditItem)
+  @IBAction func onTapAddItemBtn(_ sender: UIButton) {
 
       addItemTextField.text = ""
 
       collectionView.reloadData()
-    }
   }
 
   @IBAction func uploadImage(_ sender: UIButton) {
@@ -104,41 +90,33 @@ class WriteReviewCell: ShopDetailBasicCell {
     delegate?.uploadImageBtnDidSelect()
   }
 
-  @IBAction func finishEditingReview(_ sender: UIButton!) {
+  @IBAction func onTapSendBtn(_ sender: UIButton!) {
 
     // The user can send review only when rating is provided
-    guard let inputRating = inputRating else { return }
+    if wrappedReview.rating != 0 {
 
-    wrappedReview.rating = inputRating
+      delegate?.sendReview(inputReview: &wrappedReview)
 
-    wrappedReview.comment = inputComment ?? "User didn't write comment."
+      // If the user did provide recommend item then we can publish
+      if !wrappedReview.recommendItems.isEmpty {
 
-    wrappedReview.recommendItems = inputItemArr
+        for (index, item) in wrappedReview.recommendItems.enumerated() {
 
-    delegate?.sendReview(inputReview: &wrappedReview)
+          print("index = \(index) & item = \(item)")
 
-    // If the user did provide recommend item then we can publish
-    if !inputItemArr.isEmpty {
+          wrappedRecommendItem.item = item
 
-      for (index, item) in inputItemArr.enumerated() {
+          // wrappedRecommendItem.count += 1 在這+1會導致count沒更新一直累加送到火地所以在DetailVC檢查：這樣的邏輯變成是這個人推薦了幾個項目count就會是多少！
 
-        print("index = \(index) & item = \(item)")
+          delegate?.sendRecommendItem(inputItem: &wrappedRecommendItem)
+        }
 
-        wrappedRecommendItem.item = item
+        rateStars.rating = 0
+        addItemTextField.text = ""
+        commentTextView.text = ""
 
-        // wrappedRecommendItem.count += 1 在這+1會導致count沒更新一直累加送到火地所以在DetailVC檢查：這樣的邏輯變成是這個人推薦了幾個項目count就會是多少！
-
-        delegate?.sendRecommendItem(inputItem: &wrappedRecommendItem)
+        collectionView.reloadData()
       }
-      rateStars.rating = 0
-
-      addItemTextField.text = ""
-
-      commentTextView.text = ""
-
-      inputItemArr.removeAll()
-
-      collectionView.reloadData()
     }
   }
 
@@ -169,40 +147,22 @@ class WriteReviewCell: ShopDetailBasicCell {
   func layoutWriteReviewCell() {
 
     sendReviewBtn.isEnabled = false
-
     sendReviewBtn.setTitleColor(.lightGray, for: .disabled)
-
     sendReviewBtn.layoutViewWithShadow()
-
     sendReviewBtn.layoutViewWithShadow()
 
     uploadImageBtn.isEnabled = false
-
     uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
-    addItemTextField.clipsToBounds = true
-
-    addItemTextField.layer.cornerRadius = 10
-
-    addItemTextField.layer.borderWidth = 0.5
-
-    addItemTextField.layer.borderColor = UIColor.B5?.cgColor
-
     commentTextView.delegate = self
-
     commentTextView.layer.borderWidth = 0.5
-
     commentTextView.layer.borderColor = UIColor.B5?.cgColor
-
     commentTextView.clipsToBounds = true
-
     commentTextView.layer.cornerRadius = 10
 
-//    uploadImageOne.isHidden = true
-//
-//    uploadImageTwo.isHidden = true
-//
-//    uploadImageThree.isHidden = true
+    uploadImgOne.isHidden = true
+    uploadImgTwo.isHidden = true
+    uploadImgThree.isHidden = true
   }
 }
 
@@ -211,14 +171,14 @@ extension WriteReviewCell: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return inputItemArr.count
+    return wrappedReview.recommendItems.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
 
-      cell.layoutAddItemCollectionViewCell(from: inputItemArr[indexPath.row])
+      cell.layoutAddItemCollectionViewCell(from: wrappedReview.recommendItems[indexPath.row])
 
       return cell
     }
@@ -231,7 +191,7 @@ extension WriteReviewCell: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-    let textSize: CGSize = inputItemArr[indexPath.row]
+    let textSize: CGSize = wrappedReview.recommendItems[indexPath.row]
 
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
@@ -244,16 +204,15 @@ extension WriteReviewCell: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
+    if collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) is AddItemCollectionViewCell {
 
-      inputItemArr.remove(at: indexPath.row)
-
+      wrappedReview.recommendItems.remove(at: indexPath.row)
       collectionView.reloadData()
     }
   }
 }
 
-extension WriteReviewCell: UICollectionViewDelegate {
+extension AddShopViewController: UICollectionViewDelegate {
 }
 
 // MARK: - UITextViewDelegate
@@ -261,6 +220,6 @@ extension WriteReviewCell: UITextViewDelegate {
 
   func textViewDidEndEditing(_ textView: UITextView) {
 
-    inputComment = textView.text
+    wrappedReview.comment = textView.text
   }
 }
