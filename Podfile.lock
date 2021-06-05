@@ -221,6 +221,9 @@ PODS:
   - Cosmos (23.0.0)
   - DynamicBlurView (4.1.0)
   - Eureka (5.3.3)
+  - Firebase/Auth (6.34.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (~> 6.9.2)
   - Firebase/CoreOnly (6.34.0):
     - FirebaseCore (= 6.10.4)
   - Firebase/Firestore (6.34.0):
@@ -229,6 +232,11 @@ PODS:
   - Firebase/Storage (6.34.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.9.1)
+  - FirebaseAuth (6.9.2):
+    - FirebaseCore (~> 6.10)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/Environment (~> 6.7)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseCore (6.10.4):
     - FirebaseCoreDiagnostics (~> 1.6)
     - GoogleUtilities/Environment (~> 6.7)
@@ -258,10 +266,21 @@ PODS:
   - GeoFire/Utils (4.2.0)
   - GoogleDataTransport (7.5.1):
     - nanopb (~> 1.30906.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
   - GoogleUtilities/Environment (6.7.2):
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
+  - GoogleUtilities/Network (6.7.2):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
+    - GoogleUtilities/Logger
   - "gRPC-C++ (1.28.2)":
     - "gRPC-C++/Implementation (= 1.28.2)"
     - "gRPC-C++/Interface (= 1.28.2)"
@@ -310,6 +329,7 @@ PODS:
 DEPENDENCIES:
   - Cosmos (~> 23.0)
   - Eureka
+  - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
@@ -330,6 +350,7 @@ SPEC REPOS:
     - DynamicBlurView
     - Eureka
     - Firebase
+    - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseFirestore
@@ -361,6 +382,7 @@ SPEC CHECKSUMS:
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
+  FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
   FirebaseCore: d3a978a3cfa3240bf7e4ba7d137fdf5b22b628ec
   FirebaseCoreDiagnostics: 770ac5958e1372ce67959ae4b4f31d8e127c3ac1
   FirebaseFirestore: 9b2f1b9b9a6f2f0b6fb7484b9e32ab7e39243554
@@ -385,6 +407,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   YPImagePicker: 6f410f475bd22fa8cd430495b54d4b2f15865c2d
 
-PODFILE CHECKSUM: dab1200d8abaeff8557dd5eee71c913714015be5
+PODFILE CHECKSUM: 7074517ff7c769e41a897923da362e4a230aece3
 
 COCOAPODS: 1.10.1

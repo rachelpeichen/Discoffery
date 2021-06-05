@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -40,6 +41,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func sceneWillEnterForeground(_ scene: UIScene) {
     // Called as the scene transitions from the background to the foreground.
     // Use this method to undo the changes made on entering the background.
+
+    // MARK: 現在每次一進來都會強制登出，之後可把這個做成按鈕
+    let firebaseAuth = Auth.auth()
+
+    do {
+
+      try firebaseAuth.signOut()
+
+    } catch let signOutError as NSError {
+
+      print("Sign Out Error: %@", signOutError)
+    }
+
+    var storyboard: UIStoryboard?
+
+    if firebaseAuth.currentUser != nil {
+
+      storyboard = .main
+
+    } else {
+
+      storyboard = .login
+    }
+
+    window?.rootViewController = storyboard?.instantiateInitialViewController()
+
+    window?.makeKeyAndVisible()
   }
 
   func sceneDidEnterBackground(_ scene: UIScene) {

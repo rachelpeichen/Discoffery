@@ -80,11 +80,10 @@ class CoffeeShopManager {
             completion(.failure(error))
           }
         }
-
+        
         completion(.success(shopsFilterd))
       }
     }
-
   }
 
 

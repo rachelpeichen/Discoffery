@@ -7,7 +7,10 @@
 
 import UIKit
 
-class HomeViewController: UIViewController { 
+class HomeViewController: UIViewController {
+
+  // MARK: - Properties
+  var sharedHomeViewModel = HomeViewModel()
 
   // MARK: - Outlets
   @IBOutlet weak var mapContainerView: UIView!
@@ -15,7 +18,7 @@ class HomeViewController: UIViewController {
   @IBOutlet weak var listContainerView: UIView!
 
   @IBAction func didTouchSearchBtn(_ sender: UIButton) {
-    
+
   }
 
   @IBAction func changeLayout(_ sender: UIButton) {
@@ -24,18 +27,23 @@ class HomeViewController: UIViewController {
 
       listContainerView.isHidden = false
 
-      mapContainerView.isHidden = true
+      mapContainerView.isHidden  = true
+
+      let listIconConfig = UIImage.SymbolConfiguration(scale: .large)
+      let listIcon       = UIImage(systemName: "list.dash", withConfiguration: listIconConfig)
+      sender.setImage(listIcon, for: .normal)
 
     } else if listContainerView.isHidden == false {
 
       listContainerView.isHidden = true
 
-      mapContainerView.isHidden = false
+      mapContainerView.isHidden  = false
+
+      let mapIconConfig = UIImage.SymbolConfiguration(scale: .large)
+      let mapIcon       = UIImage(systemName: "map", withConfiguration: mapIconConfig)
+      sender.setImage(mapIcon, for: .normal)
     }
   }
-
-  // MARK: - Properties
-  var sharedHomeViewModel = HomeViewModel()
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -54,6 +62,7 @@ class HomeViewController: UIViewController {
 
       mapVC.homeViewModel = self.sharedHomeViewModel
     }
+
     if let listVC = segue.destination as? HomeListViewController {
 
       listVC.homeViewModel = self.sharedHomeViewModel

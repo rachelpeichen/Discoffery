@@ -154,14 +154,14 @@ class WriteReviewCell: ShopDetailBasicCell {
     uploadImageBtn.isEnabled = false
     uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
-    commentTextView.delegate = self
-    commentTextView.layer.borderWidth = 0.5
-    commentTextView.layer.borderColor = UIColor.B5?.cgColor
-    commentTextView.clipsToBounds = true
+    commentTextView.delegate           = self
+    commentTextView.layer.borderWidth  = 0.5
+    commentTextView.layer.borderColor  = UIColor.B5?.cgColor
+    commentTextView.clipsToBounds      = true
     commentTextView.layer.cornerRadius = 10
 
-    uploadImgOne.isHidden = true
-    uploadImgTwo.isHidden = true
+    uploadImgOne.isHidden   = true
+    uploadImgTwo.isHidden   = true
     uploadImgThree.isHidden = true
   }
 }
@@ -207,6 +207,7 @@ extension WriteReviewCell: UICollectionViewDelegateFlowLayout {
     if collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) is AddItemCollectionViewCell {
 
       wrappedReview.recommendItems.remove(at: indexPath.row)
+
       collectionView.reloadData()
     }
   }

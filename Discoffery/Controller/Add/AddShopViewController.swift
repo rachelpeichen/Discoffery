@@ -25,13 +25,9 @@ class AddShopViewController: UIViewController {
 
   var parsedOpenHours: String?
 
-  var endEditItem: String?
-
   var inputItemArr: [String] = []
 
-  var inputRating: Double?
-
-  var inputComment: String?      
+  var uploadedImgArr: [UIImage] = []
 
   // MARK: - Outlets
   @IBOutlet weak var collectionView: UICollectionView!
@@ -46,10 +42,11 @@ class AddShopViewController: UIViewController {
 
   @IBOutlet weak var rateStars: CosmosView! {
 
-    didSet{
+    didSet {
 
       rateStars.didFinishTouchingCosmos = { rating in
-        self.inputRating = rating
+        
+        self.wrappedNewShopReview.rating = rating
       }
     }
   }
@@ -67,20 +64,14 @@ class AddShopViewController: UIViewController {
   @IBAction func didEndAddItemText(_ sender: UITextField) {
 
     if let addedItem = sender.text {
-      endEditItem = addedItem
+      inputItemArr.append(addedItem)
     }
   }
 
   @IBAction func onTapAddItemBtn(_ sender: UIButton) {
 
-    if let endEditItem = endEditItem {
-
-      inputItemArr.append(endEditItem)
-
       addItemTextField.text = ""
-
       collectionView.reloadData()
-    }
   }
 
   @IBAction func onTapUploadImageBtn(_ sender: Any) {
@@ -102,9 +93,10 @@ class AddShopViewController: UIViewController {
 
     if segue.identifier == "OpenHoursVCSegue" {
 
-      let destinationVC = segue.destination as! AddOpenHoursViewController
+      if let destinationVC = segue.destination as? AddOpenHoursViewController {
 
-      destinationVC.delegate = self
+        destinationVC.delegate = self
+      }
     }
   }
 
@@ -112,8 +104,8 @@ class AddShopViewController: UIViewController {
   func setUpImagesPicker() {
 
     var config = YPImagePickerConfiguration()
-
     config.library.maxNumberOfItems = 3
+    config.startOnScreen = .library
 
     let picker = YPImagePicker(configuration: config)
 
@@ -136,13 +128,10 @@ class AddShopViewController: UIViewController {
             self.addViewModel.uploadImageFromUserReview(with: photo.image)
 
           case .video(let video):
-
             print("You cannot upload video lmao \(video)")
           }
         }
         picker.dismiss(animated: true, completion: nil)
-
-        self.showStandardDialog(title: "新增相片成功☺️", message: "讚讚讚")
       }
     }
   }
@@ -175,14 +164,6 @@ class AddShopViewController: UIViewController {
     setupCollectionView()
     // Do any additional setup after loading the view.
 
-    //        // Get user's input and wrap as my struct type
-    //        guard let dict = self?.form.values(includeHidden: true) else { return }
-    //
-    //
-    //        var newShop = self?.parseInputToShop(inputDic: dict)
-    //
-    //        self?.addViewModel.publishNewShop(shop: &(newShop)!)
-
     // MARK: Parse input to my struct
     func parseInputToShop(inputDic: [String: Any?]) -> CoffeeShop {
 
@@ -193,8 +174,6 @@ class AddShopViewController: UIViewController {
       wrappedNewShop.socket = inputDic["socket"] as? String ?? "Unknown"
 
       wrappedNewShop.limitedTime = inputDic["timeLimit"] as? String ?? "Unknown"
-
-      wrappedNewShop.openTime = parsedOpenHours ?? "Unknown"
 
       return wrappedNewShop
     }
@@ -236,13 +215,15 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
 
   func finishAddOpenHours(openHours: [String: Any?]) {
 
-    let openHoursDic = openHours.compactMapValues { $0 }
+    let openHoursDic = openHours.compactMapValues{ $0 }
 
     parsedOpenHours = (openHoursDic.compactMap({ (key, value) -> String in
 
-      return "\(key):\(value)"
+      return "\(key): \(value)"
 
     }) as Array).joined(separator: ";")
+
+    wrappedNewShop.openTime = parsedOpenHours ?? "Unknown"
   }
 }
 
@@ -275,7 +256,7 @@ extension AddShopViewController: UICollectionViewDelegateFlowLayout {
 
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
-    return CGSize(width: textSize.width + 60, height: 40)
+    return CGSize(width: textSize.width + 30, height: 45)
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -302,6 +283,6 @@ extension AddShopViewController: UITextViewDelegate {
 
   func textViewDidEndEditing(_ textView: UITextView) {
 
-    inputComment = textView.text
+    wrappedNewShopReview.comment = textView.text
   }
 }

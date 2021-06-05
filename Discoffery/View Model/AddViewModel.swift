@@ -14,7 +14,6 @@ class AddViewModel {
 
   var onUploadImage: ((String) -> Void)?
 
-  // MARK: - Functions
   func fetchNewShop(name: String) {
 
     CoffeeShopManager.shared.fetchNewShops(name: name, completion: { result in
@@ -24,9 +23,11 @@ class AddViewModel {
       case .success(let newShop):
 
         self.onFetchNewShop?(newShop.id)
-        print("🥴fetchNewShop Success")
+
+        print("🔥 FetchNewShop Success")
 
       case .failure(let error):
+
         print("publishNewShop.failure\(error)")
       }
     })
@@ -40,9 +41,11 @@ class AddViewModel {
       switch result {
 
       case .success:
-        print("Publish 🥴New Shop To Firebase Success")
+
+        print("🔥Publish New Shop To Firebase Success")
 
       case .failure(let error):
+
         print("publishNewShop.failure\(error)")
       }
     }
@@ -56,9 +59,11 @@ class AddViewModel {
       switch result {
 
       case .success:
-        print("Publish 🥴New ShopReview To Firebase Success")
+
+        print("🥴Publish New ShopReview To Firebase Success")
 
       case .failure(let error):
+
         print("publishNewShop.failure\(error)")
       }
     }
@@ -71,9 +76,11 @@ class AddViewModel {
       switch result {
 
       case .success:
-        print("Publish 🥴New NewShopFeature To Firebase Success")
+
+        print("🥴Publish New NewShopFeature To Firebase Success")
 
       case .failure(let error):
+
         print("publishNewShop.failure\(error)")
       }
     }
@@ -87,9 +94,11 @@ class AddViewModel {
       switch result {
 
       case .success:
-        print("Publish 🥴NewShopRecommendItem To Firebase Success")
+
+        print("🥴Publish NewShopRecommendItem To Firebase Success")
 
       case .failure(let error):
+
         print("publishNewShop.failure\(error)")
       }
     }
@@ -102,10 +111,11 @@ class AddViewModel {
       switch result {
 
       case .success:
-        //
-        print("Publish 🥴Review To Firebase Success")
+
+        print("🥴Publish Review To Firebase Success")
 
       case .failure(let error):
+
         print("publishUserReview.failure: \(error)")
       }
     }
@@ -120,9 +130,10 @@ class AddViewModel {
 
           self.onUploadImage?(imageURL)
 
-          print("Upload 🥴 ImageFromUserReview To Firebase Success" + imageURL)
+          print("🔥Upload ImageFromUserReview To Firebase Success" + imageURL)
 
         case .failure(let error):
+
           print("publishRecommendItem: \(error)")
         }
       }
@@ -135,9 +146,11 @@ class AddViewModel {
       switch result {
 
       case .success:
-        print("Publish 🥴Recommend Item To Firebase Success")
+
+        print("🥴Publish Recommend Item To Firebase Success")
 
       case .failure(let error):
+        
         print("publishRecommendItem: \(error)")
       }
     }

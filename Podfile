@@ -31,6 +31,8 @@ target 'Discoffery' do
   pod 'Firebase/Firestore'
 
   pod 'FirebaseFirestoreSwift'
+ 
+  pod 'Firebase/Auth'
 
   pod 'Firebase/Storage'
 end

@@ -220,17 +220,20 @@ extension DetailViewController: UITableViewDataSource {
             cell.uploadImgTwo.image    = uploadedImgArr[1]
 
           case 3:
-            cell.uploadImgOne.isHidden   = false
-            cell.uploadImgTwo.isHidden   = false
-            cell.uploadImgThree.isHidden = false
-            cell.uploadImgOne.image      = uploadedImgArr[0]
-            cell.uploadImgTwo.image      = uploadedImgArr[1]
-            cell.uploadImgThree.image    = uploadedImgArr[2]
+            cell.uploadImgOne.isHidden    = false
+            cell.uploadImgTwo.isHidden    = false
+            cell.uploadImgThree.isHidden  = false
+            cell.uploadImgOne.image       = uploadedImgArr[0]
+            cell.uploadImgTwo.image       = uploadedImgArr[1]
+            cell.uploadImgThree.image     = uploadedImgArr[2]
+            cell.uploadImageBtn.isEnabled = false
+            cell.uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
           default:
-            cell.uploadImgOne.isHidden   = true
-            cell.uploadImgTwo.isHidden   = true
-            cell.uploadImgThree.isHidden = true
+            //            cell.uploadImageBtn.isEnabled = false
+            //            cell.uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
+            showStandardDialog(title: "你已經選三張ㄌ", message: "不給你選ㄌ")
+
           }
         }
         cell.selectionStyle = .none
@@ -276,7 +279,7 @@ extension DetailViewController: WriteReviewCellDelegate {
 
     var localInputReview = inputReview
 
-    // MARK: Publish reivew after uploading img work is done
+    // MARK: GCD: Publish reivew after uploading img work is done
     let dispatchGroup = DispatchGroup()
 
     for index in 0..<self.uploadedImgArr.count {
@@ -292,89 +295,64 @@ extension DetailViewController: WriteReviewCellDelegate {
         dispatchGroup.leave()
       }
     }
-    
+
     dispatchGroup.notify(queue: .main) {
 
       self.addViewModel.publishUserReview(shop: shop, review: &localInputReview, uploadedImgURL: self.uploadedImgURLArr)
 
       self.showSuccessDialog(animated: true, title: "新增評論成功ㄌ", message: "讚讚讚")
     }
+  }
 
-    //    let dispatchQueue = DispatchQueue(label: "myQueue", qos: .userInitiated)
-    //
-    //    let semaphore = DispatchSemaphore(value: 0) //
-    //
-    //    dispatchQueue.async {
-    //
-    //      for index in 0..<self.uploadedImgArr.count {
-    //
-    //        self.addViewModel.uploadImageFromUserReview(with: self.uploadedImgArr[index])
-    //
-    //        self.addViewModel.onUploadImage = { result in
-    //
-    //          self.uploadedImgURLArr.append(result)
-    //          semaphore.signal()
-    //        }
-    //        semaphore.wait()
-    //      }
+  func sendRecommendItem(inputItem: inout RecommendItem) {
 
-    //      DispatchQueue.main.async {
-    //
-    //        self.addViewModel.publishUserReview(shop: shop, review: &localInputReview, uploadedImgURL: self.uploadedImgURLArr) // need callback, vc doesnt know api success or not, vm need notify vc
-    //
-    //        self.showSuccessDialog(animated: true, title: "新增評論成功ㄌ", message: "讚讚讚")
-    //      }
-//  }
-}
+    guard let shop = shop else { return }
 
-func sendRecommendItem(inputItem: inout RecommendItem) {
+    let localInputItem = inputItem // inout parameter can't be used in closure, so copy one
 
-  guard let shop = shop else { return }
+    addViewModel.checkIfRecommendItemExist(shop: shop, item: localInputItem)
+  }
 
-  let localInputItem = inputItem // inout parameter can't be used in closure, so copy one
+  func uploadImageBtnDidSelect() {
 
-  addViewModel.checkIfRecommendItemExist(shop: shop, item: localInputItem)
-}
+    setUpImagesPicker()
+  }
 
-func uploadImageBtnDidSelect() {
+  func setUpImagesPicker() {
 
-  setUpImagesPicker()
-}
+    var config = YPImagePickerConfiguration()
 
-func setUpImagesPicker() {
+    config.library.maxNumberOfItems = 3
+    config.startOnScreen = .library
 
-  var config = YPImagePickerConfiguration()
+    let picker = YPImagePicker(configuration: config)
 
-  config.library.maxNumberOfItems = 3
+    present(picker, animated: true, completion: nil)
 
-  let picker = YPImagePicker(configuration: config)
+    picker.didFinishPicking { [unowned picker] items, cancelled in
 
-  present(picker, animated: true, completion: nil)
+      if cancelled {
 
-  picker.didFinishPicking { [unowned picker] items, cancelled in
+        picker.dismiss(animated: true, completion: nil)
 
-    if cancelled {
+      } else {
 
-      picker.dismiss(animated: true, completion: nil)
+        for item in items {
 
-    } else {
+          switch item {
 
-      for item in items {
+          case .photo(let photo):
 
-        switch item {
+            self.uploadedImgArr.append(photo.image)
 
-        case .photo(let photo):
+            self.tableView.reloadData()
 
-          self.uploadedImgArr.append(photo.image)
-
-          self.tableView.reloadData()
-
-        case .video(let video):
-          print("You cannot upload video lmao \(video)")
+          case .video(let video):
+            print("You cannot upload video lmao \(video)")
+          }
         }
+        picker.dismiss(animated: true, completion: nil)
       }
-      picker.dismiss(animated: true, completion: nil)
     }
   }
-}
 }

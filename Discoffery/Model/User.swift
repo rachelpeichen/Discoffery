@@ -6,30 +6,29 @@
 //
 import Foundation
 
-// MARK: Not sure about this structure!!!
 struct User: Codable {
 
-  var id: String = "default"            // User.documentID
+  var id: String = "default"            // User.documentID (uid)
 
-  var appleId: String = "default"
+  var name: String = "default"
 
-  var profileImage: String = "default" // Now only mock data
+  var profileImg: String = "default" // Now only mock data
 
-  var savedShops: String = "default"  // A sub-collection
+  var email: String = "default"
 
-  // var blockList: [String] = ["default","default2"]
+  var createdTime: Int64 = 0
 
   enum CodingKeys: String, CodingKey {
 
     case id
 
-    case appleId
+    case name
 
-    case profileImage
+    case profileImg
 
-    case savedShops
+    case email
 
-//    case blockList
+    case createdTime
   }
 
   var toDict: [String: Any] {
@@ -38,44 +37,13 @@ struct User: Codable {
 
       "id": id as Any,
 
-      "appleId": appleId as Any,
+      "name": name as Any,
 
-      "image": profileImage as Any,
+      "profileImg": profileImg as Any,
 
-      "savedShops": savedShops as Any
+      "email": email as Any,
 
-//      "blockList": blockList as Any
-    ]
-  }
-}
-
-// MARK: Not sure about this structure!!!
-struct SavedShops: Codable {
-
-  var id: String                      // SavedShops.documentID
-
-  var category: String
-
-  var savedShopsByCategory: [String]  //([coffeeShops.documentID]
-
-  enum CodingKeys: String, CodingKey {
-
-    case id
-
-    case category
-
-    case savedShopsByCategory
-  }
-
-  var toDict: [String: Any] {
-
-    return [
-
-      "id": id as Any,
-
-      "category": category as Any,
-
-      "savedShopsByCategory": savedShopsByCategory as Any
+      "createdTime": createdTime as Any
     ]
   }
 }

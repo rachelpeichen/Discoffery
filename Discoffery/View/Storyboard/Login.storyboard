@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IA8-WS-lRG">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="tQS-5k-gfz">
+            <objects>
+                <viewController id="IA8-WS-lRG" customClass="LoginViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jOR-3e-9lR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mug" translatesAutoresizingMaskIntoConstraints="NO" id="ep1-Ap-1lQ">
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="XMc-eL-Ltk"/>
+                                    <constraint firstAttribute="height" constant="200" id="nJl-k2-yMA"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ot3-Cy-dvw">
+                                <rect key="frame" x="107" y="603" width="200" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="hNe-DM-gAg"/>
+                                    <constraint firstAttribute="height" constant="60" id="pqw-Z8-m0p"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tPI-z2-K7A"/>
+                        <color key="backgroundColor" name="B5"/>
+                        <constraints>
+                            <constraint firstItem="ep1-Ap-1lQ" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="3tB-06-tFp"/>
+                            <constraint firstItem="ep1-Ap-1lQ" firstAttribute="centerY" secondItem="jOR-3e-9lR" secondAttribute="centerY" id="AUo-Ub-XSr"/>
+                            <constraint firstItem="Ot3-Cy-dvw" firstAttribute="top" secondItem="ep1-Ap-1lQ" secondAttribute="bottom" constant="55" id="PcV-kW-3EB"/>
+                            <constraint firstItem="Ot3-Cy-dvw" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="q2Q-vp-RAD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signInWithAppleBtnView" destination="Ot3-Cy-dvw" id="dMs-9t-9ju"/>
+                        <segue destination="835-hF-8M4" kind="show" identifier="navigateToMainStoryboard" id="NIF-4D-036"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vgj-Zn-z8V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303" y="258"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="4WX-nR-tnw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="835-hF-8M4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bHD-yK-M7d"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R0R-dA-pKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="222" y="258"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mug" width="640" height="640"/>
+        <namedColor name="B5">
+            <color red="0.82999998331069946" green="0.77799999713897705" blue="0.69099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
