@@ -9,13 +9,15 @@ import UIKit
 
 class ShopImagesCollectionViewCell: UICollectionViewCell {
 
-  @IBOutlet weak var tmpMainImage: UIImageView!
+  @IBOutlet weak var mainImgContainerView: UIView!
+
+  @IBOutlet weak var mainImg: UIImageView!
 
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
 
     // corner radius
-    tmpMainImage.layer.cornerRadius = 20
+    mainImg.layoutImageViewWithShadow(for: mainImg, with: mainImgContainerView)
   }
 }

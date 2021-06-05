@@ -230,8 +230,6 @@ extension DetailViewController: UITableViewDataSource {
             cell.uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
           default:
-            //            cell.uploadImageBtn.isEnabled = false
-            //            cell.uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
             showStandardDialog(title: "你已經選三張ㄌ", message: "不給你選ㄌ")
 
           }
@@ -336,6 +334,8 @@ extension DetailViewController: WriteReviewCellDelegate {
         picker.dismiss(animated: true, completion: nil)
 
       } else {
+
+        self.showSuccessHUD(showInfo: "上傳照片成功")
 
         for item in items {
 

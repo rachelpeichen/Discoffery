@@ -10,57 +10,107 @@ import UIKit
 class CollectionViewController: UIViewController {
 
   // MARK: Outlets
-  @IBOutlet weak var addNewCategory: UIBarButtonItem!
 
-  @IBOutlet weak var tableView: UITableView!
-
+  @IBOutlet weak var collectionView: UICollectionView!
   // MARK: Properties
-
-  var categories: [String] = ["預設分類1", " 用戶分類1", "用戶分類2"]
+  var addViewModel = AddViewModel()
 
   // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    setupTableView()
+    setupNavigation()
 
-    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
+    setupCollectionView()
   }
 
   // MARK: Functions
-  private func setupTableView() {
+  func setupNavigation() {
 
-    tableView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellReuseIdentifier: "collectionCell")
+    navigationController?.navigationBar.barTintColor = .G3
 
-    tableView.estimatedRowHeight = 300
+    let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navigateToNextVC))
 
-    tableView.rowHeight = UITableView.automaticDimension
+    addBtn.tintColor = .G1
 
-    tableView.separatorStyle = .none
+    navigationItem.rightBarButtonItem = addBtn
 
-    tableView.reloadData()
+    //navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navigateToNextVC))
+  }
+
+ @objc func navigateToNextVC() {
+
+    performSegue(withIdentifier: "navigateToAddCategoryVC", sender: self)
+  }
+
+  private func setupCollectionView() {
+
+    collectionView.register(UINib(nibName: CategoryCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CategoryCollectionViewCell.identifier)
+
+    collectionView.delegate = self
+
+    collectionView.dataSource = self
+
+    let layout = UICollectionViewFlowLayout()
+
+    layout.scrollDirection = .vertical
+
+    layout.minimumLineSpacing = 8
+
+    layout.minimumInteritemSpacing = 8
+
+    collectionView.setCollectionViewLayout(layout, animated: true)
   }
 }
 
-extension CollectionViewController: UITableViewDataSource {
+// MARK: - UICollectionViewDataSource
+extension CollectionViewController: UICollectionViewDataSource {
 
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return 3
+    return 5
   }
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    if let cell = tableView.dequeueReusableCell(withIdentifier: "collectionCell", for: indexPath) as? CollectionCell {
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell {
 
-      cell.category.text = categories[indexPath.row]
+      cell.mainImgView.image = UIImage(named: "unsplash_protrait_1")
+
+      cell.layoutCategoryCollectionViewCell(from: "分類")
 
       return cell
     }
-    return CollectionCell()
+    return CategoryCollectionViewCell()
+  }
+}
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CollectionViewController: UICollectionViewDelegateFlowLayout {
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 16
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+    let minimumInteritemSpacing = 16
+
+    let sectionInsetLeft = 16
+
+    let sectionInsetRight = 16
+
+    let space = CGFloat(minimumInteritemSpacing + sectionInsetLeft + sectionInsetRight)
+
+    let sizePerItem: CGFloat = (collectionView.frame.size.width - space) / 2.0
+
+    return CGSize(width: sizePerItem, height: sizePerItem + 35)
   }
 }
 
-extension CollectionViewController: UITableViewDelegate {
+extension CollectionViewController: UICollectionViewDelegate {
 }

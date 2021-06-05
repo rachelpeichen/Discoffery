@@ -15,7 +15,7 @@ extension UIView {
 
     imageView.layer.cornerRadius = 20
 
-    containerView.layer.shadowOpacity = 0.5
+    containerView.layer.shadowOpacity = 0.8
 
     containerView.layer.shadowRadius = 3.0
 

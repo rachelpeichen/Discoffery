@@ -729,87 +729,103 @@
         <!--Item-->
         <scene sceneID="dns-wA-6DW">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rgU-Es-RXt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController modalPresentationStyle="currentContext" id="sPR-oh-DbF" customClass="IntroductionViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FLS-tD-ZBN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Discoffery!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP9-oN-Usa">
-                                <rect key="frame" x="80" y="144" width="254" height="68"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unsplash_protrait_1" translatesAutoresizingMaskIntoConstraints="NO" id="0Dr-ep-3GP">
+                                <rect key="frame" x="0.0" y="-44" width="414" height="948"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vM-vh-XDC">
+                                <rect key="frame" x="44" y="257" width="326" height="382"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開啟定位讓使用體驗更美好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeE-8p-aRv">
+                                        <rect key="frame" x="43" y="106" width="240" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="7OP-Vh-19g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="20"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在你搜尋附近的咖啡廳時，我們會自動偵測你的定位，您可以隨時調整設定。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thP-Cm-3ev">
+                                        <rect key="frame" x="49.5" y="164" width="227" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="227" id="Lqu-bn-dEt"/>
+                                            <constraint firstAttribute="height" constant="100" id="bZY-Sz-hMj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="18"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's Discoffery!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP9-oN-Usa">
+                                        <rect key="frame" x="36" y="30" width="254" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="gZq-4h-z5V"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="32"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-Bx-lBj" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
+                                        <rect key="frame" x="63" y="312" width="200" height="40"/>
+                                        <color key="backgroundColor" name="G2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cEi-1L-54j"/>
+                                            <constraint firstAttribute="width" constant="200" id="fjy-AP-vbj"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="naviagteToHomeVC:" destination="sPR-oh-DbF" eventType="touchUpInside" id="dwH-h0-Jl9"/>
+                                            <segue destination="ywh-9w-k8J" kind="show" identifier="navigateToHomeVC" animates="NO" id="baM-KZ-J5T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.70218857020547942" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="gZq-4h-z5V"/>
+                                    <constraint firstItem="7Sb-Bx-lBj" firstAttribute="centerX" secondItem="0vM-vh-XDC" secondAttribute="centerX" id="2Za-9b-XN5"/>
+                                    <constraint firstItem="NeE-8p-aRv" firstAttribute="top" secondItem="BP9-oN-Usa" secondAttribute="bottom" constant="8" id="A5q-9S-anF"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Sb-Bx-lBj" secondAttribute="bottom" constant="30" id="IWh-I2-uOb"/>
+                                    <constraint firstItem="thP-Cm-3ev" firstAttribute="centerX" secondItem="0vM-vh-XDC" secondAttribute="centerX" id="M5d-tK-ExH"/>
+                                    <constraint firstAttribute="width" constant="326" id="U45-V9-zfo"/>
+                                    <constraint firstItem="thP-Cm-3ev" firstAttribute="top" secondItem="NeE-8p-aRv" secondAttribute="bottom" constant="30" id="g4C-hx-moB"/>
+                                    <constraint firstAttribute="height" constant="382" id="hQ9-hn-Ti8"/>
+                                    <constraint firstItem="BP9-oN-Usa" firstAttribute="top" secondItem="0vM-vh-XDC" secondAttribute="top" constant="30" id="kkg-09-Jme"/>
+                                    <constraint firstItem="BP9-oN-Usa" firstAttribute="centerX" secondItem="0vM-vh-XDC" secondAttribute="centerX" id="pOY-CV-fc0"/>
+                                    <constraint firstItem="NeE-8p-aRv" firstAttribute="centerX" secondItem="0vM-vh-XDC" secondAttribute="centerX" id="yhv-yt-2vc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HiraMinProN-W6" family="Hiragino Mincho ProN" pointSize="32"/>
-                                <color key="textColor" name="G1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sb-Bx-lBj">
-                                <rect key="frame" x="107" y="652" width="200" height="40"/>
-                                <color key="backgroundColor" name="G2"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cEi-1L-54j"/>
-                                    <constraint firstAttribute="width" constant="200" id="fjy-AP-vbj"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="naviagteToHomeVC:" destination="sPR-oh-DbF" eventType="touchUpInside" id="dwH-h0-Jl9"/>
-                                    <segue destination="ywh-9w-k8J" kind="show" identifier="navigateToHomeVC" animates="NO" id="baM-KZ-J5T"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在你搜尋附近的咖啡廳時，我們會自動偵測你的定位，您可以隨時調整設定。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thP-Cm-3ev">
-                                <rect key="frame" x="105" y="364" width="204" height="73"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="204" id="myV-cG-XqS"/>
-                                    <constraint firstAttribute="height" constant="73" id="pbc-bo-KJv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="17"/>
-                                <color key="textColor" name="G1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開啟定位讓使用體驗更美好" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeE-8p-aRv">
-                                <rect key="frame" x="87" y="270" width="240" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="7OP-Vh-19g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="20"/>
-                                <color key="textColor" name="G1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="了解更多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haV-tO-gyB">
-                                <rect key="frame" x="178" y="453" width="58" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="Pyj-Ew-aCU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" name="G1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="28O-IF-47v"/>
-                        <color key="backgroundColor" name="B5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7Sb-Bx-lBj" firstAttribute="centerX" secondItem="28O-IF-47v" secondAttribute="centerX" id="Nr0-yD-1s0"/>
-                            <constraint firstItem="haV-tO-gyB" firstAttribute="top" secondItem="thP-Cm-3ev" secondAttribute="bottom" constant="16" id="Sms-rZ-xqw"/>
-                            <constraint firstItem="thP-Cm-3ev" firstAttribute="leading" secondItem="28O-IF-47v" secondAttribute="leading" constant="105" id="T6g-sd-0fs"/>
-                            <constraint firstItem="BP9-oN-Usa" firstAttribute="centerX" secondItem="28O-IF-47v" secondAttribute="centerX" id="TlR-Co-6qz"/>
-                            <constraint firstItem="28O-IF-47v" firstAttribute="bottom" secondItem="7Sb-Bx-lBj" secondAttribute="bottom" constant="170" id="W0W-ZZ-7AV"/>
-                            <constraint firstItem="haV-tO-gyB" firstAttribute="centerX" secondItem="thP-Cm-3ev" secondAttribute="centerX" id="Xjj-0m-9eD"/>
-                            <constraint firstItem="NeE-8p-aRv" firstAttribute="top" secondItem="BP9-oN-Usa" secondAttribute="bottom" constant="58" id="Zi6-I2-2pC"/>
-                            <constraint firstItem="28O-IF-47v" firstAttribute="trailing" secondItem="thP-Cm-3ev" secondAttribute="trailing" constant="105" id="n36-cX-g4S"/>
-                            <constraint firstItem="thP-Cm-3ev" firstAttribute="top" secondItem="NeE-8p-aRv" secondAttribute="bottom" constant="66" id="nLW-Fy-N2t"/>
-                            <constraint firstItem="BP9-oN-Usa" firstAttribute="top" secondItem="28O-IF-47v" secondAttribute="top" constant="100" id="nsL-6r-kMg"/>
-                            <constraint firstItem="NeE-8p-aRv" firstAttribute="centerX" secondItem="BP9-oN-Usa" secondAttribute="centerX" id="ugp-iV-xnZ"/>
+                            <constraint firstItem="0vM-vh-XDC" firstAttribute="centerY" secondItem="FLS-tD-ZBN" secondAttribute="centerY" id="1IS-5P-ZPa"/>
+                            <constraint firstAttribute="bottom" secondItem="0Dr-ep-3GP" secondAttribute="bottom" constant="-8" id="89P-f4-fX2"/>
+                            <constraint firstItem="0vM-vh-XDC" firstAttribute="centerX" secondItem="FLS-tD-ZBN" secondAttribute="centerX" id="Oyq-te-Cae"/>
+                            <constraint firstItem="0Dr-ep-3GP" firstAttribute="trailing" secondItem="28O-IF-47v" secondAttribute="trailing" id="Xam-cV-muX"/>
+                            <constraint firstItem="0Dr-ep-3GP" firstAttribute="leading" secondItem="28O-IF-47v" secondAttribute="leading" id="qVC-LR-Y4W"/>
+                            <constraint firstItem="0Dr-ep-3GP" firstAttribute="top" secondItem="FLS-tD-ZBN" secondAttribute="top" constant="-44" id="xxD-sf-uyr"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="0C7-52-oZX"/>
                     <navigationItem key="navigationItem" id="4iA-SW-HCA"/>
+                    <connections>
+                        <outlet property="bgImgView" destination="0Dr-ep-3GP" id="3Ft-dk-s7Z"/>
+                        <outlet property="dialogView" destination="0vM-vh-XDC" id="HEB-jS-8m1"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rgU-Es-RXt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-870" y="94"/>
+            <point key="canvasLocation" x="-871.01449275362324" y="93.75"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yRK-hk-9kJ">
@@ -1498,6 +1514,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="7Sb-Bx-lBj">
+            <size key="intrinsicContentSize" width="32" height="30"/>
+        </designable>
         <designable name="BML-gh-yi9">
             <size key="intrinsicContentSize" width="33" height="32"/>
         </designable>
@@ -1556,6 +1575,7 @@
         <image name="plus" width="32" height="32"/>
         <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="share" width="256" height="256"/>
+        <image name="unsplash_protrait_1" width="320" height="480"/>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

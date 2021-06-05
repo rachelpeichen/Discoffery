@@ -3,10 +3,10 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,73 +18,148 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-qf-9K3">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="niT-pY-7Fc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="n3o-TN-wrA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gea-NG-QnI">
+                                        <rect key="frame" x="16" y="16" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RTj-i4-WPA">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="jc4-4p-ye8" id="6AG-54-tRW"/>
-                                    <outlet property="delegate" destination="jc4-4p-ye8" id="pFz-OL-qmh"/>
+                                    <outlet property="dataSource" destination="jc4-4p-ye8" id="P2W-KU-3Fg"/>
+                                    <outlet property="delegate" destination="jc4-4p-ye8" id="jlF-i0-SYP"/>
                                 </connections>
-                            </tableView>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C8P-Ow-Yah"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="V3x-qf-9K3" firstAttribute="leading" secondItem="C8P-Ow-Yah" secondAttribute="leading" id="1iP-YY-wnV"/>
-                            <constraint firstItem="V3x-qf-9K3" firstAttribute="top" secondItem="C8P-Ow-Yah" secondAttribute="top" id="Mgd-qm-rUi"/>
-                            <constraint firstItem="V3x-qf-9K3" firstAttribute="trailing" secondItem="C8P-Ow-Yah" secondAttribute="trailing" id="WVP-kd-7Ef"/>
-                            <constraint firstItem="V3x-qf-9K3" firstAttribute="bottom" secondItem="C8P-Ow-Yah" secondAttribute="bottom" id="myr-bL-e56"/>
+                            <constraint firstItem="niT-pY-7Fc" firstAttribute="top" secondItem="C8P-Ow-Yah" secondAttribute="top" id="81O-2p-Ism"/>
+                            <constraint firstItem="niT-pY-7Fc" firstAttribute="trailing" secondItem="C8P-Ow-Yah" secondAttribute="trailing" id="EHu-XT-pnl"/>
+                            <constraint firstItem="niT-pY-7Fc" firstAttribute="leading" secondItem="C8P-Ow-Yah" secondAttribute="leading" id="VnJ-LX-2od"/>
+                            <constraint firstItem="niT-pY-7Fc" firstAttribute="bottom" secondItem="C8P-Ow-Yah" secondAttribute="bottom" id="jz8-mP-5da"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="收藏" id="6SC-4b-gA5">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="His-pV-zXz">
-                            <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
-                            <color key="tintColor" name="G2"/>
-                            <connections>
-                                <segue destination="avu-Km-9kF" kind="showDetail" id="EL3-Gy-ObS"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="收藏" id="6SC-4b-gA5"/>
                     <connections>
-                        <outlet property="addNewCategory" destination="His-pV-zXz" id="f55-ny-jMi"/>
-                        <outlet property="tableView" destination="V3x-qf-9K3" id="BBh-Zd-hsJ"/>
+                        <outlet property="collectionView" destination="niT-pY-7Fc" id="yxy-yq-P8d"/>
+                        <segue destination="Uya-eW-Dcw" kind="showDetail" identifier="navigateToAddCategoryVC" id="fU6-uw-HW5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M77-hl-XTl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="889.85507246376824" y="1031.9196428571429"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Km6-0s-C9z">
+        <!--新的收藏分類-->
+        <scene sceneID="WyJ-XV-j7R">
             <objects>
-                <viewController id="avu-Km-9kF" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Baa-Pw-vFo">
+                <viewController id="Uya-eW-Dcw" customClass="AddCategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EAG-ed-dMl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgH-cp-wP6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpL-cH-nEy">
                                 <rect key="frame" x="57" y="271" width="300" height="300"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-nC-i9u">
+                                        <rect key="frame" x="16" y="16" width="22" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="22" id="3Kd-wn-lPS"/>
+                                            <constraint firstAttribute="height" constant="22" id="Ux1-Ot-JS7"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="back"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增收藏分類" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSj-Mk-8yO">
+                                        <rect key="frame" x="94.5" y="16" width="111" height="22"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn2-Q0-963">
+                                        <rect key="frame" x="42" y="98" width="37" height="22"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" name="G1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dto-RQ-u95">
+                                        <rect key="frame" x="99" y="92" width="33" height="34"/>
+                                        <color key="textColor" name="G1"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-gH-eKY" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
+                                        <rect key="frame" x="110" y="240" width="80" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="6IT-O7-Isq"/>
+                                            <constraint firstAttribute="width" constant="80" id="tTC-jo-Fjh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="完成">
+                                            <color key="titleColor" name="G1"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapFinishBtn:" destination="tbt-Ko-OFB" eventType="touchUpInside" id="Q8S-tA-wcO"/>
+                                            <action selector="onTapFinishBtn:" destination="Uya-eW-Dcw" eventType="touchUpInside" id="m4j-Vk-kG1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Nd5-F1-lQu"/>
-                                    <constraint firstAttribute="height" constant="300" id="s8q-2Q-pqv"/>
+                                    <constraint firstItem="Dn2-Q0-963" firstAttribute="leading" secondItem="OpL-cH-nEy" secondAttribute="leading" constant="42" id="5eR-MJ-CIK"/>
+                                    <constraint firstItem="VSj-Mk-8yO" firstAttribute="centerX" secondItem="OpL-cH-nEy" secondAttribute="centerX" id="8Su-Xs-s3J"/>
+                                    <constraint firstItem="VSj-Mk-8yO" firstAttribute="top" secondItem="OpL-cH-nEy" secondAttribute="top" constant="16" id="De1-5X-kk0"/>
+                                    <constraint firstItem="Kbb-nC-i9u" firstAttribute="top" secondItem="OpL-cH-nEy" secondAttribute="top" constant="16" id="HHs-ki-LMJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="X5E-gH-eKY" secondAttribute="bottom" constant="20" id="MCd-d3-6lY"/>
+                                    <constraint firstAttribute="width" constant="300" id="Uos-E2-Lwv"/>
+                                    <constraint firstItem="Dn2-Q0-963" firstAttribute="top" secondItem="Kbb-nC-i9u" secondAttribute="bottom" constant="60" id="YJa-ai-AnW"/>
+                                    <constraint firstItem="X5E-gH-eKY" firstAttribute="centerX" secondItem="OpL-cH-nEy" secondAttribute="centerX" id="bYF-1B-0My"/>
+                                    <constraint firstItem="dto-RQ-u95" firstAttribute="leading" secondItem="Dn2-Q0-963" secondAttribute="trailing" constant="20" id="n1m-Q3-h85"/>
+                                    <constraint firstItem="dto-RQ-u95" firstAttribute="centerY" secondItem="Dn2-Q0-963" secondAttribute="centerY" id="oF2-Sz-oPW"/>
+                                    <constraint firstAttribute="height" constant="300" id="sgH-00-mKt"/>
+                                    <constraint firstItem="Kbb-nC-i9u" firstAttribute="leading" secondItem="OpL-cH-nEy" secondAttribute="leading" constant="16" id="wf4-aj-O7Z"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="4gl-9J-aBD" kind="embed" id="d6Q-8I-3b4"/>
-                                </connections>
-                            </containerView>
+                            </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="hhb-vS-0YK"/>
+                        <viewLayoutGuide key="safeArea" id="J4V-Tz-iV6"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AgH-cp-wP6" firstAttribute="centerY" secondItem="Baa-Pw-vFo" secondAttribute="centerY" id="AsH-N1-BRn"/>
-                            <constraint firstItem="AgH-cp-wP6" firstAttribute="centerX" secondItem="Baa-Pw-vFo" secondAttribute="centerX" id="Y0K-V9-d1W"/>
+                            <constraint firstItem="OpL-cH-nEy" firstAttribute="centerY" secondItem="EAG-ed-dMl" secondAttribute="centerY" id="8Jr-dF-QFC"/>
+                            <constraint firstItem="OpL-cH-nEy" firstAttribute="centerX" secondItem="EAG-ed-dMl" secondAttribute="centerX" id="WaO-u3-GKl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="CjP-nP-sOB"/>
+                    <navigationItem key="navigationItem" title="新的收藏分類" id="7iD-iJ-hwd">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.backward" catalog="system" id="uIK-g9-bZY">
+                            <color key="tintColor" name="G1"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addCategoryBGView" destination="OpL-cH-nEy" id="xrf-rp-sjT"/>
+                        <outlet property="categoryTextField" destination="dto-RQ-u95" id="cJ4-fS-0We"/>
+                        <outlet property="finishBtn" destination="X5E-gH-eKY" id="wFY-MD-NGl"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5B0-dQ-4aL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fON-VB-7Fi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tbt-Ko-OFB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1673.913043478261" y="1031.9196428571429"/>
+            <point key="canvasLocation" x="1731.8840579710147" y="1031.9196428571429"/>
         </scene>
         <!--收藏-->
         <scene sceneID="9ac-gB-vWM">
@@ -110,42 +185,28 @@
             </objects>
             <point key="canvasLocation" x="-20.289855072463769" y="1031.9196428571429"/>
         </scene>
-        <!--Add Category View Controller-->
-        <scene sceneID="JIV-6F-toa">
-            <objects>
-                <viewController id="4gl-9J-aBD" customClass="AddCategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="LJo-P1-hCc">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="BE2-mh-mTY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HDV-8h-Ii9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2409" y="1032"/>
-        </scene>
     </scenes>
+    <designables>
+        <designable name="X5E-gH-eKY">
+            <size key="intrinsicContentSize" width="33" height="32"/>
+        </designable>
+    </designables>
     <resources>
+        <image name="arrow.backward" catalog="system" width="128" height="98"/>
+        <image name="back" width="256" height="256"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="G2">
-            <color red="0.41999998688697815" green="0.43900001049041748" blue="0.3619999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

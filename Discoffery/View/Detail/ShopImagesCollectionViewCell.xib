@@ -10,30 +10,43 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imagesCollectionCell" id="gTV-IL-0wX" customClass="ShopImagesCollectionViewCell" customModule="Discoffery" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+            <rect key="frame" x="0.0" y="0.0" width="388" height="388"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                <rect key="frame" x="0.0" y="0.0" width="388" height="388"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_sq2" translatesAutoresizingMaskIntoConstraints="NO" id="NVB-s0-vac">
-                        <rect key="frame" x="4" y="4" width="392" height="392"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xap-6E-AkX" userLabel="Img Container View">
+                        <rect key="frame" x="16" y="16" width="356" height="356"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_sq2" translatesAutoresizingMaskIntoConstraints="NO" id="NVB-s0-vac">
+                                <rect key="frame" x="0.0" y="0.0" width="356" height="356"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </imageView>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="NVB-s0-vac" secondAttribute="bottom" id="5N2-BT-xH6"/>
+                            <constraint firstItem="NVB-s0-vac" firstAttribute="leading" secondItem="xap-6E-AkX" secondAttribute="leading" id="Ung-12-RbI"/>
+                            <constraint firstAttribute="trailing" secondItem="NVB-s0-vac" secondAttribute="trailing" id="bBw-MZ-W91"/>
+                            <constraint firstItem="NVB-s0-vac" firstAttribute="top" secondItem="xap-6E-AkX" secondAttribute="top" id="viG-WD-rLe"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="NVB-s0-vac" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="CwW-r7-VxA"/>
-                <constraint firstItem="NVB-s0-vac" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="GlG-fY-Uaa"/>
-                <constraint firstAttribute="trailing" secondItem="NVB-s0-vac" secondAttribute="trailing" constant="4" id="k1h-w6-7Qu"/>
-                <constraint firstAttribute="bottom" secondItem="NVB-s0-vac" secondAttribute="bottom" constant="4" id="ymw-7g-ljd"/>
+                <constraint firstAttribute="bottom" secondItem="xap-6E-AkX" secondAttribute="bottom" constant="16" id="Lfh-lF-MYR"/>
+                <constraint firstItem="xap-6E-AkX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="UCs-KC-E8r"/>
+                <constraint firstAttribute="trailing" secondItem="xap-6E-AkX" secondAttribute="trailing" constant="16" id="bEo-0l-DL3"/>
+                <constraint firstItem="xap-6E-AkX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="eLF-eU-f6a"/>
             </constraints>
-            <size key="customSize" width="399" height="386"/>
+            <size key="customSize" width="387" height="374"/>
             <connections>
-                <outlet property="tmpMainImage" destination="NVB-s0-vac" id="mAA-Uf-Rpi"/>
+                <outlet property="mainImg" destination="NVB-s0-vac" id="mAA-Uf-Rpi"/>
+                <outlet property="mainImgContainerView" destination="xap-6E-AkX" id="NI1-3P-BFx"/>
             </connections>
-            <point key="canvasLocation" x="105.79710144927537" y="87.053571428571431"/>
+            <point key="canvasLocation" x="97.101449275362327" y="83.035714285714278"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -33,7 +33,7 @@ class LoginViewModel {
 
         switch error {
 
-        case UserError.notExistError: // Not found in  Firestore's "users" collection so create one
+        case UserError.notExistError: // Not found in Firestore's "users" collection so create one
 
           self?.createUser()
 

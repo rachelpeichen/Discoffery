@@ -53,7 +53,7 @@ extension ShopImagesCell: UICollectionViewDataSource {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imagesCollectionCell", for: indexPath) as? ShopImagesCollectionViewCell {
 
-      cell.tmpMainImage.image = UIImage(named: mockImages[indexPath.row])
+      cell.mainImg.image = UIImage(named: mockImages[indexPath.row])
 
       return cell
     }
