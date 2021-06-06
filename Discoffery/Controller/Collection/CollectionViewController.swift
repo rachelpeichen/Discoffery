@@ -9,25 +9,28 @@ import UIKit
 
 class CollectionViewController: UIViewController {
 
-  // MARK: Outlets
-
+  // MARK: - Outlets
   @IBOutlet weak var collectionView: UICollectionView!
 
-  // MARK: Properties
+  // MARK: - Properties
   var collectionViewModel = CollectionViewModel()
 
   var savedShopsForDefaultCategory: [CoffeeShop]?
 
+  var featureDic: [String: [Feature]] = [:]
+
+  var recommendItemsDic: [String: [RecommendItem]] = [:]
+
   var inputCategory: String?
 
-  // MARK: Life Cycle
+  var selectedShopIndex: Int?
+
+  // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
     setupNavigation()
-
-    setupCollectionView()
 
     collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
 
@@ -35,11 +38,43 @@ class CollectionViewController: UIViewController {
 
       self.savedShopsForDefaultCategory = result
 
+      for index in 0..<result.count {
+
+        self.fetchFeatureForShop(shop: result[index])
+
+        self.fetchRecommendItemForShop(shop: result[index])
+
+      }
       self.setupCollectionView()
     }
   }
 
   // MARK: - Functions
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+    guard let selectedShopIndex = selectedShopIndex else { return }
+
+    guard let savedShopsForDefaultCategory = savedShopsForDefaultCategory else { return }
+
+    let selectedShop = savedShopsForDefaultCategory[selectedShopIndex]
+
+    if segue.identifier == "navigateFromCollectionVC" {
+
+      if let detailVC = segue.destination as? DetailViewController {
+
+        detailVC.shop = selectedShop
+
+        guard let featureArr = featureDic[selectedShop.id] else { return }
+
+        detailVC.feature = featureArr[0]
+
+        guard let recommendItemsArr = recommendItemsDic[selectedShop.id] else { return }
+
+        detailVC.recommendItemsArr = recommendItemsArr
+      }
+    }
+  }
+  
   func setupNavigation() {
 
     navigationController?.navigationBar.barTintColor = .G3
@@ -73,6 +108,43 @@ class CollectionViewController: UIViewController {
     layout.minimumInteritemSpacing = 8
 
     collectionView.setCollectionViewLayout(layout, animated: true)
+
+    collectionView.reloadData()
+  }
+
+  // MARK: TODO這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  func fetchFeatureForShop(shop: CoffeeShop) {
+
+    FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
+
+      switch result {
+
+      case .success(let getFeature):
+
+        self?.featureDic[shop.id] = getFeature
+
+      case .failure(let error):
+
+        print("fetchFeatureForShop: \(error)")
+      }
+    }
+  }
+
+  func fetchRecommendItemForShop(shop: CoffeeShop) {
+
+    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
+
+      switch result {
+
+      case .success(let getItems):
+
+        self.recommendItemsDic[shop.id] = getItems
+
+      case .failure(let error):
+
+        print("fetchFeatureForShop: \(error)")
+      }
+    }
   }
 }
 
@@ -103,7 +175,20 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
     return CategoryCollectionViewCell()
   }
+
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    selectedShopIndex = indexPath.row
+
+    let storyboard = UIStoryboard.main
+
+    if let nextVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as? DetailViewController {
+
+      performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
+    }
+  }
 }
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 

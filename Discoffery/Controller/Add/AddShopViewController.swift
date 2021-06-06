@@ -28,6 +28,11 @@ class AddShopViewController: UIViewController {
   var uploadedImgArr: [UIImage] = []
 
   // MARK: - Outlets
+
+  @IBOutlet weak var timeSegControl: UISegmentedControl!
+
+  @IBOutlet weak var socketSegControl: UISegmentedControl!
+
   @IBOutlet weak var collectionView: UICollectionView!
 
   @IBOutlet weak var nameTextField: UITextField!
@@ -48,8 +53,6 @@ class AddShopViewController: UIViewController {
       }
     }
   }
-
-  @IBOutlet var optionsBtn: [UIButton]!
 
   @IBOutlet weak var uploadImgBtn: UIButton!
 
@@ -100,6 +103,7 @@ class AddShopViewController: UIViewController {
 
   @IBAction func onTapUploadImageBtn(_ sender: Any) {
 
+    setUpImagesPicker()
   }
 
   @IBAction func onTapSendBtn(_ sender: Any) {
@@ -129,6 +133,7 @@ class AddShopViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Do any additional setup after loading the view.
     layoutAddShopVC()
 
     setupCollectionView()
@@ -138,13 +143,6 @@ class AddShopViewController: UIViewController {
   private func layoutAddShopVC() {
 
     sendBtn.isEnabled = false
-
-    for btn in optionsBtn {
-
-      btn.layoutViewWithShadow()
-
-      btn.isEnabled = true
-    }
 
     commentTextView.delegate           = self
     commentTextView.layer.borderWidth  = 0.5
@@ -162,53 +160,6 @@ class AddShopViewController: UIViewController {
 
     collectionView.dataSource = self
   }
-
-  // Do any additional setup after loading the view.
-
-  // MARK: Parse input to my struct
-  func parseInputToShop(inputDic: [String: Any?]) -> CoffeeShop {
-
-    wrappedNewShop.name = inputDic["name"] as? String ?? "Unknown Name"
-
-    wrappedNewShop.address = inputDic["address"] as? String ?? "Unknown Address"
-
-    wrappedNewShop.socket = inputDic["socket"] as? String ?? "Unknown"
-
-    wrappedNewShop.limitedTime = inputDic["timeLimit"] as? String ?? "Unknown"
-
-    return wrappedNewShop
-  }
-
-  func parseInputToReview(inputDic: [String: Any?]) -> Review {
-
-    wrappedNewShopReview.comment = inputDic["comment"] as? String ?? "Unknown Name"
-
-    wrappedNewShopReview.rating = inputDic["rating"] as? Double ?? 3
-
-    wrappedNewShopReview.recommendItems = inputDic["customItems"] as? [String] ?? [""]
-    return wrappedNewShopReview
-  }
-
-  func parseInputToRecommendItem(inputDic: [String: Any?]) {
-
-    for item in inputDic["items"] as! [String] {
-
-      wrappedNewShopRecommendItem.item = item
-
-      //        addViewModel.publishNewShopRecommendItem(shopId: shopId!, item: &wrappedNewShopRecommendItem)
-    }
-  }
-
-  func parseInputToFeature(inputDic: [String: Any?]) -> Feature {
-
-    wrappedNewShopFeature.socket = inputDic["socket"] as? String ?? "Unknown"
-
-    wrappedNewShopFeature.timeLimit = inputDic["timeLimit"] as? String ?? "Unknown"
-
-    wrappedNewShopFeature.special = inputDic["customFeatures"] as? [String] ?? [""]
-
-    return wrappedNewShopFeature
-  }
 }
 
 // MARK: - AddOpenHoursViewControllerDelegate
@@ -216,7 +167,7 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
 
   func finishAddOpenHours(openHours: [String: Any?]) {
 
-    let openHoursDic = openHours.compactMapValues{ $0 }
+    let openHoursDic = openHours.compactMapValues { $0 }
 
     parsedOpenHours = (openHoursDic.compactMap({ (key, value) -> String in
 
@@ -227,6 +178,8 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
     wrappedNewShop.openTime = parsedOpenHours ?? "Unknown"
 
     sendBtn.isEnabled = true
+
+    sendBtn.backgroundColor = .B3
   }
 }
 
@@ -242,7 +195,7 @@ extension AddShopViewController: UICollectionViewDataSource {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
 
-      cell.layoutAddItemCollectionViewCell(from:  wrappedNewShopReview.recommendItems[indexPath.row])
+      cell.layoutAddItemCollectionViewCell(from: wrappedNewShopReview.recommendItems[indexPath.row])
 
       return cell
     }
@@ -296,7 +249,9 @@ extension AddShopViewController {
   func setUpImagesPicker() {
 
     var config = YPImagePickerConfiguration()
+
     config.library.maxNumberOfItems = 3
+
     config.startOnScreen = .library
 
     let picker = YPImagePicker(configuration: config)
@@ -311,6 +266,8 @@ extension AddShopViewController {
 
       } else {
 
+        self.showSuccessHUD(showInfo: "上傳照片成功")
+
         for item in items {
 
           switch item {
@@ -318,6 +275,8 @@ extension AddShopViewController {
           case .photo(let photo):
 
             self.uploadedImgArr.append(photo.image)
+
+            self.layoutUploadImgs()
 
           case .video(let video):
 
@@ -330,6 +289,8 @@ extension AddShopViewController {
   }
 
   func layoutUploadImgs() {
+
+    uploadImgBtn.isEnabled = true
 
     if !uploadedImgArr.isEmpty {
 

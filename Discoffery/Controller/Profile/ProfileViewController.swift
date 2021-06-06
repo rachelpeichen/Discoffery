@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: Properties
-  var titleForSettingButtons: [String] = ["我發表的評價", "我的寄杯", "我的儲值卡", "帳號設定", "常見問題", "隱私權政策", "聯絡我們", "關於Discoffery"]
+  var titleForSettingButtons: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "我的收藏", "帳號設定", "常見問題", "隱私權政策", "聯絡我們", "關於Discoffery"]
 
   // MARK: Life Cycle
   override func viewDidLoad() {
@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
 
     profileImage.clipsToBounds = true
     profileImage.layer.cornerRadius = 40
+    userID.text = UserManager.shared.user.name
   }
 
   private func setUpProfileCellLayout() {

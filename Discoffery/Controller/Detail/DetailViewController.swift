@@ -341,6 +341,7 @@ extension DetailViewController: WriteReviewCellDelegate {
     var config = YPImagePickerConfiguration()
 
     config.library.maxNumberOfItems = 3
+
     config.startOnScreen = .library
 
     let picker = YPImagePicker(configuration: config)

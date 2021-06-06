@@ -142,7 +142,6 @@ class WriteReviewCell: ShopDetailBasicCell {
     sendReviewBtn.isEnabled = false
     sendReviewBtn.setTitleColor(.lightGray, for: .disabled)
     sendReviewBtn.layoutViewWithShadow()
-    sendReviewBtn.layoutViewWithShadow()
 
     uploadImageBtn.isEnabled = false
     uploadImageBtn.setTitleColor(.lightGray, for: .disabled)

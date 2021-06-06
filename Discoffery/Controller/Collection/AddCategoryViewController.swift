@@ -45,6 +45,11 @@ class AddCategoryViewController: UIViewController {
     dismiss(animated: true, completion: nil)
   }
 
+  @IBAction func backToPreviousVC(_ sender: Any) {
+
+    dismiss(animated: true, completion: nil)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -55,5 +60,7 @@ class AddCategoryViewController: UIViewController {
   private func layoutAddCategoryVC() {
 
     finishBtn.isEnabled = false
+
+    addCategoryBGView.layoutViewWithShadow()
   }
 }

@@ -48,9 +48,12 @@ class CollectionViewModel {
 
       case .success(let savedShops):
 
-        let savedShopsArr = savedShops.savedShopsByCategory
+        if !savedShops.savedShopsByCategory.isEmpty {
 
-        fetchKnownShopByDocId(shopid: savedShopsArr)
+          let savedShopsArr = savedShops.savedShopsByCategory
+
+          fetchKnownShopByDocId(shopid: savedShopsArr)
+        }
 
       case .failure(let error):
 
