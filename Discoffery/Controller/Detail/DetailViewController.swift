@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PopupDialog
 import JGProgressHUD
 import YPImagePicker
 
@@ -20,7 +19,7 @@ class DetailViewController: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
 
-  let activityVC = UIActivityViewController(activityItems: ["跟你分享～"], applicationActivities: nil)
+  let activityVC = UIActivityViewController(activityItems: ["跟你分享一家很棒的咖啡廳"], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
     // MARK: 現在的分享無法帶入資訊:還沒做
@@ -29,12 +28,23 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var saveButton: UIButton!
 
   @IBAction func saveToCollection(_ sender: UIButton) {
-    // MARK: 加入該用戶的收藏:還沒做
-    sender.setImage(UIImage(named: "like_fill"), for: .normal)
+
+    saveShopToCollection()
+
+    collectionViewModel.onAddUserSavedShop = {
+
+      self.showSuccessHUD(showInfo: "成功加入收藏")
+
+      sender.setImage(UIImage(named: "like_fill"), for: .normal)
+
+      sender.isEnabled = false // MARK: 現在加了收藏後先不再給他按  
+    }
   }
 
   // MARK: - Properties
   var addViewModel = AddViewModel()
+
+  var collectionViewModel = CollectionViewModel()
 
   var shop: CoffeeShop?
 
@@ -102,6 +112,15 @@ class DetailViewController: UIViewController {
     }
   }
 
+  func saveShopToCollection() {
+
+    if let shop = shop {
+
+      var savedShop = UserSavedShops()
+
+      collectionViewModel.addUserSavedShop(user: UserManager.shared.user, shop: shop , savedShop: &savedShop)
+    }
+  }
 
   private func setupTableView() {
 
@@ -230,12 +249,11 @@ extension DetailViewController: UITableViewDataSource {
             cell.uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
           default:
-            showStandardDialog(title: "你已經選三張ㄌ", message: "不給你選ㄌ")
-
+            print("nononono")
           }
         }
         cell.selectionStyle = .none
-
+        
         return cell
       }
 
@@ -290,7 +308,7 @@ extension DetailViewController: WriteReviewCellDelegate {
 
         self.uploadedImgURLArr.append(result)
 
-        dispatchGroup.leave()
+          dispatchGroup.leave()
       }
     }
 
@@ -298,7 +316,9 @@ extension DetailViewController: WriteReviewCellDelegate {
 
       self.addViewModel.publishUserReview(shop: shop, review: &localInputReview, uploadedImgURL: self.uploadedImgURLArr)
 
-      self.showSuccessDialog(animated: true, title: "新增評論成功ㄌ", message: "讚讚讚")
+      self.showSuccessHUD(showInfo: "新增評論成功")
+
+      self.dismiss(animated: true, completion: nil)
     }
   }
 

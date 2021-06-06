@@ -80,7 +80,7 @@ class AddShopViewController: UIViewController {
 
   @IBAction func onTapSendBtn(_ sender: Any) {
 
-    showSuccessDialog(title: "新增成功", message: "您送出的新店家資訊正在審核中，審核通過後就會更新到Discoffery了喔。")
+    showAddShopSuccessDialog()
   }
 
   @IBAction func backToMainPage(_ sender: UIBarButtonItem) {

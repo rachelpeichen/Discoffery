@@ -82,7 +82,9 @@ class AddOpenHoursViewController: FormViewController {
 
       } .onCellSelection { [weak self] cell, row in
 
-        self?.showStandardDialog(title: "填寫完成☺️", message: "讚讚讚")
+        self?.showSuccessHUD(showInfo: "填寫完成")
+
+        self?.dismiss(animated: true, completion: nil)
 
         // MARK: Get user's input of opening hours
         self?.openHours = self?.form.values()

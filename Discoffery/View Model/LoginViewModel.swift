@@ -57,6 +57,8 @@ class LoginViewModel {
 
         self.onUserCreated?()
 
+        self.createUserSavedShopsDefaultCategory()
+
         print("Create user on FireStore's users collection Success")
 
       case .failure(let error):
@@ -64,6 +66,25 @@ class LoginViewModel {
         self.onUserIdentifyError?()
 
         print("createUser.failure\(error)")
+      }
+    }
+  }
+
+  func createUserSavedShopsDefaultCategory() {
+
+    var defaultSavedShop = UserSavedShops()
+
+    UserManager.shared.createUserSavedShopsDefaultCategory(user: UserManager.shared.user, savedShop: &defaultSavedShop) { result in
+
+      switch result {
+
+      case .success:
+
+        print("createUserSavedShopsDefaultCategory Success")
+
+      case .failure(let error):
+
+        print("createUserSavedShopsDefaultCategory.failure\(error)")
       }
     }
   }

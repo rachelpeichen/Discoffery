@@ -17,30 +17,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_rect2" translatesAutoresizingMaskIntoConstraints="NO" id="hN0-9n-zuw">
-                                <rect key="frame" x="57" y="217" width="300" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="g5r-Ln-aAE"/>
-                                    <constraint firstAttribute="height" constant="200" id="h5F-hu-KOC"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddY-jt-qIi">
-                                <rect key="frame" x="121" y="433" width="173" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <color key="textColor" name="G1"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O2A-uf-3Oc" customClass="SelectionView" customModule="Discoffery" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="B2"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cta-8j-jZt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="ddY-jt-qIi" firstAttribute="leading" secondItem="cta-8j-jZt" secondAttribute="leading" constant="121" id="5IJ-14-Tc5"/>
-                            <constraint firstItem="hN0-9n-zuw" firstAttribute="centerX" secondItem="KnD-35-Nv9" secondAttribute="centerX" id="RGB-X4-ubf"/>
-                            <constraint firstItem="ddY-jt-qIi" firstAttribute="centerY" secondItem="KnD-35-Nv9" secondAttribute="centerY" id="Ygd-e3-oLT"/>
-                            <constraint firstItem="ddY-jt-qIi" firstAttribute="top" secondItem="hN0-9n-zuw" secondAttribute="bottom" constant="16" id="j2G-A8-dS6"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="推薦" id="8sz-Vv-O75"/>
+                    <connections>
+                        <outlet property="selectionView" destination="O2A-uf-3Oc" id="yJm-kP-GlV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OsZ-9g-9PM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -74,7 +63,9 @@
     <resources>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
-        <image name="mock_rect2" width="2394.5" height="1347"/>
+        <namedColor name="B2">
+            <color red="0.79500001668930054" green="0.59899997711181641" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

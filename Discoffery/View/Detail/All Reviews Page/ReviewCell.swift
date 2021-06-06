@@ -11,21 +11,6 @@ import Kingfisher
 
 class ReviewCell: UITableViewCell {
 
-  // MARK: - Properties
-  var recommendItems: [String] = [] {
-
-    didSet {
-      layoutItemLabels()
-    }
-  }
-
-  var imgsArr: [String] = [] {
-
-    didSet {
-      layoutImgs()
-    }
-  }
-
   // MARK: - Outlets
   @IBOutlet weak var userImg: UIImageView!
 
@@ -39,31 +24,28 @@ class ReviewCell: UITableViewCell {
 
   @IBOutlet weak var itemLabelStackView: UIStackView!
 
-  @IBOutlet weak var itemOne: PaddingLabel!
-
-  @IBOutlet weak var itemTwo: PaddingLabel!
-
-  @IBOutlet weak var itemThree: PaddingLabel!
-
   @IBOutlet weak var noItemLabel: UILabel!
 
   @IBOutlet weak var imgStackView: UIStackView!
-
-  @IBOutlet weak var imgOne: UIImageView!
-
-  @IBOutlet weak var imgTwo: UIImageView!
-
-  @IBOutlet weak var imgThree: UIImageView!
 
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
 
     userImg.layer.cornerRadius = 25
+  }
 
-    layoutItemLabels()
+  override func prepareForReuse() {
 
-    layoutImgs()
+    super.prepareForReuse()
+
+    imgStackView.isHidden = true
+
+    itemLabelStackView.isHidden = true
+
+    imgStackView.arrangedSubviews.map { $0.removeFromSuperview() }
+
+    itemLabelStackView.arrangedSubviews.map { $0.removeFromSuperview() }
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -72,102 +54,57 @@ class ReviewCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  func layoutItemLabels() {
+  func layoutItemLabels(itemsArr: [String]) {
 
-    itemLabelStackView.translatesAutoresizingMaskIntoConstraints = false
+    if !itemsArr.isEmpty {
 
-    switch recommendItems.count {
+      itemLabelStackView.isHidden = false
+    }
 
-    case 0:
+    for index in 0..<itemsArr.count {
 
-      noItemLabel.isHidden = false
-      itemLabelStackView.removeArrangedSubview(itemOne)
-      itemLabelStackView.removeArrangedSubview(itemTwo)
-      itemLabelStackView.removeArrangedSubview(itemThree)
+      let item = PaddingLabel()
 
-    case 1: // MARK: 這是土炮寫法 可用StackView.addArrangedSubview來動態生成
+      item.backgroundColor = .B3
 
-      noItemLabel.isHidden = true
-      itemOne.isHidden     = false
-      itemOne.text         = recommendItems[0]
-      itemTwo.isHidden     = true
-      itemThree.isHidden   = true
+      itemLabelStackView.addArrangedSubview(item)
 
-    case 2:
+      item.translatesAutoresizingMaskIntoConstraints = false
 
-      noItemLabel.isHidden = true
-      itemOne.isHidden     = false
-      itemOne.text         = recommendItems[0]
-      itemTwo.isHidden     = false
-      itemTwo.text         = recommendItems[1]
-      itemThree.isHidden   = true
+      item.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
-    case 3:
-
-      noItemLabel.isHidden = true
-      itemOne.isHidden     = false
-      itemOne.text         = recommendItems[0]
-      itemTwo.isHidden     = false
-      itemTwo.text         = recommendItems[1]
-      itemThree.isHidden   = false
-      itemThree.text       = recommendItems[2]
-
-    default:
-
-      noItemLabel.isHidden = true
-      itemOne.isHidden     = false
-      itemOne.text         = recommendItems[0]
-      itemTwo.isHidden     = false
-      itemTwo.text         = recommendItems[1]
-      itemThree.isHidden   = false
-      itemThree.text       = recommendItems[2]
+      item.text = itemsArr[index]
     }
   }
 
-  func layoutImgs() {
+  func layoutImgs(imgsArr: [String]) {
 
-    imgStackView.translatesAutoresizingMaskIntoConstraints = false
+    if !imgsArr.isEmpty {
 
-    switch imgsArr.count {
+      imgStackView.isHidden = false
+    }
 
-    case 0:
+    for index in 0..<imgsArr.count {
 
-      imgStackView.removeArrangedSubview(imgOne)
-      imgStackView.removeArrangedSubview(imgTwo)
-      imgStackView.removeArrangedSubview(imgThree)
+      let img = UIImageView()
 
-    case 1:
+      imgStackView.addArrangedSubview(img)
 
-      imgOne.isHidden     = false
-      imgOne.loadImage(imgsArr[0])
-      imgTwo.isHidden     = true
-      imgThree.isHidden   = true
+      img.translatesAutoresizingMaskIntoConstraints = false
 
-    case 2:
+      img.contentMode = .scaleAspectFill
 
-      imgOne.isHidden     = false
-      imgOne.loadImage(imgsArr[0])
-      imgTwo.isHidden     = false
-      imgTwo.loadImage(imgsArr[1])
-      imgThree.isHidden   = true
+      let imgOriginalWidth = img.image?.size.width
 
-    case 3:
+      let imgOriginalHeight = img.image?.size.height
 
-      imgOne.isHidden     = false
-      imgOne.loadImage(imgsArr[0])
-      imgTwo.isHidden     = false
-      imgTwo.loadImage(imgsArr[1])
-      imgThree.isHidden   = false
-      imgThree.loadImage(imgsArr[2])
+      let imgViewWidth = self.frame.size.width
 
-    default:
+      img.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 140) / 3).isActive = true
 
-      imgOne.isHidden     = false
-      imgOne.loadImage(imgsArr[0])
-      imgTwo.isHidden     = false
-      imgTwo.loadImage(imgsArr[1])
-      imgThree.isHidden   = false
-      imgThree.loadImage(imgsArr[2])
+      img.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 140) / 3).isActive = true
+
+      img.loadImage(imgsArr[index])
     }
   }
 }

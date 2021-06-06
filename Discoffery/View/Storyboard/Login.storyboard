@@ -74,7 +74,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mug" width="640" height="640"/>
+        <image name="mug" width="1024" height="1024"/>
         <namedColor name="B4">
             <color red="0.99400001764297485" green="0.9089999794960022" blue="0.8410000205039978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

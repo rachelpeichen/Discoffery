@@ -31,11 +31,11 @@ extension SelectionViewDataSource {
 
   func numberOfButtons(in selectionView: SelectionView) -> Int { return 2 }
 
-  func colorOfTitle(_ selectionView: SelectionView, at index: Int) -> UIColor? { return .blue }
+  func colorOfTitle(_ selectionView: SelectionView, at index: Int) -> UIColor? { return .G1 }
 
-  func colorOfIndicator(_ selectionView: SelectionView) -> UIColor? { return .blue }
+  func colorOfIndicator(_ selectionView: SelectionView) -> UIColor? { return .G1 }
 
-  func fontOfTitle(_ selectionView: SelectionView, at index: Int) -> UIFont { return .systemFont(ofSize: 18) }
+  func fontOfTitle(_ selectionView: SelectionView, at index: Int) -> UIFont { return .systemFont(ofSize: 16) }
 
   func initialButtonIndex(_ selectionView: SelectionView) -> Int { return 0 }
 }

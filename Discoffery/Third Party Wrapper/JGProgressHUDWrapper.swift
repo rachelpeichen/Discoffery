@@ -12,14 +12,16 @@ extension UIViewController {
 
   func showSuccessHUD(showInfo: String = "Success") {
 
-    let hud = JGProgressHUD(style: .dark  )
+    let hud = JGProgressHUD(style: .light)
 
     hud.textLabel.text = showInfo
 
+    hud.textLabel.textColor = .G1
+
     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
 
-    hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 0.5)
-    
+    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 5.0, opacity: 1)
+
     hud.show(in: self.view)
 
     hud.dismiss(afterDelay: 2)
@@ -33,7 +35,7 @@ extension UIViewController {
 
     hud.indicatorView = JGProgressHUDErrorIndicatorView()
 
-    hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 1)
+    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 5.0, opacity: 1)
 
     hud.show(in: self.view)
 

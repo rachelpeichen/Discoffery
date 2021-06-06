@@ -12,8 +12,11 @@ class CollectionViewController: UIViewController {
   // MARK: Outlets
 
   @IBOutlet weak var collectionView: UICollectionView!
+
   // MARK: Properties
   var addViewModel = AddViewModel()
+
+  var inputCategory: String?
 
   // MARK: Life Cycle
   override func viewDidLoad() {
@@ -25,7 +28,7 @@ class CollectionViewController: UIViewController {
     setupCollectionView()
   }
 
-  // MARK: Functions
+  // MARK: - Functions
   func setupNavigation() {
 
     navigationController?.navigationBar.barTintColor = .G3
@@ -35,8 +38,6 @@ class CollectionViewController: UIViewController {
     addBtn.tintColor = .G1
 
     navigationItem.rightBarButtonItem = addBtn
-
-    // navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navigateToNextVC))
   }
 
  @objc func navigateToNextVC() {
@@ -113,4 +114,12 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CollectionViewController: UICollectionViewDelegate {
+}
+
+extension CollectionViewController: AddCategoryViewControllerDelegate {
+
+  func finishAddCategory(input: String) {
+    
+    inputCategory = input
+  }
 }

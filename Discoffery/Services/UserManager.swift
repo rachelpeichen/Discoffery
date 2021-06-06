@@ -71,7 +71,43 @@ class UserManager {
     }
   }
 
-  func addNewCategory() {
-    
+  func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("Default")
+
+    savedShop.id = docRef.documentID
+
+    docRef.setData(savedShop.toDict) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Create User SavedShopsDefaultCategory Success"))
+      }
+    }
+  }
+
+  func addUserSavedShopToDefaultCategory (user: User, shop: CoffeeShop, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("Default")
+
+    savedShop.id = docRef.documentID
+
+    docRef.updateData([
+                        "savedShopsByCategory": FieldValue.arrayUnion([shop.id])
+    ]) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Success"))
+      }
+    }
   }
 }

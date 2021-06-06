@@ -211,7 +211,7 @@
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M5o-wr-UdS">
-                        <rect key="frame" x="269" y="420" width="60" height="60"/>
+                        <rect key="frame" x="261" y="420" width="60" height="60"/>
                         <color key="backgroundColor" name="G3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="6R7-yO-T5n"/>
@@ -219,7 +219,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ytM-uG-SbC">
-                        <rect key="frame" x="345" y="420" width="60" height="60"/>
+                        <rect key="frame" x="337" y="420" width="60" height="60"/>
                         <color key="backgroundColor" name="G3"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="7Uf-UZ-wua"/>
@@ -227,7 +227,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pAN-GS-ZHd">
-                        <rect key="frame" x="193" y="420" width="60" height="60"/>
+                        <rect key="frame" x="185" y="420" width="60" height="60"/>
                         <color key="backgroundColor" name="G3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="BhL-A1-JwS"/>
@@ -268,7 +268,7 @@
                     <constraint firstItem="RTq-DN-mlC" firstAttribute="centerY" secondItem="24N-N3-jq5" secondAttribute="centerY" id="l4w-ge-o0B"/>
                     <constraint firstItem="EFV-ad-fza" firstAttribute="top" secondItem="8Kk-5c-4EP" secondAttribute="bottom" constant="30" id="lxs-dA-Ypa"/>
                     <constraint firstItem="KMz-Jv-TKd" firstAttribute="leading" secondItem="oTR-2u-Z7Q" secondAttribute="trailing" constant="8" id="mgT-Qh-ma5"/>
-                    <constraint firstItem="pAN-GS-ZHd" firstAttribute="leading" secondItem="EFV-ad-fza" secondAttribute="trailing" constant="16" id="nhG-hy-GXm"/>
+                    <constraint firstItem="pAN-GS-ZHd" firstAttribute="leading" secondItem="EFV-ad-fza" secondAttribute="trailing" constant="8" id="nhG-hy-GXm"/>
                     <constraint firstItem="ytM-uG-SbC" firstAttribute="leading" secondItem="M5o-wr-UdS" secondAttribute="trailing" constant="16" id="pFM-LT-avG"/>
                     <constraint firstAttribute="trailing" secondItem="biu-jl-nXS" secondAttribute="trailing" constant="16" id="svb-7c-LyZ"/>
                     <constraint firstItem="24N-N3-jq5" firstAttribute="centerY" secondItem="S2i-sc-D5T" secondAttribute="centerY" id="vlT-T9-cF0"/>
@@ -294,6 +294,9 @@
         </tableViewCell>
     </objects>
     <designables>
+        <designable name="xRy-eZ-0fb">
+            <size key="intrinsicContentSize" width="110" height="18"/>
+        </designable>
         <designable name="zTJ-Dj-x8E">
             <size key="intrinsicContentSize" width="66" height="32"/>
         </designable>

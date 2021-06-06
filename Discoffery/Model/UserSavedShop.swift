@@ -9,11 +9,11 @@ import Foundation
 
 struct UserSavedShops: Codable {
 
-  var id: String                      // SavedShops.documentID
+  var id: String = "default"                      // SavedShops.documentID
 
-  var category: String
+  var category: String = "所有收藏"
 
-  var savedShopsByCategory: [String]  // ([coffeeShops.documentID]
+  var savedShopsByCategory: [String] = []  // ([coffeeShops.documentID]
 
   enum CodingKeys: String, CodingKey {
 
