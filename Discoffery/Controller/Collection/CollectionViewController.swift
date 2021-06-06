@@ -36,7 +36,7 @@ class CollectionViewController: UIViewController {
 
     navigationItem.rightBarButtonItem = addBtn
 
-    //navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navigateToNextVC))
+    // navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.navigateToNextVC))
   }
 
  @objc func navigateToNextVC() {

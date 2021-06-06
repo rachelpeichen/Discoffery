@@ -33,7 +33,6 @@ class AddViewModel {
     })
   }
 
-
   func publishNewShop(shop: inout CoffeeShop) {
 
     CoffeeShopManager.shared.publishNewShop(shop: &shop) { result in
@@ -84,7 +83,6 @@ class AddViewModel {
         print("publishNewShop.failure\(error)")
       }
     }
-
   }
 
   func publishNewShopRecommendItem(shopId: String, item: inout RecommendItem) {

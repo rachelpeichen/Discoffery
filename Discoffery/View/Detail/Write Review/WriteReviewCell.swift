@@ -7,7 +7,6 @@
 
 import UIKit
 import Cosmos
-import Kingfisher
 
 protocol WriteReviewCellDelegate: AnyObject {
 

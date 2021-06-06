@@ -13,7 +13,7 @@ struct Review: Codable {
 
   var parentId: String = "default"      // CoffeeShop.documentID
 
-  var user: String = "default"          // User.documentID
+  var user: String = "default"          // User.documentID (uid)
 
   var userName: String = "default"
 
@@ -25,7 +25,7 @@ struct Review: Codable {
 
   var postTime: Int64 = 0
 
-  var imgURL: [String] = []  // 存用戶傳的照片 現在mock的可能會爆掉：）
+  var imgURL: [String] = [] 
 
   enum CodingKeys: String, CodingKey {
 

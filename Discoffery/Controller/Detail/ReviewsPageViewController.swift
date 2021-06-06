@@ -61,6 +61,8 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       cell.recommendItems = singleReview.recommendItems
 
+      cell.imgsArr = singleReview.imgURL
+
       cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
 
       cell.rateStars.rating = singleReview.rating

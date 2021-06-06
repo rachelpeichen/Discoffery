@@ -98,6 +98,9 @@
                                         <color key="textColor" name="G1"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="didEndAddCategory:" destination="Uya-eW-Dcw" eventType="editingDidEnd" id="gX7-74-QfY"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5E-gH-eKY" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
                                         <rect key="frame" x="110" y="240" width="80" height="40"/>

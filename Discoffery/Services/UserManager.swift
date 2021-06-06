@@ -70,4 +70,8 @@ class UserManager {
       }
     }
   }
+
+  func addNewCategory() {
+    
+  }
 }

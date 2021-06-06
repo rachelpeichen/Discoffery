@@ -31,6 +31,8 @@
 		7844F5122667D30300A82158 /* MJRefresherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5112667D30300A82158 /* MJRefresherWrapper.swift */; };
 		7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5152667D32100A82158 /* KingFisherWrapper.swift */; };
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
+		786BF522266C0CB100704711 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF521266C0CB100704711 /* UserViewModel.swift */; };
+		786BF525266C102100704711 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF524266C102100704711 /* CollectionViewModel.swift */; };
 		7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */; };
 		7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
@@ -122,6 +124,8 @@
 		7844F5112667D30300A82158 /* MJRefresherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefresherWrapper.swift; sourceTree = "<group>"; };
 		7844F5152667D32100A82158 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
+		786BF521266C0CB100704711 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		786BF524266C102100704711 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCollectionViewCell.xib; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 				78A31128265C2AAF00441FE7 /* AddViewModel.swift */,
 				781CD84826653EAB005076CD /* SearchViewModel.swift */,
 				78C52376266B570F00A824E0 /* LoginViewModel.swift */,
+				786BF521266C0CB100704711 /* UserViewModel.swift */,
+				786BF524266C102100704711 /* CollectionViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -715,6 +721,7 @@
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
+				786BF525266C102100704711 /* CollectionViewModel.swift in Sources */,
 				78DF24ED26520B6A00F47A04 /* ProfileViewController.swift in Sources */,
 				781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */,
 				787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */,
@@ -764,6 +771,7 @@
 				78C52374266B512200A824E0 /* UserSavedShop.swift in Sources */,
 				783B2344265D60F400F88687 /* UIView+Extension.swift in Sources */,
 				78B2FD00265A1907005C9D1D /* User.swift in Sources */,
+				786BF522266C0CB100704711 /* UserViewModel.swift in Sources */,
 				78C5237F266B700400A824E0 /* UIStoryboard+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
