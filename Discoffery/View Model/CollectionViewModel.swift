@@ -10,8 +10,18 @@ import Foundation
 class CollectionViewModel {
 
   var onAddUserSavedShop: (() -> Void)?
-  
-  func addUserSavedShop(user: User, shop: CoffeeShop, savedShop: inout UserSavedShops) {
+
+  var onFetchUserSavedShopsForDefaultCategory: (([CoffeeShop]) -> Void)?
+
+  var savedShopsForDefaultCategory = [CoffeeShop]() {
+
+    didSet {
+
+      onFetchUserSavedShopsForDefaultCategory?(savedShopsForDefaultCategory)
+    }
+  }
+
+  func addUserSavedShopToDefaultCategory(user: User, shop: CoffeeShop, savedShop: inout UserSavedShops) {
     
     UserManager.shared.addUserSavedShopToDefaultCategory(user: user, shop: shop, savedShop: &savedShop) { result in
       
@@ -30,7 +40,39 @@ class CollectionViewModel {
     }
   }
 
-  func fetchUserSavedShopForDefaultCategory() {
+  func fetchUserSavedShopForDefaultCategory(user: User) {
 
+  UserManager.shared.fetchUserSavedShopForDefaultCategory(user: user) { result in
+
+      switch result {
+
+      case .success(let savedShops):
+
+        let savedShopsArr = savedShops.savedShopsByCategory
+
+        fetchKnownShopByDocId(shopid: savedShopsArr)
+
+      case .failure(let error):
+
+        print("fetchUserSavedShopForDefaultCategory.failure: \(error)")
+      }
+    }
+    
+    func fetchKnownShopByDocId(shopid: [String]) {
+
+      CoffeeShopManager.shared.fetchKnownShopByDocId(docId: shopid) { result in
+
+        switch result {
+
+        case .success(let shop):
+
+          self.savedShopsForDefaultCategory = shop
+
+        case .failure(let error):
+          
+          print("fetchKnownShopByDocId.failure: \(error)")
+        }
+      }
+    }
   }
 }

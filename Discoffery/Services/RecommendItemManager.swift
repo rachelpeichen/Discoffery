@@ -36,8 +36,6 @@ class RecommendItemManager {
 
       } else {
 
-        print("ellllse")
-
         var shopsFiltered: [CoffeeShop] = []
 
         for document in querySnapshot!.documents {

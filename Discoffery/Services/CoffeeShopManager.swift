@@ -52,7 +52,7 @@ class CoffeeShopManager {
     let lowerLat = latitude - (distance / metersPerLatDegree) // 緯度下限
     let upperLat = latitude + (distance / metersPerLatDegree) // 緯度上限
 
-    let docRef = Firestore.firestore().collection("shopsTaichung")
+    let docRef = database.collection("shopsTaichung")
 
     // 先查緯度: Firebase range filters can be implemented on only one field
     let queryByLat = docRef
@@ -66,7 +66,7 @@ class CoffeeShopManager {
 
       } else {
 
-        var shopsFilterd = [CoffeeShop]()
+        var shopsFilterd: [CoffeeShop] = []
 
         for document in querySnapshot!.documents {
 
@@ -87,9 +87,9 @@ class CoffeeShopManager {
   }
 
 
-  func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void){
+  func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
 
-    let docRef = Firestore.firestore().collection("shopsTaichung")
+    let docRef = database.collection("shopsTaichung")
 
     docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
 
@@ -127,10 +127,10 @@ class CoffeeShopManager {
     }
   }
 
-  func fetchNewShops(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void){
+  func fetchNewShops(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
     // 把shopsTaipei 這個collection裡面所有的文件抓下來後暫存 再寫入reviews這個sub-collection
 
-    let docRef = Firestore.firestore().collection("newShopsDemo")
+    let docRef = database.collection("newShopsDemo")
 
     docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
 
@@ -168,5 +168,37 @@ class CoffeeShopManager {
     }
   }
 
-}
+  func fetchKnownShopByDocId(docId: [String], completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
+    let docRef = database.collection("shopsTaichung")
+
+    let query = docRef.whereField("id", in: docId)
+
+    query.getDocuments { querySnapshot, error in
+
+      if let error = error {
+
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        var knownShop: [CoffeeShop] = []
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
+              knownShop.append(shop)
+            }
+
+          } catch {
+
+            completion(.failure(error))
+          }
+        }
+        completion(.success(knownShop))
+      }
+    }
+  }
+}

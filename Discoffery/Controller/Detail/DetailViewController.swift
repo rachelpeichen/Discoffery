@@ -118,7 +118,7 @@ class DetailViewController: UIViewController {
 
       var savedShop = UserSavedShops()
 
-      collectionViewModel.addUserSavedShop(user: UserManager.shared.user, shop: shop , savedShop: &savedShop)
+      collectionViewModel.addUserSavedShopToDefaultCategory(user: UserManager.shared.user, shop: shop , savedShop: &savedShop)
     }
   }
 
@@ -368,6 +368,7 @@ extension DetailViewController: WriteReviewCellDelegate {
             self.tableView.reloadData()
 
           case .video(let video):
+
             print("You cannot upload video lmao \(video)")
           }
         }

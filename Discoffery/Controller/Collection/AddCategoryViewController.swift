@@ -40,7 +40,7 @@ class AddCategoryViewController: UIViewController {
 
   @IBAction func onTapFinishBtn(_ sender: Any) {
 
-    showSuccessHUD(showInfo: "新增收藏分類成功")
+    showSuccessHUD(showInfo: "新增分類成功")
 
     dismiss(animated: true, completion: nil)
   }
@@ -49,6 +49,7 @@ class AddCategoryViewController: UIViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view
+    layoutAddCategoryVC()
   }
 
   private func layoutAddCategoryVC() {

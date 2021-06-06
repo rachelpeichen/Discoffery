@@ -73,7 +73,7 @@ class UserManager {
 
   func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("Default")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
 
     savedShop.id = docRef.documentID
 
@@ -92,7 +92,7 @@ class UserManager {
 
   func addUserSavedShopToDefaultCategory (user: User, shop: CoffeeShop, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("Default")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
 
     savedShop.id = docRef.documentID
 
@@ -107,6 +107,33 @@ class UserManager {
       } else {
 
         completion(.success("Success"))
+      }
+    }
+  }
+
+  func fetchUserSavedShopForDefaultCategory(user: User, completion: @escaping (Result<UserSavedShops, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
+
+    docRef.getDocument { document, error in
+
+      let result = Result {
+
+        try document?.data(as: UserSavedShops.self)
+      }
+
+      switch result {
+
+      case .success(let savedShops):
+
+        if let savedShops = savedShops {
+
+          completion(.success(savedShops))
+        }
+
+      case .failure(let error):
+
+        completion(.failure(error))
       }
     }
   }

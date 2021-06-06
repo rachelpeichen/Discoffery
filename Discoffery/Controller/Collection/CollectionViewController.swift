@@ -14,7 +14,9 @@ class CollectionViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
   // MARK: Properties
-  var addViewModel = AddViewModel()
+  var collectionViewModel = CollectionViewModel()
+
+  var savedShopsForDefaultCategory: [CoffeeShop]?
 
   var inputCategory: String?
 
@@ -26,6 +28,15 @@ class CollectionViewController: UIViewController {
     setupNavigation()
 
     setupCollectionView()
+
+    collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
+
+    collectionViewModel.onFetchUserSavedShopsForDefaultCategory = { result in
+
+      self.savedShopsForDefaultCategory = result
+
+      self.setupCollectionView()
+    }
   }
 
   // MARK: - Functions
@@ -70,16 +81,23 @@ extension CollectionViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return 5
+    return savedShopsForDefaultCategory?.count ?? 0
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell {
 
+      guard let savedShops = savedShopsForDefaultCategory else { return
+
+        CategoryCollectionViewCell()
+      }
+
+      let savedShop = savedShops[indexPath.row]
+
       cell.mainImgView.image = UIImage(named: "unsplash_protrait_1")
 
-      cell.layoutCategoryCollectionViewCell(from: "分類")
+      cell.layoutCategoryCollectionViewCell(from: savedShop.name)
 
       return cell
     }

@@ -33,8 +33,6 @@ class HomeViewModel {
     }
   }
 
-//  var distanceBetweenUserAndShop: Double?
-
   var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {

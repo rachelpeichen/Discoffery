@@ -13,9 +13,9 @@ extension UIView {
 
     imageView.clipsToBounds = true
 
-    imageView.layer.cornerRadius = 20
+    imageView.layer.cornerRadius = 10
 
-    containerView.layer.shadowOpacity = 0.8
+    containerView.layer.shadowOpacity = 0.5
 
     containerView.layer.shadowRadius = 3.0
 

@@ -26,8 +26,6 @@ class WriteReviewCell: ShopDetailBasicCell {
 
   var wrappedRecommendItem = RecommendItem()
 
-  var endEditItem: String?
-
   // MARK: - Outlets
   @IBOutlet weak var collectionView: UICollectionView!
 
@@ -40,15 +38,11 @@ class WriteReviewCell: ShopDetailBasicCell {
         self.wrappedReview.rating = rating
 
         self.sendReviewBtn.isEnabled = true
-
         self.sendReviewBtn.backgroundColor = .B3
-
         self.sendReviewBtn.setTitleColor(.G1, for: .normal)
 
         self.uploadImageBtn.isEnabled = true
-
         self.uploadImageBtn.setTitleColor(.G1, for: .normal)
-
         self.uploadImageBtn.tintColor = .G1
       }
     }
@@ -212,7 +206,7 @@ extension WriteReviewCell: UICollectionViewDelegateFlowLayout {
   }
 }
 
-extension AddShopViewController: UICollectionViewDelegate {
+extension WriteReviewCell: UICollectionViewDelegate {
 }
 
 // MARK: - UITextViewDelegate

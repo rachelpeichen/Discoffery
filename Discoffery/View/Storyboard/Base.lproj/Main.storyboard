@@ -143,6 +143,9 @@
                                 <color key="textColor" name="G1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="endEditShopName:" destination="9XD-ug-KZO" eventType="editingDidEnd" id="MlK-OL-qMe"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入店家地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TIf-31-wx3">
                                 <rect key="frame" x="65" y="111" width="142.5" height="30"/>
@@ -152,6 +155,9 @@
                                 <color key="textColor" name="G1"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="endEditAddress:" destination="9XD-ug-KZO" eventType="editingDidEnd" id="aFX-cc-nos"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入名稱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPt-cd-SBD">
                                 <rect key="frame" x="20" y="334" width="110" height="30"/>
@@ -323,7 +329,6 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9ep-eQ-y3V">
                                 <rect key="frame" x="16" y="474" width="382" height="130"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="ean-pi-atE"/>
                                 </constraints>
@@ -345,7 +350,7 @@
                                     <action selector="onTapUploadImageBtn:" destination="9XD-ug-KZO" eventType="touchUpInside" id="Qsp-iO-KQz"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nVW-Lt-Dxe">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nVW-Lt-Dxe">
                                 <rect key="frame" x="185" y="614" width="60" height="60"/>
                                 <color key="backgroundColor" name="B4"/>
                                 <constraints>
@@ -353,7 +358,7 @@
                                     <constraint firstAttribute="width" constant="60" id="tLX-mS-ZQb"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nUk-yg-5ZJ">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nUk-yg-5ZJ">
                                 <rect key="frame" x="261" y="614" width="60" height="60"/>
                                 <color key="backgroundColor" name="B4"/>
                                 <constraints>
@@ -363,7 +368,7 @@
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ByW-hi-c3w">
                                 <rect key="frame" x="16" y="380" width="398" height="50"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bZX-YL-Oaw"/>
                                 </constraints>
@@ -385,8 +390,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C46-yH-b3n">
-                                <rect key="frame" x="337" y="614" width="60" height="60"/>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C46-yH-b3n">
+                                <rect key="frame" x="338" y="614" width="60" height="60"/>
                                 <color key="backgroundColor" name="B4"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="bJK-cN-5cL"/>
@@ -474,10 +479,14 @@
                         <outlet property="addItemTextField" destination="xPt-cd-SBD" id="qKO-cj-4Pi"/>
                         <outlet property="addressTextField" destination="TIf-31-wx3" id="RJQ-FV-O5h"/>
                         <outlet property="collectionView" destination="ByW-hi-c3w" id="B6E-Mc-ekb"/>
-                        <outlet property="commenTextView" destination="9ep-eQ-y3V" id="zho-So-YFE"/>
+                        <outlet property="commentTextView" destination="9ep-eQ-y3V" id="zho-So-YFE"/>
+                        <outlet property="imgOne" destination="nVW-Lt-Dxe" id="9Dn-Gt-9Bz"/>
+                        <outlet property="imgThree" destination="C46-yH-b3n" id="VrC-QO-5su"/>
+                        <outlet property="imgTwo" destination="nUk-yg-5ZJ" id="Bdn-Un-J3C"/>
                         <outlet property="nameTextField" destination="yPy-RY-8Ba" id="u0w-Aq-Axb"/>
                         <outlet property="rateStars" destination="bWn-bl-fS8" id="Q1W-4l-vyu"/>
                         <outlet property="sendBtn" destination="BML-gh-yi9" id="xRU-Pc-jT1"/>
+                        <outlet property="uploadImgBtn" destination="QHQ-ge-ntG" id="rTL-pP-4Ln"/>
                         <outletCollection property="optionsBtn" destination="PRM-Z1-2Rn" collectionClass="NSMutableArray" id="D4w-Bk-1eI"/>
                         <outletCollection property="optionsBtn" destination="S9b-jo-qhz" collectionClass="NSMutableArray" id="7tT-Yc-UYM"/>
                         <outletCollection property="optionsBtn" destination="IzH-Xs-IJi" collectionClass="NSMutableArray" id="iZ8-zu-TMy"/>
@@ -1409,7 +1418,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-1q-WOj" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="104" y="68" width="49.5" height="30"/>
+                                        <rect key="frame" x="104" y="68" width="35.5" height="30"/>
                                         <color key="backgroundColor" name="B5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="aoC-Ya-oDv"/>
@@ -1419,7 +1428,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ium-Dg-awL" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="161.5" y="68" width="49.5" height="30"/>
+                                        <rect key="frame" x="147.5" y="68" width="35.5" height="30"/>
                                         <color key="backgroundColor" name="B5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4UU-sy-Wo4"/>
@@ -1429,7 +1438,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfL-bO-2uO" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="219" y="68" width="49.5" height="30"/>
+                                        <rect key="frame" x="191" y="68" width="35.5" height="30"/>
                                         <color key="backgroundColor" name="B5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bEY-gI-Y82"/>
@@ -1496,7 +1505,7 @@
             <size key="intrinsicContentSize" width="33" height="32"/>
         </designable>
         <designable name="D5B-1q-WOj">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="IZa-50-1iL">
             <size key="intrinsicContentSize" width="100" height="16"/>
@@ -1505,22 +1514,22 @@
             <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>
         <designable name="ch0-iu-fL7">
-            <size key="intrinsicContentSize" width="79.5" height="29.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="19.5"/>
         </designable>
         <designable name="d8v-8J-jXM">
-            <size key="intrinsicContentSize" width="79.5" height="29.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="19.5"/>
         </designable>
         <designable name="hLY-SC-ZOB">
             <size key="intrinsicContentSize" width="90" height="14"/>
         </designable>
         <designable name="ium-Dg-awL">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="jfL-bO-2uO">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="ueu-lU-MD1">
-            <size key="intrinsicContentSize" width="74" height="22"/>
+            <size key="intrinsicContentSize" width="70" height="22"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
@@ -1583,9 +1592,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

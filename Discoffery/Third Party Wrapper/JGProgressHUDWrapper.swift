@@ -20,7 +20,7 @@ extension UIViewController {
 
     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
 
-    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 5.0, opacity: 1)
+    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 3.0, opacity: 0.5)
 
     hud.show(in: self.view)
 
@@ -35,7 +35,7 @@ extension UIViewController {
 
     hud.indicatorView = JGProgressHUDErrorIndicatorView()
 
-    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 5.0, opacity: 1)
+    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 3.0, opacity: 0.8)
 
     hud.show(in: self.view)
 
