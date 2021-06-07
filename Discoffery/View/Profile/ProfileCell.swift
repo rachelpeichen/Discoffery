@@ -12,13 +12,15 @@ class ProfileCell: UITableViewCell {
   @IBOutlet weak var settingButton: UIButton!
 
   override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    super.awakeFromNib()
+    // Initialization code
+    
+    settingButton.layoutViewWithShadow()
+  }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+    // Configure the view for the selected state
+  }
 }

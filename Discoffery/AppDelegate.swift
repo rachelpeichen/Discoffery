@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     IQKeyboardManager.shared.enable = true
 
-    Thread.sleep(forTimeInterval: 1.5)
+    Thread.sleep(forTimeInterval: 1.8)
     
     return true
   }

@@ -61,6 +61,8 @@ class ReviewManager {
 
     review.id = docRef.documentID
 
+    review.user = UserManager.shared.user.id
+
     review.parentId = shop.id
 
     review.postTime = Date().millisecondsSince1970

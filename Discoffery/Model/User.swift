@@ -18,6 +18,8 @@ struct User: Codable {
 
   var createdTime: Int64 = 0
 
+  var blockList: [String] = []
+
   enum CodingKeys: String, CodingKey {
 
     case id
@@ -29,6 +31,8 @@ struct User: Codable {
     case email
 
     case createdTime
+
+    case blockList
   }
 
   var toDict: [String: Any] {
@@ -43,7 +47,9 @@ struct User: Codable {
 
       "email": email as Any,
 
-      "createdTime": createdTime as Any
+      "createdTime": createdTime as Any,
+
+      "blockList": blockList as Any
     ]
   }
 }

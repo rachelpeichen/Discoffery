@@ -16,17 +16,25 @@ class ReviewCell: UITableViewCell {
 
   @IBOutlet weak var userName: UILabel!
 
+  @IBOutlet weak var itemTitleLabel: UILabel!
+
+  @IBOutlet weak var itemOne: PaddingLabel!
+
+  @IBOutlet weak var itemTwo: PaddingLabel!
+  
   @IBOutlet weak var rateStars: CosmosView!
 
   @IBOutlet weak var postTime: UILabel!
 
   @IBOutlet weak var comment: UILabel!
 
-  @IBOutlet weak var itemLabelStackView: UIStackView!
-
-  @IBOutlet weak var noItemLabel: UILabel!
-
   @IBOutlet weak var imgStackView: UIStackView!
+
+  @IBOutlet weak var imgOne: UIImageView!
+
+  @IBOutlet weak var imgTwo: UIImageView!
+
+  @IBOutlet weak var imgThree: UIImageView!
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -39,13 +47,9 @@ class ReviewCell: UITableViewCell {
 
     super.prepareForReuse()
 
-    imgStackView.isHidden = true
-
-    itemLabelStackView.isHidden = true
-
-    imgStackView.arrangedSubviews.map { $0.removeFromSuperview() }
-
-    itemLabelStackView.arrangedSubviews.map { $0.removeFromSuperview() }
+//
+//
+//    imgStackView.arrangedSubviews.map { $0.removeFromSuperview() }
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,57 +58,107 @@ class ReviewCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  func layoutItemLabels(itemsArr: [String]) {
+  func layoutItemLabel(itemsArr: [String]) {
 
-    if !itemsArr.isEmpty {
+    switch itemsArr.count {
 
-      itemLabelStackView.isHidden = false
+    case 0:
+
+      itemTitleLabel.isHidden = true
+      itemOne.isHidden = true
+      itemTwo.isHidden = true
+
+    case 1:
+
+      itemOne.isHidden = false
+      itemOne.text = itemsArr[0]
+      itemTwo.isHidden = true
+
+    case 2:
+
+      itemOne.isHidden = false
+      itemOne.text = itemsArr[0]
+      itemTwo.isHidden = false
+      itemTwo.text = itemsArr[1]
+
+    default:
+      
+      itemOne.isHidden = false
+      itemOne.text = itemsArr[0]
+      itemTwo.isHidden = false
+      itemTwo.text = itemsArr[1]
     }
+  }
 
-    for index in 0..<itemsArr.count {
+  func layoutImgStackView(imgsArr: [String]) {
 
-      let item = PaddingLabel()
+    // 變形的那張照片原始尺寸不是正方形的 其他的都是正方形
+    switch imgsArr.count {
 
-      item.backgroundColor = .B3
+    case 0:
 
-      itemLabelStackView.addArrangedSubview(item)
+      imgOne.isHidden = true
+      imgTwo.isHidden = true
+      imgThree.isHidden = true
 
-      item.translatesAutoresizingMaskIntoConstraints = false
+    case 1:
 
-      item.heightAnchor.constraint(equalToConstant: 30).isActive = true
+      imgOne.isHidden = false
+      imgOne.loadImage(imgsArr[0])
+      imgTwo.isHidden = false
+      imgOne.backgroundColor = .white
+      imgThree.isHidden = false
+      imgThree.backgroundColor = .white
 
-      item.text = itemsArr[index]
+    case 2:
+
+      imgOne.isHidden = false
+      imgOne.loadImage(imgsArr[0])
+      imgTwo.isHidden = false
+      imgTwo.loadImage(imgsArr[1])
+      imgThree.isHidden = false
+      imgThree.backgroundColor = .white
+
+    case 3:
+
+      imgOne.isHidden = false
+      imgOne.loadImage(imgsArr[0])
+      imgTwo.isHidden = false
+      imgTwo.loadImage(imgsArr[1])
+      imgThree.isHidden = false
+      imgThree.loadImage(imgsArr[2])
+
+    default:
+      print(0)
     }
   }
 
-  func layoutImgs(imgsArr: [String]) {
-
-    if !imgsArr.isEmpty {
-
-      imgStackView.isHidden = false
-    }
-
-    for index in 0..<imgsArr.count {
-
-      let img = UIImageView()
-
-      imgStackView.addArrangedSubview(img)
-
-      img.translatesAutoresizingMaskIntoConstraints = false
-
-      img.contentMode = .scaleAspectFill
-
-      let imgOriginalWidth = img.image?.size.width
-
-      let imgOriginalHeight = img.image?.size.height
-
-      let imgViewWidth = self.frame.size.width
-
-      img.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 140) / 3).isActive = true
-
-      img.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 140) / 3).isActive = true
-
-      img.loadImage(imgsArr[index])
-    }
-  }
+//  func layoutImgs(imgsArr: [String]) {
+//
+//    if !imgsArr.isEmpty {
+//
+//      imgStackView.isHidden = false
+//    }
+//
+//    for index in 0..<imgsArr.count {
+//
+//      let img = UIImageView()
+//
+//      imgStackView.addArrangedSubview(img)
+//
+//      img.translatesAutoresizingMaskIntoConstraints = false
+//
+//      img.contentMode = .scaleAspectFill
+//
+//      img.centerXAnchor.constraint(equalTo: img.centerXAnchor).isActive = true
+//
+//      img.centerYAnchor.constraint(equalTo: img.centerYAnchor).isActive = true
+//
+//     img.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 140) / 3).isActive = true
+//
+//   img.widthAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width - 140) / 3).isActive = true
+//
+//      img.loadImage(imgsArr[index])
+//    }
+//  }
 }

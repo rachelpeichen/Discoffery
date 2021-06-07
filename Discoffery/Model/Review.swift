@@ -13,13 +13,13 @@ struct Review: Codable {
 
   var parentId: String = "default"      // CoffeeShop.documentID
 
-  var user: String = "default"          // User.documentID (uid)
+  var user: String = "uid"          // User.documentID (uid)
 
-  var userName: String = "default"
+  var userName: String = "User"
 
   var rating: Double = 4
 
-  var comment: String = "default"
+  var comment: String = ""
 
   var recommendItems: [String] = []
 

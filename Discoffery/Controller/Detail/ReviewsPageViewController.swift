@@ -60,9 +60,10 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       if let singleReview = reviews?[indexPath.row] {
 
-        cell.layoutItemLabels(itemsArr: singleReview.recommendItems)
+        // MARK: hard code寫死還不能動態
+        cell.layoutItemLabel(itemsArr: singleReview.recommendItems)
 
-        cell.layoutImgs(imgsArr: singleReview.imgURL)
+        cell.layoutImgStackView(imgsArr: singleReview.imgURL)
 
         cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
 

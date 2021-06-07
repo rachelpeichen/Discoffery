@@ -11,32 +11,43 @@ class ProfileViewController: UIViewController {
 
   // MARK: Outlets
   @IBOutlet weak var profileImage: UIImageView!
-  @IBOutlet weak var userID: UILabel!
+
+  @IBOutlet weak var userName: UILabel!
+
+  @IBOutlet weak var userEmail: UILabel!
+
+  @IBOutlet weak var userLoginTime: UILabel!
+
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: Properties
-  var titleForSettingButtons: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "我的收藏", "帳號設定", "常見問題", "隱私權政策", "聯絡我們", "關於Discoffery"]
+  var titleForSettingButtons: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "帳號設定", "常見問題", "隱私權政策", "聯絡我們", "關於Discoffery"]
 
   // MARK: Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    setUpProfileImageLayout()
-    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
+    setUpProfileVCLayout()
   }
 
   // MARK: Functions
-  private func setUpProfileImageLayout() {
+  private func setUpProfileVCLayout() {
+    
+    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
 
     profileImage.clipsToBounds = true
-    profileImage.layer.cornerRadius = 40
-    userID.text = UserManager.shared.user.name
-  }
 
-  private func setUpProfileCellLayout() {
+    profileImage.layer.cornerRadius = 40
+
+    userName.text = UserManager.shared.user.name
+
+    userEmail.text = UserManager.shared.user.email
+
+    userLoginTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: UserManager.shared.user.createdTime))
 
     tableView.delegate = self
+
     tableView.dataSource = self
     
     tableView.reloadData()

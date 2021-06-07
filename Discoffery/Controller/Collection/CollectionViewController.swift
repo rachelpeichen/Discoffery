@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class CollectionViewController: UIViewController {
 
@@ -15,7 +16,13 @@ class CollectionViewController: UIViewController {
   // MARK: - Properties
   var collectionViewModel = CollectionViewModel()
 
-  var savedShopsForDefaultCategory: [CoffeeShop]?
+  var savedShopsForDefaultCategory: [CoffeeShop] = [] {
+
+    didSet {
+
+      setupCollectionView()
+    }
+  }
 
   var featureDic: [String: [Feature]] = [:]
 
@@ -30,11 +37,18 @@ class CollectionViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
 
+    let hud = JGProgressHUD()
+    hud.textLabel.text = "Loading"
+    hud.show(in: self.view)
+    hud.dismiss(afterDelay: 1.0)
+
     collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
 
-    collectionViewModel.onFetchUserSavedShopsForDefaultCategory = { result in
+    collectionViewModel.onFetchUserSavedShopsForDefaultCategory = {
 
-      self.savedShopsForDefaultCategory = result
+      self.savedShopsForDefaultCategory = self.collectionViewModel.savedShopsForDefaultCategory
+
+      let result = self.savedShopsForDefaultCategory
 
       for index in 0..<result.count {
 
@@ -42,7 +56,6 @@ class CollectionViewController: UIViewController {
 
         self.fetchRecommendItemForShop(shop: result[index])
       }
-      self.setupCollectionView()
     }
   }
 
@@ -57,8 +70,6 @@ class CollectionViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     guard let selectedShopIndex = selectedShopIndex else { return }
-
-    guard let savedShopsForDefaultCategory = savedShopsForDefaultCategory else { return }
 
     let selectedShop = savedShopsForDefaultCategory[selectedShopIndex]
 
@@ -102,6 +113,8 @@ class CollectionViewController: UIViewController {
     collectionView.delegate = self
 
     collectionView.dataSource = self
+
+    collectionView.reloadData()
 
     let layout = UICollectionViewFlowLayout()
 
@@ -155,23 +168,18 @@ extension CollectionViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return savedShopsForDefaultCategory?.count ?? 0
+    return savedShopsForDefaultCategory.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell {
 
-      guard let savedShops = savedShopsForDefaultCategory else { return
-
-        CategoryCollectionViewCell()
-      }
-
-      let savedShop = savedShops[indexPath.row]
-
-      cell.mainImgView.image = UIImage(named: "unsplash_protrait_1")
+      let savedShop = savedShopsForDefaultCategory[indexPath.row]
 
       cell.layoutCategoryCollectionViewCell(from: savedShop.name)
+
+      cell.mainImgView.image = UIImage(named: "unsplash_protrait_1")
 
       return cell
     }
@@ -184,7 +192,7 @@ extension CollectionViewController: UICollectionViewDataSource {
 
     let storyboard = UIStoryboard.main
 
-    if let nextVC = storyboard.instantiateViewController(withIdentifier: "DetailVC") as? DetailViewController {
+    if storyboard.instantiateViewController(withIdentifier: "DetailVC") is DetailViewController {
 
       performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
     }
@@ -195,6 +203,7 @@ extension CollectionViewController: UICollectionViewDataSource {
 extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
     return 16
   }
 

@@ -301,7 +301,7 @@ extension DetailViewController: WriteReviewCellDelegate {
     for index in 0..<self.uploadedImgArr.count {
 
       dispatchGroup.enter()
-
+  
       self.addViewModel.uploadImageFromUserReview(with: self.uploadedImgArr[index])
 
       self.addViewModel.onUploadImage = { result in
@@ -311,14 +311,17 @@ extension DetailViewController: WriteReviewCellDelegate {
           dispatchGroup.leave()
       }
     }
-
+    
     dispatchGroup.notify(queue: .main) {
 
       self.addViewModel.publishUserReview(shop: shop, review: &localInputReview, uploadedImgURL: self.uploadedImgURLArr)
 
       self.showSuccessHUD(showInfo: "新增評論成功")
 
-      self.dismiss(animated: true, completion: nil)
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+
+        self.dismiss(animated: true, completion: nil)
+      }
     }
   }
 

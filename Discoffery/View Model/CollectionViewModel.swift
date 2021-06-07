@@ -11,13 +11,13 @@ class CollectionViewModel {
 
   var onAddUserSavedShop: (() -> Void)?
 
-  var onFetchUserSavedShopsForDefaultCategory: (([CoffeeShop]) -> Void)?
+  var onFetchUserSavedShopsForDefaultCategory: (() -> Void)?
 
   var savedShopsForDefaultCategory = [CoffeeShop]() {
 
     didSet {
 
-      onFetchUserSavedShopsForDefaultCategory?(savedShopsForDefaultCategory)
+      onFetchUserSavedShopsForDefaultCategory?()
     }
   }
 
@@ -68,7 +68,7 @@ class CollectionViewModel {
         switch result {
 
         case .success(let shop):
-
+  
           self.savedShopsForDefaultCategory = shop
 
         case .failure(let error):
