@@ -10,6 +10,7 @@ import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
 import JGProgressHUD
+import WebKit
 
 class LoginViewController: UIViewController {
   
@@ -24,6 +25,11 @@ class LoginViewController: UIViewController {
   
   // MARK: - IBOutlet & IBAction
   @IBOutlet weak var signInWithAppleBtnView: UIView!
+
+  @IBAction func showPrivacyWebView(_ sender: Any) {
+
+    performSegue(withIdentifier: "                                        ", sender: self)
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
