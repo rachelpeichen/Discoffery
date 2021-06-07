@@ -73,9 +73,11 @@ class UserManager {
 
   func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
 
     savedShop.id = docRef.documentID
+
+    savedShop.category = "全部收藏"
 
     docRef.setData(savedShop.toDict) { error in
 
@@ -92,7 +94,7 @@ class UserManager {
 
   func addUserSavedShopToDefaultCategory (user: User, shop: CoffeeShop, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
 
     savedShop.id = docRef.documentID
 
@@ -113,7 +115,7 @@ class UserManager {
 
   func fetchUserSavedShopForDefaultCategory(user: User, completion: @escaping (Result<UserSavedShops, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
 
     docRef.getDocument() { document, error in
 
@@ -134,6 +136,38 @@ class UserManager {
       case .failure(let error):
 
         completion(.failure(error))
+      }
+    }
+  }
+
+  func fetchSavedShopsForAllCategory(user: User, completion: @escaping (Result<[UserSavedShops], Error>) -> Void) {
+
+  let docRef = database.collection("users").document(user.id).collection("savedShops")
+
+    docRef.getDocuments() { querySnapshot, error in
+
+      if let error = error {
+
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        var savedShopsDoc: [UserSavedShops] = []
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let shopDoc = try document.data(as: UserSavedShops.self, decoder: Firestore.Decoder()) {
+
+              savedShopsDoc.append(shopDoc)
+            }
+
+          } catch {
+
+            completion(.failure(error))
+          }
+        }
+        completion(.success(savedShopsDoc))
       }
     }
   }

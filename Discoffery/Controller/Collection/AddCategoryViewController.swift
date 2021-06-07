@@ -8,9 +8,16 @@
 import UIKit
 import JGProgressHUD
 
+protocol AddCategoryViewControllerDelegate: AnyObject {
+
+  func reloadCollectionView()
+}
+
 class AddCategoryViewController: UIViewController {
 
   // MARK: - Properties
+  weak var delegate: AddCategoryViewControllerDelegate?
+
   var collectionViewModel = CollectionViewModel()
 
   var userSavedShopDoc = UserSavedShops()
@@ -42,6 +49,8 @@ class AddCategoryViewController: UIViewController {
 
     collectionViewModel.onAddNewCategory = {
 
+      self.delegate?.reloadCollectionView()
+
       self.showSuccessHUD(showInfo: "新增分類成功")
 
       DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
@@ -68,7 +77,5 @@ class AddCategoryViewController: UIViewController {
     finishBtn.isEnabled = false
 
     addCategoryBGView.layoutViewWithShadow()
-
-//    categoryTextField.becomeFirstResponder()
   }
 }

@@ -16,6 +16,14 @@ class CollectionViewController: UIViewController {
   // MARK: - Properties
   var collectionViewModel = CollectionViewModel()
 
+  var savedShopsForAllCategory: [UserSavedShops] = []  {
+
+    didSet {
+
+      setupCollectionView()
+    }
+  }
+
   var savedShopsForDefaultCategory: [CoffeeShop] = [] {
 
     didSet {
@@ -42,21 +50,28 @@ class CollectionViewController: UIViewController {
     hud.show(in: self.view)
     hud.dismiss(afterDelay: 1.0)
 
-    collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
+    collectionViewModel.fetchSavedShopsForAllCategory(user: UserManager.shared.user)
 
-    collectionViewModel.onFetchUserSavedShopsForDefaultCategory = {
+    collectionViewModel.onFetchSavedShopsForAllCategory = {
 
-      self.savedShopsForDefaultCategory = self.collectionViewModel.savedShopsForDefaultCategory
-
-      let result = self.savedShopsForDefaultCategory
-
-      for index in 0..<result.count {
-
-        self.fetchFeatureForShop(shop: result[index])
-
-        self.fetchRecommendItemForShop(shop: result[index])
-      }
+      self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
     }
+
+//    collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
+//
+//    collectionViewModel.onFetchSavedShopsForDefaultCategory = {
+//
+//      self.savedShopsForDefaultCategory = self.collectionViewModel.savedShopsForDefaultCategory
+//
+//      let result = self.savedShopsForDefaultCategory
+//
+//      for index in 0..<result.count {
+//
+//        self.fetchFeatureForShop(shop: result[index])
+//
+//        self.fetchRecommendItemForShop(shop: result[index])
+//      }
+//    }
   }
 
   override func viewDidLoad() {
@@ -168,22 +183,18 @@ extension CollectionViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return savedShopsForDefaultCategory.count
+    return savedShopsForAllCategory.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.identifier, for: indexPath) as? CategoryCollectionViewCell {
 
-      let savedShop = savedShopsForDefaultCategory[indexPath.row]
+      let savedShopByCategory = savedShopsForAllCategory[indexPath.row]
 
-      cell.layoutCategoryCollectionViewCell(from: savedShop.name)
+      cell.layoutCategoryCollectionViewCell(from: savedShopByCategory.category)
 
-      // MARK: 這是暫時的！！！為了Demo好看用的！！
-
-      let mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
-
-      cell.mainImgView.image = UIImage(named: mockImages [indexPath.row])
+      cell.mainImgView.image = UIImage(named: "mugWithColor")
 
       return cell
     }
@@ -191,15 +202,15 @@ extension CollectionViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    selectedShopIndex = indexPath.row
-
-    let storyboard = UIStoryboard.main
-
-    if storyboard.instantiateViewController(withIdentifier: "DetailVC") is DetailViewController {
-
-      performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
-    }
+//
+//    selectedShopIndex = indexPath.row
+//
+//    let storyboard = UIStoryboard.main
+//
+//    if storyboard.instantiateViewController(withIdentifier: "DetailVC") is DetailViewController {
+//
+//      performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
+//    }
   }
 }
 
@@ -232,4 +243,21 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CollectionViewController: UICollectionViewDelegate {
+}
+
+extension CollectionViewController: AddCategoryViewControllerDelegate {
+
+  func reloadCollectionView() {
+    
+    self.reloadInputViews()
+
+    collectionViewModel.fetchSavedShopsForAllCategory(user: UserManager.shared.user)
+
+    collectionViewModel.onFetchSavedShopsForAllCategory = {
+
+      self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
+
+      self.setupCollectionView()
+    }
+  }
 }

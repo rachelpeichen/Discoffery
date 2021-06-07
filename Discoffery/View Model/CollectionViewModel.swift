@@ -13,13 +13,23 @@ class CollectionViewModel {
 
   var onAddNewCategory: (() -> Void)?
 
-  var onFetchUserSavedShopsForDefaultCategory: (() -> Void)?
+  var onFetchSavedShopsForDefaultCategory: (() -> Void)?
+
+  var onFetchSavedShopsForAllCategory: (() -> Void)?
 
   var savedShopsForDefaultCategory = [CoffeeShop]() {
 
     didSet {
 
-      onFetchUserSavedShopsForDefaultCategory?()
+      onFetchSavedShopsForDefaultCategory?()
+    }
+  }
+
+  var savedShopsForAllCategory = [UserSavedShops]() {
+
+    didSet {
+
+      onFetchSavedShopsForAllCategory?()
     }
   }
 
@@ -60,6 +70,24 @@ class CollectionViewModel {
       case .failure(let error):
 
         print("fetchUserSavedShopForDefaultCategory.failure: \(error)")
+      }
+    }
+  }
+
+  func fetchSavedShopsForAllCategory(user: User) {
+
+    UserManager.shared.fetchSavedShopsForAllCategory(user: user) { result in
+
+      switch result {
+
+      case .success(let savedShopDocs):
+
+        self.savedShopsForAllCategory = savedShopDocs
+
+
+      case .failure(let error):
+
+        print("fetchSavedShopsForAllCategory.failure: \(error)")
       }
     }
   }
