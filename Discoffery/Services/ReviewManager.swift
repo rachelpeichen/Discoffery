@@ -20,12 +20,13 @@ class ReviewManager {
   lazy var storage = Storage.storage()
 
   // MARK: - Functions
-  // MARK: need update 監聽～～～！
   func fetchReviewsForShop(shop: CoffeeShop, completion: @escaping (Result<[Review], Error>) -> Void) {
 
     let docRef = Firestore.firestore().collection("shopsTaichung").document(shop.id).collection("reviews")
 
-    docRef.getDocuments() { querySnapshot, error in
+    let notEqualQuery = docRef.whereField("user", isNotEqualTo: "blockUserOne")
+
+    notEqualQuery.getDocuments() { querySnapshot, error in
 
       if let error = error {
 

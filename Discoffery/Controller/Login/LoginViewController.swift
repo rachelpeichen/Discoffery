@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
 
   @IBAction func showPrivacyWebView(_ sender: Any) {
 
-    performSegue(withIdentifier: "                                        ", sender: self)
+    performSegue(withIdentifier: "showWebView", sender: self)
   }
   
   override func viewDidLoad() {

@@ -128,8 +128,7 @@ class CoffeeShopManager {
   }
 
   func fetchNewShops(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
-    // 把shopsTaipei 這個collection裡面所有的文件抓下來後暫存 再寫入reviews這個sub-collection
-
+  
     let docRef = database.collection("newShopsDemo")
 
     docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in

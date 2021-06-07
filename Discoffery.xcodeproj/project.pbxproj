@@ -20,6 +20,7 @@
 		781CD844266513E1005076CD /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD843266513E1005076CD /* IntroductionViewController.swift */; };
 		781CD84926653EAC005076CD /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781CD84826653EAB005076CD /* SearchViewModel.swift */; };
 		78294F04266E67F400851076 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78294F03266E67F400851076 /* WebViewController.swift */; };
+		78294F08266E726F00851076 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78294F07266E726F00851076 /* UICollectionView+Extension.swift */; };
 		7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C949265295D30048B5F5 /* ShopImagesCell.swift */; };
 		7839C94C265295D30048B5F5 /* ShopImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7839C94A265295D30048B5F5 /* ShopImagesCell.xib */; };
 		7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7839C94E2652BD740048B5F5 /* ProfileCell.swift */; };
@@ -114,6 +115,7 @@
 		781CD843266513E1005076CD /* IntroductionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
 		781CD84826653EAB005076CD /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		78294F03266E67F400851076 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		78294F07266E726F00851076 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		7839C949265295D30048B5F5 /* ShopImagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCell.swift; sourceTree = "<group>"; };
 		7839C94A265295D30048B5F5 /* ShopImagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCell.xib; sourceTree = "<group>"; };
 		7839C94E2652BD740048B5F5 /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */,
 				781CD8312664BFFD005076CD /* Type+Extension.swift */,
 				78C5237E266B700400A824E0 /* UIStoryboard+Extension.swift */,
+				78294F07266E726F00851076 /* UICollectionView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
+				78294F08266E726F00851076 /* UICollectionView+Extension.swift in Sources */,
 				786BF525266C102100704711 /* CollectionViewModel.swift in Sources */,
 				78DF24ED26520B6A00F47A04 /* ProfileViewController.swift in Sources */,
 				781CD7E32662BFD8005076CD /* RecommendItemCollectionViewCell.swift in Sources */,

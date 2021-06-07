@@ -114,7 +114,7 @@ class CollectionViewController: UIViewController {
 
     collectionView.dataSource = self
 
-    collectionView.reloadData()
+    collectionView.reloadWithoutAnimation()
 
     let layout = UICollectionViewFlowLayout()
 
@@ -179,7 +179,11 @@ extension CollectionViewController: UICollectionViewDataSource {
 
       cell.layoutCategoryCollectionViewCell(from: savedShop.name)
 
-      cell.mainImgView.image = UIImage(named: "unsplash_protrait_1")
+      // MARK: 這是暫時的！！！為了Demo好看用的！！
+
+      let mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
+
+      cell.mainImgView.image = UIImage(named: mockImages [indexPath.row])
 
       return cell
     }
