@@ -9,15 +9,12 @@ import UIKit
 
 class ProfileCell: UITableViewCell {
 
-  @IBOutlet weak var settingButton: UIButton!
+  @IBOutlet weak var settingLabel: PaddingLabel!
 
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
-    
-    settingButton.layoutViewWithShadow()
   }
-
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
 

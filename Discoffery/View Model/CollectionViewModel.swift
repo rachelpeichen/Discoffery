@@ -11,6 +11,8 @@ class CollectionViewModel {
 
   var onAddUserSavedShop: (() -> Void)?
 
+  var onAddNewCategory: (() -> Void)?
+
   var onFetchUserSavedShopsForDefaultCategory: (() -> Void)?
 
   var savedShopsForDefaultCategory = [CoffeeShop]() {
@@ -42,7 +44,7 @@ class CollectionViewModel {
 
   func fetchUserSavedShopForDefaultCategory(user: User) {
 
-  UserManager.shared.fetchUserSavedShopForDefaultCategory(user: user) { result in
+    UserManager.shared.fetchUserSavedShopForDefaultCategory(user: user) { result in
 
       switch result {
 
@@ -52,7 +54,7 @@ class CollectionViewModel {
 
           let savedShopsArr = savedShops.savedShopsByCategory
 
-          fetchKnownShopByDocId(shopid: savedShopsArr)
+          self.fetchKnownShopByDocId(shopid: savedShopsArr)
         }
 
       case .failure(let error):
@@ -60,21 +62,41 @@ class CollectionViewModel {
         print("fetchUserSavedShopForDefaultCategory.failure: \(error)")
       }
     }
-    
-    func fetchKnownShopByDocId(shopid: [String]) {
+  }
 
-      CoffeeShopManager.shared.fetchKnownShopByDocId(docId: shopid) { result in
+  func fetchKnownShopByDocId(shopid: [String]) {
 
-        switch result {
+    CoffeeShopManager.shared.fetchKnownShopByDocId(docId: shopid) { result in
 
-        case .success(let shop):
-  
-          self.savedShopsForDefaultCategory = shop
+      switch result {
 
-        case .failure(let error):
-          
-          print("fetchKnownShopByDocId.failure: \(error)")
-        }
+      case .success(let shop):
+
+        self.savedShopsForDefaultCategory = shop
+
+      case .failure(let error):
+
+        print("fetchKnownShopByDocId.failure: \(error)")
+      }
+    }
+  }
+
+
+  func addNewCategory(category: String, user: User, savedShopDoc: inout UserSavedShops) {
+
+    UserManager.shared.addNewCategory(user: user, category: category, savedShopDoc: &savedShopDoc) { result in
+
+      switch result {
+
+      case .success:
+
+        self.onAddNewCategory?()
+
+        print("🥴addNewCategory To Firebase Success")
+
+      case .failure(let error):
+
+        print("addNewCategory.failure: \(error)")
       }
     }
   }

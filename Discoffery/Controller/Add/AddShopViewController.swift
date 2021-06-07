@@ -149,7 +149,6 @@ class AddShopViewController: UIViewController {
     commentTextView.layer.borderColor  = UIColor.B5?.cgColor
     commentTextView.clipsToBounds      = true
     commentTextView.layer.cornerRadius = 10
-
   }
 
   private func setupCollectionView() {

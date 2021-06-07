@@ -101,10 +101,10 @@
                                         <color key="textColor" name="G1"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dto-RQ-u95">
-                                        <rect key="frame" x="75" y="165" width="177" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分類名稱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dto-RQ-u95">
+                                        <rect key="frame" x="75" y="170.5" width="195" height="23"/>
                                         <color key="textColor" name="G1"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="didEndAddCategory:" destination="Uya-eW-Dcw" eventType="editingDidEnd" id="gX7-74-QfY"/>
@@ -156,6 +156,7 @@
                                     <constraint firstItem="STF-rJ-s5b" firstAttribute="top" secondItem="VSj-Mk-8yO" secondAttribute="bottom" constant="8" id="BrA-Cr-Knf"/>
                                     <constraint firstItem="VSj-Mk-8yO" firstAttribute="top" secondItem="OpL-cH-nEy" secondAttribute="top" constant="16" id="De1-5X-kk0"/>
                                     <constraint firstItem="Kbb-nC-i9u" firstAttribute="top" secondItem="OpL-cH-nEy" secondAttribute="top" constant="16" id="HHs-ki-LMJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dto-RQ-u95" secondAttribute="trailing" constant="30" id="IsF-Mm-YDO"/>
                                     <constraint firstAttribute="bottom" secondItem="X5E-gH-eKY" secondAttribute="bottom" constant="20" id="MCd-d3-6lY"/>
                                     <constraint firstAttribute="width" constant="300" id="Uos-E2-Lwv"/>
                                     <constraint firstItem="X5E-gH-eKY" firstAttribute="centerX" secondItem="OpL-cH-nEy" secondAttribute="centerX" id="bYF-1B-0My"/>

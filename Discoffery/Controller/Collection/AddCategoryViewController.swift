@@ -8,16 +8,14 @@
 import UIKit
 import JGProgressHUD
 
-protocol AddCategoryViewControllerDelegate: AnyObject {
-
-  func finishAddCategory(input: String)
-}
-
 class AddCategoryViewController: UIViewController {
 
   // MARK: - Properties
-  weak var delegate: AddCategoryViewControllerDelegate?
+  var collectionViewModel = CollectionViewModel()
 
+  var userSavedShopDoc = UserSavedShops()
+
+  // MARK: - IBOutles & IBActions
   @IBOutlet weak var addCategoryBGView: UIView!
 
   @IBOutlet weak var categoryTextField: UITextField!
@@ -26,23 +24,31 @@ class AddCategoryViewController: UIViewController {
 
   @IBAction func didEndAddCategory(_ sender: UITextField) {
 
-    if let input = sender.text {
+    if let category = sender.text  {
+
+      userSavedShopDoc.category = category
 
       finishBtn.isEnabled = true
 
       finishBtn.backgroundColor = .B3
 
       finishBtn.setTitleColor(.G1, for: .normal)
-
-      delegate?.finishAddCategory(input: input)
     }
   }
 
   @IBAction func onTapFinishBtn(_ sender: Any) {
 
-    showSuccessHUD(showInfo: "新增分類成功")
+    collectionViewModel.addNewCategory(category: userSavedShopDoc.category, user: UserManager.shared.user, savedShopDoc: &userSavedShopDoc)
 
-    dismiss(animated: true, completion: nil)
+    collectionViewModel.onAddNewCategory = {
+
+      self.showSuccessHUD(showInfo: "新增分類成功")
+
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+
+        self.dismiss(animated: true, completion: nil)
+      }
+    }
   }
 
   @IBAction func backToPreviousVC(_ sender: Any) {
@@ -62,5 +68,7 @@ class AddCategoryViewController: UIViewController {
     finishBtn.isEnabled = false
 
     addCategoryBGView.layoutViewWithShadow()
+
+//    categoryTextField.becomeFirstResponder()
   }
 }

@@ -137,4 +137,25 @@ class UserManager {
       }
     }
   }
+
+  func addNewCategory(user: User, category: String, savedShopDoc: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document()
+
+    savedShopDoc.id = docRef.documentID
+
+    savedShopDoc.category = category
+
+    docRef.setData(savedShopDoc.toDict) { error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        completion(.success("Create New Category Success"))
+      }
+    }
+  }
 }

@@ -233,11 +233,3 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 
 extension CollectionViewController: UICollectionViewDelegate {
 }
-
-extension CollectionViewController: AddCategoryViewControllerDelegate {
-
-  func finishAddCategory(input: String) {
-    
-    inputCategory = input
-  }
-}

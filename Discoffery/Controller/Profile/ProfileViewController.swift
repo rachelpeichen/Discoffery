@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-  // MARK: Outlets
+  // MARK: - Outlets
   @IBOutlet weak var profileImage: UIImageView!
 
   @IBOutlet weak var userName: UILabel!
@@ -20,10 +20,10 @@ class ProfileViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
 
-  // MARK: Properties
-  var titleForSettingButtons: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "帳號設定", "常見問題", "聯絡開發者", "關於Discoffery", "贊助熬夜的開發者一杯咖啡🥺"]
+  // MARK: - Properties
+  var titleForSettingLabel: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "帳號設定", "常見問題", "聯絡開發者", "關於Discoffery", "贊助熬夜的開發者喝咖啡"]
 
-  // MARK: Life Cycle
+  // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
     setUpProfileVCLayout()
   }
 
-  // MARK: Functions
+  // MARK: - Functions
   private func setUpProfileVCLayout() {
     
     navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
@@ -57,20 +57,43 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return titleForSettingButtons.count
+
+    return titleForSettingLabel.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? ProfileCell
+    if let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? ProfileCell {
 
-    cell?.settingButton.setTitle(titleForSettingButtons[indexPath.row], for: .normal)
+      cell.settingLabel.text = titleForSettingLabel[indexPath.row]
 
-    tableView.separatorStyle = .none
+      tableView.separatorStyle = .none
 
-    return cell ?? UITableViewCell()
+      return cell
+    }
+    return ProfileCell()
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+    switch indexPath.row {
+
+    case 0:
+      print(0)
+
+    case 1:
+      print(1)
+
+    case 2:
+
+      performSegue(withIdentifier: "naviagetToAccountSettingVC", sender: indexPath.row)
+
+    default:
+      print("default")
+    }
   }
 }
 
 extension ProfileViewController: UITableViewDelegate {
+
 }
