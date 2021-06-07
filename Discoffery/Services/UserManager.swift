@@ -115,7 +115,7 @@ class UserManager {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("default")
 
-    docRef.addSnapshotListener (includeMetadataChanges: true) { document, error in
+    docRef.getDocument() { document, error in
 
       let result = Result {
 

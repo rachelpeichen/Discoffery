@@ -26,11 +26,9 @@ class CollectionViewController: UIViewController {
   var selectedShopIndex: Int?
 
   // MARK: - Life Cycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
 
-    // Do any additional setup after loading the view.
-    setupNavigation()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
 
     collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
 
@@ -43,10 +41,16 @@ class CollectionViewController: UIViewController {
         self.fetchFeatureForShop(shop: result[index])
 
         self.fetchRecommendItemForShop(shop: result[index])
-
       }
       self.setupCollectionView()
     }
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    // Do any additional setup after loading the view.
+    setupNavigation()
   }
 
   // MARK: - Functions
@@ -86,7 +90,7 @@ class CollectionViewController: UIViewController {
     navigationItem.rightBarButtonItem = addBtn
   }
 
- @objc func navigateToNextVC() {
+  @objc func navigateToNextVC() {
 
     performSegue(withIdentifier: "navigateToAddCategoryVC", sender: self)
   }
@@ -108,8 +112,6 @@ class CollectionViewController: UIViewController {
     layout.minimumInteritemSpacing = 8
 
     collectionView.setCollectionViewLayout(layout, animated: true)
-
-    collectionView.reloadData()
   }
 
   // MARK: TODO這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
