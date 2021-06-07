@@ -9,10 +9,7 @@ import UIKit
 import MapKit
 
 class HomeListViewController: UIViewController {
-  
-  // MARK: - Outlets
-  @IBOutlet weak var tableView: UITableView!
-  
+
   // MARK: - Properties
   var homeViewModel: HomeViewModel?
   
@@ -25,6 +22,11 @@ class HomeListViewController: UIViewController {
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
   var mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
+
+
+  // MARK: - Outlets
+  @IBOutlet weak var tableView: UITableView!
+
   
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -126,7 +128,7 @@ class HomeListViewController: UIViewController {
 
   }
 
-  func setupTableView() {
+  private func setupTableView() {
     
     tableView.delegate = self
 

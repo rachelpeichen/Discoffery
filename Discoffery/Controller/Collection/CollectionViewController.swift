@@ -24,21 +24,9 @@ class CollectionViewController: UIViewController {
     }
   }
 
-  var savedShopsForDefaultCategory: [CoffeeShop] = [] {
-
-    didSet {
-
-      setupCollectionView()
-    }
-  }
-
-  var featureDic: [String: [Feature]] = [:]
-
-  var recommendItemsDic: [String: [RecommendItem]] = [:]
-
   var inputCategory: String?
 
-  var selectedShopIndex: Int?
+  var selectedCategoryIndex: Int?
 
   // MARK: - Life Cycle
 
@@ -56,22 +44,6 @@ class CollectionViewController: UIViewController {
 
       self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
     }
-
-//    collectionViewModel.fetchUserSavedShopForDefaultCategory(user: UserManager.shared.user)
-//
-//    collectionViewModel.onFetchSavedShopsForDefaultCategory = {
-//
-//      self.savedShopsForDefaultCategory = self.collectionViewModel.savedShopsForDefaultCategory
-//
-//      let result = self.savedShopsForDefaultCategory
-//
-//      for index in 0..<result.count {
-//
-//        self.fetchFeatureForShop(shop: result[index])
-//
-//        self.fetchRecommendItemForShop(shop: result[index])
-//      }
-//    }
   }
 
   override func viewDidLoad() {
@@ -84,23 +56,15 @@ class CollectionViewController: UIViewController {
   // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-    guard let selectedShopIndex = selectedShopIndex else { return }
+    guard let index = selectedCategoryIndex else { return }
 
-    let selectedShop = savedShopsForDefaultCategory[selectedShopIndex]
+    let selectedCategory = savedShopsForAllCategory[index]
 
-    if segue.identifier == "navigateFromCollectionVC" {
+    if segue.identifier == "navigateToCategoryVC" {
 
-      if let detailVC = segue.destination as? DetailViewController {
+      if let nextVC = segue.destination as? CategoryViewController {
 
-        detailVC.shop = selectedShop
-
-        guard let featureArr = featureDic[selectedShop.id] else { return }
-
-        detailVC.feature = featureArr[0]
-
-        guard let recommendItemsArr = recommendItemsDic[selectedShop.id] else { return }
-
-        detailVC.recommendItemsArr = recommendItemsArr
+        nextVC.shopsDocForThisCategory = selectedCategory
       }
     }
   }
@@ -142,40 +106,6 @@ class CollectionViewController: UIViewController {
     collectionView.setCollectionViewLayout(layout, animated: true)
   }
 
-  // MARK: TODO這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
-  func fetchFeatureForShop(shop: CoffeeShop) {
-
-    FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
-
-      switch result {
-
-      case .success(let getFeature):
-
-        self?.featureDic[shop.id] = getFeature
-
-      case .failure(let error):
-
-        print("fetchFeatureForShop: \(error)")
-      }
-    }
-  }
-
-  func fetchRecommendItemForShop(shop: CoffeeShop) {
-
-    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
-
-      switch result {
-
-      case .success(let getItems):
-
-        self.recommendItemsDic[shop.id] = getItems
-
-      case .failure(let error):
-
-        print("fetchFeatureForShop: \(error)")
-      }
-    }
-  }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -202,6 +132,10 @@ extension CollectionViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    selectedCategoryIndex = indexPath.row
+
+    performSegue(withIdentifier: "navigateToCategoryVC", sender: indexPath.row)
 //
 //    selectedShopIndex = indexPath.row
 //

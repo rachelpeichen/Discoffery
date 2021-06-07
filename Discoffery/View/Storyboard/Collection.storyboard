@@ -10,20 +10,36 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Category View Controller-->
+        <!--Category View Controller-->
         <scene sceneID="bt3-N8-I3f">
             <objects>
-                <viewController id="TxE-qB-iDi" customClass="AddCategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TxE-qB-iDi" customClass="CategoryViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iMV-9n-6Xg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qrc-DD-Yde">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="PMc-fG-dEN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qrc-DD-Yde" firstAttribute="trailing" secondItem="PMc-fG-dEN" secondAttribute="trailing" id="2u1-IA-nBK"/>
+                            <constraint firstItem="Qrc-DD-Yde" firstAttribute="bottom" secondItem="PMc-fG-dEN" secondAttribute="bottom" id="Jc5-d0-qQD"/>
+                            <constraint firstItem="Qrc-DD-Yde" firstAttribute="leading" secondItem="PMc-fG-dEN" secondAttribute="leading" id="jGG-yO-H8H"/>
+                            <constraint firstItem="Qrc-DD-Yde" firstAttribute="top" secondItem="PMc-fG-dEN" secondAttribute="top" id="qcK-dI-DuG"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="L0N-xs-2Ny"/>
+                    <connections>
+                        <outlet property="tableView" destination="Qrc-DD-Yde" id="tzp-bW-0fy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pja-q0-HFx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="236"/>
+            <point key="canvasLocation" x="1831.8840579710147" y="591.96428571428567"/>
         </scene>
         <!--收藏-->
         <scene sceneID="Ddz-II-3GC">
@@ -72,6 +88,7 @@
                         <outlet property="collectionView" destination="niT-pY-7Fc" id="yxy-yq-P8d"/>
                         <segue destination="Uya-eW-Dcw" kind="showDetail" identifier="navigateToAddCategoryVC" id="fU6-uw-HW5"/>
                         <segue destination="gbJ-fW-A8h" kind="showDetail" identifier="navigateFromCollectionVC" id="gAJ-kN-2iB"/>
+                        <segue destination="TxE-qB-iDi" kind="show" identifier="navigateToCategoryVC" id="bQf-hC-oTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M77-hl-XTl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -204,7 +221,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fON-VB-7Fi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="tbt-Ko-OFB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1731.8840579710147" y="1031.9196428571429"/>
+            <point key="canvasLocation" x="1862" y="1482"/>
         </scene>
         <!--收藏-->
         <scene sceneID="9ac-gB-vWM">

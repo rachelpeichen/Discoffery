@@ -13,10 +13,21 @@ class CollectionViewModel {
 
   var onAddNewCategory: (() -> Void)?
 
+  var onFetchSavedShopsForSpecificCategory: (() -> Void)?
+
   var onFetchSavedShopsForDefaultCategory: (() -> Void)?
 
   var onFetchSavedShopsForAllCategory: (() -> Void)?
 
+  var savedShopsForSpecificCategory = [CoffeeShop]() {
+
+    didSet {
+
+      onFetchSavedShopsForSpecificCategory?()
+    }
+  }
+
+  // 這個應該是用不到ㄌ！多餘
   var savedShopsForDefaultCategory = [CoffeeShop]() {
 
     didSet {
@@ -100,7 +111,10 @@ class CollectionViewModel {
 
       case .success(let shop):
 
-        self.savedShopsForDefaultCategory = shop
+        //self.savedShopsForDefaultCategory = shop
+
+        self.savedShopsForSpecificCategory = shop
+
 
       case .failure(let error):
 
@@ -108,7 +122,6 @@ class CollectionViewModel {
       }
     }
   }
-
 
   func addNewCategory(category: String, user: User, savedShopDoc: inout UserSavedShops) {
 
