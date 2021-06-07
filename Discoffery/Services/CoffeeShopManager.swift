@@ -201,4 +201,38 @@ class CoffeeShopManager {
       }
     }
   }
+
+  func fetchShopByRecommendItem(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
+
+    let docRef = database.collection("shopsTaichung")
+
+    let query = docRef.whereField("socket", isEqualTo: "maybe")
+
+    query.getDocuments { querySnapshot, error in
+
+      if let error = error {
+
+        print("Error getting documents: \(error)")
+
+      } else {
+
+        var fetchShops: [CoffeeShop] = []
+
+        for document in querySnapshot!.documents {
+
+          do {
+            if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+
+              fetchShops.append(shop)
+            }
+
+          } catch {
+
+            completion(.failure(error))
+          }
+        }
+        completion(.success(fetchShops))
+      }
+    }
+  }
 }

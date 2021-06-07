@@ -11,14 +11,20 @@ class RecommendViewController: UIViewController {
 
    private enum ButtonSet: String {
 
-      case kol = "網美最愛"
+      case kol = "特調冷萃"
 
-      case coldbrew = "特調冷萃"
+      case coldbrew = "網美最愛"
 
       case dessert = "特色甜點"
     }
 
   private let buttonArray: [ButtonSet] = [.kol, .coldbrew, .dessert]
+
+  @IBOutlet weak var logo: UIImageView!
+
+  @IBOutlet weak var warning: UILabel!
+
+  @IBOutlet weak var firstRecommendContainerView: UIView!
 
   @IBOutlet weak var selectionView: SelectionView! {
 
@@ -34,32 +40,50 @@ class RecommendViewController: UIViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
+    setupVC()
+  }
+
+  func setupVC() {
+    navigationController?.navigationBar.barTintColor = .G3
     selectionView.backgroundColor = .white
+    logo.isHidden = true
+    warning.isHidden = true
   }
 }
 
 
 extension RecommendViewController: SelectionViewDelegate {
 
-  //  func didSelectedButton(_ selectionView: SelectionView, at index: Int) {
-  //
-  //    if selectionView == selectionView {
-  //
-  //      if index == 1 {
-  //
-  //        mapContainerView.isHidden = true
-  //
-  //        listContainerView.isHidden = false
-  //      } else {
-  //
-  //        mapContainerView.isHidden = false
-  //
-  //        listContainerView.isHidden = true
-  //      }
-  //    }
-  //  }
+    func didSelectedButton(_ selectionView: SelectionView, at index: Int) {
 
+      if selectionView == selectionView {
+
+        switch index {
+
+        case 0:
+
+          firstRecommendContainerView.isHidden = false
+          logo.isHidden = true
+          warning.isHidden = true
+
+        case 1:
+
+          firstRecommendContainerView.isHidden = true
+          logo.isHidden = false
+          warning.isHidden = false
+
+        case 2:
+
+          firstRecommendContainerView.isHidden = true
+          logo.isHidden = false
+          warning.isHidden = false
+
+        default:
+
+          print(0)
+        }
+      }
+    }
 }
 
 extension RecommendViewController: SelectionViewDataSource {

@@ -33,11 +33,6 @@ class CollectionViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
 
-    let hud = JGProgressHUD()
-    hud.textLabel.text = "Loading"
-    hud.show(in: self.view)
-    hud.dismiss(afterDelay: 1.0)
-
     collectionViewModel.fetchSavedShopsForAllCategory(user: UserManager.shared.user)
 
     collectionViewModel.onFetchSavedShopsForAllCategory = {
