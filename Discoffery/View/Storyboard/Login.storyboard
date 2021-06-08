@@ -67,7 +67,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tPI-z2-K7A"/>
-                        <color key="backgroundColor" name="B4"/>
+                        <color key="backgroundColor" name="B3"/>
                         <constraints>
                             <constraint firstItem="ep1-Ap-1lQ" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="3tB-06-tFp"/>
                             <constraint firstItem="pFS-S5-tKK" firstAttribute="centerX" secondItem="X1R-Z9-fIc" secondAttribute="centerX" id="8QB-Dc-yje"/>
@@ -140,8 +140,8 @@
     </scenes>
     <resources>
         <image name="mug" width="1024" height="1024"/>
-        <namedColor name="B4">
-            <color red="0.99400001764297485" green="0.9089999794960022" blue="0.8410000205039978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="B3">
+            <color red="0.86500000953674316" green="0.74400001764297485" blue="0.66100001335144043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

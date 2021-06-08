@@ -209,13 +209,20 @@ extension DetailViewController: UITableViewDataSource {
       }
 
     case 3:
-      // TODO: 地圖
+
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopRouteCell", for: indexPath) as? ShopRouteCell {
 
-        cell.address.text = shop?.address
-        cell.selectionStyle = .none
+        if let shop = shop {
 
-        return cell
+          cell.address.text = shop.address
+
+          cell.markAnnotationForShop(shop: shop)
+          
+          cell.selectionStyle = .none
+
+          return cell
+
+        }
       }
 
     case 4:
@@ -301,14 +308,14 @@ extension DetailViewController: WriteReviewCellDelegate {
     for index in 0..<self.uploadedImgArr.count {
 
       dispatchGroup.enter()
-  
+
       self.addViewModel.uploadImageFromUserReview(with: self.uploadedImgArr[index])
 
       self.addViewModel.onUploadImage = { result in
 
         self.uploadedImgURLArr.append(result)
 
-          dispatchGroup.leave()
+        dispatchGroup.leave()
       }
     }
     

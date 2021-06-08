@@ -35,9 +35,9 @@ class AddOpenHoursViewController: FormViewController {
     }
 
     ButtonRow.defaultCellSetup = { cell, row in
-      cell.textLabel?.font = .boldSystemFont(ofSize: 16)
-      cell.tintColor = .G1
-      cell.backgroundColor = .B3
+      cell.textLabel?.font = .boldSystemFont(ofSize: 18)
+      cell.tintColor = .white
+      cell.backgroundColor = .G1
     }
 
     SwitchRow.defaultCellSetup = { cell, row in
@@ -86,18 +86,20 @@ class AddOpenHoursViewController: FormViewController {
         $0.cellProvider = CellProvider<SwitchCell>(nibName: "SwitchCell", bundle: Bundle.main)
       }
 
+    form +++ Section()
+      
       <<< ButtonRow("完成") {(row: ButtonRow) -> Void in
-        row.title = "我寫好ㄌ"
+        row.title = "完成"
         row.tag = "finish"
 
       } .onCellSelection { [weak self] cell, row in
+
+        self?.showSuccessHUD(showInfo: "填寫完成")
 
         // MARK: Get user's input of opening hours
         self?.openHours = self?.form.values()
         
         self?.delegate?.finishAddOpenHours(openHours: (self?.openHours)!)
-
-        self?.showSuccessHUD(showInfo: "填寫完成")
 
         self?.dismiss(animated: true, completion: nil)
       }
