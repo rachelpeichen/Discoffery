@@ -35,4 +35,10 @@ target 'Discoffery' do
   pod 'Firebase/Auth'
 
   pod 'Firebase/Storage'
+
+  pod 'Firebase/Crashlytics'
+
+# Recommended: Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
+
 end

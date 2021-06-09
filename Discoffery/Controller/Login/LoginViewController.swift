@@ -25,15 +25,14 @@ class LoginViewController: UIViewController {
   
   // MARK: - IBOutlet & IBAction
   @IBOutlet weak var signInWithAppleBtnView: UIView!
-
+  
   @IBAction func showPrivacyWebView(_ sender: Any) {
-
+    
     performSegue(withIdentifier: "showWebView", sender: self)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     // Do any additional setup after loading the view.
     
     setupAppleSigninBtn()
@@ -46,18 +45,18 @@ class LoginViewController: UIViewController {
     }
     
     loginViewModel.onUserCreated = {
-
+      
       self.performSegue(withIdentifier: "navigateToMainStoryboard", sender: self)
     }
   }
-
+  
   func showSimpleHUD() {
-      let hud = JGProgressHUD()
-      hud.vibrancyEnabled = true
-      hud.textLabel.text = "Simple example in Swift"
-      hud.detailTextLabel.text = "See JGProgressHUD-Tests for more examples"
-      hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 0.2)
-      hud.show(in: self.view)
+    let hud = JGProgressHUD()
+    hud.vibrancyEnabled = true
+    hud.textLabel.text = "Simple example in Swift"
+    hud.detailTextLabel.text = "See JGProgressHUD-Tests for more examples"
+    hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 0.2)
+    hud.show(in: self.view)
   }
   
   // MARK: - Ask for authorization when btn pressed
@@ -222,9 +221,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
           UserManager.shared.user.id = firebaseUid
           UserManager.shared.user.email = user.email ?? "User Email Not Provided"
           UserManager.shared.user.name = user.displayName ?? "User Name Not Provided"
-
+          
           self.showSuccessHUD(showInfo: "登入成功")
-
+          
           self.loginViewModel.identifyUser()
         }
       }

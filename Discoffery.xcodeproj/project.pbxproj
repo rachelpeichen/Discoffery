@@ -34,10 +34,10 @@
 		7844F5122667D30300A82158 /* MJRefresherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5112667D30300A82158 /* MJRefresherWrapper.swift */; };
 		7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5152667D32100A82158 /* KingFisherWrapper.swift */; };
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
-		784D65B526707771002CA45F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 784D65B426707771002CA45F /* GoogleService-Info.plist */; };
 		784D65B826709711002CA45F /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D65B726709711002CA45F /* BlockListTableViewCell.swift */; };
 		786BF522266C0CB100704711 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF521266C0CB100704711 /* UserViewModel.swift */; };
 		786BF525266C102100704711 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF524266C102100704711 /* CollectionViewModel.swift */; };
+		7870A34B2670FB220012F15F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7870A34A2670FB220012F15F /* GoogleService-Info.plist */; };
 		7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */; };
 		7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
@@ -134,10 +134,10 @@
 		7844F5112667D30300A82158 /* MJRefresherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefresherWrapper.swift; sourceTree = "<group>"; };
 		7844F5152667D32100A82158 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
-		784D65B426707771002CA45F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		784D65B726709711002CA45F /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
 		786BF521266C0CB100704711 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		786BF524266C102100704711 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		7870A34A2670FB220012F15F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCollectionViewCell.xib; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
@@ -553,7 +553,7 @@
 				78FA72DD264BFCA300DF4190 /* AppDelegate.swift */,
 				78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */,
 				78FA72EB264BFCA600DF4190 /* Info.plist */,
-				784D65B426707771002CA45F /* GoogleService-Info.plist */,
+				7870A34A2670FB220012F15F /* GoogleService-Info.plist */,
 				78AEDFA926596CFE000570C7 /* Assets.xcassets */,
 			);
 			path = Discoffery;
@@ -591,6 +591,8 @@
 				78FA72D8264BFCA300DF4190 /* Resources */,
 				76C3A0C44F06C911DF590CB0 /* [CP] Embed Pods Frameworks */,
 				788485E8264BFFE200FA33F9 /* Swiftlint */,
+				7870A3452670EF5B0012F15F /* ShellScript */,
+				7870A3472670F66A0012F15F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -657,7 +659,7 @@
 				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
 				78FA72E5264BFCA300DF4190 /* Main.storyboard in Resources */,
 				781733C026678ACF0004C9CB /* AddItemCollectionViewCell.xib in Resources */,
-				784D65B526707771002CA45F /* GoogleService-Info.plist in Resources */,
+				7870A34B2670FB220012F15F /* GoogleService-Info.plist in Resources */,
 				78C52392266BB37E00A824E0 /* CategoryCollectionViewCell.xib in Resources */,
 				78DF24F926520D9500F47A04 /* Profile.storyboard in Resources */,
 			);
@@ -704,6 +706,42 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Discoffery/Pods-Discoffery-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7870A3452670EF5B0012F15F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		7870A3472670F66A0012F15F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 		788485E8264BFFE200FA33F9 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -860,7 +898,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
