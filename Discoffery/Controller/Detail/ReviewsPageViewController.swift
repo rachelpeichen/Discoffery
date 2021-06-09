@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ReviewsPageViewController: UIViewController {
 
   // MARK: Properties
+  var userViewModel = UserViewModel()
+
   var reviews: [Review]?
+
+  var filteredReviews: [Review] = []
+
+  var blockList: [String] = []
 
   var shopName = "Cafe Name"
 
@@ -23,17 +30,27 @@ class ReviewsPageViewController: UIViewController {
 
     self.dismiss(animated: true, completion: nil)
   }
-
   override func viewDidLoad() {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
     cafeNameLabel.text = shopName
 
-    setupTableView() 
+    userViewModel.fetchBlockListForReviews(user: UserManager.shared.user)
+
+    userViewModel.onBlockListForReview = { result in
+
+      self.blockList = result
+
+      guard let reviews = self.reviews else { return }
+
+      self.filteredReviews = reviews.filter { !self.blockList.contains( $0.user ) }
+
+      self.setupTableView()
+    }
   }
 
-  // MARK: Functions
+  // MARK: - Functions
   private func setupTableView() {
 
     tableView.delegate = self
@@ -46,53 +63,79 @@ class ReviewsPageViewController: UIViewController {
 
     tableView.reloadData()
   }
+
+  @objc func didTapCellButton(sender: UIButton) {
+
+    userViewModel.blockUser(user: UserManager.shared.user, blockName: filteredReviews[sender.tag].user)
+
+    sender.isEnabled = false
+
+    sender.setTitle("已封鎖此用戶", for: .disabled)
+  }
 }
 
 extension ReviewsPageViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return reviews?.count ?? 3
+
+    return filteredReviews.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
     if let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewCell {
 
-      if let singleReview = reviews?[indexPath.row] {
+      let singleReview = filteredReviews[indexPath.row]
 
-        // MARK: hard code寫死還不能動態
-        cell.layoutItemLabel(itemsArr: singleReview.recommendItems)
+      cell.layoutItemLabel(itemsArr: singleReview.recommendItems)
 
-        cell.layoutImgStackView(imgsArr: singleReview.imgURL)
+      cell.layoutImgStackView(imgsArr: singleReview.imgURL)
 
-        cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
+      cell.blockBtn.tag = indexPath.row
 
-        cell.rateStars.rating = singleReview.rating
+      cell.blockBtn.addTarget(self, action: #selector(didTapCellButton(sender:)), for: .touchUpInside)
 
-        cell.userName.text = singleReview.userName
+      cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
 
-        if singleReview.comment.isEmpty {
+      cell.rateStars.rating = singleReview.rating
 
-          cell.comment.text = "該用戶無填寫評論"
+      cell.userName.text = singleReview.userName
 
-        } else {
+      cell.userImg.loadImage(singleReview.userImg)
 
-          cell.comment.text = singleReview.comment
-        }
-        return cell
+      if singleReview.comment.isEmpty {
+        
+        cell.comment.text = "該用戶無填寫評論"
+
+      } else {
+
+        cell.comment.text = singleReview.comment
       }
+      return cell
     }
     return ReviewCell()
   }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+  }
+
 }
 
 extension ReviewsPageViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-      return UITableView.automaticDimension
+    return UITableView.automaticDimension
   }
 
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-      return UITableView.automaticDimension
+    return UITableView.automaticDimension
   }
 }
+
+//extension ReviewsPageViewController: ReviewCellDelegate {
+//
+//  func blockUser() {
+//    // Do Sth
+//  }
+//}

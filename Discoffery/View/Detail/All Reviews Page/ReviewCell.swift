@@ -11,7 +11,9 @@ import Kingfisher
 
 class ReviewCell: UITableViewCell {
 
-  // MARK: - Outlets
+  // MARK: - IBOutlets
+  @IBOutlet weak var blockBtn: UIButton!
+
   @IBOutlet weak var userImg: UIImageView!
 
   @IBOutlet weak var userName: UILabel!
@@ -36,19 +38,20 @@ class ReviewCell: UITableViewCell {
 
   @IBOutlet weak var imgThree: UIImageView!
 
+  @IBAction func onTapBlockBtn(_ sender: Any) {
+
+  }
+
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
 
     userImg.layer.cornerRadius = 25
+    blockBtn.isEnabled = true
   }
 
   override func prepareForReuse() {
-
     super.prepareForReuse()
-
-//
-//
 //    imgStackView.arrangedSubviews.map { $0.removeFromSuperview() }
   }
 

@@ -22,11 +22,11 @@ class ReviewManager {
   // MARK: - Functions
   func fetchReviewsForShop(shop: CoffeeShop, completion: @escaping (Result<[Review], Error>) -> Void) {
 
-    let docRef = Firestore.firestore().collection("shopsTaichung").document(shop.id).collection("reviews")
+    let docRef = Firestore.firestore().collection("shops").document(shop.id).collection("reviews")
 
-    let notEqualQuery = docRef.whereField("user", isNotEqualTo: "blockUserOne")
+//    let notEqualQuery = docRef.whereField("user", isNotEqualTo: "blockUserOne")
 
-    notEqualQuery.getDocuments() { querySnapshot, error in
+      docRef.getDocuments() { querySnapshot, error in
 
       if let error = error {
 
@@ -49,8 +49,6 @@ class ReviewManager {
             completion(.failure(error))
           }
         }
-
-        print(reviews.count)
         completion(.success(reviews))
       }
     }
@@ -58,7 +56,7 @@ class ReviewManager {
 
   func publishUserReview(shop: CoffeeShop, review: inout Review, uploadedImgURL: [String], completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("shopsTaichung").document(shop.id).collection("reviews").document()
+    let docRef = database.collection("shops").document(shop.id).collection("reviews").document()
 
     review.id = docRef.documentID
 

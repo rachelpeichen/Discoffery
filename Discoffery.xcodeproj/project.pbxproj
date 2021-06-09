@@ -34,6 +34,8 @@
 		7844F5122667D30300A82158 /* MJRefresherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5112667D30300A82158 /* MJRefresherWrapper.swift */; };
 		7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5152667D32100A82158 /* KingFisherWrapper.swift */; };
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
+		784D65B526707771002CA45F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 784D65B426707771002CA45F /* GoogleService-Info.plist */; };
+		784D65B826709711002CA45F /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D65B726709711002CA45F /* BlockListTableViewCell.swift */; };
 		786BF522266C0CB100704711 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF521266C0CB100704711 /* UserViewModel.swift */; };
 		786BF525266C102100704711 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF524266C102100704711 /* CollectionViewModel.swift */; };
 		7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */; };
@@ -59,7 +61,6 @@
 		78B2FD00265A1907005C9D1D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FCFF265A1907005C9D1D /* User.swift */; };
 		78B2FD1C265A3326005C9D1D /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD1B265A3326005C9D1D /* ReviewManager.swift */; };
 		78B2FD20265A7B23005C9D1D /* FeatureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD1F265A7B23005C9D1D /* FeatureManager.swift */; };
-		78B2FD28265A8EA9005C9D1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */; };
 		78B2FD2B265AC08D005C9D1D /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */; };
 		78BFDCF3266EAA620096B29C /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFDCF2266EAA620096B29C /* CategoryViewController.swift */; };
 		78BFDD17266EC5DC0096B29C /* FirstRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BFDD16266EC5DB0096B29C /* FirstRecommendViewController.swift */; };
@@ -133,6 +134,8 @@
 		7844F5112667D30300A82158 /* MJRefresherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefresherWrapper.swift; sourceTree = "<group>"; };
 		7844F5152667D32100A82158 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
+		784D65B426707771002CA45F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		784D65B726709711002CA45F /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
 		786BF521266C0CB100704711 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		786BF524266C102100704711 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -158,7 +161,6 @@
 		78B2FCFF265A1907005C9D1D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		78B2FD1B265A3326005C9D1D /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		78B2FD1F265A7B23005C9D1D /* FeatureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureManager.swift; sourceTree = "<group>"; };
-		78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78B2FD2A265AC08D005C9D1D /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		78BFDCF2266EAA620096B29C /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		78BFDD16266EC5DB0096B29C /* FirstRecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRecommendViewController.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				7839C94E2652BD740048B5F5 /* ProfileCell.swift */,
+				784D65B726709711002CA45F /* BlockListTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -550,7 +553,7 @@
 				78FA72DD264BFCA300DF4190 /* AppDelegate.swift */,
 				78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */,
 				78FA72EB264BFCA600DF4190 /* Info.plist */,
-				78B2FD27265A8EA9005C9D1D /* GoogleService-Info.plist */,
+				784D65B426707771002CA45F /* GoogleService-Info.plist */,
 				78AEDFA926596CFE000570C7 /* Assets.xcassets */,
 			);
 			path = Discoffery;
@@ -653,8 +656,8 @@
 				78AEDFAA26596CFE000570C7 /* Assets.xcassets in Resources */,
 				7884864F264CFFE300FA33F9 /* LandscapeCardCell.xib in Resources */,
 				78FA72E5264BFCA300DF4190 /* Main.storyboard in Resources */,
-				78B2FD28265A8EA9005C9D1D /* GoogleService-Info.plist in Resources */,
 				781733C026678ACF0004C9CB /* AddItemCollectionViewCell.xib in Resources */,
+				784D65B526707771002CA45F /* GoogleService-Info.plist in Resources */,
 				78C52392266BB37E00A824E0 /* CategoryCollectionViewCell.xib in Resources */,
 				78DF24F926520D9500F47A04 /* Profile.storyboard in Resources */,
 			);
@@ -757,6 +760,7 @@
 				781CD8352664F4E8005076CD /* SearchViewController.swift in Sources */,
 				7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */,
 				7809E4472661E9EE002DB983 /* LoginViewController.swift in Sources */,
+				784D65B826709711002CA45F /* BlockListTableViewCell.swift in Sources */,
 				78C52387266B81DE00A824E0 /* JGProgressHUDWrapper.swift in Sources */,
 				78B2FCF7265A1849005C9D1D /* Review.swift in Sources */,
 				78DF24E626520B4100F47A04 /* CollectionViewController.swift in Sources */,

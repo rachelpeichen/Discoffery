@@ -17,6 +17,8 @@ struct Review: Codable {
 
   var userName: String = "User"
 
+  var userImg: String?
+
   var rating: Double = 4
 
   var comment: String = ""
@@ -36,6 +38,8 @@ struct Review: Codable {
     case user
 
     case userName
+
+    case userImg
 
     case rating
 
@@ -59,6 +63,8 @@ struct Review: Codable {
       "user": user as Any,
 
       "userName": userName as Any,
+
+      "userImg": userImg as Any,
 
       "rating": rating as Any,
 

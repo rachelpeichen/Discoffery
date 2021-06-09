@@ -23,6 +23,7 @@ class UserManager {
 
   lazy var database = Firestore.firestore()
 
+  // MARK: - User login and create on Firebase
   func identifyUser(uid: String, completion: @escaping (Result<User, Error>) -> Void) {
 
     database.collection("users").document(uid).getDocument { querySnapshot, error in
@@ -48,7 +49,6 @@ class UserManager {
           completion(.failure(error))
         }
       }
-
     }
   }
 
@@ -71,6 +71,7 @@ class UserManager {
     }
   }
 
+  // MARK: - User's Collection
   func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
@@ -189,6 +190,84 @@ class UserManager {
       } else {
 
         completion(.success("Create New Category Success"))
+      }
+    }
+  }
+
+  // MARK: - User's block list
+  func fetchBlockList(user: User, completion: @escaping (Result<[String], Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id)
+
+    docRef.getDocument { querySnapshot, error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else if querySnapshot?.data() == nil {
+
+        completion(.failure(UserError.notExistError))
+
+      } else {
+
+        var blockList: [String] = []
+
+        do {
+
+          if let user = try querySnapshot?.data(as: User.self, decoder: Firestore.Decoder()) {
+
+            blockList = user.blockList
+
+            completion(.success(blockList))
+          }
+
+        } catch {
+          completion(.failure(error))
+        }
+
+      }
+    }
+  }
+
+  func updateBlockList(user: User, unblockName: String, completion: @escaping (Result< String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id)
+
+    docRef.updateData([
+
+      "blockList": FieldValue.arrayRemove([unblockName])
+
+    ]) { error in
+
+      if let error = error {
+
+        print("Error updating document: \(error)")
+
+      } else {
+
+        print("Document successfully updated")
+      }
+    }
+  }
+
+  func blockUser(user: User, blockName: String, completion: @escaping (Result< String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id)
+
+    docRef.updateData([
+
+      "blockList": FieldValue.arrayUnion([blockName])
+
+    ]) { error in
+
+      if let error = error {
+
+        print("Error blockUser: \(error)")
+
+      } else {
+
+        print("User successfully blocked")
       }
     }
   }

@@ -88,6 +88,12 @@ class WriteReviewCell: ShopDetailBasicCell {
     // The user can send review only when rating is provided
     if wrappedReview.rating != 0 {
 
+      wrappedReview.user = UserManager.shared.user.id
+
+      wrappedReview.userName = UserManager.shared.user.name
+
+      wrappedReview.userImg = "https://firebasestorage.googleapis.com/v0/b/discoffery-30605.appspot.com/o/mockImg%2Fappearance.jpg?alt=media&token=6e486376-3925-4c36-940e-4e799ca84e15"
+
       delegate?.sendReview(inputReview: &wrappedReview)
 
       // If the user did provide recommend item then we can publish

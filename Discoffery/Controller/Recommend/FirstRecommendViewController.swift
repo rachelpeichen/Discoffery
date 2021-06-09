@@ -22,24 +22,24 @@ class FirstRecommendViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // Do any additional setup after loading the view.
-    recommendViewModel.fetchShopByRecommendItem()
-
-    recommendViewModel.onShopsByRecommendItem = {
-
-      self.shopsForRecommend = self.recommendViewModel.shopsByRecommendItem
-
-      let result = self.shopsForRecommend
-
-      for index in 0..<result.count {
-
-        self.fetchFeatureForShop(shop: result[index])
-
-        self.fetchRecommendItemForShop(shop: result[index])
-      }
-    }
-    setupTableView()
+//
+//    // Do any additional setup after loading the view.
+//    recommendViewModel.fetchShopByRecommendItem()
+//
+//    recommendViewModel.onShopsByRecommendItem = {
+//
+//      self.shopsForRecommend = self.recommendViewModel.shopsByRecommendItem
+//
+//      let result = self.shopsForRecommend
+//
+//      for index in 0..<result.count {
+//
+//        self.fetchFeatureForShop(shop: result[index])
+//
+//        self.fetchRecommendItemForShop(shop: result[index])
+//      }
+//    }
+//    setupTableView()
   }
 
   // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ

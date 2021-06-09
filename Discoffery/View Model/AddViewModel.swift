@@ -149,7 +149,7 @@ class AddViewModel {
 
       case .failure(let error):
         
-        print("publishRecommendItem: \(error)")
+        print("publishRecommendItem.error: \(error)")
       }
     }
   }

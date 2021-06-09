@@ -53,7 +53,7 @@ class CoffeeShopManager {
     let lowerLat = latitude - (distance / metersPerLatDegree) // 緯度下限
     let upperLat = latitude + (distance / metersPerLatDegree) // 緯度上限
 
-    let docRef = database.collection("shopsTaichung")
+    let docRef = database.collection("shops")
 
     // 先查緯度: Firebase range filters can be implemented on only one field
     let queryByLat = docRef
@@ -90,7 +90,7 @@ class CoffeeShopManager {
 
   func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
 
-    let docRef = database.collection("shopsTaichung")
+    let docRef = database.collection("shops")
 
     docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
 
@@ -170,7 +170,7 @@ class CoffeeShopManager {
 
   func fetchKnownShopByDocId(docId: [String], completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
-    let docRef = database.collection("shopsTaichung")
+    let docRef = database.collection("shops")
 
     let query = docRef.whereField("id", in: docId)
 
@@ -204,7 +204,7 @@ class CoffeeShopManager {
 
   func fetchShopByRecommendItem(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
-    let docRef = database.collection("shopsTaichung")
+    let docRef = database.collection("shops")
 
     let query = docRef.whereField("socket", isEqualTo: "maybe")
 
