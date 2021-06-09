@@ -38,6 +38,7 @@
 		786BF522266C0CB100704711 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF521266C0CB100704711 /* UserViewModel.swift */; };
 		786BF525266C102100704711 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF524266C102100704711 /* CollectionViewModel.swift */; };
 		7870A34B2670FB220012F15F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7870A34A2670FB220012F15F /* GoogleService-Info.plist */; };
+		7870A350267120910012F15F /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */; };
 		7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */; };
 		7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
@@ -138,6 +139,9 @@
 		786BF521266C0CB100704711 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		786BF524266C102100704711 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		7870A34A2670FB220012F15F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7870A34D267120900012F15F /* Discoffery-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Discoffery-Bridging-Header.h"; sourceTree = "<group>"; };
+		7870A34E267120910012F15F /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCollectionViewCell.xib; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
@@ -306,6 +310,8 @@
 		7844F5102667D2A900A82158 /* Third Party Wrapper */ = {
 			isa = PBXGroup;
 			children = (
+				7870A34E267120910012F15F /* UIScrollView+EmptyDataSet.h */,
+				7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */,
 				7844F5112667D30300A82158 /* MJRefresherWrapper.swift */,
 				7844F5152667D32100A82158 /* KingFisherWrapper.swift */,
 				7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */,
@@ -543,6 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				78C5232A266A564900A824E0 /* Discoffery.entitlements */,
+				7870A34D267120900012F15F /* Discoffery-Bridging-Header.h */,
 				7844F5102667D2A900A82158 /* Third Party Wrapper */,
 				78A31104265C271E00441FE7 /* Extension */,
 				78848669264D3EEF00FA33F9 /* Services */,
@@ -614,6 +621,7 @@
 				TargetAttributes = {
 					78FA72D9264BFCA300DF4190 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -838,6 +846,7 @@
 				78B2FD00265A1907005C9D1D /* User.swift in Sources */,
 				786BF522266C0CB100704711 /* UserViewModel.swift in Sources */,
 				78294F04266E67F400851076 /* WebViewController.swift in Sources */,
+				7870A350267120910012F15F /* UIScrollView+EmptyDataSet.m in Sources */,
 				78C5237F266B700400A824E0 /* UIStoryboard+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -986,6 +995,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Discoffery/Discoffery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P4J3B539A4;
@@ -996,6 +1006,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rachelpei.Discoffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Discoffery/Discoffery-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1007,6 +1019,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Discoffery/Discoffery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P4J3B539A4;
@@ -1017,6 +1030,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rachelpei.Discoffery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Discoffery/Discoffery-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

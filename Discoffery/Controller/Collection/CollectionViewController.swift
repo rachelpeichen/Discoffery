@@ -29,7 +29,6 @@ class CollectionViewController: UIViewController {
   var selectedCategoryIndex: Int?
 
   // MARK: - Life Cycle
-
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
 
@@ -100,7 +99,6 @@ class CollectionViewController: UIViewController {
 
     collectionView.setCollectionViewLayout(layout, animated: true)
   }
-
 }
 
 // MARK: - UICollectionViewDataSource
@@ -131,15 +129,15 @@ extension CollectionViewController: UICollectionViewDataSource {
     selectedCategoryIndex = indexPath.row
 
     performSegue(withIdentifier: "navigateToCategoryVC", sender: indexPath.row)
-//
-//    selectedShopIndex = indexPath.row
-//
-//    let storyboard = UIStoryboard.main
-//
-//    if storyboard.instantiateViewController(withIdentifier: "DetailVC") is DetailViewController {
-//
-//      performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
-//    }
+    //
+    //    selectedShopIndex = indexPath.row
+    //
+    //    let storyboard = UIStoryboard.main
+    //
+    //    if storyboard.instantiateViewController(withIdentifier: "DetailVC") is DetailViewController {
+    //
+    //      performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
+    //    }
   }
 }
 
@@ -174,11 +172,12 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 extension CollectionViewController: UICollectionViewDelegate {
 }
 
+// MARK: - AddCategoryViewControllerDelegate
 extension CollectionViewController: AddCategoryViewControllerDelegate {
 
   func reloadCollectionView() {
-    
-    self.reloadInputViews()
+
+    setupCollectionView()
 
     collectionViewModel.fetchSavedShopsForAllCategory(user: UserManager.shared.user)
 

@@ -28,6 +28,12 @@ class AccountSettingViewController: UIViewController {
       self.blockList = result
 
       self.setupTableView()
+
+      self.tableView.emptyDataSetSource = self
+
+      self.tableView.emptyDataSetDelegate = self
+
+      self.tableView.tableFooterView = UIView()
     }
   }
 
@@ -37,6 +43,11 @@ class AccountSettingViewController: UIViewController {
     // Do any additional setup after loading the view.
     navigationController?.navigationBar.barTintColor = .G3
     navigationController?.navigationBar.tintColor = .G1
+    tableView.emptyDataSetSource = self
+
+    tableView.emptyDataSetDelegate = self
+
+    tableView.tableFooterView = UIView()
   }
 
   // MARK: - Functions
@@ -92,4 +103,18 @@ extension AccountSettingViewController: UITableViewDataSource {
 }
 
 extension AccountSettingViewController: UITableViewDelegate {
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+extension AccountSettingViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "目前沒有已封鎖的用戶"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }

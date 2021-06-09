@@ -200,7 +200,7 @@ extension HomeListViewController: UITableViewDataSource {
 
       cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
 
-      cell.starsView.rating = shop.tasty  // 還沒算出全部評價的平均 先用他原本api的
+      cell.starsView.rating = shop.tasty
 
       cell.openHours.text = "疫情暫停營業"
 

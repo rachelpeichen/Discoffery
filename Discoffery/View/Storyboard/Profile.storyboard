@@ -161,7 +161,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="說明：您將不會看到已封鎖用戶的任何評論" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9g-61-foZ">
-                                <rect key="frame" x="30" y="215" width="291" height="17"/>
+                                <rect key="frame" x="30" y="223" width="291" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="x0L-dT-qA9"/>
                                 </constraints>
@@ -170,7 +170,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hha-5w-855">
-                                <rect key="frame" x="0.0" y="248" width="414" height="614"/>
+                                <rect key="frame" x="0.0" y="256" width="414" height="606"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BlockListTableViewCell" id="d6T-7E-PTK" customClass="BlockListTableViewCell" customModule="Discoffery" customModuleProvider="target">
@@ -226,7 +226,7 @@
                             <constraint firstItem="I9g-61-foZ" firstAttribute="leading" secondItem="ylS-Ux-iMl" secondAttribute="leading" constant="30" id="gCq-uW-JWy"/>
                             <constraint firstItem="hha-5w-855" firstAttribute="bottom" secondItem="ylS-Ux-iMl" secondAttribute="bottom" id="h8f-Bl-lKv"/>
                             <constraint firstItem="hha-5w-855" firstAttribute="trailing" secondItem="ylS-Ux-iMl" secondAttribute="trailing" id="tiJ-5D-Wl1"/>
-                            <constraint firstItem="I9g-61-foZ" firstAttribute="top" secondItem="vV3-et-Kl3" secondAttribute="bottom" constant="8" id="tyE-H2-lyb"/>
+                            <constraint firstItem="I9g-61-foZ" firstAttribute="top" secondItem="vV3-et-Kl3" secondAttribute="bottom" constant="16" id="tyE-H2-lyb"/>
                             <constraint firstItem="vV3-et-Kl3" firstAttribute="top" secondItem="LXm-iP-GZt" secondAttribute="bottom" constant="30" id="xKr-fw-Exa"/>
                         </constraints>
                     </view>

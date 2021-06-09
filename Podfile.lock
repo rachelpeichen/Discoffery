@@ -220,6 +220,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - Cosmos (23.0.0)
   - DynamicBlurView (4.1.0)
+  - DZNEmptyDataSet (1.8.1)
   - Eureka (5.3.3)
   - Firebase/Analytics (6.34.0):
     - Firebase/Core
@@ -291,7 +292,6 @@ PODS:
   - FirebaseStorage (3.9.1):
     - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GeoFire/Utils (4.2.0)
   - GoogleAppMeasurement (6.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
     - GoogleUtilities/MethodSwizzler (~> 6.7)
@@ -366,6 +366,7 @@ PODS:
 
 DEPENDENCIES:
   - Cosmos (~> 23.0)
+  - DZNEmptyDataSet
   - Eureka
   - Firebase/Analytics
   - Firebase/Auth
@@ -373,7 +374,6 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
-  - GeoFire/Utils
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - Kingfisher
@@ -388,6 +388,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - Cosmos
     - DynamicBlurView
+    - DZNEmptyDataSet
     - Eureka
     - Firebase
     - FirebaseAnalytics
@@ -399,7 +400,6 @@ SPEC REPOS:
     - FirebaseFirestoreSwift
     - FirebaseInstallations
     - FirebaseStorage
-    - GeoFire
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
@@ -424,6 +424,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
@@ -435,7 +436,6 @@ SPEC CHECKSUMS:
   FirebaseFirestoreSwift: 2c46dbc1156db97dc4f6dd798d4f5b57b9c7fab6
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
   FirebaseStorage: 15e0f15ef3c7fec3d1899d68623e47d4447066b4
-  GeoFire: 4a0d0c1d3e635278f3d95c1dc33ddaec858c64f7
   GoogleAppMeasurement: a6a3a066369828db64eda428cb2856dc1cdc7c4e
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
@@ -455,6 +455,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   YPImagePicker: 6f410f475bd22fa8cd430495b54d4b2f15865c2d
 
-PODFILE CHECKSUM: a7dcdfc99e7077f399cd0e83ef49ac4e8e520eb5
+PODFILE CHECKSUM: 61702ccb38152f4fcde6e05c1238cc992b9c9dc3
 
 COCOAPODS: 1.10.1

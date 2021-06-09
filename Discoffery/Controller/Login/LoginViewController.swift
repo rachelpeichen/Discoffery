@@ -25,9 +25,9 @@ class LoginViewController: UIViewController {
   
   // MARK: - IBOutlet & IBAction
   @IBOutlet weak var signInWithAppleBtnView: UIView!
-  
+
   @IBAction func showPrivacyWebView(_ sender: Any) {
-    
+
     performSegue(withIdentifier: "showWebView", sender: self)
   }
   
@@ -45,11 +45,11 @@ class LoginViewController: UIViewController {
     }
     
     loginViewModel.onUserCreated = {
-      
+
       self.performSegue(withIdentifier: "navigateToMainStoryboard", sender: self)
     }
   }
-  
+
   func showSimpleHUD() {
     let hud = JGProgressHUD()
     hud.vibrancyEnabled = true
@@ -221,9 +221,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
           UserManager.shared.user.id = firebaseUid
           UserManager.shared.user.email = user.email ?? "User Email Not Provided"
           UserManager.shared.user.name = user.displayName ?? "User Name Not Provided"
-          
+
           self.showSuccessHUD(showInfo: "登入成功")
-          
+
           self.loginViewModel.identifyUser()
         }
       }

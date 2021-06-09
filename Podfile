@@ -24,7 +24,8 @@ target 'Discoffery' do
   
   pod 'YPImagePicker'
 
-  pod 'GeoFire/Utils'
+  pod 'DZNEmptyDataSet'
+
   # add pods for desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 
@@ -39,6 +40,6 @@ target 'Discoffery' do
   pod 'Firebase/Crashlytics'
 
 # Recommended: Add the Firebase pod for Google Analytics
-pod 'Firebase/Analytics'
+  pod 'Firebase/Analytics'
 
 end

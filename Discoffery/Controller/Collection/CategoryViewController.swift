@@ -57,7 +57,11 @@ class CategoryViewController: UIViewController {
 
     } else {
 
-      showErrorHUD(showInfo: "還沒加收藏啦")
+      tableView.emptyDataSetSource = self
+
+      tableView.emptyDataSetDelegate = self
+
+      tableView.tableFooterView = UIView()
     }
   }
 
@@ -179,4 +183,24 @@ extension CategoryViewController: UITableViewDataSource {
 
 extension CategoryViewController: UITableViewDelegate {
   // Do sth
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+extension CategoryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "此分類目前沒有任何收藏"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "快把想去的咖啡廳加入收藏吧"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }
