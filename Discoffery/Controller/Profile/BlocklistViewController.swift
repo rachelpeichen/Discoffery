@@ -36,7 +36,9 @@ class BlocklistViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     navigationController?.navigationBar.barTintColor = .G3
+
     navigationController?.navigationBar.tintColor = .G1
+
     tableView.emptyDataSetSource = self
 
     tableView.emptyDataSetDelegate = self

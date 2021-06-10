@@ -40,6 +40,8 @@
 		7870A34B2670FB220012F15F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7870A34A2670FB220012F15F /* GoogleService-Info.plist */; };
 		7870A350267120910012F15F /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */; };
 		7870A37E267208AD0012F15F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870A37D267208AD0012F15F /* SettingViewController.swift */; };
+		7870A3AA26722D130012F15F /* UserReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870A3A926722D130012F15F /* UserReviewViewController.swift */; };
+		7870A3AD26722D2E0012F15F /* UserPostShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7870A3AC26722D2E0012F15F /* UserPostShopViewController.swift */; };
 		7879ECC3265BE7D900BEAA73 /* FeatureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */; };
 		7879ECC4265BE7D900BEAA73 /* FeatureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */; };
 		787C2CB0264E6E70001AC268 /* CoffeeShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */; };
@@ -144,6 +146,8 @@
 		7870A34E267120910012F15F /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		7870A37D267208AD0012F15F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		7870A3A926722D130012F15F /* UserReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReviewViewController.swift; sourceTree = "<group>"; };
+		7870A3AC26722D2E0012F15F /* UserPostShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostShopViewController.swift; sourceTree = "<group>"; };
 		7879ECC1265BE7D900BEAA73 /* FeatureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCollectionViewCell.swift; sourceTree = "<group>"; };
 		7879ECC2265BE7D900BEAA73 /* FeatureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureCollectionViewCell.xib; sourceTree = "<group>"; };
 		787C2CAF264E6E70001AC268 /* CoffeeShopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeShopManager.swift; sourceTree = "<group>"; };
@@ -506,6 +510,8 @@
 				78DF24EC26520B6A00F47A04 /* ProfileViewController.swift */,
 				78294F0A266E838B00851076 /* BlocklistViewController.swift */,
 				7870A37D267208AD0012F15F /* SettingViewController.swift */,
+				7870A3A926722D130012F15F /* UserReviewViewController.swift */,
+				7870A3AC26722D2E0012F15F /* UserPostShopViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -792,6 +798,7 @@
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,
 				78A01E9426666D0C00E4B43C /* PaddingLabel.swift in Sources */,
 				78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */,
+				7870A3AD26722D2E0012F15F /* UserPostShopViewController.swift in Sources */,
 				78294F08266E726F00851076 /* UICollectionView+Extension.swift in Sources */,
 				78BFDD1A266EC8CD0096B29C /* RecommendViewModel.swift in Sources */,
 				786BF525266C102100704711 /* CollectionViewModel.swift in Sources */,
@@ -850,6 +857,7 @@
 				78B2FD00265A1907005C9D1D /* User.swift in Sources */,
 				786BF522266C0CB100704711 /* UserViewModel.swift in Sources */,
 				78294F04266E67F400851076 /* WebViewController.swift in Sources */,
+				7870A3AA26722D130012F15F /* UserReviewViewController.swift in Sources */,
 				7870A350267120910012F15F /* UIScrollView+EmptyDataSet.m in Sources */,
 				78C5237F266B700400A824E0 /* UIStoryboard+Extension.swift in Sources */,
 			);

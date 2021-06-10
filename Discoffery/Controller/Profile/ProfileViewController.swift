@@ -10,14 +10,14 @@ import UIKit
 class ProfileViewController: UIViewController {
 
   // MARK: - Outlets
-  @IBOutlet weak var profileImage: UIImageView!
+  @IBOutlet weak var profileImg: UIImageView!
 
-  @IBOutlet weak var userName: UILabel!
+  @IBOutlet weak var userNameLabel: UILabel!
 
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Properties
-  var titleForSettingLabel: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "封鎖用戶名單", "帳號設定", "關於Discoffery"]
+  var titleLabel: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "封鎖用戶名單", "帳號設定"]
 
   // MARK: - Life Cycle
   override func viewDidLoad() {
@@ -30,13 +30,15 @@ class ProfileViewController: UIViewController {
   // MARK: - Functions
   private func setUpProfileVCLayout() {
     
-    navigationController?.navigationBar.barTintColor = UIColor.init(named: "G3")
+    navigationController?.navigationBar.barTintColor = .G3
 
-    profileImage.clipsToBounds = true
+    navigationController?.navigationBar.tintColor = .G1
 
-    profileImage.layer.cornerRadius = 40
+    profileImg.clipsToBounds = true
 
-    userName.text = UserManager.shared.user.name
+    profileImg.layer.cornerRadius = 40
+
+    userNameLabel.text = UserManager.shared.user.name
 
     tableView.delegate = self
 
@@ -50,14 +52,14 @@ extension ProfileViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-    return titleForSettingLabel.count
+    return titleLabel.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
     if let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as? ProfileCell {
 
-      cell.settingLabel.text = titleForSettingLabel[indexPath.row]
+      cell.settingLabel.text = titleLabel[indexPath.row]
 
       tableView.separatorStyle = .none
 
@@ -70,20 +72,23 @@ extension ProfileViewController: UITableViewDataSource {
 
     switch indexPath.row {
 
-    case 2:
+    case 0:
+      performSegue(withIdentifier: "naviateToUserReviewVC", sender: indexPath.row)
 
+    case 1:
+      performSegue(withIdentifier: "navigateToPostVC", sender: indexPath.row)
+
+    case 2:
       performSegue(withIdentifier: "naviagetToBlockVC", sender: indexPath.row)
 
     case 3:
-
       performSegue(withIdentifier: "navigateToSettingVC", sender: indexPath.row)
 
     default:
-      print("default")
+      print("Nothing happens")
     }
   }
 }
 
 extension ProfileViewController: UITableViewDelegate {
-
 }

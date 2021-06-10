@@ -76,7 +76,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Q0j-SD-Ass"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AyW-0g-P8g" firstAttribute="leading" secondItem="gPD-LT-ivr" secondAttribute="trailing" constant="16" id="1NK-GS-RAZ"/>
                             <constraint firstItem="gPD-LT-ivr" firstAttribute="top" secondItem="Q0j-SD-Ass" secondAttribute="top" constant="30" id="JV0-P1-wcg"/>
@@ -92,16 +92,84 @@
                     </view>
                     <navigationItem key="navigationItem" title="個人" id="nE1-TT-wH5"/>
                     <connections>
-                        <outlet property="profileImage" destination="gPD-LT-ivr" id="1p2-4f-CZB"/>
+                        <outlet property="profileImg" destination="gPD-LT-ivr" id="1p2-4f-CZB"/>
                         <outlet property="tableView" destination="MNn-cN-Qng" id="sLM-O4-6Il"/>
-                        <outlet property="userName" destination="AyW-0g-P8g" id="Jas-Sh-NUc"/>
+                        <outlet property="userNameLabel" destination="AyW-0g-P8g" id="Jas-Sh-NUc"/>
                         <segue destination="h2j-tS-bcB" kind="show" identifier="naviagetToBlockVC" id="hsq-MQ-rdN"/>
                         <segue destination="c1E-aE-FFa" kind="show" identifier="navigateToSettingVC" id="ubc-iZ-Av7"/>
+                        <segue destination="FaF-CM-Ybs" kind="show" identifier="navigateToPostVC" id="4fY-mg-m7J"/>
+                        <segue destination="M8M-vO-5sf" kind="show" identifier="naviateToUserReviewVC" id="IRz-QE-lfx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLv-y4-2bB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1217.3913043478262" y="850.44642857142856"/>
+        </scene>
+        <!--我發表的評價-->
+        <scene sceneID="kwF-hB-RLw">
+            <objects>
+                <viewController id="M8M-vO-5sf" customClass="UserReviewViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aon-zP-6To">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="OB2-pC-jUw">
+                                <rect key="frame" x="79" y="384" width="256" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIS-zw-P5d">
+                                <rect key="frame" x="141" y="516" width="132" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" name="G1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bZk-pT-Tld"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OB2-pC-jUw" firstAttribute="centerX" secondItem="Aon-zP-6To" secondAttribute="centerX" id="JLq-oK-fqi"/>
+                            <constraint firstItem="EIS-zw-P5d" firstAttribute="centerX" secondItem="Aon-zP-6To" secondAttribute="centerX" id="jlq-kK-lkH"/>
+                            <constraint firstItem="OB2-pC-jUw" firstAttribute="centerY" secondItem="Aon-zP-6To" secondAttribute="centerY" id="pZK-m5-KSG"/>
+                            <constraint firstItem="EIS-zw-P5d" firstAttribute="top" secondItem="OB2-pC-jUw" secondAttribute="bottom" constant="4" id="tCL-Rn-18l"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="我發表的評價" id="1eD-Mh-B5f"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FCy-Yn-r41" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3004" y="404"/>
+        </scene>
+        <!--我新增的資訊-->
+        <scene sceneID="dBa-Pr-EIJ">
+            <objects>
+                <viewController id="FaF-CM-Ybs" customClass="UserPostShopViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jAI-8u-GM5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5s8-zK-Ept">
+                                <rect key="frame" x="79" y="384" width="256" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQZ-UW-qBm">
+                                <rect key="frame" x="141" y="516" width="132" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" name="G1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="oxX-2U-j3Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IQZ-UW-qBm" firstAttribute="centerX" secondItem="jAI-8u-GM5" secondAttribute="centerX" id="4mc-44-XaI"/>
+                            <constraint firstItem="5s8-zK-Ept" firstAttribute="centerX" secondItem="jAI-8u-GM5" secondAttribute="centerX" id="iSF-En-TY5"/>
+                            <constraint firstItem="5s8-zK-Ept" firstAttribute="centerY" secondItem="jAI-8u-GM5" secondAttribute="centerY" id="pnH-zk-Pcd"/>
+                            <constraint firstItem="IQZ-UW-qBm" firstAttribute="top" secondItem="5s8-zK-Ept" secondAttribute="bottom" constant="4" id="zte-kX-gzF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="我新增的資訊" id="VXB-4F-6vE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y4n-3h-cXw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3003" y="1266"/>
         </scene>
         <!--帳號設定-->
         <scene sceneID="8sA-gd-CC5">
@@ -149,6 +217,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onTapLogoutBtn:" destination="c1E-aE-FFa" eventType="touchUpInside" id="zZ7-FL-19q"/>
+                                    <segue destination="DvR-Dj-55v" kind="show" identifier="navigateFromSettingVC" id="Ai7-Aj-L8N"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入新的用戶名稱" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kqa-Df-eqv">
@@ -160,7 +229,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rZ-nh-hUO" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1rZ-nh-hUO" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
                                 <rect key="frame" x="157" y="394" width="100" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
@@ -205,9 +274,19 @@
                                     <imageReference key="image" image="camera" catalog="system" symbolScale="large"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="說明：帳號設定功能尚未正式啟用，請見諒。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nD5-mi-j5k">
+                                <rect key="frame" x="16" y="338" width="382" height="24"/>
+                                <color key="tintColor" name="B1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="OQY-aN-ckj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="PingFangTC-Semibold" family="PingFang TC" pointSize="18"/>
+                                <color key="textColor" name="B1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HuT-Ab-kCc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3e8-RJ-HZn" firstAttribute="centerY" secondItem="6f6-OO-4dK" secondAttribute="centerY" id="1lZ-dx-ipa"/>
                             <constraint firstItem="1rZ-nh-hUO" firstAttribute="top" secondItem="kqa-Df-eqv" secondAttribute="bottom" constant="134" id="3db-Op-xPl"/>
@@ -216,12 +295,15 @@
                             <constraint firstItem="1rZ-nh-hUO" firstAttribute="centerX" secondItem="97K-RQ-u8e" secondAttribute="centerX" id="A0A-Bu-oP2"/>
                             <constraint firstItem="FAw-ig-a9k" firstAttribute="leading" secondItem="HuT-Ab-kCc" secondAttribute="leading" constant="30" id="A74-oF-fcU"/>
                             <constraint firstItem="HuT-Ab-kCc" firstAttribute="trailing" secondItem="Zj9-OJ-8Gh" secondAttribute="trailing" constant="16" id="A9Z-UO-k9O"/>
+                            <constraint firstItem="HuT-Ab-kCc" firstAttribute="trailing" secondItem="nD5-mi-j5k" secondAttribute="trailing" constant="16" id="BgN-Vt-UHP"/>
                             <constraint firstItem="kqa-Df-eqv" firstAttribute="centerY" secondItem="FAw-ig-a9k" secondAttribute="centerY" id="DKh-B2-rsh"/>
                             <constraint firstItem="Zj9-OJ-8Gh" firstAttribute="centerY" secondItem="Osq-PM-GKZ" secondAttribute="centerY" id="MC5-pf-qd7"/>
                             <constraint firstItem="HuT-Ab-kCc" firstAttribute="trailing" secondItem="kqa-Df-eqv" secondAttribute="trailing" constant="16" id="N4z-gc-D5B"/>
                             <constraint firstItem="Zj9-OJ-8Gh" firstAttribute="leading" secondItem="Osq-PM-GKZ" secondAttribute="trailing" constant="16" id="NyR-us-Gqk"/>
+                            <constraint firstItem="nD5-mi-j5k" firstAttribute="leading" secondItem="HuT-Ab-kCc" secondAttribute="leading" constant="16" id="Pe8-yl-yMT"/>
                             <constraint firstItem="Osq-PM-GKZ" firstAttribute="leading" secondItem="HuT-Ab-kCc" secondAttribute="leading" constant="30" id="Qsl-wI-y9R"/>
                             <constraint firstItem="Tna-6m-Sv8" firstAttribute="centerX" secondItem="97K-RQ-u8e" secondAttribute="centerX" id="ZRZ-8p-GvT"/>
+                            <constraint firstItem="nD5-mi-j5k" firstAttribute="top" secondItem="6f6-OO-4dK" secondAttribute="bottom" constant="20" id="b2Y-I1-QEg"/>
                             <constraint firstItem="Osq-PM-GKZ" firstAttribute="top" secondItem="HuT-Ab-kCc" secondAttribute="top" constant="30" id="fB0-S6-4M2"/>
                             <constraint firstItem="6f6-OO-4dK" firstAttribute="leading" secondItem="HuT-Ab-kCc" secondAttribute="leading" constant="30" id="ihp-LG-2Zs"/>
                             <constraint firstItem="3e8-RJ-HZn" firstAttribute="leading" secondItem="6f6-OO-4dK" secondAttribute="trailing" constant="16" id="itB-hT-0DA"/>
@@ -233,11 +315,23 @@
                     <navigationItem key="navigationItem" title="帳號設定" id="KSE-Gl-2lI"/>
                     <connections>
                         <outlet property="finishEditBtn" destination="1rZ-nh-hUO" id="jeY-Bf-J1s"/>
+                        <outlet property="profileImg" destination="Osq-PM-GKZ" id="gig-Df-76P"/>
+                        <outlet property="userNameLabel" destination="Zj9-OJ-8Gh" id="cQX-2p-2Ya"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7n-md-hbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2143.4782608695655" y="849.77678571428567"/>
+            <point key="canvasLocation" x="1708.6956521739132" y="1784.5982142857142"/>
+        </scene>
+        <!--LoginVC-->
+        <scene sceneID="R1V-rd-p9I">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="LoginVC" id="DvR-Dj-55v" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Aw0-hi-f8j"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MA6-cr-qKb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1709" y="2221"/>
         </scene>
         <!--Blocklist View Controller-->
         <scene sceneID="Jod-qb-3IL">
@@ -289,6 +383,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="X0q-Kr-ywF" secondAttribute="bottom" constant="16" id="ryn-Qq-ezk"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="blockedUserLabel" destination="N0x-Gv-nI9" id="Phy-Ao-3J4"/>
                                             <outlet property="unBlockUserBtn" destination="X0q-Kr-ywF" id="oim-nf-oLa"/>
@@ -315,7 +410,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ylS-Ux-iMl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vV3-et-Kl3" firstAttribute="leading" secondItem="ylS-Ux-iMl" secondAttribute="leading" constant="30" id="9Be-TX-Dl5"/>
                             <constraint firstItem="hha-5w-855" firstAttribute="leading" secondItem="ylS-Ux-iMl" secondAttribute="leading" id="R9u-rN-DBf"/>
@@ -334,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PL1-ch-bww" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1214.4927536231885" y="1565.625"/>
+            <point key="canvasLocation" x="584" y="1785"/>
         </scene>
         <!--個人-->
         <scene sceneID="Arp-Mp-1FG">
@@ -387,9 +482,13 @@
     </designables>
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="logo" width="256" height="127.5"/>
         <image name="mugWithColor" width="640" height="640"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <namedColor name="B1">
+            <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="B5">
             <color red="0.82999998331069946" green="0.77799999713897705" blue="0.69099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

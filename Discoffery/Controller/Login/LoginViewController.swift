@@ -232,10 +232,8 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
   
   func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
     // Handle error.
-    showErrorHUD(showInfo: "Sign in with Apple error: \(error)")
-    print("Sign in with Apple error: \(error)")
+    showErrorHUD(showInfo: "Oops! 登入失敗")
   }
-  
 }
 
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
