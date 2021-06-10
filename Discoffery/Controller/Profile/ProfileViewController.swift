@@ -14,14 +14,10 @@ class ProfileViewController: UIViewController {
 
   @IBOutlet weak var userName: UILabel!
 
-  @IBOutlet weak var userEmail: UILabel!
-
-  @IBOutlet weak var userLoginTime: UILabel!
-
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Properties
-  var titleForSettingLabel: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "帳號設定", "常見問題", "聯絡開發者", "關於Discoffery", "贊助熬夜的開發者喝咖啡"]
+  var titleForSettingLabel: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "封鎖用戶名單", "帳號設定", "關於Discoffery"]
 
   // MARK: - Life Cycle
   override func viewDidLoad() {
@@ -41,10 +37,6 @@ class ProfileViewController: UIViewController {
     profileImage.layer.cornerRadius = 40
 
     userName.text = UserManager.shared.user.name
-
-    userEmail.text = UserManager.shared.user.email
-
-    userLoginTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: UserManager.shared.user.createdTime))
 
     tableView.delegate = self
 
@@ -78,15 +70,13 @@ extension ProfileViewController: UITableViewDataSource {
 
     switch indexPath.row {
 
-    case 0:
-      print(0)
-
-    case 1:
-      print(1)
-
     case 2:
 
-      performSegue(withIdentifier: "naviagetToAccountSettingVC", sender: indexPath.row)
+      performSegue(withIdentifier: "naviagetToBlockVC", sender: indexPath.row)
+
+    case 3:
+
+      performSegue(withIdentifier: "navigateToSettingVC", sender: indexPath.row)
 
     default:
       print("default")

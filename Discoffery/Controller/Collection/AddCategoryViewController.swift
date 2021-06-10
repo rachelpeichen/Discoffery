@@ -47,17 +47,15 @@ class AddCategoryViewController: UIViewController {
 
     collectionViewModel.addNewCategory(category: userSavedShopDoc.category, user: UserManager.shared.user, savedShopDoc: &userSavedShopDoc)
 
-    collectionViewModel.onAddNewCategory = {
+    self.showSuccessHUD(showInfo: "新增分類成功")
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+
+      self.dismiss(animated: true, completion: nil)
 
       self.delegate?.reloadCollectionView()
-
-      self.showSuccessHUD(showInfo: "新增分類成功")
-
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
-
-        self.dismiss(animated: true, completion: nil)
-      }
     }
+
   }
 
   @IBAction func backToPreviousVC(_ sender: Any) {

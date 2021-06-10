@@ -108,9 +108,9 @@ class HomeMapViewController: UIViewController {
 
     } else if segue.identifier == "navigateSelectedShopVCToDetailVC" {
 
-      guard selectedAnnotationIndex != nil else { return }
+      guard let index = selectedAnnotationIndex  else { return }
 
-      let selectedShopToDetailVC = shopsDataForMap[selectedAnnotationIndex!]
+      let selectedShopToDetailVC = shopsDataForMap[index]
 
       if let detailVC = segue.destination as? DetailViewController {
 

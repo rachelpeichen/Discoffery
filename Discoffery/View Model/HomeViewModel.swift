@@ -23,7 +23,7 @@ class HomeViewModel {
   
   var getShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
 
-  var shopsData = [CoffeeShop]() {
+  var shopsData: [CoffeeShop] = [] {
 
     didSet {
 
@@ -46,7 +46,7 @@ class HomeViewModel {
     }
   }
 
-  // MARK: - Functions
+  // MARK: - Map related functions
   func getShopAroundUser() {
 
     LocationManager.shared.trackLocation { latitude, longitude in

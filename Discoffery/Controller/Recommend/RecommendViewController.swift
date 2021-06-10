@@ -63,8 +63,8 @@ extension RecommendViewController: SelectionViewDelegate {
         case 0:
 
           firstRecommendContainerView.isHidden = false
-          logo.isHidden = true
-          warning.isHidden = true
+          logo.isHidden = false
+          warning.isHidden = false
 
         case 1:
 

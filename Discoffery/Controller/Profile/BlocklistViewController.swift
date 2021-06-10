@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountSettingViewController: UIViewController {
+class BlocklistViewController: UIViewController {
 
   // MARK: - Properties
   var userViewModel = UserViewModel()
@@ -28,12 +28,6 @@ class AccountSettingViewController: UIViewController {
       self.blockList = result
 
       self.setupTableView()
-
-      self.tableView.emptyDataSetSource = self
-
-      self.tableView.emptyDataSetDelegate = self
-
-      self.tableView.tableFooterView = UIView()
     }
   }
 
@@ -72,7 +66,7 @@ class AccountSettingViewController: UIViewController {
   }
 }
 
-extension AccountSettingViewController: UITableViewDataSource {
+extension BlocklistViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -94,7 +88,7 @@ extension AccountSettingViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-    unBlockUser(unblockName: blockList[indexPath.row])
+  unBlockUser(unblockName: blockList[indexPath.row])
 
    blockList.remove(at: (indexPath.row))
 
@@ -102,14 +96,14 @@ extension AccountSettingViewController: UITableViewDataSource {
   }
 }
 
-extension AccountSettingViewController: UITableViewDelegate {
+extension BlocklistViewController: UITableViewDelegate {
 }
 
 // MARK: - DZNEmptyDataSetDelegate
-extension AccountSettingViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension BlocklistViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
   func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-    let str = "目前沒有已封鎖的用戶"
+    let str = "目前沒有已封鎖的用戶:)"
     let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
     return NSAttributedString(string: str, attributes: attrs)
   }

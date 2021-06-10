@@ -177,15 +177,11 @@ extension CollectionViewController: AddCategoryViewControllerDelegate {
 
   func reloadCollectionView() {
 
-    setupCollectionView()
-
-    collectionViewModel.fetchSavedShopsForAllCategory(user: UserManager.shared.user)
-
-    collectionViewModel.onFetchSavedShopsForAllCategory = {
+    collectionViewModel.onAddNewCategory = {
 
       self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
 
       self.setupCollectionView()
-    }
+    } 
   }
 }

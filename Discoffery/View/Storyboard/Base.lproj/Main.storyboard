@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sPR-oh-DbF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -886,7 +887,7 @@
         <!--Detail View Controller-->
         <scene sceneID="Kyn-8Z-Dgb">
             <objects>
-                <viewController storyboardIdentifier="DetailVC" modalTransitionStyle="flipHorizontal" id="ZyS-FM-3Fj" customClass="DetailViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" id="ZyS-FM-3Fj" customClass="DetailViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lo3-Vp-RYY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -906,9 +907,9 @@
                                     <constraint firstAttribute="width" constant="20" id="sTa-Iq-T8j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="2"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="G1"/>
                                 <state key="normal" image="back">
-                                    <color key="titleColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" name="G1"/>
                                 </state>
                                 <connections>
                                     <action selector="onTapBackButton:" destination="ZyS-FM-3Fj" eventType="touchUpInside" id="0iy-1M-XHx"/>
@@ -965,7 +966,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQO-dw-GWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="696" y="1602"/>
+            <point key="canvasLocation" x="774" y="1614"/>
         </scene>
         <!--Reviews Page View Controller-->
         <scene sceneID="VSp-Zv-y9D">
@@ -1122,7 +1123,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFb-1s-5hc" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="96" width="53.5" height="26"/>
+                                                    <rect key="frame" x="74" y="96" width="39.5" height="26"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="4ER-vL-AAt"/>
@@ -1132,7 +1133,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LO3-V7-fit" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="143.5" y="96" width="53.5" height="26"/>
+                                                    <rect key="frame" x="129.5" y="96" width="39.5" height="26"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="tNy-Wu-N4t"/>
@@ -1415,36 +1416,44 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-1q-WOj" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="104" y="68" width="49.5" height="30"/>
-                                        <color key="backgroundColor" name="B5"/>
+                                    <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MVF-3q-Xb4">
+                                        <rect key="frame" x="104" y="68" width="278" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D5B-1q-WOj" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="87.5" height="30"/>
+                                                <color key="backgroundColor" name="B5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="aoC-Ya-oDv"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="G1"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ium-Dg-awL" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
+                                                <rect key="frame" x="95.5" y="0.0" width="87" height="30"/>
+                                                <color key="backgroundColor" name="B5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="4UU-sy-Wo4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="G1"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jfL-bO-2uO" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
+                                                <rect key="frame" x="190.5" y="0.0" width="87.5" height="30"/>
+                                                <color key="backgroundColor" name="B5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="bEY-gI-Y82"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="G1"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="aoC-Ya-oDv"/>
+                                            <constraint firstAttribute="height" constant="30" id="Db7-1x-xTk"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" name="G1"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ium-Dg-awL" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="161.5" y="68" width="49.5" height="30"/>
-                                        <color key="backgroundColor" name="B5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="4UU-sy-Wo4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" name="G1"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfL-bO-2uO" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                        <rect key="frame" x="219" y="68" width="49.5" height="30"/>
-                                        <color key="backgroundColor" name="B5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="bEY-gI-Y82"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" name="G1"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1453,21 +1462,19 @@
                                     <constraint firstItem="uoz-Ky-eqX" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="BZc-1w-2u5"/>
                                     <constraint firstItem="VEU-ab-tI1" firstAttribute="leading" secondItem="EEz-Ok-mYm" secondAttribute="leading" id="D2g-hh-WP1"/>
                                     <constraint firstItem="Kle-69-Cxl" firstAttribute="top" secondItem="uoz-Ky-eqX" secondAttribute="top" id="Dtu-g7-CHD"/>
-                                    <constraint firstItem="jfL-bO-2uO" firstAttribute="leading" secondItem="ium-Dg-awL" secondAttribute="trailing" constant="8" id="ESu-ga-x6W"/>
-                                    <constraint firstItem="D5B-1q-WOj" firstAttribute="top" secondItem="hLY-SC-ZOB" secondAttribute="bottom" constant="8" id="GcO-hr-LcG"/>
                                     <constraint firstAttribute="trailing" secondItem="VEU-ab-tI1" secondAttribute="trailing" id="IOi-vJ-3qP"/>
+                                    <constraint firstItem="MVF-3q-Xb4" firstAttribute="top" secondItem="hLY-SC-ZOB" secondAttribute="bottom" constant="8" id="Lfd-oz-r1R"/>
                                     <constraint firstItem="hLY-SC-ZOB" firstAttribute="top" secondItem="uoz-Ky-eqX" secondAttribute="bottom" constant="8" id="M9R-kr-ICF"/>
-                                    <constraint firstItem="ium-Dg-awL" firstAttribute="centerY" secondItem="D5B-1q-WOj" secondAttribute="centerY" id="Qbb-yg-fIc"/>
-                                    <constraint firstItem="ium-Dg-awL" firstAttribute="leading" secondItem="D5B-1q-WOj" secondAttribute="trailing" constant="8" id="RUe-XE-JAF"/>
                                     <constraint firstAttribute="bottom" secondItem="Bbr-xZ-YY8" secondAttribute="bottom" constant="16" id="Rgs-W9-aQB"/>
                                     <constraint firstAttribute="trailing" secondItem="Kle-69-Cxl" secondAttribute="trailing" constant="16" id="Son-mv-SNW"/>
                                     <constraint firstAttribute="height" constant="112" id="UIl-Sd-VTr"/>
-                                    <constraint firstItem="D5B-1q-WOj" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="VVr-IP-Vbc"/>
                                     <constraint firstItem="uoz-Ky-eqX" firstAttribute="top" secondItem="Bbr-xZ-YY8" secondAttribute="top" id="WrE-AJ-xGo"/>
+                                    <constraint firstAttribute="trailing" secondItem="MVF-3q-Xb4" secondAttribute="trailing" constant="16" id="XCw-vc-BO7"/>
+                                    <constraint firstItem="MVF-3q-Xb4" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="cEj-65-uam"/>
                                     <constraint firstAttribute="bottom" secondItem="VEU-ab-tI1" secondAttribute="bottom" id="l90-N1-AX5"/>
                                     <constraint firstItem="Bbr-xZ-YY8" firstAttribute="top" secondItem="EEz-Ok-mYm" secondAttribute="top" constant="16" id="qPb-oa-7Uk"/>
+                                    <constraint firstAttribute="bottom" secondItem="MVF-3q-Xb4" secondAttribute="bottom" constant="14" id="qnT-s3-haq"/>
                                     <constraint firstItem="hLY-SC-ZOB" firstAttribute="leading" secondItem="Bbr-xZ-YY8" secondAttribute="trailing" constant="8" id="rX0-Gh-XZT"/>
-                                    <constraint firstItem="jfL-bO-2uO" firstAttribute="centerY" secondItem="ium-Dg-awL" secondAttribute="centerY" id="wZh-1h-m2r"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1503,37 +1510,28 @@
             <size key="intrinsicContentSize" width="33" height="32"/>
         </designable>
         <designable name="D5B-1q-WOj">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
-        </designable>
-        <designable name="IZa-50-1iL">
-            <size key="intrinsicContentSize" width="100" height="16"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="LO3-V7-fit">
-            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
-        </designable>
-        <designable name="bWn-bl-fS8">
-            <size key="intrinsicContentSize" width="120" height="20"/>
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
         </designable>
         <designable name="ch0-iu-fL7">
-            <size key="intrinsicContentSize" width="79.5" height="29.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="19.5"/>
         </designable>
         <designable name="d8v-8J-jXM">
-            <size key="intrinsicContentSize" width="79.5" height="29.5"/>
-        </designable>
-        <designable name="hLY-SC-ZOB">
-            <size key="intrinsicContentSize" width="90" height="14"/>
+            <size key="intrinsicContentSize" width="65.5" height="19.5"/>
         </designable>
         <designable name="ium-Dg-awL">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="jfL-bO-2uO">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="nFb-1s-5hc">
-            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
         </designable>
         <designable name="ueu-lU-MD1">
-            <size key="intrinsicContentSize" width="74" height="22"/>
+            <size key="intrinsicContentSize" width="70" height="22"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
