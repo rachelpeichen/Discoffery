@@ -24,8 +24,6 @@ class ReviewManager {
 
     let docRef = Firestore.firestore().collection("shops").document(shop.id).collection("reviews")
 
-//    let notEqualQuery = docRef.whereField("user", isNotEqualTo: "blockUserOne")
-
       docRef.getDocuments() { querySnapshot, error in
 
       if let error = error {
@@ -61,6 +59,8 @@ class ReviewManager {
     review.id = docRef.documentID
 
     review.user = UserManager.shared.user.id
+
+    review.userName = UserManager.shared.user.name
 
     review.parentId = shop.id
 

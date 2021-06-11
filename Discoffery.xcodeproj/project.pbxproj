@@ -101,6 +101,7 @@
 		78DF25472652717000F47A04 /* ShopImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF25452652717000F47A04 /* ShopImagesCollectionViewCell.swift */; };
 		78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */; };
 		78E0B9CF2660C66700AEE38F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */; };
+		78E9795326734B0F008F91C4 /* NewCoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E9795226734B0F008F91C4 /* NewCoffeeShop.swift */; };
 		78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DD264BFCA300DF4190 /* AppDelegate.swift */; };
 		78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */; };
 		78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72E1264BFCA300DF4190 /* HomeViewController.swift */; };
@@ -208,6 +209,7 @@
 		78DF25452652717000F47A04 /* ShopImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		78E9795226734B0F008F91C4 /* NewCoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCoffeeShop.swift; sourceTree = "<group>"; };
 		78FA72DA264BFCA300DF4190 /* Discoffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discoffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FA72DD264BFCA300DF4190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				78B2FCFF265A1907005C9D1D /* User.swift */,
 				783B2346265E172100F88687 /* RecommendItem.swift */,
 				78C52373266B512200A824E0 /* UserSavedShop.swift */,
+				78E9795226734B0F008F91C4 /* NewCoffeeShop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				78DF251D265251E100F47A04 /* ShopDescriptionCell.swift in Sources */,
 				7884865F264D36EA00FA33F9 /* HomeViewModel.swift in Sources */,
 				78B2FCFA265A1856005C9D1D /* Feature.swift in Sources */,
+				78E9795326734B0F008F91C4 /* NewCoffeeShop.swift in Sources */,
 				7839C94B265295D30048B5F5 /* ShopImagesCell.swift in Sources */,
 				7839C94F2652BD740048B5F5 /* ProfileCell.swift in Sources */,
 				78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */,
@@ -1010,6 +1014,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Discoffery/Discoffery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = P4J3B539A4;
 				INFOPLIST_FILE = Discoffery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1034,6 +1039,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Discoffery/Discoffery.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = P4J3B539A4;
 				INFOPLIST_FILE = Discoffery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

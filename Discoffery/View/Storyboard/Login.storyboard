@@ -65,6 +65,14 @@
                                 <color key="textColor" name="G1"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHY-Ye-wNR">
+                                <rect key="frame" x="172" y="203" width="70" height="57"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <state key="normal" title="Skip"/>
+                                <connections>
+                                    <action selector="skip:" destination="IA8-WS-lRG" eventType="touchUpInside" id="b1E-3C-lDT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tPI-z2-K7A"/>
                         <color key="backgroundColor" name="B5"/>
@@ -74,11 +82,13 @@
                             <constraint firstItem="ep1-Ap-1lQ" firstAttribute="centerY" secondItem="jOR-3e-9lR" secondAttribute="centerY" id="AUo-Ub-XSr"/>
                             <constraint firstItem="ep1-Ap-1lQ" firstAttribute="top" secondItem="Uzs-0c-jcb" secondAttribute="bottom" constant="40" id="HYj-Fz-rRR"/>
                             <constraint firstItem="X1R-Z9-fIc" firstAttribute="top" secondItem="Ot3-Cy-dvw" secondAttribute="bottom" constant="40" id="LcL-wb-GiM"/>
+                            <constraint firstItem="KHY-Ye-wNR" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="Oya-ps-sQc"/>
                             <constraint firstItem="Ot3-Cy-dvw" firstAttribute="top" secondItem="ep1-Ap-1lQ" secondAttribute="bottom" constant="30" id="PcV-kW-3EB"/>
                             <constraint firstItem="X1R-Z9-fIc" firstAttribute="centerX" secondItem="Ot3-Cy-dvw" secondAttribute="centerX" id="anu-5X-mVY"/>
                             <constraint firstItem="pFS-S5-tKK" firstAttribute="top" secondItem="X1R-Z9-fIc" secondAttribute="bottom" constant="2" id="fMI-X9-HYL"/>
                             <constraint firstItem="X1R-Z9-fIc" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="hT6-Yg-Keh"/>
                             <constraint firstItem="Uzs-0c-jcb" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="iOm-tS-sni"/>
+                            <constraint firstItem="Uzs-0c-jcb" firstAttribute="top" secondItem="KHY-Ye-wNR" secondAttribute="bottom" constant="8" id="oZe-L4-8Ig"/>
                             <constraint firstItem="Ot3-Cy-dvw" firstAttribute="centerX" secondItem="jOR-3e-9lR" secondAttribute="centerX" id="q2Q-vp-RAD"/>
                         </constraints>
                     </view>

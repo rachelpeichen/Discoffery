@@ -21,7 +21,9 @@ class BlocklistViewController: UIViewController {
     
     super.viewWillAppear(true)
 
-    userViewModel.fetchBlockList(user: UserManager.shared.user)
+
+      userViewModel.fetchBlockList(user: UserManager.shared.user)
+
 
     userViewModel.onBlockList = { result in
 

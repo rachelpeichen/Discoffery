@@ -15,6 +15,8 @@ struct UserSavedShops: Codable {
 
   var savedShopsByCategory: [String] = []  // ([coffeeShops.documentID]
 
+  var createdTime: Int64 = 0
+
   enum CodingKeys: String, CodingKey {
 
     case id
@@ -22,6 +24,8 @@ struct UserSavedShops: Codable {
     case category
 
     case savedShopsByCategory
+
+    case createdTime
   }
 
   var toDict: [String: Any] {
@@ -32,7 +36,9 @@ struct UserSavedShops: Codable {
 
       "category": category as Any,
 
-      "savedShopsByCategory": savedShopsByCategory as Any
+      "savedShopsByCategory": savedShopsByCategory as Any,
+
+      "createdTime": createdTime as Any
     ]
   }
 }

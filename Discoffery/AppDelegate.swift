@@ -6,14 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 import Firebase
 import FirebaseCrashlytics
 import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-  static let shared = UIApplication.shared.delegate as! AppDelegate
 
   var window: UIWindow?
   
@@ -24,13 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     IQKeyboardManager.shared.enable = true
 
-    Thread.sleep(forTimeInterval: 1.8)
-    
+    Thread.sleep(forTimeInterval: 1.5)
+
     return true
   }
 
   // MARK: UISceneSession Lifecycle
-
   func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
     // Called when a new scene session is being created.
     // Use this method to select a configuration to create the new scene with.

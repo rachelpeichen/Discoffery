@@ -40,6 +40,12 @@ class FirstRecommendViewController: UIViewController {
 //      }
 //    }
 //    setupTableView()
+
+    tableView.emptyDataSetSource = self
+
+    tableView.emptyDataSetDelegate = self
+
+    tableView.tableFooterView = UIView()
   }
 
   // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
@@ -99,7 +105,6 @@ class FirstRecommendViewController: UIViewController {
 
     tableView.reloadData()
   }
-
 }
 
 extension FirstRecommendViewController: UITableViewDataSource {
@@ -160,4 +165,18 @@ extension FirstRecommendViewController: UITableViewDataSource {
 
 extension FirstRecommendViewController: UITableViewDelegate {
   // Do sth
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+extension FirstRecommendViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "Coming soon..."
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }

@@ -10,107 +10,52 @@ import UIKit
 
 class AddViewModel {
 
-  var onFetchNewShop: ((String) -> Void)?
-
   var onUploadImage: ((String) -> Void)?
 
-  func fetchNewShop(name: String) {
-
-    CoffeeShopManager.shared.fetchNewShops(name: name, completion: { result in
-
-      switch result {
-
-      case .success(let newShop):
-
-        self.onFetchNewShop?(newShop.id)
-
-        print("🔥 FetchNewShop Success")
-
-      case .failure(let error):
-
-        print("publishNewShop.failure\(error)")
-      }
-    })
+  func uploadImageFromUser(with image: UIImage, folder: String) {
+//
+//    UserManager.shared.uploadImgFromUser(pickerImage: image, folder: folder) { result in
+//      switch result {
+//
+//      case .success(let imgURL):
+//
+//        self.onUploadImage?(imgURL)
+//
+//        print("🔥 Upload imgs To Storage folder: \(folder) Success")
+//
+//      case .failure(let error):
+//
+//        print("uploadImageFromUser.failure: \(error)")
+//      }
+//    }
   }
 
-  func publishNewShop(shop: inout CoffeeShop) {
+  func publishNewShop(newShop: inout NewCoffeeShop, uploadedImgURL: [String]) {
 
-    CoffeeShopManager.shared.publishNewShop(shop: &shop) { result in
+    CoffeeShopManager.shared.publishNewShop(newShop: &newShop, uploadedImgURL: uploadedImgURL) { result in
 
       switch result {
 
       case .success:
 
-        print("🔥Publish New Shop To Firebase Success")
+        print("🥴Publish New Shop To Firebase Success")
 
       case .failure(let error):
 
-        print("publishNewShop.failure\(error)")
-      }
-    }
-
-  }
-
-  func publishNewShopReview(shopId: String, review: inout Review) {
-
-    ReviewManager.shared.publishNewShopReview(shopId: shopId, review: &review) {result in
-
-      switch result {
-
-      case .success:
-
-        print("🥴Publish New ShopReview To Firebase Success")
-
-      case .failure(let error):
-
-        print("publishNewShop.failure\(error)")
-      }
-    }
-  }
-
-  func publishNewShopFeature(shopId: String, feature: inout Feature) {
-
-    FeatureManager.shared.publishNewShopFeature(shopId: shopId, feature: &feature) { result in
-
-      switch result {
-
-      case .success:
-
-        print("🥴Publish New NewShopFeature To Firebase Success")
-
-      case .failure(let error):
-
-        print("publishNewShop.failure\(error)")
-      }
-    }
-  }
-
-  func publishNewShopRecommendItem(shopId: String, item: inout RecommendItem) {
-
-    RecommendItemManager.shared.publishNewShopRecommendItem(shopId: shopId, item: &item) { result in
-
-      switch result {
-
-      case .success:
-
-        print("🥴Publish NewShopRecommendItem To Firebase Success")
-
-      case .failure(let error):
-
-        print("publishNewShop.failure\(error)")
+        print("publishNewShop.failure: \(error)")
       }
     }
   }
 
   func publishUserReview(shop: CoffeeShop, review: inout Review, uploadedImgURL: [String]) {
 
-          ReviewManager.shared.publishUserReview(shop: shop, review: &review, uploadedImgURL: uploadedImgURL) { result in
+    ReviewManager.shared.publishUserReview(shop: shop, review: &review, uploadedImgURL: uploadedImgURL) { result in
 
       switch result {
 
       case .success:
 
-        print("🥴Publish Review To Firebase Success")
+        print("🥴 Publish Review To Firebase Success")
 
       case .failure(let error):
 
@@ -118,24 +63,6 @@ class AddViewModel {
       }
     }
   }
-
-    func uploadImageFromUserReview(with image: UIImage) {
-
-      ReviewManager.shared.uploadImageFromUserReview(pickerImage: image) { result in
-        switch result {
-
-        case .success(let imageURL):
-
-          self.onUploadImage?(imageURL)
-
-          print("🔥Upload ImageFromUserReview To Firebase Success" + imageURL)
-
-        case .failure(let error):
-
-          print("publishRecommendItem: \(error)")
-        }
-      }
-    }
 
   func publishRecommendItem(shop: CoffeeShop, item: inout RecommendItem) {
 
@@ -145,11 +72,11 @@ class AddViewModel {
 
       case .success:
 
-        print("🥴Publish Recommend Item To Firebase Success")
+        print("🥴 Publish Recommend Item To Firebase Success")
 
       case .failure(let error):
         
-        print("publishRecommendItem.error: \(error)")
+        print("publishRecommendItem.failure: \(error)")
       }
     }
   }

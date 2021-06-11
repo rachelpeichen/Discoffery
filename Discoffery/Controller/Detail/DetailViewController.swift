@@ -11,7 +11,7 @@ import YPImagePicker
 
 class DetailViewController: UIViewController {
 
-  // MARK: - Outlets
+  // MARK: - IBOutlets & IBActions
   @IBOutlet weak var tableView: UITableView!
 
   @IBAction func onTapBackButton(_ sender: Any) {
@@ -77,7 +77,7 @@ class DetailViewController: UIViewController {
     }
   }
 
-  // MARK: Functions
+  // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     if let reviewsVC = segue.destination as? ReviewsPageViewController {
@@ -146,6 +146,12 @@ class DetailViewController: UIViewController {
 
     tableView.reloadData()
   }
+
+  @objc func onTapCheckMoreReviewsBtn(sender: UIButton) {
+
+    performSegue(withIdentifier: "navigateToReviewsVC", sender: sender)
+
+  }
 }
 
 extension DetailViewController: UITableViewDataSource {
@@ -176,12 +182,17 @@ extension DetailViewController: UITableViewDataSource {
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopDescriptionCell", for: indexPath) as? ShopDescriptionCell {
 
+
+        cell.checkAllReviewsBtn.tag = indexPath.row
+
+        cell.checkAllReviewsBtn.addTarget(self, action: #selector(onTapCheckMoreReviewsBtn(sender:)), for: .touchUpInside)
+
         cell.name.text = shop?.name
         cell.address.text = shop?.address
         cell.reviewsCount.text = "(\(reviewsCount))"
         cell.rateStars.rating = shop?.tasty ?? 1
         cell.averageRatings.text = String(Double(cell.rateStars.rating).rounded())
-        cell.openingHours.text = "因爲疫情暫時關閉"
+        cell.openingHours.text = "因爲疫情暫停營業"
 
         cell.selectionStyle = .none
 
@@ -202,7 +213,6 @@ extension DetailViewController: UITableViewDataSource {
         featureArr.append(self.feature.socket)
 
         cell.configure(with: featureArr)
-
         cell.selectionStyle = .none
 
         return cell
@@ -215,9 +225,8 @@ extension DetailViewController: UITableViewDataSource {
         if let shop = shop {
 
           cell.address.text = shop.address
-
           cell.markAnnotationForShop(shop: shop)
-          
+
           cell.selectionStyle = .none
 
           return cell
@@ -256,7 +265,7 @@ extension DetailViewController: UITableViewDataSource {
             cell.uploadImageBtn.setTitleColor(.lightGray, for: .disabled)
 
           default:
-            print("nononono")
+            print("Only 3 imgs allowed")
           }
         }
         cell.selectionStyle = .none
@@ -278,22 +287,16 @@ extension DetailViewController: UITableViewDelegate {
 
     switch indexPath.row {
 
-    case 1:
-
-      performSegue(withIdentifier: "navigateToReviewsVC", sender: indexPath.row)
-
     case 3:
-
       print("Map did select.")
 
     default:
-
       print("Row No.\(indexPath.row) did select.")
     }
   }
 }
 
-// MARK: WriteReviewCellDelegate
+// MARK: - WriteReviewCellDelegate
 extension DetailViewController: WriteReviewCellDelegate {
 
   func sendReview(inputReview: inout Review) {
@@ -302,14 +305,14 @@ extension DetailViewController: WriteReviewCellDelegate {
 
     var localInputReview = inputReview
 
-    // MARK: GCD: Publish reivew after uploading img work is done
+    // MARK: - (GCD) Publish reivew after uploading img work is done
     let dispatchGroup = DispatchGroup()
 
     for index in 0..<self.uploadedImgArr.count {
 
       dispatchGroup.enter()
 
-      self.addViewModel.uploadImageFromUserReview(with: self.uploadedImgArr[index])
+      self.addViewModel.uploadImageFromUser(with: self.uploadedImgArr[index], folder: "userReviewsImgs")
 
       self.addViewModel.onUploadImage = { result in
 

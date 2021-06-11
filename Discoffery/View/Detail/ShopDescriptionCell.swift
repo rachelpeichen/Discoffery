@@ -10,6 +10,8 @@ import Cosmos
 
 class ShopDescriptionCell: ShopDetailBasicCell {
 
+  @IBOutlet weak var checkAllReviewsBtn: UIButton!
+  
   @IBOutlet weak var name: UILabel!
 
   @IBOutlet weak var rateStars: CosmosView!

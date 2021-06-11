@@ -30,6 +30,7 @@ class ReviewsPageViewController: UIViewController {
 
     self.dismiss(animated: true, completion: nil)
   }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -96,11 +97,8 @@ extension ReviewsPageViewController: UITableViewDataSource {
       cell.blockBtn.addTarget(self, action: #selector(didTapCellButton(sender:)), for: .touchUpInside)
 
       cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
-
       cell.rateStars.rating = singleReview.rating
-
       cell.userName.text = singleReview.userName
-
       cell.userImg.loadImage(singleReview.userImg)
 
       if singleReview.comment.isEmpty {
@@ -115,11 +113,6 @@ extension ReviewsPageViewController: UITableViewDataSource {
     }
     return ReviewCell()
   }
-
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-  }
-
 }
 
 extension ReviewsPageViewController: UITableViewDelegate {
@@ -132,10 +125,3 @@ extension ReviewsPageViewController: UITableViewDelegate {
     return UITableView.automaticDimension
   }
 }
-
-//extension ReviewsPageViewController: ReviewCellDelegate {
-//
-//  func blockUser() {
-//    // Do Sth
-//  }
-//}

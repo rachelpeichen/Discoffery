@@ -24,9 +24,9 @@ class UserManager {
   lazy var database = Firestore.firestore()
 
   // MARK: - User login and create on Firebase
-  func identifyUser(uid: String, completion: @escaping (Result<User, Error>) -> Void) {
+  func identifyUser(firebaseUID: String, completion: @escaping (Result<User, Error>) -> Void) {
 
-    database.collection("users").document(uid).getDocument { querySnapshot, error in
+    database.collection("users").document(firebaseUID).getDocument { querySnapshot, error in
 
       if let error = error {
 
@@ -52,13 +52,13 @@ class UserManager {
     }
   }
 
-  func createUser(user: inout User, completion: @escaping (Result<String, Error>) -> Void) {
+  func createUser(createdUser: inout User, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let doc = database.collection("users").document(user.id)
+    let doc = database.collection("users").document(createdUser.id) 
 
-    user.createdTime = Date().millisecondsSince1970
+    createdUser.createdTime = Date().millisecondsSince1970
 
-    doc.setData(user.toDict) { error in
+    doc.setData(createdUser.toDict) { error in
 
       if let error = error {
 
@@ -71,14 +71,39 @@ class UserManager {
     }
   }
 
-  // MARK: - User's Collection
+  // MARK: Listen to user change on Firebase
+  func watchUser(completion: @escaping (Result<User, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(UserManager.shared.user.id)
+
+    docRef.addSnapshotListener { querySnapshot, error in
+
+      if let error = error {
+
+        completion(.failure(error))
+
+      } else {
+
+        let user = try? querySnapshot?.data(as: User.self)
+
+        if let user = user {
+
+          completion(.success(user))
+        }
+      }
+    }
+  }
+
+  // MARK: User's Collection
   func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
 
     savedShop.id = docRef.documentID
 
     savedShop.category = "全部收藏"
+
+    savedShop.createdTime = Date().millisecondsSince1970
 
     docRef.setData(savedShop.toDict) { error in
 
@@ -95,7 +120,7 @@ class UserManager {
 
   func addUserSavedShopToDefaultCategory (user: User, shop: CoffeeShop, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
 
     savedShop.id = docRef.documentID
 
@@ -116,7 +141,7 @@ class UserManager {
 
   func fetchUserSavedShopForDefaultCategory(user: User, completion: @escaping (Result<UserSavedShops, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document("00000000000000000000")
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
 
     docRef.getDocument() { document, error in
 
@@ -175,11 +200,13 @@ class UserManager {
 
   func addNewCategory(user: User, category: String, savedShopDoc: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document()
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document(category)
 
     savedShopDoc.id = docRef.documentID
 
     savedShopDoc.category = category
+
+    savedShopDoc.createdTime = Date().millisecondsSince1970
 
     docRef.setData(savedShopDoc.toDict) { error in
 

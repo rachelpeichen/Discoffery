@@ -24,14 +24,19 @@ class CoffeeShopManager {
   lazy var database = Firestore.firestore()
 
   // MARK: - Functions
-  func publishNewShop(shop: inout CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+  func publishNewShop(newShop: inout NewCoffeeShop, uploadedImgURL: [String], completion: @escaping (Result<String, Error>) -> Void) {
 
-    //  Add a new collection to Firebase
     let docRef = database.collection("newShopsDemo").document()
 
-    shop.id = docRef.documentID
+    newShop.id = docRef.documentID
 
-    docRef.setData(shop.toDict) { error in
+    newShop.reporterId = UserManager.shared.user.id
+
+    newShop.reportTime = Date().millisecondsSince1970
+
+    newShop.imgURL = uploadedImgURL
+
+    docRef.setData(newShop.toDict) { error in
 
       if let error = error {
         completion(.failure(error))
@@ -40,7 +45,6 @@ class CoffeeShopManager {
         completion(.success("Success"))
       }
     }
-    
   }
 
   func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
@@ -86,7 +90,6 @@ class CoffeeShopManager {
       }
     }
   }
-
 
   func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
 

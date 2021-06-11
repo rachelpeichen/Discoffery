@@ -16,18 +16,24 @@ class SettingViewController: UIViewController {
 
   @IBOutlet weak var userNameLabel: UILabel!
 
-  @IBOutlet weak var finishEditBtn: CustomBtn!
+  @IBOutlet weak var logoutBtn: CustomBtn!
 
   // MARK: Hide
-  @IBAction func onTapFinishEditBtn(_ sender: Any) {
-
-  }
-
   @IBAction func onTapLogoutBtn(_ sender: Any) {
 
     showLogoutSuccessDialog()
 
-    logOut()
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+
+      do {
+
+        try Auth.auth().signOut()
+
+      } catch let error {
+
+        print("Error: ", error.localizedDescription)
+      }
+    }
   }
 
   override func viewDidLoad() {
@@ -38,6 +44,7 @@ class SettingViewController: UIViewController {
   }
 
   func setupSettingVC() {
+    
     navigationController?.navigationBar.barTintColor = .G3
 
     navigationController?.navigationBar.tintColor = .G1
@@ -46,34 +53,6 @@ class SettingViewController: UIViewController {
 
     profileImg.layer.cornerRadius = 40
 
-    userNameLabel.text = UserManager.shared.user.name
-  }
-
-  func logOut() {
-
-    let firebaseAuth = Auth.auth()
-
-    do {
-
-      try firebaseAuth.signOut()
-
-      print(firebaseAuth.currentUser) // 有成功登出但是無法跳轉畫面回登入畫面
-
-      let storyboard = UIStoryboard.login
-
-      if let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
-
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-
-          appDelegate.window?.rootViewController = loginVC
-        }  
-      }
-
-    } catch let signOutError as NSError {
-
-      showErrorHUD(showInfo: "登出失敗")
-
-      print("Sign Out Error: %@", signOutError)
-    }
+    userNameLabel.text = UserDefaults.standard.object(forKey: "uid") as? String
   }
 }

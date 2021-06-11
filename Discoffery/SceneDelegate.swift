@@ -46,18 +46,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var storyboard: UIStoryboard?
 
-    if firebaseAuth.currentUser != nil {
+    firebaseAuth.addStateDidChangeListener { auth, user in
 
-      storyboard = .main
+      if let user = user {
 
-    } else {
+        UserManager.shared.user.id = user.uid
 
-      storyboard = .login
+        storyboard = .main 
+
+        if let homeVC = storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as? UITabBarController {
+
+          self.window?.rootViewController = homeVC
+        }
+
+      } else {
+
+        storyboard = .login
+
+        if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
+
+          self.window?.rootViewController = loginVC
+        }
+      }
     }
-
-    window?.rootViewController = storyboard?.instantiateInitialViewController()
-
-    window?.makeKeyAndVisible()
+    self.window?.makeKeyAndVisible()
   }
 
   func sceneDidEnterBackground(_ scene: UIScene) {

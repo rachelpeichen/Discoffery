@@ -14,10 +14,32 @@ class ProfileViewController: UIViewController {
 
   @IBOutlet weak var userNameLabel: UILabel!
 
+  @IBOutlet weak var userEmailLabel: UILabel!
+
   @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Properties
+  var userViewModel = UserViewModel()
+
   var titleLabel: [String] = ["我發表的評價", "我新增的咖啡廳資訊", "封鎖用戶名單", "帳號設定"]
+
+  override func viewWillAppear(_ animated: Bool) {
+
+    super.viewWillAppear(true)
+    
+    userViewModel.watchUser()
+
+    userViewModel.onWatchUser = { result in
+
+      UserManager.shared.user.email = result.email
+
+      UserManager.shared.user.name = result.name
+
+      self.userNameLabel.text = result.name
+
+      self.userEmailLabel.text = result.email
+    }
+  }
 
   // MARK: - Life Cycle
   override func viewDidLoad() {
@@ -38,7 +60,7 @@ class ProfileViewController: UIViewController {
 
     profileImg.layer.cornerRadius = 40
 
-    userNameLabel.text = UserManager.shared.user.name
+    userNameLabel.text = UserDefaults.standard.object(forKey: "uid") as? String
 
     tableView.delegate = self
 

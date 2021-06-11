@@ -76,7 +76,7 @@ extension UIViewController {
   func showLogoutSuccessDialog() {
 
     let title = "登出Discoffery成功"
-    let message = "謝謝您的使用，歡迎隨時回來Discoffery探索咖啡廳。"
+    let message = "謝謝您的使用，歡迎隨時回來Discoffery探索咖啡廳。畫面將會自動跳轉回登入頁面。"
     let image = UIImage(named: "logo")
 
     let popup = PopupDialog(title: title,
@@ -91,13 +91,6 @@ extension UIViewController {
       print("Completed")
     }
 
-    let buttonOne = DefaultButton(title: "回到登入頁面", height: 60) {
-
-      self.dismiss(animated: true, completion: nil)
-    }
-
-    popup.addButtons([buttonOne])
-
     let overlayAppearance = PopupDialogOverlayView.appearance()
 
     overlayAppearance.color           = .lightGray
@@ -105,12 +98,6 @@ extension UIViewController {
     overlayAppearance.blurEnabled     = true
     overlayAppearance.liveBlurEnabled = false
     overlayAppearance.opacity         = 0.2
-
-    let buttonAppearance = DefaultButton.appearance()
-
-    buttonAppearance.titleFont      = .systemFont(ofSize: 16)
-    buttonAppearance.titleColor     = .G1
-    buttonAppearance.buttonColor    = .B5
 
     // Layout dialog
     let dialogAppearance = PopupDialogDefaultView.appearance()

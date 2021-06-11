@@ -9,6 +9,8 @@ import Foundation
 
 class UserViewModel {
 
+  var onWatchUser:((User) -> Void)?
+
   var onBlockListForReview: (([String]) -> Void)?
 
   var onBlockList: (([String]) -> Void)?
@@ -69,8 +71,6 @@ class UserViewModel {
 
         self.fetchBlockList(user: user)
 
-        print("🥴updateBlockList Success")
-
       case .failure(let error):
 
         print("updateBlockList.error: \(error)")
@@ -78,7 +78,8 @@ class UserViewModel {
     }
   }
 
-  func blockUser(user: User, blockName: String){
+  // MARK: 直接監聽 這幾個block就可不用？
+  func blockUser(user: User, blockName: String) {
 
     UserManager.shared.blockUser(user: user, blockName: blockName) { result in
 
@@ -88,11 +89,26 @@ class UserViewModel {
 
         self.fetchBlockList(user: user)
 
-        print("🥴blockUser Success")
-
       case .failure(let error):
 
         print("blockUse.error: \(error)")
+      }
+    }
+  }
+
+  func watchUser() {
+
+    UserManager.shared.watchUser { result in
+
+      switch result {
+
+      case .success(let user):
+
+        self.onWatchUser?(user)
+
+      case .failure(let error):
+
+        print("watchUser.error: \(error)")
       }
     }
   }

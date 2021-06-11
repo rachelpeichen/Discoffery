@@ -21,7 +21,7 @@ struct Review: Codable {
 
   var rating: Double = 4
 
-  var comment: String = ""
+  var comment: String = "該用戶無填寫評論"
 
   var recommendItems: [String] = []
 

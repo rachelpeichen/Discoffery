@@ -24,7 +24,7 @@
                         <color key="textColor" name="G1"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="4.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBK-lq-b3K">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="4.3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBK-lq-b3K">
                         <rect key="frame" x="130" y="50.5" width="22" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="LvW-vB-3uj"/>
@@ -42,7 +42,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atu-xk-TNf">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="評價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atu-xk-TNf">
                         <rect key="frame" x="160" y="50" width="31" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -60,7 +60,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="(30)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHf-Ia-YPz">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="(30)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHf-Ia-YPz">
                         <rect key="frame" x="191" y="49.5" width="28" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="3nK-T1-dTt"/>
@@ -69,7 +69,7 @@
                         <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PMM-mu-0lx" customClass="CosmosView" customModule="Cosmos">
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMM-mu-0lx" customClass="CosmosView" customModule="Cosmos">
                         <rect key="frame" x="16" y="50.5" width="110" height="16"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -90,15 +90,16 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" 查看全部評價 &gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehq-AU-ida">
-                        <rect key="frame" x="276.5" y="49" width="116.5" height="20"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-Ee-FWc">
+                        <rect key="frame" x="287" y="39.5" width="122" height="39"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="pNr-m1-edx"/>
+                            <constraint firstAttribute="width" constant="122" id="EES-Ui-Ut9"/>
+                            <constraint firstAttribute="height" constant="39" id="Oca-7O-ltk"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.2465167046" green="0.25895136590000001" blue="0.2187835276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <state key="normal" title="查看全部評價 &gt;">
+                            <color key="titleColor" name="G1"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Dlv-qA-nc3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="13q-nG-hpf"/>
@@ -109,7 +110,6 @@
                     <constraint firstItem="2v1-g6-reu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="E2M-xi-b80"/>
                     <constraint firstItem="2UT-TQ-8CB" firstAttribute="centerY" secondItem="2v1-g6-reu" secondAttribute="centerY" id="GP1-e9-yST"/>
                     <constraint firstItem="Dlv-qA-nc3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="K0n-XI-VaV"/>
-                    <constraint firstAttribute="trailing" secondItem="ehq-AU-ida" secondAttribute="trailing" constant="16" id="QIw-g9-akw"/>
                     <constraint firstItem="gBK-lq-b3K" firstAttribute="top" secondItem="Dlv-qA-nc3" secondAttribute="bottom" constant="8" id="Ui2-oG-7h8"/>
                     <constraint firstAttribute="trailing" secondItem="Dlv-qA-nc3" secondAttribute="trailing" constant="16" id="VU9-QH-Zoo"/>
                     <constraint firstItem="PMM-mu-0lx" firstAttribute="top" secondItem="Dlv-qA-nc3" secondAttribute="bottom" constant="8" id="aFX-h0-4IJ"/>
@@ -120,15 +120,17 @@
                     <constraint firstItem="PMM-mu-0lx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nKj-io-vRU"/>
                     <constraint firstAttribute="bottom" secondItem="KQl-sx-A9r" secondAttribute="bottom" constant="16" id="qxd-iw-meV"/>
                     <constraint firstItem="KQl-sx-A9r" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="r0B-h6-ooY"/>
+                    <constraint firstAttribute="trailing" secondItem="BDG-Ee-FWc" secondAttribute="trailing" id="rgU-sU-43B"/>
                     <constraint firstItem="VHf-Ia-YPz" firstAttribute="leading" secondItem="Atu-xk-TNf" secondAttribute="trailing" id="vSv-rf-dSm"/>
                     <constraint firstItem="gBK-lq-b3K" firstAttribute="leading" secondItem="PMM-mu-0lx" secondAttribute="trailing" constant="4" id="wIp-Yc-sCR"/>
-                    <constraint firstItem="ehq-AU-ida" firstAttribute="centerY" secondItem="Atu-xk-TNf" secondAttribute="centerY" id="yft-Ec-BIS"/>
+                    <constraint firstItem="BDG-Ee-FWc" firstAttribute="centerY" secondItem="Atu-xk-TNf" secondAttribute="centerY" id="xpo-Og-tMw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="address" destination="KQl-sx-A9r" id="esG-m8-3Bs"/>
                 <outlet property="averageRatings" destination="gBK-lq-b3K" id="rCM-qe-iEb"/>
+                <outlet property="checkAllReviewsBtn" destination="BDG-Ee-FWc" id="34a-M2-HYi"/>
                 <outlet property="name" destination="Dlv-qA-nc3" id="yzf-FD-9ph"/>
                 <outlet property="openingHours" destination="2UT-TQ-8CB" id="9vj-KK-tJM"/>
                 <outlet property="openingStatus" destination="2v1-g6-reu" id="YdQ-KN-VNS"/>
@@ -138,6 +140,11 @@
             <point key="canvasLocation" x="205.07246376811597" y="118.19196428571428"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="PMM-mu-0lx">
+            <size key="intrinsicContentSize" width="110" height="18"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

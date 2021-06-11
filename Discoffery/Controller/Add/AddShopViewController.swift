@@ -15,20 +15,15 @@ class AddShopViewController: UIViewController {
   // MARK: - Properties
   var addViewModel = AddViewModel()
   
-  var wrappedNewShop = CoffeeShop()
-
-  var wrappedNewShopReview = Review()
-
-  var wrappedNewShopRecommendItem = RecommendItem()
-
-  var wrappedNewShopFeature = Feature()
+  var wrappedNewShop = NewCoffeeShop()
 
   var parsedOpenHours: String?
 
   var uploadedImgArr: [UIImage] = []
 
-  // MARK: - Outlets
+  var uploadedImgURLArr: [String] = []
 
+  // MARK: - IBOutlets
   @IBOutlet weak var timeSegControl: UISegmentedControl!
 
   @IBOutlet weak var socketSegControl: UISegmentedControl!
@@ -43,13 +38,15 @@ class AddShopViewController: UIViewController {
 
   @IBOutlet weak var commentTextView: UITextView!
 
+  @IBOutlet weak var notesTextView: UITextView!
+
   @IBOutlet weak var rateStars: CosmosView! {
 
     didSet {
 
       rateStars.didFinishTouchingCosmos = { rating in
         
-        self.wrappedNewShopReview.rating = rating
+        self.wrappedNewShop.rating = rating
       }
     }
   }
@@ -67,9 +64,9 @@ class AddShopViewController: UIViewController {
   // MARK: - IBActions
   @IBAction func endEditShopName(_ sender: UITextField) {
 
-    if let name = sender.text {
+    if let inputName = sender.text {
 
-      wrappedNewShop.name = name
+      wrappedNewShop.newShopName = inputName
     }
   }
 
@@ -90,7 +87,7 @@ class AddShopViewController: UIViewController {
 
     if let addedItem = sender.text {
 
-      wrappedNewShopReview.recommendItems.append(addedItem)
+      wrappedNewShop.recommendItems.append(addedItem)
     }
   }
 
@@ -108,9 +105,7 @@ class AddShopViewController: UIViewController {
 
   @IBAction func onTapSendBtn(_ sender: Any) {
 
-    addViewModel.publishNewShop(shop: &wrappedNewShop)
-
-    showAddShopSuccessDialog()
+    sendNewShop(newShop: &wrappedNewShop  )
   }
 
   @IBAction func backToMainPage(_ sender: UIBarButtonItem) {
@@ -149,6 +144,12 @@ class AddShopViewController: UIViewController {
     commentTextView.layer.borderColor  = UIColor.B5?.cgColor
     commentTextView.clipsToBounds      = true
     commentTextView.layer.cornerRadius = 10
+
+    notesTextView.delegate           = self
+    notesTextView.layer.borderWidth  = 0.5
+    notesTextView.layer.borderColor  = UIColor.B5?.cgColor
+    notesTextView.clipsToBounds      = true
+    notesTextView.layer.cornerRadius = 10
   }
 
   private func setupCollectionView() {
@@ -158,6 +159,39 @@ class AddShopViewController: UIViewController {
     collectionView.delegate = self
 
     collectionView.dataSource = self
+  }
+
+  func sendNewShop(newShop: inout NewCoffeeShop) {
+
+    var localNewShop = newShop
+
+    let dispatchGroup = DispatchGroup()
+
+    for index in 0..<self.uploadedImgArr.count {
+
+      dispatchGroup.enter()
+
+      self.addViewModel.uploadImageFromUser(with: self.uploadedImgArr[index], folder: "newShopImgs")
+
+      self.addViewModel.onUploadImage = { result in
+
+        self.uploadedImgURLArr.append(result)
+
+        dispatchGroup.leave()
+      }
+    }
+
+    dispatchGroup.notify(queue: .main) {
+
+      self.addViewModel.publishNewShop(newShop: &localNewShop, uploadedImgURL: self.uploadedImgURLArr)
+
+      self.showSuccessHUD(showInfo: "新增成功")
+
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+
+        self.showAddShopSuccessDialog()
+      }
+    }
   }
 }
 
@@ -174,7 +208,7 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
 
     }) as Array).joined(separator: ";")
 
-    wrappedNewShop.openTime = parsedOpenHours ?? "Unknown"
+    wrappedNewShop.openHours = parsedOpenHours ?? "Unknown"
 
     sendBtn.isEnabled = true
 
@@ -187,14 +221,14 @@ extension AddShopViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-    return wrappedNewShopReview.recommendItems.count
+    return wrappedNewShop.recommendItems.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) as? AddItemCollectionViewCell {
 
-      cell.layoutAddItemCollectionViewCell(from: wrappedNewShopReview.recommendItems[indexPath.row])
+      cell.layoutAddItemCollectionViewCell(from: wrappedNewShop.recommendItems[indexPath.row])
 
       return cell
     }
@@ -207,7 +241,7 @@ extension AddShopViewController: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-    let textSize: CGSize =  wrappedNewShopReview.recommendItems[indexPath.row]
+    let textSize: CGSize =  wrappedNewShop.recommendItems[indexPath.row]
 
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
@@ -223,7 +257,7 @@ extension AddShopViewController: UICollectionViewDelegateFlowLayout {
 
     if collectionView.dequeueReusableCell(withReuseIdentifier: "addItemCollectionViewCell", for: indexPath) is AddItemCollectionViewCell {
 
-      wrappedNewShopReview.recommendItems.remove(at: indexPath.row)
+      wrappedNewShop.recommendItems.remove(at: indexPath.row)
 
       collectionView.reloadData()
     }
@@ -238,7 +272,14 @@ extension AddShopViewController: UITextViewDelegate {
 
   func textViewDidEndEditing(_ textView: UITextView) {
 
-    wrappedNewShopReview.comment = textView.text
+    if textView == commentTextView {
+
+      wrappedNewShop.comment = textView.text
+
+    } else {
+
+      wrappedNewShop.notes = textView.text
+    }
   }
 }
 

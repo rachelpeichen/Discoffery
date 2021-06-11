@@ -13,10 +13,17 @@ import JGProgressHUD
 import WebKit
 
 class LoginViewController: UIViewController {
-  
+
+  @IBAction func skip(_ sender: Any) {
+
+    self.performSegue(withIdentifier: "navigateToMainStoryboard", sender: self)
+
+  }
   // MARK: - Properties
   fileprivate var currentNonce: String?
-  
+
+  var firebaseUID: String?
+
   var userEmail: String?
   
   var userName: String?
@@ -49,15 +56,6 @@ class LoginViewController: UIViewController {
       self.performSegue(withIdentifier: "navigateToMainStoryboard", sender: self)
     }
   }
-
-  func showSimpleHUD() {
-    let hud = JGProgressHUD()
-    hud.vibrancyEnabled = true
-    hud.textLabel.text = "Simple example in Swift"
-    hud.detailTextLabel.text = "See JGProgressHUD-Tests for more examples"
-    hud.shadow = JGProgressHUDShadow(color: .black, offset: .zero, radius: 5.0, opacity: 0.2)
-    hud.show(in: self.view)
-  }
   
   // MARK: - Ask for authorization when btn pressed
   
@@ -76,16 +74,20 @@ class LoginViewController: UIViewController {
     
     // MARK: - Fire Auth
     let nonce = randomNonceString()
+
     currentNonce = nonce
+
     let appleIDProvider = ASAuthorizationAppleIDProvider()
+
     let request = appleIDProvider.createRequest()
+
     request.nonce = sha256(nonce)
     
     let authorizationAppleIDRequest: ASAuthorizationAppleIDRequest = ASAuthorizationAppleIDProvider().createRequest()
     
     authorizationAppleIDRequest.requestedScopes = [.fullName, .email]
     
-    let controller: ASAuthorizationController = ASAuthorizationController(authorizationRequests: [authorizationAppleIDRequest])
+    let controller = ASAuthorizationController(authorizationRequests: [authorizationAppleIDRequest])
     
     controller.delegate = self
     
@@ -99,14 +101,18 @@ class LoginViewController: UIViewController {
     let inputData = Data(input.utf8)
     let hashedData = SHA256.hash(data: inputData)
     let hashString = hashedData.compactMap {
+
       return String(format: "%02x", $0)
+      
     }.joined()
     
     return hashString
   }
   
   private func checkCredentialState(withUserID userID: String) {
+
     let appleIDProvider = ASAuthorizationAppleIDProvider()
+
     appleIDProvider.getCredentialState(forUserID: userID) { (credentialState, error) in
       
       switch credentialState {
@@ -214,17 +220,29 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         } else {
           
           // MARK: - User is signed in to Firebase with Apple.
-          guard let firebaseUid = Auth.auth().currentUser?.uid else { return }
-          
           guard let user = authResult?.user else { return }
-          
-          UserManager.shared.user.id = firebaseUid
-          UserManager.shared.user.email = user.email ?? "User Email Not Provided"
-          UserManager.shared.user.name = user.displayName ?? "User Name Not Provided"
+
+          self.userEmail = user.email
+
+          self.userName = user.displayName
+
+          guard let firebaseUID = Auth.auth().currentUser?.uid else { return }
+
+          self.firebaseUID = firebaseUID
+
+          UserDefaults.standard.setValue(self.firebaseUID, forKey: "FirebaseUID")
+
+          UserDefaults.standard.setValue(self.userName, forKey: "userName")
+
+          UserDefaults.standard.setValue(self.userEmail, forKey: "userEmail")
+
+          UserDefaults.standard.synchronize()
+
+          UserManager.shared.user.id = firebaseUID
 
           self.showSuccessHUD(showInfo: "登入成功")
 
-          self.loginViewModel.identifyUser()
+          self.loginViewModel.identifyUser(uid: firebaseUID)
         }
       }
     }

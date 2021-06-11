@@ -17,15 +17,15 @@ class LoginViewModel {
 
   var onUserIdentifyError: (() -> Void)?
 
-  func identifyUser() {
+  func identifyUser(uid: String) {
 
-    UserManager.shared.identifyUser(uid: UserManager.shared.user.id) { [weak self] result in
+    UserManager.shared.identifyUser(firebaseUID: uid) { [weak self] result in
 
       switch result {
 
       case .success(let user):
 
-        UserManager.shared.user = user
+        print(user)
 
         self?.onUserIdentified?()
 
@@ -49,7 +49,14 @@ class LoginViewModel {
 
   func createUser() {
 
-    UserManager.shared.createUser(user: &UserManager.shared.user) { result in
+    var createdUser = User(id: UserDefaults.standard.string(forKey: "FirebaseUID") ?? "uid",
+                           name: UserDefaults.standard.string(forKey: "userName") ?? "User Name Not Provided",
+                           profileImg: "",
+                           email: UserDefaults.standard.string(forKey: "userEmail") ?? "Email Not Provided",
+                           createdTime: 0,
+                           blockList: [])
+
+    UserManager.shared.createUser(createdUser: &createdUser) { result in
 
       switch result {
 
@@ -58,8 +65,6 @@ class LoginViewModel {
         self.onUserCreated?()
 
         self.createUserSavedShopsDefaultCategory()
-
-        print("Create user on FireStore's users collection Success")
 
       case .failure(let error):
 
