@@ -94,6 +94,38 @@ class UserManager {
     }
   }
 
+  func uploadImgFromUser(pickerImage: UIImage, folderName: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let uuid = UUID().uuidString
+
+    guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
+
+    let storageRef = Storage.storage().reference()
+
+    let imageRef = storageRef.child(folderName).child("\(uuid).jpg")
+
+    imageRef.putData(image, metadata: nil) { metadata, error in
+
+      if let error = error {
+
+        completion(.failure(error))
+      }
+      guard let metadata = metadata else { return }
+
+      imageRef.downloadURL { url, error in
+
+        if let url = url {
+
+          completion(.success(url.absoluteString))
+
+        } else if let error = error {
+
+          completion(.failure(error))
+        }
+      }
+    }
+  }
+
   // MARK: User's Collection
   func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
@@ -125,7 +157,7 @@ class UserManager {
     savedShop.id = docRef.documentID
 
     docRef.updateData([
-                        "savedShopsByCategory": FieldValue.arrayUnion([shop.id])
+      "savedShopsByCategory": FieldValue.arrayUnion([shop.id])
     ]) { error in
 
       if let error = error {
@@ -168,7 +200,7 @@ class UserManager {
 
   func fetchSavedShopsForAllCategory(user: User, completion: @escaping (Result<[UserSavedShops], Error>) -> Void) {
 
-  let docRef = database.collection("users").document(user.id).collection("savedShops")
+    let docRef = database.collection("users").document(user.id).collection("savedShops")
 
     docRef.getDocuments() { querySnapshot, error in
 
@@ -295,6 +327,71 @@ class UserManager {
       } else {
 
         print("User successfully blocked")
+      }
+    }
+  }
+
+  func updateUserName(user: User, completion: @escaping (Result< String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id)
+
+    docRef.updateData([
+
+      "name" : user.name
+
+    ]) { error in
+
+      if let error = error {
+
+        print("Error: \(error)")
+
+      } else {
+
+        print("User successfully updated")
+      }
+    }
+  }
+
+  func updateUserImg(user: User, completion: @escaping (Result< String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id)
+
+    docRef.updateData([
+
+      "profileImg" : user.profileImg
+
+    ]) { error in
+
+      if let error = error {
+
+        print("Error: \(error)")
+
+      } else {
+
+        print("User successfully updated")
+      }
+    }
+  }
+
+  func updateUserNameAndImg(user: User, completion: @escaping (Result< String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id)
+
+    docRef.updateData([
+
+      "name" : user.name,
+
+      "profileImg" : user.profileImg
+
+    ]) { error in
+
+      if let error = error {
+
+        print("Error: \(error)")
+
+      } else {
+
+        print("User successfully updated")
       }
     }
   }

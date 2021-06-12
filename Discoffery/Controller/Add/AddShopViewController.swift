@@ -171,7 +171,7 @@ class AddShopViewController: UIViewController {
 
       dispatchGroup.enter()
 
-      self.addViewModel.uploadImageFromUser(with: self.uploadedImgArr[index], folder: "newShopImgs")
+      self.addViewModel.uploadImageFromUser(with: self.uploadedImgArr[index], folderName: "newShopImgs")
 
       self.addViewModel.onUploadImage = { result in
 
@@ -185,7 +185,7 @@ class AddShopViewController: UIViewController {
 
       self.addViewModel.publishNewShop(newShop: &localNewShop, uploadedImgURL: self.uploadedImgURLArr)
 
-      self.showSuccessHUD(showInfo: "新增成功")
+      self.showSuccessHUD(showInfo: "新增咖啡廳資訊成功")
 
       DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
 
@@ -202,7 +202,7 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
 
     let openHoursDic = openHours.compactMapValues { $0 }
 
-    parsedOpenHours = (openHoursDic.compactMap({ (key, value) -> String in
+    parsedOpenHours = (openHoursDic.compactMap({ key, value -> String in
 
       return "\(key): \(value)"
 

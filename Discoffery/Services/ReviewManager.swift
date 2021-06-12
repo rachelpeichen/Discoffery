@@ -24,7 +24,7 @@ class ReviewManager {
 
     let docRef = Firestore.firestore().collection("shops").document(shop.id).collection("reviews")
 
-      docRef.getDocuments() { querySnapshot, error in
+    docRef.getDocuments() { querySnapshot, error in
 
       if let error = error {
 
@@ -80,38 +80,6 @@ class ReviewManager {
       }
     }
   }
-
-    func uploadImageFromUserReview(pickerImage: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
-
-      let uuid = UUID().uuidString
-
-      guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
-
-      let storageRef = Storage.storage().reference()
-
-      let imageRef = storageRef.child("ImagesFromUserReview").child("\(uuid).jpg")
-
-      imageRef.putData(image, metadata: nil) { metadata, error in
-
-        if let error = error {
-
-          completion(.failure(error))
-        }
-        guard let metadata = metadata else {return}
-
-        imageRef.downloadURL { url, error in
-
-          if let url = url {
-
-            completion(.success(url.absoluteString))
-
-          } else if let error = error {
-
-            completion(.failure(error))
-          }
-        }
-      }
-    }
 
   func publishNewShopReview(shopId: String, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
 

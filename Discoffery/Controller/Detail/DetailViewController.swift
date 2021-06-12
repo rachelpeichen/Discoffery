@@ -312,7 +312,7 @@ extension DetailViewController: WriteReviewCellDelegate {
 
       dispatchGroup.enter()
 
-      self.addViewModel.uploadImageFromUser(with: self.uploadedImgArr[index], folder: "userReviewsImgs")
+      self.addViewModel.uploadImageFromUser(with: self.uploadedImgArr[index], folderName: "userReviewsImgs")
 
       self.addViewModel.onUploadImage = { result in
 
@@ -328,7 +328,7 @@ extension DetailViewController: WriteReviewCellDelegate {
 
       self.showSuccessHUD(showInfo: "新增評論成功")
 
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
 
         self.dismiss(animated: true, completion: nil)
       }

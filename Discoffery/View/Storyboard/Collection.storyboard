@@ -41,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="1831.8840579710147" y="591.96428571428567"/>
         </scene>
-        <!--我收藏的咖啡廳-->
+        <!--我的收藏-->
         <scene sceneID="Ddz-II-3GC">
             <objects>
                 <viewController id="jc4-4p-ye8" customClass="CollectionViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
@@ -83,7 +83,7 @@
                             <constraint firstItem="niT-pY-7Fc" firstAttribute="bottom" secondItem="C8P-Ow-Yah" secondAttribute="bottom" id="jz8-mP-5da"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="我收藏的咖啡廳" id="6SC-4b-gA5"/>
+                    <navigationItem key="navigationItem" title="我的收藏" id="6SC-4b-gA5"/>
                     <connections>
                         <outlet property="collectionView" destination="niT-pY-7Fc" id="yxy-yq-P8d"/>
                         <segue destination="Uya-eW-Dcw" kind="showDetail" identifier="navigateToAddCategoryVC" id="fU6-uw-HW5"/>

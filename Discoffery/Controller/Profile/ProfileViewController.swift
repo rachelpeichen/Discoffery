@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProfileViewController: UIViewController {
 
@@ -38,6 +39,8 @@ class ProfileViewController: UIViewController {
       self.userNameLabel.text = result.name
 
       self.userEmailLabel.text = result.email
+
+      self.profileImg.loadImage(result.profileImg)
     }
   }
 

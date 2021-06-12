@@ -12,22 +12,22 @@ class AddViewModel {
 
   var onUploadImage: ((String) -> Void)?
 
-  func uploadImageFromUser(with image: UIImage, folder: String) {
-//
-//    UserManager.shared.uploadImgFromUser(pickerImage: image, folder: folder) { result in
-//      switch result {
-//
-//      case .success(let imgURL):
-//
-//        self.onUploadImage?(imgURL)
-//
-//        print("🔥 Upload imgs To Storage folder: \(folder) Success")
-//
-//      case .failure(let error):
-//
-//        print("uploadImageFromUser.failure: \(error)")
-//      }
-//    }
+  func uploadImageFromUser(with image: UIImage, folderName: String) {
+
+    UserManager.shared.uploadImgFromUser(pickerImage: image, folderName: folderName) { result in
+      switch result {
+
+      case .success(let imgURL):
+
+        self.onUploadImage?(imgURL)
+
+        print("🔥 Upload imgs To Storage folder: \(folderName) Success")
+
+      case .failure(let error):
+
+        print("uploadImageFromUser.failure: \(error)")
+      }
+    }
   }
 
   func publishNewShop(newShop: inout NewCoffeeShop, uploadedImgURL: [String]) {
@@ -38,7 +38,7 @@ class AddViewModel {
 
       case .success:
 
-        print("🥴Publish New Shop To Firebase Success")
+        print("Publish New Shop To Firebase Success")
 
       case .failure(let error):
 
@@ -55,7 +55,7 @@ class AddViewModel {
 
       case .success:
 
-        print("🥴 Publish Review To Firebase Success")
+        print("Publish Review To Firebase Success")
 
       case .failure(let error):
 
@@ -72,7 +72,7 @@ class AddViewModel {
 
       case .success:
 
-        print("🥴 Publish Recommend Item To Firebase Success")
+        print("Publish Recommend Item To Firebase Success")
 
       case .failure(let error):
         

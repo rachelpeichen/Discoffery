@@ -51,7 +51,7 @@ class LoginViewModel {
 
     var createdUser = User(id: UserDefaults.standard.string(forKey: "FirebaseUID") ?? "uid",
                            name: UserDefaults.standard.string(forKey: "userName") ?? "User Name Not Provided",
-                           profileImg: "",
+                           profileImg: "https://firebasestorage.googleapis.com/v0/b/discoffery-30605.appspot.com/o/mockImg%2Fappearance.jpg?alt=media&token=6e486376-3925-4c36-940e-4e799ca84e15",
                            email: UserDefaults.standard.string(forKey: "userEmail") ?? "Email Not Provided",
                            createdTime: 0,
                            blockList: [])

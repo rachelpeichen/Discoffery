@@ -30,17 +30,17 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>可以開啟你的相機ㄇ</string>
+	<string>允許此APP使用相機才能拍攝照片。您的照片將被用於您發表的個人評論及資訊。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>可以給我你現在的位置ㄇ</string>
+	<string>此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>可以給我你現在的位置ㄇ</string>
+	<string>此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。</string>
 	<key>NSLocationUsageDescription</key>
-	<string>可以給我你現在的位置ㄇ</string>
+	<string>此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>可以給我你現在的位置ㄇ</string>
+	<string>此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>可以給我用你的照片ㄇ</string>
+	<string>您的照片將被用於您發表的個人評論及資訊。</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

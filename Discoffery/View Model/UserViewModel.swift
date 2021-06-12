@@ -25,6 +25,7 @@ class UserViewModel {
     }
   }
 
+  // MARK: 直接監聽 這幾個block的func就可不用ㄇ？之後看看
   func fetchBlockList(user: User) {
 
     UserManager.shared.fetchBlockList(user: user) { result in
@@ -78,7 +79,6 @@ class UserViewModel {
     }
   }
 
-  // MARK: 直接監聽 這幾個block就可不用？
   func blockUser(user: User, blockName: String) {
 
     UserManager.shared.blockUser(user: user, blockName: blockName) { result in
@@ -96,6 +96,7 @@ class UserViewModel {
     }
   }
 
+  // MARK: Update Profile - 這裡應該不用寫這麼多個
   func watchUser() {
 
     UserManager.shared.watchUser { result in
@@ -109,6 +110,54 @@ class UserViewModel {
       case .failure(let error):
 
         print("watchUser.error: \(error)")
+      }
+    }
+  }
+
+  func updateUserName(user: User) {
+
+    UserManager.shared.updateUserName(user: user) { result in
+      switch result {
+
+      case .success:
+
+        print("updateUserName Success")
+
+      case .failure(let error):
+
+        print("updateUserName.failure: \(error)")
+      }
+    }
+  }
+
+  func updateUserImg(user: User) {
+
+    UserManager.shared.updateUserImg(user: user) { result in
+      switch result {
+
+      case .success:
+
+        print("updateUserImg Success")
+
+      case .failure(let error):
+
+        print("updateUserImg.failure: \(error)")
+      }
+    }
+  }
+
+  func updateUserNameAndImg(user: User) {
+
+    UserManager.shared.updateUserNameAndImg(user: user) { result in
+      switch result {
+
+      case .success:
+
+        print("updateUserImgAndImg Success")
+
+      case .failure(let error):
+
+        print("updateUserImgAndImg.failure: \(error)")
       }
     }
   }
