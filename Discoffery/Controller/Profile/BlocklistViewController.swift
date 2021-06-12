@@ -17,6 +17,7 @@ class BlocklistViewController: UIViewController {
   // MARK: - Outlets
   @IBOutlet weak var tableView: UITableView!
 
+  // MARK: - View Life Cycle
   override func viewWillAppear(_ animated: Bool) {
     
     super.viewWillAppear(true)

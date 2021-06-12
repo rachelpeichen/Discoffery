@@ -10,6 +10,29 @@ import JGProgressHUD
 import YPImagePicker
 
 class DetailViewController: UIViewController {
+  
+  // MARK: - Properties
+  var addViewModel = AddViewModel()
+
+  var collectionViewModel = CollectionViewModel()
+
+  var shop: CoffeeShop?
+
+  var shopName = "Cafe Name"
+
+  var reviews: [Review] = []
+
+  var reviewsCount = 0
+
+  var feature = Feature()
+
+  var recommendItemsArr: [RecommendItem] = []
+
+  var uploadedImgArr: [UIImage] = []
+
+  var uploadedImgURLArr: [String] = []
+
+  private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
   // MARK: - IBOutlets & IBActions
   @IBOutlet weak var tableView: UITableView!
@@ -40,29 +63,6 @@ class DetailViewController: UIViewController {
       sender.isEnabled = false // MARK: 現在加了收藏後先不再給他按  
     }
   }
-
-  // MARK: - Properties
-  var addViewModel = AddViewModel()
-
-  var collectionViewModel = CollectionViewModel()
-
-  var shop: CoffeeShop?
-
-  var shopName = "Cafe Name"
-
-  var reviews: [Review] = []
-
-  var reviewsCount = 0
-  
-  var feature = Feature()
-
-  var recommendItemsArr: [RecommendItem] = []
-
-  var uploadedImgArr: [UIImage] = []
-
-  var uploadedImgURLArr: [String] = []
-
-  private let shopsDetail: [CoffeeShopContentCategory] = [.images, .description, .recommend, .feature, .route, .writeReview]
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {

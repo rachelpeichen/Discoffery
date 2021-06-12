@@ -56,8 +56,8 @@ class HomeMapViewController: UIViewController {
       self.homeViewModel?.userCurrentCoordinate = coordinate
     }
     
-    // 3: Fetch shops within distance on Firebase
-    self.homeViewModel?.getShopAroundUser()
+    // 3: Fetch shops within distance on Firebase ; default is 500 m
+    self.homeViewModel?.getShopAroundUser(distance: 1500)
     
     homeViewModel?.onShopsAnnotations = { [weak self] annotations in
 

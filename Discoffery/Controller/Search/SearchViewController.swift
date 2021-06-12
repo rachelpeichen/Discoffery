@@ -8,32 +8,26 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-
-  // MARK: - Outlets
-  @IBOutlet weak var searchBar: UISearchBar!
-
-  @IBOutlet weak var collectionView: UICollectionView!
-
-  @IBAction func backToHomeView(_ sender: Any) {
-
-    self.dismiss(animated: true, completion: nil)
-  }
-
+  
   // MARK: - Properties
   var searchViewModel = SearchViewModel()
 
   var inputKeyword: String?
 
-  var isSearchBarEmpty: Bool {
-
-    return searchController.searchBar.text?.isEmpty ?? true
-  }
-
-  var searchController: UISearchController!
-
   var filteredShops: [CoffeeShop] = []
 
-  var hardCodeKeywordsArr: [String] = ["冷萃咖啡", "檸檬塔", "卡布奇諾", "單品手沖咖啡", "燕麥奶拿鐵", "可麗露", "馥列白", "海鹽焦糖拿鐵", "黃金曼巴", "花香耶加雪菲", "精品檸檬冷萃"]
+  var hardCodeKeywordsArr: [String] = ["冷萃咖啡", "檸檬塔", "法式可可歐蕾", "海鹽焦糖拿鐵", "卡布奇諾", "單品手沖咖啡", "燕麥奶拿鐵", "可麗露", "黃金曼巴", "花香耶加雪菲", "精品檸檬冷萃"]
+
+  // MARK: - IBOutlets
+  @IBOutlet weak var searchBar: UISearchBar!
+
+  @IBOutlet weak var collectionView: UICollectionView!
+
+  // MARK: - IBActions
+  @IBAction func backToHomeView(_ sender: Any) {
+
+    self.dismiss(animated: true, completion: nil)
+  }
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -43,21 +37,20 @@ class SearchViewController: UIViewController {
 
     setupCollectionView()
 
-    configureSearchController()
-  }
-
-  // MARK: - Functions
-  func configureSearchController() {
-
-    searchController = UISearchController(searchResultsController: nil)
-
-    searchController.searchResultsUpdater = self
-
-    searchController.obscuresBackgroundDuringPresentation = false
-
     searchBar.delegate = self
   }
 
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if let resultVC = segue.destination as? SearchResultViewController {
+
+      guard let keyword = inputKeyword else { return }
+
+      resultVC.keyword = keyword
+    }
+  }
+
+  // MARK: - Functions
   private func setupCollectionView() {
 
     collectionView.register(UINib(nibName: "KeywordsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "keywordsCollectionViewCell")
@@ -69,30 +62,33 @@ class SearchViewController: UIViewController {
     collectionView.layoutIfNeeded()
   }
 }
-extension SearchViewController: UISearchResultsUpdating {
 
-  func updateSearchResults(for searchController: UISearchController) {
-    print("do sth")
-  }
-}
-
+// MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
 
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 
-    print("searchBarSearchButtonClicked")
-
-    print(searchBar.text!)
-
     searchBar.resignFirstResponder()
-
-    searchBar.endEditing(true)
-
-    searchViewModel.queryShopByRecommendItem(item: searchBar.text!)
   }
 
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    // Do sth if cancel
+
+    searchBar.text = ""
+  }
+
+  func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+
+    if let keyword = searchBar.text {
+
+      inputKeyword = keyword
+
+      performSegue(withIdentifier: "navigateToSearchResultVC", sender: self)
+    }
+  }
 }
 
+// MARK: - UICollectionViewDataSource
 extension SearchViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -112,6 +108,7 @@ extension SearchViewController: UICollectionViewDataSource {
   }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
 
   // MARK: Resize each cell by their text
@@ -124,27 +121,21 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     return CGSize(width: textSize.width + 30, height: 45)
   }
 
-  // MARK: Dynamic collection view height based on content -> 要像Detail View Page 一樣有table view cell 裡面有collection cell才行，參考ShopFeatureCell
   func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
 
       // If the cell's size has to be exactly the content
       // Size of the collection View, just return the
       // collectionViewLayout's collectionViewContentSize.
 
-      collectionView.frame = CGRect(
-        x: 0,
-        y: 0,
-        width: targetSize.width,
-        height: 600)
+      collectionView.frame = CGRect(x: 0, y: 0, width: targetSize.width, height: 600)
 
       collectionView.layoutIfNeeded()
 
-      // It Tells what size is required for the CollectionView
+      // It tells what size is required for the CollectionView
       return collectionView.collectionViewLayout.collectionViewContentSize
   }
 }
 
+// MARK: - UICollectionViewDelegate
 extension SearchViewController: UICollectionViewDelegate {
-  // Do sth
 }
-

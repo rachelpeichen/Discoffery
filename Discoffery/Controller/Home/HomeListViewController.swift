@@ -23,7 +23,6 @@ class HomeListViewController: UIViewController {
 
   var mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
 
-
   // MARK: - Outlets
   @IBOutlet weak var tableView: UITableView!
 
@@ -36,7 +35,7 @@ class HomeListViewController: UIViewController {
     setupTableView()
     
     // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！ LocationManager也是 所以直接去拿HomeViewModel的屬性
-    homeViewModel?.getShopsData = { [weak self] shopsData in
+    homeViewModel?.onShopsData = { [weak self] shopsData in
 
       self?.shopsDataForList = shopsData
 
@@ -125,7 +124,6 @@ class HomeListViewController: UIViewController {
         print("fetchFeatureForShop: \(error)")
       }
     }
-
   }
 
   private func setupTableView() {

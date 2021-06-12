@@ -9,16 +9,7 @@ import UIKit
 import Kingfisher
 
 class ProfileViewController: UIViewController {
-
-  // MARK: - Outlets
-  @IBOutlet weak var profileImg: UIImageView!
-
-  @IBOutlet weak var userNameLabel: UILabel!
-
-  @IBOutlet weak var userEmailLabel: UILabel!
-
-  @IBOutlet weak var tableView: UITableView!
-
+  
   // MARK: - Properties
   var userViewModel = UserViewModel()
 
@@ -27,7 +18,7 @@ class ProfileViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
 
     super.viewWillAppear(true)
-    
+
     userViewModel.watchUser()
 
     userViewModel.onWatchUser = { result in
@@ -43,6 +34,15 @@ class ProfileViewController: UIViewController {
       self.profileImg.loadImage(result.profileImg)
     }
   }
+
+  // MARK: - Outlets
+  @IBOutlet weak var profileImg: UIImageView!
+
+  @IBOutlet weak var userNameLabel: UILabel!
+
+  @IBOutlet weak var userEmailLabel: UILabel!
+
+  @IBOutlet weak var tableView: UITableView!
 
   // MARK: - Life Cycle
   override func viewDidLoad() {

@@ -102,6 +102,7 @@
 		78DF25482652717000F47A04 /* ShopImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */; };
 		78E0B9CF2660C66700AEE38F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */; };
 		78E9795326734B0F008F91C4 /* NewCoffeeShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E9795226734B0F008F91C4 /* NewCoffeeShop.swift */; };
+		78E979EE2674A5DA008F91C4 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E979ED2674A5D9008F91C4 /* SearchResultViewController.swift */; };
 		78FA72DE264BFCA300DF4190 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DD264BFCA300DF4190 /* AppDelegate.swift */; };
 		78FA72E0264BFCA300DF4190 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */; };
 		78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FA72E1264BFCA300DF4190 /* HomeViewController.swift */; };
@@ -210,6 +211,7 @@
 		78DF25462652717000F47A04 /* ShopImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		78E0B9CE2660C66700AEE38F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		78E9795226734B0F008F91C4 /* NewCoffeeShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCoffeeShop.swift; sourceTree = "<group>"; };
+		78E979ED2674A5D9008F91C4 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		78FA72DA264BFCA300DF4190 /* Discoffery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Discoffery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FA72DD264BFCA300DF4190 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78FA72DF264BFCA300DF4190 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				781CD8342664F4E7005076CD /* SearchViewController.swift */,
+				78E979ED2674A5D9008F91C4 /* SearchResultViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				781CD84926653EAC005076CD /* SearchViewModel.swift in Sources */,
 				78DF24DA2652080F00F47A04 /* RecommendViewController.swift in Sources */,
 				7884860F264C09AF00FA33F9 /* HomeMapViewController.swift in Sources */,
+				78E979EE2674A5DA008F91C4 /* SearchResultViewController.swift in Sources */,
 				781733BF26678ACF0004C9CB /* AddItemCollectionViewCell.swift in Sources */,
 				78848612264C09EC00FA33F9 /* HomeListViewController.swift in Sources */,
 				78FA72E2264BFCA300DF4190 /* HomeViewController.swift in Sources */,

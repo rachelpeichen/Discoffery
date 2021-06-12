@@ -10,7 +10,7 @@ import Kingfisher
 
 class ReviewsPageViewController: UIViewController {
 
-  // MARK: Properties
+  // MARK: - Properties
   var userViewModel = UserViewModel()
 
   var reviews: [Review]?
@@ -21,7 +21,7 @@ class ReviewsPageViewController: UIViewController {
 
   var shopName = "Cafe Name"
 
-  // MARK: Outlets
+  // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
 
   @IBOutlet weak var cafeNameLabel: UILabel!
@@ -31,6 +31,7 @@ class ReviewsPageViewController: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
 
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -92,13 +93,23 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
       cell.layoutImgStackView(imgsArr: singleReview.imgURL)
 
-      cell.blockBtn.tag = indexPath.row
+      if singleReview.user == UserManager.shared.user.id {
 
-      cell.blockBtn.addTarget(self, action: #selector(didTapCellButton(sender:)), for: .touchUpInside)
+        cell.blockBtn.isHidden = true
+
+      } else {
+
+        cell.blockBtn.tag = indexPath.row
+
+        cell.blockBtn.addTarget(self, action: #selector(didTapCellButton(sender:)), for: .touchUpInside)
+      }
 
       cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
+
       cell.rateStars.rating = singleReview.rating
+
       cell.userName.text = singleReview.userName
+
       cell.userImg.loadImage(singleReview.userImg)
 
       if singleReview.comment.isEmpty {

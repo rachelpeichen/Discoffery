@@ -19,6 +19,8 @@ class AddShopViewController: UIViewController {
 
   var parsedOpenHours: String?
 
+  var addedItem: String?
+
   var uploadedImgArr: [UIImage] = []
 
   var uploadedImgURLArr: [String] = []
@@ -85,13 +87,20 @@ class AddShopViewController: UIViewController {
 
   @IBAction func didEndAddItemText(_ sender: UITextField) {
 
-    if let addedItem = sender.text {
+    if let input = sender.text {
 
-      wrappedNewShop.recommendItems.append(addedItem)
+      if !input.isEmpty {
+
+        addedItem = input
+      }
     }
   }
 
   @IBAction func onTapAddItemBtn(_ sender: UIButton) {
+
+    guard let addedItem = addedItem else { return }
+
+    wrappedNewShop.recommendItems.append(addedItem)
 
     addItemTextField.text = ""
 

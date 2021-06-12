@@ -9,17 +9,31 @@ import UIKit
 import Kingfisher
 import YPImagePicker
 import FirebaseAuth
-import PopupDialog
 import JGProgressHUD
 
 class SettingViewController: UIViewController {
 
-  // MARK: - IBOutlets & IBActions
+  // MARK: - Properties
+  var userViewModel = UserViewModel()
+
+  var addViewModel = AddViewModel()
+
+  var updateUser = User()
+
+  var didChangeName = false
+
+  var didUploadImg = false
+
+  var updateImgURL: String?
+
+  // MARK: - IBOutlets
   @IBOutlet weak var profileImg: UIImageView!
 
   @IBOutlet weak var userNameLabel: UILabel!
 
   @IBOutlet weak var userEmailLabel: UILabel!
+
+  @IBOutlet weak var userNameTextField: UITextField!
 
   @IBOutlet weak var logoutBtn: CustomBtn!
 
@@ -27,6 +41,7 @@ class SettingViewController: UIViewController {
 
   @IBOutlet weak var sendUpdateInfoBtn: CustomBtn!
 
+  // MARK: - IBActions
   @IBAction func finishEditUserName(_ sender: UITextField) {
 
     if let input = sender.text {
@@ -48,14 +63,14 @@ class SettingViewController: UIViewController {
     setUpImagesPicker()
   }
 
-
   @IBAction func onTapSendUpdateInfoBtn(_ sender: Any) {
 
     updateUser.id = UserManager.shared.user.id
 
-    // MARK: 送到火地 先確認是否有資料再送 先土炮確認
-    if didChangeName == true && didUploadImg == true { // 有改名字＋大頭貼
+    // MARK: 判斷更新的三種情況（Redundant）
+    if didChangeName == true && didUploadImg == true {
 
+      // 名字＋大頭貼都有改
       guard let uploadImg = profileImg.image else { return }
 
       let dispatchGroup = DispatchGroup()
@@ -79,15 +94,20 @@ class SettingViewController: UIViewController {
 
         self.showSuccessHUD(showInfo: "更新用戶資料成功")
       }
+      userNameTextField.text = ""
 
-    } else if didChangeName == true && didUploadImg == false { // 只有改名字
+    } else if didChangeName == true && didUploadImg == false {
 
+      // 只改名字
       userViewModel.updateUserName(user: updateUser)
 
       showSuccessHUD(showInfo: "更新用戶名稱成功")
 
-    } else { // 只有改大頭貼
+      userNameTextField.text = ""
 
+    } else {
+
+      // 只改大頭貼
       guard let uploadImg = profileImg.image else { return }
 
       let dispatchGroup = DispatchGroup()
@@ -114,6 +134,7 @@ class SettingViewController: UIViewController {
     }
   }
 
+  // MARK: - Logout
   @IBAction func onTapLogoutBtn(_ sender: Any) {
 
     showLogoutSuccessDialog()
@@ -131,19 +152,7 @@ class SettingViewController: UIViewController {
     }
   }
 
-  // MARK: - Properties
-  var userViewModel = UserViewModel()
-
-  var addViewModel = AddViewModel()
-
-  var updateUser = User()
-
-  var didChangeName = false
-
-  var didUploadImg = false
-
-  var updateImgURL: String?
-
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -162,7 +171,7 @@ class SettingViewController: UIViewController {
     }
   }
 
-  func setupSettingVC() {
+  private func setupSettingVC() {
     
     navigationController?.navigationBar.barTintColor = .G3
 

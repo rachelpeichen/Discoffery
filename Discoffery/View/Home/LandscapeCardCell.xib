@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jom-l6-ta9" userLabel="ImageContainerView">
                         <rect key="frame" x="16" y="16" width="300" height="250"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ydg-7M-Gq9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_rect4" translatesAutoresizingMaskIntoConstraints="NO" id="ydg-7M-Gq9">
                                 <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="8nN-E5-rmo"/>
@@ -38,7 +38,7 @@
                             <constraint firstItem="ydg-7M-Gq9" firstAttribute="top" secondItem="Jom-l6-ta9" secondAttribute="top" id="tpe-zI-3Gs"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="這是一段名字很長的文字咖啡廳名字很長很長超級長的" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gop-nG-Abn">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="這是一段名字很長的文字咖啡廳名字很長很長超級長的超級長的超級長的超級長的超級長的超級長的" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gop-nG-Abn">
                         <rect key="frame" x="16" y="282" width="300" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="vUM-KX-tJM"/>
@@ -178,6 +178,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="mock_rect4" width="320" height="213.5"/>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "mock_food_9.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "mock_landscape_5.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },

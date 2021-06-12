@@ -7,7 +7,6 @@
 
 import Foundation
 import Firebase
-
 import FirebaseFirestoreSwift
 import CoreLocation
 
@@ -48,7 +47,6 @@ class CoffeeShopManager {
   }
 
   func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
-
     // Find all shops within input meter of user's current location
 
     // The number of meters per degree of latidue (roughly) 換算 1 degrees 的緯度 ~ 111194 m

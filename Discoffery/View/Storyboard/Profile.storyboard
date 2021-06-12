@@ -47,7 +47,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l18-fa-wsu" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="30" y="16" width="44" height="21.5"/>
+                                                    <rect key="frame" x="30" y="16" width="58" height="31.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="1np-b8-r9R"/>
@@ -192,12 +192,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改用戶名稱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAw-ig-a9k" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                <rect key="frame" x="30" y="228" width="110.5" height="30"/>
+                                <rect key="frame" x="30" y="228" width="112" height="30"/>
                                 <color key="backgroundColor" name="B5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="3eZ-7l-uAX"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" name="G1"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -207,12 +207,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="mGF-NW-S7T"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" name="G1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="請輸入新的用戶名稱" textAlignment="natural" minimumFontSize="12" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="kqa-Df-eqv">
-                                <rect key="frame" x="156.5" y="226" width="241.5" height="34"/>
+                                <rect key="frame" x="158" y="226" width="240" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ReF-SI-9yQ"/>
                                 </constraints>
@@ -272,11 +272,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQZ-i0-1hf" customClass="CustomBtn" customModule="Discoffery" customModuleProvider="target">
-                                <rect key="frame" x="167" y="352.5" width="80" height="45"/>
+                                <rect key="frame" x="167" y="352.5" width="80" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="IJ5-su-TXe"/>
-                                    <constraint firstAttribute="height" constant="45" id="h53-EG-Mj2"/>
+                                    <constraint firstAttribute="height" constant="40" id="h53-EG-Mj2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="完成">
@@ -337,6 +337,7 @@
                         <outlet property="uploadImgBtn" destination="3e8-RJ-HZn" id="nqb-2G-t9b"/>
                         <outlet property="userEmailLabel" destination="5nh-xj-AQZ" id="7Uj-Fa-cPd"/>
                         <outlet property="userNameLabel" destination="Zj9-OJ-8Gh" id="cQX-2p-2Ya"/>
+                        <outlet property="userNameTextField" destination="kqa-Df-eqv" id="XQe-pd-Onj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R7n-md-hbH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -362,7 +363,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hha-5w-855">
-                                <rect key="frame" x="0.0" y="223.5" width="414" height="638.5"/>
+                                <rect key="frame" x="0.0" y="233.5" width="414" height="628.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BlockListTableViewCell" id="d6T-7E-PTK" customClass="BlockListTableViewCell" customModule="Discoffery" customModuleProvider="target">
@@ -373,7 +374,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-Gv-nI9">
-                                                    <rect key="frame" x="30" y="16" width="284" height="30.5"/>
+                                                    <rect key="frame" x="30" y="16" width="270" height="30.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="i79-Jb-RVo"/>
                                                     </constraints>
@@ -382,7 +383,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="解除封鎖" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X0q-Kr-ywF" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="330" y="16" width="68" height="30.5"/>
+                                                    <rect key="frame" x="316" y="16" width="82" height="30.5"/>
                                                     <color key="backgroundColor" name="G2"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -412,14 +413,14 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已封鎖用戶名單" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vV3-et-Kl3" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                <rect key="frame" x="30" y="118" width="114.5" height="19.5"/>
+                                <rect key="frame" x="30" y="118" width="128.5" height="29.5"/>
                                 <color key="backgroundColor" name="B5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <color key="textColor" name="G1"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封鎖後您將不會看到已封鎖用戶的任何評論，解除封鎖後可恢復。" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9g-61-foZ">
-                                <rect key="frame" x="30" y="145.5" width="323" height="48"/>
+                                <rect key="frame" x="30" y="155.5" width="323" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="WVc-kE-gK6"/>
                                     <constraint firstAttribute="width" constant="323" id="ukN-4J-OIX"/>
@@ -482,22 +483,22 @@
             <size key="intrinsicContentSize" width="108" height="32"/>
         </designable>
         <designable name="6f6-OO-4dK">
-            <size key="intrinsicContentSize" width="128.5" height="21.5"/>
+            <size key="intrinsicContentSize" width="128.5" height="29.5"/>
         </designable>
         <designable name="FAw-ig-a9k">
-            <size key="intrinsicContentSize" width="110.5" height="21.5"/>
+            <size key="intrinsicContentSize" width="112" height="29.5"/>
         </designable>
         <designable name="X0q-Kr-ywF">
-            <size key="intrinsicContentSize" width="68" height="20"/>
+            <size key="intrinsicContentSize" width="82" height="30"/>
         </designable>
         <designable name="l18-fa-wsu">
-            <size key="intrinsicContentSize" width="44" height="21.5"/>
+            <size key="intrinsicContentSize" width="58" height="31.5"/>
         </designable>
         <designable name="rQZ-i0-1hf">
             <size key="intrinsicContentSize" width="33" height="32"/>
         </designable>
         <designable name="vV3-et-Kl3">
-            <size key="intrinsicContentSize" width="114.5" height="19.5"/>
+            <size key="intrinsicContentSize" width="128.5" height="29.5"/>
         </designable>
     </designables>
     <resources>

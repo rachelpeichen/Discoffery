@@ -20,13 +20,17 @@ protocol WriteReviewCellDelegate: AnyObject {
 class WriteReviewCell: ShopDetailBasicCell {
 
   // MARK: - Properties
+  var userViewModel = UserViewModel()
+
   weak var delegate: WriteReviewCellDelegate?
 
   var wrappedReview = Review()
 
   var wrappedRecommendItem = RecommendItem()
 
-  // MARK: - Outlets
+  var addedItem: String?
+
+  // MARK: - IBOutlets
   @IBOutlet weak var collectionView: UICollectionView!
 
   @IBOutlet weak var rateStars: CosmosView! {
@@ -65,17 +69,24 @@ class WriteReviewCell: ShopDetailBasicCell {
   // MARK: - IBActions
   @IBAction func didEndAddItemText(_ sender: UITextField) {
 
-    if let addedItem = sender.text {
+    if let input = sender.text {
 
-      wrappedReview.recommendItems.append(addedItem)
+      if !input.isEmpty {
+
+        addedItem = input
+      }
     }
   }
 
   @IBAction func onTapAddItemBtn(_ sender: UIButton) {
 
-      addItemTextField.text = ""
+    guard let addedItem = addedItem else { return }
 
-      collectionView.reloadData()
+    wrappedReview.recommendItems.append(addedItem)
+
+    addItemTextField.text = ""
+
+    collectionView.reloadData()
   }
 
   @IBAction func uploadImage(_ sender: UIButton) {
@@ -87,12 +98,6 @@ class WriteReviewCell: ShopDetailBasicCell {
 
     // The user can send review only when rating is provided
     if wrappedReview.rating != 0 {
-
-      wrappedReview.user = UserManager.shared.user.id
-
-      wrappedReview.userName = UserManager.shared.user.name
-
-      wrappedReview.userImg = "https://firebasestorage.googleapis.com/v0/b/discoffery-30605.appspot.com/o/mockImg%2Fappearance.jpg?alt=media&token=6e486376-3925-4c36-940e-4e799ca84e15"
 
       delegate?.sendReview(inputReview: &wrappedReview)
 
@@ -110,11 +115,12 @@ class WriteReviewCell: ShopDetailBasicCell {
           delegate?.sendRecommendItem(inputItem: &wrappedRecommendItem)
         }
 
-        rateStars.rating = 0
-        addItemTextField.text = ""
-        commentTextView.text = ""
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 
-        collectionView.reloadData()
+          self.clearWriteReviewCell()
+
+          self.collectionView.reloadData()
+        }
       }
     }
   }
@@ -126,6 +132,17 @@ class WriteReviewCell: ShopDetailBasicCell {
     layoutWriteReviewCell()
 
     setupCollectionView()
+
+    userViewModel.watchUser()
+
+    userViewModel.onWatchUser = { result in
+
+      self.wrappedReview.userImg = result.profileImg
+
+      self.wrappedReview.user = result.id
+
+      self.wrappedReview.userName = result.name
+    }
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -158,6 +175,17 @@ class WriteReviewCell: ShopDetailBasicCell {
     commentTextView.clipsToBounds      = true
     commentTextView.layer.cornerRadius = 10
 
+    uploadImgOne.isHidden   = true
+    uploadImgTwo.isHidden   = true
+    uploadImgThree.isHidden = true
+  }
+
+  func clearWriteReviewCell() {
+
+    rateStars.rating        = 0
+    addItemTextField.text   = ""
+    commentTextView.text    = ""
+    wrappedReview.recommendItems.removeAll()
     uploadImgOne.isHidden   = true
     uploadImgTwo.isHidden   = true
     uploadImgThree.isHidden = true

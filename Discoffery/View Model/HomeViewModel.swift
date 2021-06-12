@@ -21,7 +21,7 @@ class HomeViewModel {
 
   var onShopsAnnotations: (([MKPointAnnotation]) -> Void)? // Only HomeMapVC use this
   
-  var getShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
+  var onShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
 
   var shopsData: [CoffeeShop] = [] {
 
@@ -29,11 +29,11 @@ class HomeViewModel {
 
       markAnnotationForShops(shops: shopsData)
 
-      getShopsData?(shopsData)
+      onShopsData?(shopsData)
     }
   }
 
-  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this
+  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this?????
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {
 
@@ -47,11 +47,11 @@ class HomeViewModel {
   }
 
   // MARK: - Map related functions
-  func getShopAroundUser() {
+  func getShopAroundUser(distance: Double = 500) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
 
-      filterShopWithinDistance(latitude: latitude, longitude: longitude, distanceInMeters: 1500)
+      filterShopWithinDistance(latitude: latitude, longitude: longitude, distanceInMeters: distance)
     }
   }
 
@@ -114,7 +114,7 @@ class HomeViewModel {
 
       switch result {
 
-      case .success(let newShop):
+      case .success(let _):
 
         print("🥴fetchShopSelectedOnMap Success")
 
