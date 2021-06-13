@@ -13,13 +13,11 @@ class SearchResultViewController: UIViewController {
   // MARK: - Properties
   var searchViewModel = SearchViewModel()
 
-  var shopsAroundUser: [CoffeeShop] = []
+  var shopsAroundUserArr: [CoffeeShop] = []
 
-  var filteredShopsAroundUser: [CoffeeShop] = []
+  var searchResultArr: [CoffeeShop] = []
 
-  var featureDic: [String: [Feature]] = [:] // Use shop.id as key to find [Feature] belongs to which shop
-
-  var recommendItemsDic: [String: [RecommendItem]] = [:]
+  var recommendItemsDic: [String: [RecommendItem]] = [:] // Use shop.id as key to find [RecommendItem] belongs to which shop
 
   var keyword: String?
 
@@ -51,77 +49,54 @@ class SearchResultViewController: UIViewController {
     showLoadingHUD()
     
     setupTableView()
-    // 1: Get user's current coordinate
-    LocationManager.shared.onCurrentCoordinate = { coordinate in
 
-      self.searchViewModel.userCurrentCoordinate = coordinate
-    }
+    // MARK: *Flow* fetch shop  -> fetch item for shop -> filter item == keyword -> sort by distance
 
-    // 2: Search shops within distance on Firebase; default is 2000 m
+    // 1: Search shops within distance on Firebase; default is 2000 m 我家偏僻用3000
+    let dispatchGroup = DispatchGroup()
+
     searchViewModel.getShopAroundUser(distance: 3000)
+
+    dispatchGroup.enter()
 
     searchViewModel.onSearchShopsData = { [weak self] shopsData in
 
-      self?.shopsAroundUser = shopsData
-
-      for index in 0..<shopsData.count {
-
-        self?.fetchFeatureForShop(shop: shopsData[index])
-
-        self?.fetchRecommendItemForShop(shop: shopsData[index])
-
-        if let coordinate = self?.searchViewModel.userCurrentCoordinate {
-
-          if let distance = self?.calDistanceBetweenTwoLocations(
-
-              location1Lat: coordinate.latitude,
-
-              location1Lon: coordinate.longitude,
-
-              location2Lat: shopsData[index].latitude,
-
-              location2Lon: shopsData[index].longitude) {
-
-            self?.shopsAroundUser[index].cheap = distance
-          }
-        }
-      }
-      self?.shopsAroundUser.sort { $0.cheap < $1.cheap }
+      self?.shopsAroundUserArr = shopsData
     }
 
-    if let keyword = keyword {
+    dispatchGroup.leave()
 
-      showSearchResult(keyword: keyword)
+    // 2: Search each shop's RecommendItem and *get successs call back*
+    for index in 0..<shopsAroundUserArr.count {
+
+      dispatchGroup.enter()
+
+      let shop = shopsAroundUserArr[index]
+
+      searchViewModel.fetchRecommendItemForShop(shop: shop)
+
+      searchViewModel.onShopRecommendItem = { result in
+
+        self.recommendItemsDic[shop.id] = result
+
+        dispatchGroup.leave()
+      }
+    }
+
+    // 3: Filter shopsAroundUser by keyword
+    dispatchGroup.notify(queue: .main) {
+
+      if let keyword = self.keyword {
+
+        self.filterShopsAroundUser(keyword: keyword)
+      }
+
+      // 4: Show filtered result in ascending order of distance between user
+      self.sortSearchResult()
+
+      self.tableView.reloadData()
     }
   }
-
-  // MARK: - Filter search result
-    func showSearchResult(keyword: String) {
-
-      for index in 0..<shopsAroundUser.count {
-
-        let shop = shopsAroundUser[index]
-
-        // MARK: 這時候 recommendItemsDic 仍然是 0 elements!!
-        if let recommendItemsArrForEachShop = recommendItemsDic[shop.id] {
-
-          for index in 0..<recommendItemsArrForEachShop.count {
-
-            if recommendItemsArrForEachShop[index].item == keyword {
-
-              filteredShopsAroundUser.append(shop)
-
-            }
-          }
-          print("篩選完關鍵字的shop array = \(filteredShopsAroundUser)")
-        }
-      }
-
-      descriptionLabel.text = keyword + "的搜尋結果如下："
-
-      searchResultCount.text = String(self.filteredShopsAroundUser.count)
-    }
-
 
   // MARK: - Functions
   private func setupTableView() {
@@ -143,43 +118,51 @@ class SearchResultViewController: UIViewController {
     tableView.reloadData()
   }
 
-  // MARK: TODO這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
-  func fetchFeatureForShop(shop: CoffeeShop) {
+  func filterShopsAroundUser(keyword: String) {
 
-    FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
+    for index in 0..<shopsAroundUserArr.count {
 
-      switch result {
+      let shop = shopsAroundUserArr[index]
 
-      case .success(let getFeature):
+      if let recommendItemsArrForEachShop = recommendItemsDic[shop.id] {
 
-        self?.featureDic[shop.id] = getFeature
+        for index in 0..<recommendItemsArrForEachShop.count {
 
-        self?.tableView.reloadData()
+          if recommendItemsArrForEachShop[index].item == keyword {
 
-      case .failure(let error):
+            searchResultArr.append(shop)
 
-        print("fetchFeatureForShop: \(error)")
+          }
+        }
+        print("篩選完關鍵字的shop array = \(searchResultArr)")
       }
     }
+
+    descriptionLabel.text = keyword + "的搜尋結果如下："
+
+    searchResultCount.text = String(self.searchResultArr.count)
   }
 
-  func fetchRecommendItemForShop(shop: CoffeeShop) {
+  func sortSearchResult() {
 
-    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
+    for index in 0..<searchResultArr.count {
 
-      switch result {
+      if let coordinate = self.searchViewModel.userCurrentCoordinate {
 
-      case .success(let getItems):
+        let distance = self.calDistanceBetweenTwoLocations(
 
-        self.recommendItemsDic[shop.id] = getItems
+          location1Lat: coordinate.latitude,
 
-        self.tableView.reloadData()
+          location1Lon: coordinate.longitude,
 
-      case .failure(let error):
+          location2Lat: searchResultArr[index].latitude,
 
-        print("fetchFeatureForShop: \(error)")
+          location2Lon: searchResultArr[index].longitude)
+
+        searchResultArr[index].cheap = distance
       }
     }
+    searchResultArr.sort { $0.cheap < $1.cheap }
   }
 
   func calDistanceBetweenTwoLocations(location1Lat: Double, location1Lon: Double, location2Lat: Double, location2Lon: Double) -> Double {
@@ -220,7 +203,7 @@ extension SearchResultViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-    return shopsAroundUser.count
+    return searchResultArr.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -228,19 +211,19 @@ extension SearchResultViewController: UITableViewDataSource {
     if let cell = tableView.dequeueReusableCell(
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
 
-      let filterShop = shopsAroundUser[indexPath.row]
+      let shop = searchResultArr[indexPath.row]
 
       cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
 
-      cell.cafeName.text = filterShop.name
+      cell.cafeName.text = shop.name
 
-      cell.distance.text = "距離\(filterShop.cheap.rounded().formattedValue)公尺"
+      cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
 
-      cell.starsView.rating = filterShop.tasty
+      cell.starsView.rating = shop.tasty
 
       cell.openHours.text = "疫情暫停營業"
 
-      guard let recommendItemsArr = recommendItemsDic[filterShop.id] else { return UITableViewCell() }
+      guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
 
       var itemLayoutArr: [String] = []
 
@@ -248,13 +231,13 @@ extension SearchResultViewController: UITableViewDataSource {
 
       cell.configureItem(with: itemLayoutArr)
 
-      guard let featureArr = featureDic[filterShop.id] else { return UITableViewCell() }
-
-      var featureLayoutArr = featureArr[0].special
-
-      featureLayoutArr.append(featureArr[0].timeLimit)
-
-      cell.configureFeature(with: featureLayoutArr)
+      //      guard let featureArr = featureDic[filterShop.id] else { return UITableViewCell() }
+      //
+      //      var featureLayoutArr = featureArr[0].special
+      //
+      //      featureLayoutArr.append(featureArr[0].timeLimit)
+      //
+      //      cell.configureFeature(with: featureLayoutArr)
 
       cell.selectionStyle = .none
 
@@ -267,7 +250,7 @@ extension SearchResultViewController: UITableViewDataSource {
 
     print(indexPath.row)
 
-//    performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
+    //    performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
   }
 }
 

@@ -118,7 +118,7 @@ class DetailViewController: UIViewController {
 
       var savedShop = UserSavedShops()
 
-      collectionViewModel.addUserSavedShopToDefaultCategory(user: UserManager.shared.user, shop: shop , savedShop: &savedShop)
+      collectionViewModel.addUserSavedShopToDefaultCategory(user: UserManager.shared.user, shop: shop, savedShop: &savedShop)
     }
   }
 
