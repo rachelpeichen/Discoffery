@@ -10,7 +10,12 @@ import Cosmos
 
 class LandscapeCardCell: UITableViewCell {
 
-  // MARK: - Outlets
+  // MARK: - Properties
+  var itemArr: [String] = []
+
+  var featureArr: [String] = []
+
+  // MARK: - IBOutlets
   @IBOutlet weak var imageContainerView: UIView!
 
   @IBOutlet weak var cafeMainImage: UIImageView!
@@ -27,11 +32,9 @@ class LandscapeCardCell: UITableViewCell {
 
   @IBOutlet weak var openHours: UILabel!
 
-  // MARK: - Properties
-  var itemArr: [String] = []
+  @IBOutlet weak var saveToCollectionBtn: UIButton!
 
-  var featureArr: [String] = []
-
+  // MARK: - IBActions
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -93,7 +96,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
 
     if collectionView == self.recommendItemCollectionView {
 
-      return 2 // 寫死為了版面好看
+      return 2 // 寫死2個為了版面好看
     }
 
     return 3

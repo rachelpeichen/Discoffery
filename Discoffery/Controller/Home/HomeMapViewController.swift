@@ -56,8 +56,8 @@ class HomeMapViewController: UIViewController {
       self.homeViewModel?.userCurrentCoordinate = coordinate
     }
     
-    // 3: Fetch shops within distance on Firebase ; default is 500 m
-    self.homeViewModel?.getShopAroundUser(distance: 1500)
+    // 3: Fetch shops within distance on Firebase ; default now is 1500 m
+    self.homeViewModel?.getShopAroundUser()
     
     homeViewModel?.onShopsAnnotations = { [weak self] annotations in
 
@@ -204,33 +204,75 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     
     manager.delegate = self
     
-    switch manager.authorizationStatus {
-    
-    case .restricted:
-      
-      print("Location access was restricted.")
-      
-    case .denied:
-      
-      print("User denied access to location.")
-      
-    case .notDetermined:
-      
-      print("Location status not determined.")
-      
-      manager.requestWhenInUseAuthorization()
-      
-    case .authorizedAlways, .authorizedWhenInUse:
-      
-      print("Location authorization is confirmed.")
+    if #available(iOS 14.0, *) {
+      // MARK: Auth check for version iOS 14.0 and above
 
-      homeViewModel?.getShopAroundUser()
-      
-      setUpMapView()
-      
-    default:
-      
-      print("Unknown Error")
+      switch manager.authorizationStatus {
+
+      case .restricted:
+
+        print("Location access was restricted.")
+
+      case .denied:
+
+        showLocationAuthDeniedDialog()
+
+        print("User denied access to location.")
+
+      case .notDetermined:
+
+        print("Location status not determined.")
+
+        manager.requestWhenInUseAuthorization()
+
+      case .authorizedAlways, .authorizedWhenInUse:
+
+        print("Location authorization is confirmed.")
+
+        homeViewModel?.getShopAroundUser()
+
+        setUpMapView()
+
+      default:
+
+        print("Unknown Location Authorization Error")
+      }
+
+    } else {
+      // MARK: Fallback on earlier versions
+
+      if CLLocationManager.locationServicesEnabled() {
+
+        switch CLLocationManager.authorizationStatus() {
+
+        case .restricted:
+
+          print("Location access was restricted.")
+
+        case .denied:
+
+          showLocationAuthDeniedDialog()
+
+          print("User denied access to location.")
+
+        case .notDetermined:
+
+          print("Location status not determined.")
+
+          manager.requestWhenInUseAuthorization()
+
+        case .authorizedAlways, .authorizedWhenInUse:
+
+          print("Location authorization is confirmed.")
+
+          homeViewModel?.getShopAroundUser()
+
+          setUpMapView()
+
+        default:
+          print("Unknown Location Authorization Error")
+        }
+      }
     }
   }
 }

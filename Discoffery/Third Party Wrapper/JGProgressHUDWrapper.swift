@@ -24,7 +24,7 @@ extension UIViewController {
 
     hud.show(in: self.view)
 
-    hud.dismiss(afterDelay: 2)
+    hud.dismiss(afterDelay: 2.5)
   }
 
   func showErrorHUD(showInfo: String = "Error") {
@@ -39,6 +39,21 @@ extension UIViewController {
 
     hud.show(in: self.view)
 
-    hud.dismiss(afterDelay: 2)
+    hud.dismiss(afterDelay: 2.5)
+  }
+
+  func showLoadingHUD(showInfo: String = "Loading") {
+
+    let hud = JGProgressHUD(style: .light)
+
+    hud.textLabel.text = showInfo
+
+    hud.indicatorView = JGProgressHUDIndeterminateIndicatorView()
+
+    hud.shadow = JGProgressHUDShadow(color: UIColor.init(named: "G1")!, offset: .zero, radius: 3.0, opacity: 0.8)
+
+    hud.show(in: self.view)
+
+    hud.dismiss(afterDelay: 2.0)
   }
 }

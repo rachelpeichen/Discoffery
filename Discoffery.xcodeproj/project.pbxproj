@@ -31,7 +31,6 @@
 		783B2344265D60F400F88687 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2343265D60F400F88687 /* UIView+Extension.swift */; };
 		783B2347265E172100F88687 /* RecommendItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2346265E172100F88687 /* RecommendItem.swift */; };
 		783B236A265E299400F88687 /* RecommendItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2369265E299400F88687 /* RecommendItemManager.swift */; };
-		7844F5122667D30300A82158 /* MJRefresherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5112667D30300A82158 /* MJRefresherWrapper.swift */; };
 		7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5152667D32100A82158 /* KingFisherWrapper.swift */; };
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
 		784D65B826709711002CA45F /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D65B726709711002CA45F /* BlockListTableViewCell.swift */; };
@@ -137,7 +136,6 @@
 		783B2343265D60F400F88687 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		783B2346265E172100F88687 /* RecommendItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItem.swift; sourceTree = "<group>"; };
 		783B2369265E299400F88687 /* RecommendItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemManager.swift; sourceTree = "<group>"; };
-		7844F5112667D30300A82158 /* MJRefresherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MJRefresherWrapper.swift; sourceTree = "<group>"; };
 		7844F5152667D32100A82158 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
 		784D65B726709711002CA45F /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 			children = (
 				7870A34E267120910012F15F /* UIScrollView+EmptyDataSet.h */,
 				7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */,
-				7844F5112667D30300A82158 /* MJRefresherWrapper.swift */,
 				7844F5152667D32100A82158 /* KingFisherWrapper.swift */,
 				7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */,
 				78C52386266B81DE00A824E0 /* JGProgressHUDWrapper.swift */,
@@ -832,7 +829,6 @@
 				78A31129265C2AAF00441FE7 /* AddViewModel.swift in Sources */,
 				781CD844266513E1005076CD /* IntroductionViewController.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
-				7844F5122667D30300A82158 /* MJRefresherWrapper.swift in Sources */,
 				78BFDCF3266EAA620096B29C /* CategoryViewController.swift in Sources */,
 				781CD8102664AD46005076CD /* SelectedShopViewController.swift in Sources */,
 				78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */,
@@ -944,7 +940,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -999,7 +995,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

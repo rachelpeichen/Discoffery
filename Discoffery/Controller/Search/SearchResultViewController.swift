@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class SearchResultViewController: UIViewController { 
 
@@ -39,9 +40,17 @@ class SearchResultViewController: UIViewController {
 
   // MARK: - View Life Cycle
   override func viewWillAppear(_ animated: Bool) {
-
     super.viewWillAppear(true)
+  }
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    // Do any additional setup after loading the view.
+
+    showLoadingHUD()
+    
+    setupTableView()
     // 1: Get user's current coordinate
     LocationManager.shared.onCurrentCoordinate = { coordinate in
 
@@ -49,7 +58,7 @@ class SearchResultViewController: UIViewController {
     }
 
     // 2: Search shops within distance on Firebase; default is 2000 m
-    searchViewModel.getShopAroundUser(distance: 4000)
+    searchViewModel.getShopAroundUser(distance: 3000)
 
     searchViewModel.onSearchShopsData = { [weak self] shopsData in
 
@@ -78,57 +87,41 @@ class SearchResultViewController: UIViewController {
         }
       }
       self?.shopsAroundUser.sort { $0.cheap < $1.cheap }
+    }
 
-      self?.setupTableView()
+    if let keyword = keyword {
 
-      //      if let keyword = self?.keyword {
-      //
-      //        self?.showSearchResult(keyword: keyword)
-      //
-      //        self?.setupTableView()
-      //      }
+      showSearchResult(keyword: keyword)
     }
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
-  }
-
   // MARK: - Filter search result
-  //  func showSearchResult(keyword: String) {
-  //
-  //    filterShopsByKeyword(keyword: keyword)
-  //
-  //    descriptionLabel.text = keyword + "的搜尋結果如下："
-  //
-  //    searchResultCount.text = String(self.filteredShopsAroundUser.count)
-  //  }
-  //
-  //  func filterShopsByKeyword(keyword: String) {
-  //
-  //    for index in 0..<shopsAroundUser.count {
-  //
-  //      let shop = shopsAroundUser[index]
-  //
-  //      self.fetchFeatureForShop(shop: shop)
-  //
-  //      self.fetchRecommendItemForShop(shop: shop)
-  //
-  //      if let recommendItemsArr = recommendItemsDic[shop.id] {
-  //
-  //        for index in 0..<recommendItemsArr.count {
-  //
-  //          if recommendItemsArr[index].item == keyword {
-  //
-  //            filteredShopsAroundUser.append(shop)
-  //
-  //          }
-  //        }
-  //      }
-  //    }
-  //  }
+    func showSearchResult(keyword: String) {
+
+      for index in 0..<shopsAroundUser.count {
+
+        let shop = shopsAroundUser[index]
+
+        // MARK: 這時候 recommendItemsDic 仍然是 0 elements!!
+        if let recommendItemsArrForEachShop = recommendItemsDic[shop.id] {
+
+          for index in 0..<recommendItemsArrForEachShop.count {
+
+            if recommendItemsArrForEachShop[index].item == keyword {
+
+              filteredShopsAroundUser.append(shop)
+
+            }
+          }
+          print("篩選完關鍵字的shop array = \(filteredShopsAroundUser)")
+        }
+      }
+
+      descriptionLabel.text = keyword + "的搜尋結果如下："
+
+      searchResultCount.text = String(self.filteredShopsAroundUser.count)
+    }
+
 
   // MARK: - Functions
   private func setupTableView() {
@@ -161,6 +154,8 @@ class SearchResultViewController: UIViewController {
 
         self?.featureDic[shop.id] = getFeature
 
+        self?.tableView.reloadData()
+
       case .failure(let error):
 
         print("fetchFeatureForShop: \(error)")
@@ -177,6 +172,8 @@ class SearchResultViewController: UIViewController {
       case .success(let getItems):
 
         self.recommendItemsDic[shop.id] = getItems
+
+        self.tableView.reloadData()
 
       case .failure(let error):
 
@@ -273,5 +270,6 @@ extension SearchResultViewController: UITableViewDataSource {
 //    performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
   }
 }
+
 extension SearchResultViewController: UITableViewDelegate {
 }

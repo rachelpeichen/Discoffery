@@ -47,7 +47,7 @@ class SearchViewModel {
     }
   }
 
-  func filterShopWithinDistance(latitude: Double, longitude: Double, distanceInMeters: Double = 2000) {
+  func filterShopWithinDistance(latitude: Double, longitude: Double, distanceInMeters: Double) {
 
     // Find all shops within input meters within user's current location; default is 2000 m for getting more data to filter
     CoffeeShopManager.shared.fetchShopWithinLatitude(latitude: latitude, distance: distanceInMeters) { [weak self] result in

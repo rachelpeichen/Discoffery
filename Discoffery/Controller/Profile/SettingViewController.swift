@@ -46,15 +46,18 @@ class SettingViewController: UIViewController {
 
     if let input = sender.text {
 
-      didChangeName = true
+      if !input.isEmpty {
 
-      updateUser.name = input
+        didChangeName = true
 
-      userNameLabel.text = input
+        updateUser.name = input
 
-      sendUpdateInfoBtn.isEnabled = true
+        userNameLabel.text = input
 
-      sendUpdateInfoBtn.backgroundColor = .B3
+        sendUpdateInfoBtn.isEnabled = true
+
+        sendUpdateInfoBtn.backgroundColor = .B3
+      }
     }
   }
 
@@ -67,7 +70,7 @@ class SettingViewController: UIViewController {
 
     updateUser.id = UserManager.shared.user.id
 
-    // MARK: 判斷更新的三種情況（Redundant）
+    // MARK: 判斷更新的三種情況（Kinda Redundant）
     if didChangeName == true && didUploadImg == true {
 
       // 名字＋大頭貼都有改

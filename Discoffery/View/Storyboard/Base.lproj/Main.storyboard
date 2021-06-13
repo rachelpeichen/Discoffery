@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sPR-oh-DbF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -978,10 +979,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qw2-aO-bGb">
-                                <rect key="frame" x="373" y="16" width="25" height="25"/>
+                                <rect key="frame" x="372" y="16" width="26" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="CpF-3c-c7J"/>
-                                    <constraint firstAttribute="height" constant="25" id="sub-hc-yoo"/>
+                                    <constraint firstAttribute="width" constant="26" id="CpF-3c-c7J"/>
+                                    <constraint firstAttribute="height" constant="26" id="sub-hc-yoo"/>
                                 </constraints>
                                 <state key="normal" image="share">
                                     <color key="titleColor" systemColor="linkColor"/>
@@ -991,9 +992,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9SE-s5-VOg">
-                                <rect key="frame" x="329" y="16" width="24" height="26"/>
+                                <rect key="frame" x="326" y="16" width="26" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="X6i-sw-qeX"/>
+                                    <constraint firstAttribute="width" constant="26" id="X6i-sw-qeX"/>
                                     <constraint firstAttribute="height" constant="26" id="zP4-a3-Wfw"/>
                                 </constraints>
                                 <state key="normal" image="like"/>
@@ -1186,7 +1187,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFb-1s-5hc" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="74" y="96" width="53.5" height="26"/>
+                                                    <rect key="frame" x="74" y="96" width="39.5" height="26"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="4ER-vL-AAt"/>
@@ -1196,7 +1197,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LO3-V7-fit" customClass="PaddingLabel" customModule="Discoffery" customModuleProvider="target">
-                                                    <rect key="frame" x="143.5" y="96" width="53.5" height="26"/>
+                                                    <rect key="frame" x="129.5" y="96" width="39.5" height="26"/>
                                                     <color key="backgroundColor" name="B5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="tNy-Wu-N4t"/>
@@ -1439,7 +1440,7 @@
                                             <constraint firstAttribute="height" constant="80" id="mud-D9-QGr"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這個咖啡廳名字超長的啦乾超這個咖啡廳名字超長的啦乾超超長" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uoz-Ky-eqX">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="這個咖啡廳名字超長的啦乾超這個咖啡廳名字超長的啦乾超超長GaspardGaspardGaspardGaspard" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uoz-Ky-eqX">
                                         <rect key="frame" x="104" y="16" width="180.5" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="hUB-hT-941"/>
@@ -1676,34 +1677,25 @@
             <size key="intrinsicContentSize" width="33" height="32"/>
         </designable>
         <designable name="D5B-1q-WOj">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
-        </designable>
-        <designable name="IZa-50-1iL">
-            <size key="intrinsicContentSize" width="100" height="16"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="LO3-V7-fit">
-            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
-        </designable>
-        <designable name="bWn-bl-fS8">
-            <size key="intrinsicContentSize" width="120" height="20"/>
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
         </designable>
         <designable name="ch0-iu-fL7">
-            <size key="intrinsicContentSize" width="79.5" height="29.5"/>
+            <size key="intrinsicContentSize" width="65.5" height="19.5"/>
         </designable>
         <designable name="d8v-8J-jXM">
-            <size key="intrinsicContentSize" width="79.5" height="29.5"/>
-        </designable>
-        <designable name="hLY-SC-ZOB">
-            <size key="intrinsicContentSize" width="90" height="14"/>
+            <size key="intrinsicContentSize" width="65.5" height="19.5"/>
         </designable>
         <designable name="ium-Dg-awL">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="jfL-bO-2uO">
-            <size key="intrinsicContentSize" width="49.5" height="27"/>
+            <size key="intrinsicContentSize" width="35.5" height="17"/>
         </designable>
         <designable name="nFb-1s-5hc">
-            <size key="intrinsicContentSize" width="53.5" height="29.5"/>
+            <size key="intrinsicContentSize" width="39.5" height="19.5"/>
         </designable>
         <designable name="ueu-lU-MD1">
             <size key="intrinsicContentSize" width="70" height="22"/>

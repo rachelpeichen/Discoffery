@@ -47,7 +47,7 @@ class HomeViewModel {
   }
 
   // MARK: - Map related functions
-  func getShopAroundUser(distance: Double = 500) {
+  func getShopAroundUser(distance: Double = 1500) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
 
@@ -55,7 +55,7 @@ class HomeViewModel {
     }
   }
 
-  func filterShopWithinDistance(latitude: Double, longitude: Double, distanceInMeters: Double = 500) {
+  func filterShopWithinDistance(latitude: Double, longitude: Double, distanceInMeters: Double) {
 
     // Find all shops within input meters within user's current location; default is 500 m
     CoffeeShopManager.shared.fetchShopWithinLatitude(latitude: latitude, distance: distanceInMeters) { [weak self] result in

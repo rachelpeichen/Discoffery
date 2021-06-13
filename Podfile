@@ -10,7 +10,7 @@ target 'Discoffery' do
 	
   pod 'Kingfisher'
 
-  pod 'MJRefresh'
+  pod "ESPullToRefresh"
 
   pod 'IQKeyboardManagerSwift'
   
