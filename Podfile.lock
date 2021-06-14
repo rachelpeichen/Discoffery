@@ -221,6 +221,7 @@ PODS:
   - Cosmos (23.0.0)
   - DynamicBlurView (4.1.0)
   - DZNEmptyDataSet (1.8.1)
+  - ESPullToRefresh (2.9.3)
   - Eureka (5.3.3)
   - Firebase/Analytics (6.34.0):
     - Firebase/Core
@@ -348,15 +349,11 @@ PODS:
   - JGProgressHUD (2.2)
   - Kingfisher (6.3.0)
   - leveldb-library (1.22.1)
-  - MJRefresh (3.6.1)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
-  - NVActivityIndicatorView (5.1.1):
-    - NVActivityIndicatorView/Base (= 5.1.1)
-  - NVActivityIndicatorView/Base (5.1.1)
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
   - PromisesObjC (1.2.12)
@@ -370,6 +367,7 @@ PODS:
 DEPENDENCIES:
   - Cosmos (~> 23.0)
   - DZNEmptyDataSet
+  - ESPullToRefresh
   - Eureka
   - Firebase/Analytics
   - Firebase/Auth
@@ -380,8 +378,6 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JGProgressHUD
   - Kingfisher
-  - MJRefresh
-  - NVActivityIndicatorView
   - PopupDialog
   - SwiftLint
   - YPImagePicker
@@ -393,6 +389,7 @@ SPEC REPOS:
     - Cosmos
     - DynamicBlurView
     - DZNEmptyDataSet
+    - ESPullToRefresh
     - Eureka
     - Firebase
     - FirebaseAnalytics
@@ -414,9 +411,7 @@ SPEC REPOS:
     - JGProgressHUD
     - Kingfisher
     - leveldb-library
-    - MJRefresh
     - nanopb
-    - NVActivityIndicatorView
     - PopupDialog
     - PromisesObjC
     - PryntTrimmerView
@@ -430,6 +425,7 @@ SPEC CHECKSUMS:
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
   DynamicBlurView: 58e18fae80bb614e34681a4486870e7d257b62e8
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
   Eureka: e6d720290c56bb23333ad1a0e020b2a98a0e9a43
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
@@ -451,9 +447,7 @@ SPEC CHECKSUMS:
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
-  MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
-  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
@@ -461,6 +455,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   YPImagePicker: 6f410f475bd22fa8cd430495b54d4b2f15865c2d
 
-PODFILE CHECKSUM: 98761afcd0684e575dc9b7d07edb7878b52bae39
+PODFILE CHECKSUM: f6d16b9c7f3404faf34410d638680559d1d0c49c
 
 COCOAPODS: 1.10.1

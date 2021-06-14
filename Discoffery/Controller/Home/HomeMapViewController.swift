@@ -304,7 +304,7 @@ extension HomeMapViewController: HomeViewModelDelegate {
 extension HomeMapViewController: MKMapViewDelegate {
   
   func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-    
+
     selectedAnnotation = view.annotation as? MKPointAnnotation
 
     for (index, item) in shopsDataForMap.enumerated() {
@@ -349,6 +349,8 @@ extension HomeMapViewController: MKMapViewDelegate {
     }
 
     annotationView?.markerTintColor = .B2
+
+    annotationView?.glyphText = "☕️"
 
     return annotationView
   }

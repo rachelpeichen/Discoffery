@@ -7,6 +7,7 @@
 
 import UIKit
 import JGProgressHUD
+import ESPullToRefresh
 
 class CollectionViewController: UIViewController {
 
@@ -16,7 +17,7 @@ class CollectionViewController: UIViewController {
   // MARK: - Properties
   var collectionViewModel = CollectionViewModel()
 
-  var savedShopsForAllCategory: [UserSavedShops] = []  {
+  var savedShopsForAllCategory: [UserSavedShops] = [] {
 
     didSet {
 
@@ -76,7 +77,13 @@ class CollectionViewController: UIViewController {
 
   @objc func navigateToNextVC() {
 
-    performSegue(withIdentifier: "navigateToAddCategoryVC", sender: self)
+    // Create the AddCategory View Controller.
+    if let addVC = self.storyboard?.instantiateViewController(withIdentifier: "addCategoryVC") as? AddCategoryViewController {
+
+      addVC.delegate = self
+
+      performSegue(withIdentifier: "navigateToAddCategoryVC", sender: self)
+    }
   }
 
   private func setupCollectionView() {
@@ -172,7 +179,7 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 extension CollectionViewController: UICollectionViewDelegate {
 }
 
-// MARK: - AddCategoryViewControllerDelegate
+//  MARK: - AddCategoryViewControllerDelegate
 extension CollectionViewController: AddCategoryViewControllerDelegate {
 
   func reloadCollectionView() {
@@ -180,8 +187,6 @@ extension CollectionViewController: AddCategoryViewControllerDelegate {
     collectionViewModel.onAddNewCategory = {
 
       self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
-
-      self.setupCollectionView()
-    } 
+    }
   }
 }

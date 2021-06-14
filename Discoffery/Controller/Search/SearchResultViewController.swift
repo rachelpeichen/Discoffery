@@ -51,50 +51,45 @@ class SearchResultViewController: UIViewController {
     setupTableView()
 
     // MARK: *Flow* fetch shop  -> fetch item for shop -> filter item == keyword -> sort by distance
-
     // 1: Search shops within distance on Firebase; default is 2000 m 我家偏僻用3000
-    let dispatchGroup = DispatchGroup()
-
     searchViewModel.getShopAroundUser(distance: 3000)
 
-    dispatchGroup.enter()
+    let dispatchGroup = DispatchGroup()
 
     searchViewModel.onSearchShopsData = { [weak self] shopsData in
 
       self?.shopsAroundUserArr = shopsData
-    }
 
-    dispatchGroup.leave()
+      // 2: Search each shop's RecommendItem and *get successs call back*
+      for index in 0..<shopsData.count {
 
-    // 2: Search each shop's RecommendItem and *get successs call back*
-    for index in 0..<shopsAroundUserArr.count {
+        let shop = shopsData[index]
 
-      dispatchGroup.enter()
+        dispatchGroup.enter() // Enter before fetching on Firebase
 
-      let shop = shopsAroundUserArr[index]
+        self?.searchViewModel.fetchRecommendItemForShop(shop: shop)
 
-      searchViewModel.fetchRecommendItemForShop(shop: shop)
+        self?.searchViewModel.onShopRecommendItem = { result in
 
-      searchViewModel.onShopRecommendItem = { result in
+          self?.recommendItemsDic[shop.id] = result
 
-        self.recommendItemsDic[shop.id] = result
-
-        dispatchGroup.leave()
-      }
-    }
-
-    // 3: Filter shopsAroundUser by keyword
-    dispatchGroup.notify(queue: .main) {
-
-      if let keyword = self.keyword {
-
-        self.filterShopsAroundUser(keyword: keyword)
+          dispatchGroup.leave()
+        }
       }
 
-      // 4: Show filtered result in ascending order of distance between user
-      self.sortSearchResult()
+      dispatchGroup.notify(queue: .main) {
 
-      self.tableView.reloadData()
+        // 3: Filter shopsAroundUser by keyword
+        if let keyword = self?.keyword {
+
+          self?.filterShopsAroundUser(keyword: keyword)
+        }
+
+        // 4: Show filtered result in ascending order of distance between user
+        self?.sortSearchResult()
+
+        self?.tableView.reloadData()
+      }
     }
   }
 
@@ -131,7 +126,6 @@ class SearchResultViewController: UIViewController {
           if recommendItemsArrForEachShop[index].item == keyword {
 
             searchResultArr.append(shop)
-
           }
         }
         print("篩選完關鍵字的shop array = \(searchResultArr)")
@@ -255,4 +249,18 @@ extension SearchResultViewController: UITableViewDataSource {
 }
 
 extension SearchResultViewController: UITableViewDelegate {
+}
+
+// MARK: - DZNEmptyDataSetDelegate：現在不會顯示ＱＱ
+extension SearchResultViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "沒有符合關鍵字的咖啡廳耶  "
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }

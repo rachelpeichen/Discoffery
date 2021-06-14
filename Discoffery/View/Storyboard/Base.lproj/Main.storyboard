@@ -947,6 +947,49 @@
             </objects>
             <point key="canvasLocation" x="1271.0144927536232" y="976.67410714285711"/>
         </scene>
+        <!--Map Route View Controller-->
+        <scene sceneID="X4F-Ia-a0y">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="UzP-m4-Ue7" customClass="MapRouteViewController" customModule="Discoffery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3gS-r3-UQk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="639"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ZrF-XS-I5Y">
+                                <rect key="frame" x="0.0" y="84" width="414" height="539"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAi-kF-n5G">
+                                <rect key="frame" x="16" y="56" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="cjR-yB-YOi"/>
+                                    <constraint firstAttribute="width" constant="20" id="xgL-oH-hzm"/>
+                                </constraints>
+                                <state key="normal" title="Back" image="back"/>
+                                <connections>
+                                    <action selector="onTapBackBtn:" destination="UzP-m4-Ue7" eventType="touchUpInside" id="gJq-Tf-Bdk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="k0o-AA-yIE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EAi-kF-n5G" firstAttribute="leading" secondItem="k0o-AA-yIE" secondAttribute="leading" constant="16" id="EMF-ig-Hpx"/>
+                            <constraint firstItem="ZrF-XS-I5Y" firstAttribute="leading" secondItem="k0o-AA-yIE" secondAttribute="leading" id="Fls-qh-gU2"/>
+                            <constraint firstItem="ZrF-XS-I5Y" firstAttribute="trailing" secondItem="k0o-AA-yIE" secondAttribute="trailing" id="Oai-o4-7dI"/>
+                            <constraint firstItem="ZrF-XS-I5Y" firstAttribute="top" secondItem="k0o-AA-yIE" secondAttribute="top" constant="40" id="QNr-jx-AUv"/>
+                            <constraint firstItem="k0o-AA-yIE" firstAttribute="bottom" secondItem="ZrF-XS-I5Y" secondAttribute="bottom" constant="16" id="QSf-e7-acq"/>
+                            <constraint firstItem="EAi-kF-n5G" firstAttribute="top" secondItem="3gS-r3-UQk" secondAttribute="top" constant="56" id="jx5-wq-Pww"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backBtn" destination="EAi-kF-n5G" id="0mj-Eh-7R5"/>
+                        <outlet property="mapView" destination="ZrF-XS-I5Y" id="LSh-7l-SYO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rej-FS-39E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="224.63768115942031" y="2229.5758928571427"/>
+        </scene>
         <!--Detail View Controller-->
         <scene sceneID="Kyn-8Z-Dgb">
             <objects>
@@ -1025,6 +1068,7 @@
                         <outlet property="saveButton" destination="9SE-s5-VOg" id="Via-SP-Dwc"/>
                         <outlet property="tableView" destination="jfW-TD-NoX" id="dHr-Xl-ljx"/>
                         <segue destination="zhm-Vg-yPG" kind="showDetail" identifier="navigateToReviewsVC" id="Qpr-Hr-yoV"/>
+                        <segue destination="UzP-m4-Ue7" kind="showDetail" identifier="navigateToMapRouteVC" animates="NO" id="MpE-de-s4s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQO-dw-GWv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1304,7 +1348,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMb-rw-8uH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773.91304347826087" y="2186.3839285714284"/>
+            <point key="canvasLocation" x="1404" y="2250"/>
         </scene>
         <!--Home List View Controller-->
         <scene sceneID="Vci-Ee-MkJ">

@@ -202,7 +202,9 @@ class UserManager {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops")
 
-    docRef.getDocuments() { querySnapshot, error in
+    let docRefOrderBy = docRef.order(by: "createdTime")
+
+    docRefOrderBy.getDocuments() { querySnapshot, error in
 
       if let error = error {
 
@@ -232,7 +234,7 @@ class UserManager {
 
   func addNewCategory(user: User, category: String, savedShopDoc: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops").document(category)
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document()
 
     savedShopDoc.id = docRef.documentID
 

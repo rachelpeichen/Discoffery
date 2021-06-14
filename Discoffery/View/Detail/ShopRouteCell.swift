@@ -14,7 +14,7 @@ class ShopRouteCell: ShopDetailBasicCell {
 
   @IBOutlet weak var address: UILabel!
 
-  @IBOutlet weak var checkRouteButton: UIButton!
+  @IBOutlet weak var checkRouteBtn: UIButton!
   
   override func awakeFromNib() {
     super.awakeFromNib()

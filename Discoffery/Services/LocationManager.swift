@@ -17,17 +17,9 @@ class LocationManager {
 
   weak var delegate: CLLocationManagerDelegate?
 
-  var currentLocation: CLLocation?
-
   var onCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
-  var currentCoordinate = CLLocationCoordinate2D() {
-
-    didSet {
-
-      onCurrentCoordinate?(currentCoordinate)
-    }
-  } 
+  var currentCoordinate = CLLocationCoordinate2D() // Save this for MapRouteVC
 
   // MARK: - Functions
   func trackLocation(completion: (_ latitude: Double, _ longitude: Double) -> Void) {
@@ -47,6 +39,10 @@ class LocationManager {
     let latitude = Double(currentLocation.coordinate.latitude)
     
     let longitude = Double(currentLocation.coordinate.longitude)
+
+    currentCoordinate.latitude = latitude
+
+    currentCoordinate.longitude = longitude
 
     // Pass to HomeMapViewModel for fetching data on Firebase
     completion(latitude, longitude)

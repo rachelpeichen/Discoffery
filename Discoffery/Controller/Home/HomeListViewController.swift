@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import ESPullToRefresh
 
 class HomeListViewController: UIViewController {
 
@@ -46,21 +47,39 @@ class HomeListViewController: UIViewController {
 
         if let coordinate = self?.homeViewModel?.userCurrentCoordinate {
 
-         if let distance = self?.calDistanceBetweenTwoLocations(
+          if let distance = self?.calDistanceBetweenTwoLocations(
 
-            location1Lat: coordinate.latitude,
+              location1Lat: coordinate.latitude,
 
-            location1Lon: coordinate.longitude,
+              location1Lon: coordinate.longitude,
 
-            location2Lat: shopsData[index].latitude,
+              location2Lat: shopsData[index].latitude,
 
-            location2Lon: shopsData[index].longitude) {
+              location2Lon: shopsData[index].longitude) {
 
-          self?.shopsDataForList[index].cheap = distance
-         }
+            self?.shopsDataForList[index].cheap = distance
+          }
         }
       }
       self?.shopsDataForList.sort { $0.cheap < $1.cheap }
+    }
+
+    // MARK: Header to show last updated time for refreshing data
+    tableView.es.addPullToRefresh { [unowned self] in
+
+      print(0) // 在這邊做更新資料相關事情
+
+      self.tableView.es.stopPullToRefresh()
+    }
+
+    // MARK: Footer to show loading more data and no more data
+    tableView.es.addInfiniteScrolling {
+      [unowned self] in
+
+      print(1) // 在這裡做載入更多資料的相關事情
+
+      tableView.es.stopLoadingMore()
+      tableView.es.noticeNoMoreData()
     }
   }
 

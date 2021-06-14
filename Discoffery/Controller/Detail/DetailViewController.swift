@@ -42,10 +42,11 @@ class DetailViewController: UIViewController {
     self.dismiss(animated: true, completion: nil)
   }
 
-  let activityVC = UIActivityViewController(activityItems: ["跟你分享一家很棒的咖啡廳"], applicationActivities: nil)
+  let activityVC = UIActivityViewController(activityItems: ["跟你分享一家很棒的咖啡廳😊"], applicationActivities: nil)
 
   @IBAction func onTapShareButton(_ sender: Any) {
-    // MARK: 現在的分享無法帶入資訊:還沒做
+
+    // MARK: 現在的分享無法帶入資訊
     present(activityVC, animated: true, completion: nil)
   }
   @IBOutlet weak var saveButton: UIButton!
@@ -85,10 +86,21 @@ class DetailViewController: UIViewController {
       reviewsVC.reviews = self.reviews
 
       reviewsVC.shopName = self.shopName
+
+    } else if let mapVC = segue.destination as? MapRouteViewController {
+
+      mapVC.shopName = self.shopName
+
+      if let shop = shop {
+
+        mapVC.shopLocation.latitude = shop.latitude
+
+        mapVC.shopLocation.longitude = shop.longitude
+      }
     }
   }
 
-  // MARK: TODO 這個fetchReviewsForShop是否能夠寫到HomeViewModel去?! 現在趕時間ＴＡＴ先放在這
+  // MARK: TODO 這個fetchReviewsForShop是否能夠寫到ViewModel去?! 現在趕時間ＴＡＴ先放在這
   func fetchReviewsForShop(shop: CoffeeShop) {
 
     ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
@@ -150,7 +162,11 @@ class DetailViewController: UIViewController {
   @objc func onTapCheckMoreReviewsBtn(sender: UIButton) {
 
     performSegue(withIdentifier: "navigateToReviewsVC", sender: sender)
+  }
 
+  @objc func onTapCheckRouteBtn(sender: UIButton) {
+
+    performSegue(withIdentifier: "navigateToMapRouteVC", sender: sender)
   }
 }
 
@@ -182,7 +198,6 @@ extension DetailViewController: UITableViewDataSource {
 
       if let cell = tableView.dequeueReusableCell(withIdentifier: "shopDescriptionCell", for: indexPath) as? ShopDescriptionCell {
 
-
         cell.checkAllReviewsBtn.tag = indexPath.row
 
         cell.checkAllReviewsBtn.addTarget(self, action: #selector(onTapCheckMoreReviewsBtn(sender:)), for: .touchUpInside)
@@ -213,6 +228,7 @@ extension DetailViewController: UITableViewDataSource {
         featureArr.append(self.feature.socket)
 
         cell.configure(with: featureArr)
+
         cell.selectionStyle = .none
 
         return cell
@@ -226,11 +242,12 @@ extension DetailViewController: UITableViewDataSource {
 
           cell.address.text = shop.address
           cell.markAnnotationForShop(shop: shop)
+          cell.checkRouteBtn.tag = indexPath.row
+          cell.checkRouteBtn.addTarget(self, action: #selector(onTapCheckRouteBtn(sender:)), for: .touchUpInside)
 
           cell.selectionStyle = .none
 
           return cell
-
         }
       }
 

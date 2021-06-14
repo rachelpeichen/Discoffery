@@ -31,7 +31,7 @@ class AddCategoryViewController: UIViewController {
 
   @IBAction func didEndAddCategory(_ sender: UITextField) {
 
-    if let category = sender.text  {
+    if let category = sender.text {
 
       userSavedShopDoc.category = category
 
@@ -47,15 +47,14 @@ class AddCategoryViewController: UIViewController {
 
     collectionViewModel.addNewCategory(category: userSavedShopDoc.category, user: UserManager.shared.user, savedShopDoc: &userSavedShopDoc)
 
-    self.showSuccessHUD(showInfo: "新增分類成功")
+      self.showSuccessHUD(showInfo: "新增分類成功")
+
+      self.delegate?.reloadCollectionView()
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
 
       self.dismiss(animated: true, completion: nil)
-
-      self.delegate?.reloadCollectionView()
     }
-
   }
 
   @IBAction func backToPreviousVC(_ sender: Any) {

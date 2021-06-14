@@ -33,6 +33,7 @@
 		783B236A265E299400F88687 /* RecommendItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783B2369265E299400F88687 /* RecommendItemManager.swift */; };
 		7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5152667D32100A82158 /* KingFisherWrapper.swift */; };
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
+		7848AA7426776FDE008A0925 /* MapRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7848AA7326776FDE008A0925 /* MapRouteViewController.swift */; };
 		784D65B826709711002CA45F /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D65B726709711002CA45F /* BlockListTableViewCell.swift */; };
 		786BF522266C0CB100704711 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF521266C0CB100704711 /* UserViewModel.swift */; };
 		786BF525266C102100704711 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF524266C102100704711 /* CollectionViewModel.swift */; };
@@ -138,6 +139,7 @@
 		783B2369265E299400F88687 /* RecommendItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendItemManager.swift; sourceTree = "<group>"; };
 		7844F5152667D32100A82158 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
+		7848AA7326776FDE008A0925 /* MapRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteViewController.swift; sourceTree = "<group>"; };
 		784D65B726709711002CA45F /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
 		786BF521266C0CB100704711 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		786BF524266C102100704711 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 			children = (
 				78DF24D4265206A400F47A04 /* DetailViewController.swift */,
 				78D4B3CB2658D1BC004EBB20 /* ReviewsPageViewController.swift */,
+				7848AA7326776FDE008A0925 /* MapRouteViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				781CD844266513E1005076CD /* IntroductionViewController.swift in Sources */,
 				78848667264D3A7100FA33F9 /* CoffeeShop.swift in Sources */,
 				78BFDCF3266EAA620096B29C /* CategoryViewController.swift in Sources */,
+				7848AA7426776FDE008A0925 /* MapRouteViewController.swift in Sources */,
 				781CD8102664AD46005076CD /* SelectedShopViewController.swift in Sources */,
 				78A31106265C275E00441FE7 /* Date+Extension.swift in Sources */,
 				78DF251826524DE700F47A04 /* ShopDetailBasicCell.swift in Sources */,

@@ -171,7 +171,7 @@ extension FirstRecommendViewController: UITableViewDelegate {
 extension FirstRecommendViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
   func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-    let str = "Coming soon..."
+    let str = "Coming soon...`  "
     let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
     return NSAttributedString(string: str, attributes: attrs)
   }
