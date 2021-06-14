@@ -41,31 +41,3 @@ extension UIView {
     layer.shadowOpacity = 0.5
   }
 }
-
-//extension UIView {
-//
-//  func layoutTextField(textField: UITextField) {
-//
-//    let border = CALayer()
-//
-//    let autoresizing = textField
-//
-//    autoresizing.text = textField.text
-//
-//    autoresizing.sizeToFit()
-//
-//    let width = CGFloat(1.5)
-//
-//    border.borderColor = UIColor.init(named: "G1") as! CGColor
-//
-//    border.frame = CGRect(x: 0, y: textField.frame.size.height - width, width:  autoresizing.frame.size.width, height: textField.frame.size.height)
-//
-//    border.borderWidth = width
-//
-//    textField.borderStyle = .none
-//
-//    textField.layer.addSublayer(border)
-//
-//    textField.layer.masksToBounds = true
-//  }
-//}

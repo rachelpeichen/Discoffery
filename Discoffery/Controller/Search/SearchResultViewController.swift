@@ -19,6 +19,8 @@ class SearchResultViewController: UIViewController {
 
   var recommendItemsDic: [String: [RecommendItem]] = [:] // Use shop.id as key to find [RecommendItem] belongs to which shop
 
+  var featureDic: [String: [Feature]] = [:] // now no use this
+
   var keyword: String?
 
   var mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
@@ -76,20 +78,20 @@ class SearchResultViewController: UIViewController {
           dispatchGroup.leave()
         }
       }
+    }
 
-      dispatchGroup.notify(queue: .main) {
+    dispatchGroup.notify(queue: .main) {
 
-        // 3: Filter shopsAroundUser by keyword
-        if let keyword = self?.keyword {
+      // 3: Filter shopsAroundUser by keyword
+      if let keyword = self.keyword {
 
-          self?.filterShopsAroundUser(keyword: keyword)
-        }
-
-        // 4: Show filtered result in ascending order of distance between user
-        self?.sortSearchResult()
-
-        self?.tableView.reloadData()
+        self.filterShopsAroundUser(keyword: keyword)
       }
+
+      // 4: Show filtered result in ascending order of distance between user
+      self.sortSearchResult()
+
+      self.tableView.reloadData()
     }
   }
 
@@ -225,13 +227,13 @@ extension SearchResultViewController: UITableViewDataSource {
 
       cell.configureItem(with: itemLayoutArr)
 
-      //      guard let featureArr = featureDic[filterShop.id] else { return UITableViewCell() }
-      //
-      //      var featureLayoutArr = featureArr[0].special
-      //
-      //      featureLayoutArr.append(featureArr[0].timeLimit)
-      //
-      //      cell.configureFeature(with: featureLayoutArr)
+      guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
+
+      var featureLayoutArr = featureArr[0].special
+
+      featureLayoutArr.append(featureArr[0].timeLimit)
+
+      cell.configureFeature(with: featureLayoutArr)
 
       cell.selectionStyle = .none
 

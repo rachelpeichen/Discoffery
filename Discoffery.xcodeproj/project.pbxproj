@@ -34,6 +34,7 @@
 		7844F5162667D32100A82158 /* KingFisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5152667D32100A82158 /* KingFisherWrapper.swift */; };
 		7844F5192667D34D00A82158 /* PopupDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */; };
 		7848AA7426776FDE008A0925 /* MapRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7848AA7326776FDE008A0925 /* MapRouteViewController.swift */; };
+		7848AB112677A23B008A0925 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7848AB102677A23B008A0925 /* CHTCollectionViewWaterfallLayout.m */; };
 		784D65B826709711002CA45F /* BlockListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784D65B726709711002CA45F /* BlockListTableViewCell.swift */; };
 		786BF522266C0CB100704711 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF521266C0CB100704711 /* UserViewModel.swift */; };
 		786BF525266C102100704711 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BF524266C102100704711 /* CollectionViewModel.swift */; };
@@ -140,6 +141,8 @@
 		7844F5152667D32100A82158 /* KingFisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingFisherWrapper.swift; sourceTree = "<group>"; };
 		7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogWrapper.swift; sourceTree = "<group>"; };
 		7848AA7326776FDE008A0925 /* MapRouteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouteViewController.swift; sourceTree = "<group>"; };
+		7848AB0F2677A234008A0925 /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
+		7848AB102677A23B008A0925 /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
 		784D65B726709711002CA45F /* BlockListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockListTableViewCell.swift; sourceTree = "<group>"; };
 		786BF521266C0CB100704711 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		786BF524266C102100704711 /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
@@ -322,7 +325,9 @@
 			isa = PBXGroup;
 			children = (
 				7870A34E267120910012F15F /* UIScrollView+EmptyDataSet.h */,
+				7848AB0F2677A234008A0925 /* CHTCollectionViewWaterfallLayout.h */,
 				7870A34F267120910012F15F /* UIScrollView+EmptyDataSet.m */,
+				7848AB102677A23B008A0925 /* CHTCollectionViewWaterfallLayout.m */,
 				7844F5152667D32100A82158 /* KingFisherWrapper.swift */,
 				7844F5182667D34D00A82158 /* PopupDialogWrapper.swift */,
 				78C52386266B81DE00A824E0 /* JGProgressHUDWrapper.swift */,
@@ -852,6 +857,7 @@
 				78C52377266B570F00A824E0 /* LoginViewModel.swift in Sources */,
 				78C52391266BB37E00A824E0 /* CategoryCollectionViewCell.swift in Sources */,
 				783B236A265E299400F88687 /* RecommendItemManager.swift in Sources */,
+				7848AB112677A23B008A0925 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				7884861D264C129D00FA33F9 /* SelectionView.swift in Sources */,
 				7884864E264CFFE300FA33F9 /* LandscapeCardCell.swift in Sources */,
 				781CD83F26650E9C005076CD /* KeywordsCollectionViewCell.swift in Sources */,

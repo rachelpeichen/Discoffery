@@ -18,165 +18,91 @@ class FirstRecommendViewController: UIViewController {
 
   var recommendItemsDic: [String: [RecommendItem]] = [:]
 
-  @IBOutlet weak var tableView: UITableView!
-  
+  @IBOutlet weak var collectionView: UICollectionView!
+
   override func viewDidLoad() {
     super.viewDidLoad()
-//
-//    // Do any additional setup after loading the view.
-//    recommendViewModel.fetchShopByRecommendItem()
-//
-//    recommendViewModel.onShopsByRecommendItem = {
-//
-//      self.shopsForRecommend = self.recommendViewModel.shopsByRecommendItem
-//
-//      let result = self.shopsForRecommend
-//
-//      for index in 0..<result.count {
-//
-//        self.fetchFeatureForShop(shop: result[index])
-//
-//        self.fetchRecommendItemForShop(shop: result[index])
-//      }
-//    }
-//    setupTableView()
 
-    tableView.emptyDataSetSource = self
+    // Do any additional setup after loading the view.
+    recommendViewModel.getShopAroundUser(distance: 2000)
 
-    tableView.emptyDataSetDelegate = self
+    recommendViewModel.onRecommendShopAroundUser = { [weak self] shopsData in
 
-    tableView.tableFooterView = UIView()
-  }
+      self?.shopsForRecommend = shopsData
 
-  // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
-  func fetchFeatureForShop(shop: CoffeeShop) {
+      for index in 0..<shopsData.count {
 
-    FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
+        let shop = shopsData[index]
 
-      switch result {
+        self?.recommendViewModel.fetchRecommendItemsForShop(shop: shop)
 
-      case .success(let getFeature):
+        self?.recommendViewModel.onShopRecommendItems = { result in
 
-        self?.featureDic[shop.id] = getFeature
-
-        self?.tableView.reloadData()
-
-      case .failure(let error):
-
-        print("fetchFeatureForShop: \(error)")
+          self?.recommendItemsDic[shop.id] = result
+        }
       }
+      self?.setupCollectionView()
     }
   }
 
-  func fetchRecommendItemForShop(shop: CoffeeShop) {
+  // MARK: - Functions
+  private func setupCollectionView() {
 
-    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
+    collectionView.register(UINib(nibName: ProtraitCardCollectionCell.identifier, bundle: nil), forCellWithReuseIdentifier: ProtraitCardCollectionCell.identifier)
 
-      switch result {
+    collectionView.delegate = self
 
-      case .success(let getItems):
+    collectionView.dataSource = self
 
-        self.recommendItemsDic[shop.id] = getItems
+    collectionView.reloadWithoutAnimation()
 
-        self.tableView.reloadData()
+    let layout = CHTCollectionViewWaterfallLayout()
 
-      case .failure(let error):
+    layout.minimumColumnSpacing = 16.0
 
-        print("fetchFeatureForShop: \(error)")
-      }
-    }
-  }
+    layout.minimumInteritemSpacing = 16.0
 
-  private func setupTableView() {
-
-    tableView.delegate = self
-
-    tableView.dataSource = self
-
-    tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
-
-    tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil), forCellReuseIdentifier: "shopFeatureCell")
-
-    tableView.estimatedRowHeight = 320
-
-    tableView.rowHeight = UITableView.automaticDimension
-
-    tableView.separatorStyle = .none
-
-    tableView.reloadData()
+    self.collectionView.collectionViewLayout = layout
   }
 }
+extension FirstRecommendViewController: UICollectionViewDataSource {
 
-extension FirstRecommendViewController: UITableViewDataSource {
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
     return shopsForRecommend.count
   }
 
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-    if let cell = tableView.dequeueReusableCell(
-        withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProtraitCardCollectionCell.identifier, for: indexPath) as? ProtraitCardCollectionCell {
 
       let shop = shopsForRecommend[indexPath.row]
 
-      let mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
+      // MARK: 這是為了demo上app store要改掉！
+      let mockImages = ["mock_protrait_1", "mock_protrait_2", "mock_protrait_3", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6", "mock_protrait_1", "mock_protrait_2", "mock_protrait_3", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6","mock_protrait_4", "mock_protrait_5", "mock_protrait_6"]
 
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
+      cell.image.image = UIImage.init(named: mockImages[indexPath.row])
 
-      cell.cafeName.text = shop.name
-
-      cell.distance.text = ""
-
-      cell.starsView.rating = shop.tasty
-
-      cell.openHours.text = "疫情暫停營業"
-
-      guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
-
-      var itemLayoutArr: [String] = []
-
-      itemLayoutArr.append(contentsOf: recommendItemsArr.map { $0.item })
-
-      cell.configureItem(with: itemLayoutArr)
-
-      guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
-
-      var featureLayoutArr = featureArr[0].special
-
-      featureLayoutArr.append(featureArr[0].timeLimit)
-
-      cell.configureFeature(with: featureLayoutArr)
-
-      cell.selectionStyle = .none
-
+      cell.name.text = shop.name
       return cell
     }
-    return UITableViewCell()
-  }
-
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-    // 連接到Detail VC
-//    performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
+    return CategoryCollectionViewCell()
   }
 }
 
-extension FirstRecommendViewController: UITableViewDelegate {
-  // Do sth
+extension FirstRecommendViewController: CHTCollectionViewDelegateWaterfallLayout {
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+    let itemHeight = Int.random(in: 200...300)
+
+    return CGSize(width: 150, height: itemHeight)
+  }
+
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, columnCountForSection section: Int) -> Int {
+    return 2
+  }
 }
 
-// MARK: - DZNEmptyDataSetDelegate
-extension FirstRecommendViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-
-  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-    let str = "Coming soon...`  "
-    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
-    return NSAttributedString(string: str, attributes: attrs)
-  }
-
-  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
-    return UIImage(named: "logo")
-  }
+extension FirstRecommendViewController: UICollectionViewDelegate {
 }

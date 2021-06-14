@@ -23,7 +23,7 @@ class SearchViewModel {
     }
   }
 
-  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)? // For SearchResultVC
+  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)? // 沒用到 之後精煉時要檢查修掉
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {
 

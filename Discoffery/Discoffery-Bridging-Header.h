@@ -3,3 +3,5 @@
 //
 
 #import "UIScrollView+EmptyDataSet.h"
+
+#import "CHTCollectionViewWaterfallLayout.h"
