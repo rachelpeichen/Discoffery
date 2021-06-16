@@ -94,6 +94,7 @@ class UserManager {
     }
   }
 
+  // MARK: Upload Img
   func uploadImgFromUser(pickerImage: UIImage, folderName: String, completion: @escaping (Result<String, Error>) -> Void) {
 
     let uuid = UUID().uuidString

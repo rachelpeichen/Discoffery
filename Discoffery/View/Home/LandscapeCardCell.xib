@@ -142,6 +142,7 @@
                             <constraint firstAttribute="height" constant="22" id="z43-Bw-AJh"/>
                         </constraints>
                         <state key="normal" image="like"/>
+                        <state key="disabled" image="like_fill"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -190,6 +191,7 @@
     </objects>
     <resources>
         <image name="like" width="32" height="32"/>
+        <image name="like_fill" width="32" height="32"/>
         <image name="mock_rect4" width="320" height="213.5"/>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

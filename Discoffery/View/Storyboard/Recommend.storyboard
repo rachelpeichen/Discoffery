@@ -29,6 +29,15 @@
                                     <segue destination="fua-WT-nai" kind="embed" id="8xk-q8-j2L"/>
                                 </connections>
                             </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="v5f-q4-Cd9">
+                                <rect key="frame" x="79" y="384" width="256" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon...😉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mje-Hm-ROE">
+                                <rect key="frame" x="140" y="528" width="134" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="G1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cta-8j-jZt"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -36,16 +45,22 @@
                             <constraint firstItem="O2A-uf-3Oc" firstAttribute="leading" secondItem="URo-Fx-hSL" secondAttribute="leading" id="1Rm-j8-Wh2"/>
                             <constraint firstItem="URo-Fx-hSL" firstAttribute="top" secondItem="O2A-uf-3Oc" secondAttribute="bottom" id="4wP-py-MUs"/>
                             <constraint firstItem="URo-Fx-hSL" firstAttribute="leading" secondItem="cta-8j-jZt" secondAttribute="leading" id="7R6-9I-8Eh"/>
+                            <constraint firstItem="v5f-q4-Cd9" firstAttribute="centerY" secondItem="KnD-35-Nv9" secondAttribute="centerY" id="8z8-H7-oLc"/>
+                            <constraint firstItem="Mje-Hm-ROE" firstAttribute="centerX" secondItem="KnD-35-Nv9" secondAttribute="centerX" id="AMM-C8-2t8"/>
                             <constraint firstItem="URo-Fx-hSL" firstAttribute="trailing" secondItem="cta-8j-jZt" secondAttribute="trailing" id="J7r-eS-Y3R"/>
                             <constraint firstItem="URo-Fx-hSL" firstAttribute="bottom" secondItem="cta-8j-jZt" secondAttribute="bottom" id="NqJ-0g-xk9"/>
+                            <constraint firstItem="v5f-q4-Cd9" firstAttribute="centerX" secondItem="KnD-35-Nv9" secondAttribute="centerX" id="QoG-tG-i1T"/>
                             <constraint firstItem="O2A-uf-3Oc" firstAttribute="top" secondItem="cta-8j-jZt" secondAttribute="top" id="XWt-9N-lUd"/>
+                            <constraint firstItem="Mje-Hm-ROE" firstAttribute="top" secondItem="v5f-q4-Cd9" secondAttribute="bottom" constant="16" id="awi-Hk-vHC"/>
                             <constraint firstItem="URo-Fx-hSL" firstAttribute="top" secondItem="KnD-35-Nv9" secondAttribute="top" constant="155" id="daP-wr-DBb"/>
                             <constraint firstItem="O2A-uf-3Oc" firstAttribute="trailing" secondItem="URo-Fx-hSL" secondAttribute="trailing" id="eIX-gp-jjC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="推薦" id="8sz-Vv-O75"/>
                     <connections>
+                        <outlet property="announce" destination="Mje-Hm-ROE" id="ds1-CQ-2fB"/>
                         <outlet property="firstRecommendContainerView" destination="URo-Fx-hSL" id="DBB-vm-hph"/>
+                        <outlet property="logo" destination="v5f-q4-Cd9" id="Bci-u6-qem"/>
                         <outlet property="selectionView" destination="O2A-uf-3Oc" id="yJm-kP-GlV"/>
                     </connections>
                 </viewController>
@@ -127,6 +142,7 @@
     <resources>
         <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
         <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
+        <image name="logo" width="256" height="127.5"/>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

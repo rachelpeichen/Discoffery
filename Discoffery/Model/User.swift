@@ -10,7 +10,7 @@ struct User: Codable {
 
   var id: String = "default"            // User.documentID (uid)
 
-  var name: String = "default"
+  var name: String = "Pei Pei"
 
   var profileImg: String = "default" // Now only mock data
 

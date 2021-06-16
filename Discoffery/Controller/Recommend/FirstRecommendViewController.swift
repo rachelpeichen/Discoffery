@@ -78,10 +78,10 @@ extension FirstRecommendViewController: UICollectionViewDataSource {
 
       let shop = shopsForRecommend[indexPath.row]
 
-      // MARK: 這是為了demo上app store要改掉！
-      let mockImages = ["mock_protrait_1", "mock_protrait_2", "mock_protrait_3", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6", "mock_protrait_1", "mock_protrait_2", "mock_protrait_3", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6","mock_protrait_4", "mock_protrait_5", "mock_protrait_6"]
+      // MARK: Mock Data
+      let mockImages = ["mock_protrait_1", "mock_protrait_2", "mock_protrait_3", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6", "mock_protrait_1", "mock_protrait_2", "mock_protrait_3", "mock_protrait_4", "mock_protrait_5", "mock_protrait_6"]
 
-      cell.image.image = UIImage.init(named: mockImages[indexPath.row])
+      cell.image.image = UIImage.init(named: mockImages.randomElement()!)
 
       cell.name.text = shop.name
       return cell

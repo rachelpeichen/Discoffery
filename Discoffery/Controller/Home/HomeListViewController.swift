@@ -22,6 +22,8 @@ class HomeListViewController: UIViewController {
 
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
+  var userSavedShopsArr: [String] = []
+
   var mockImages = ["mock_rect1", "mock_rect2", "mock_rect3", "mock_rect4", "mock_rect5"]
 
   // MARK: - Outlets
@@ -199,7 +201,6 @@ class HomeListViewController: UIViewController {
 extension HomeListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     return shopsDataForList.count
   }
   

@@ -25,7 +25,7 @@ class RecommendViewModel {
   var userCurrentCoordinate: CLLocationCoordinate2D?
 
   // MARK: - Distance between shop & user related functions
-  func getShopAroundUser(distance: Double = 2000) {
+  func getShopAroundUser(distance: Double = 1500) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
 

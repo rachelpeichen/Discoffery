@@ -15,7 +15,7 @@ struct Review: Codable {
 
   var user: String = "uid"          // User.documentID (uid)
 
-  var userName: String = "User"
+  var userName: String = "Pei Pei"
 
   var userImg: String?
 

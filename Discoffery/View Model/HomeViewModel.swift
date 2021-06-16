@@ -23,6 +23,8 @@ class HomeViewModel {
   
   var onShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
 
+  var onFetchSavedShopsForAllCategory: (() -> Void)?
+
   var shopsData: [CoffeeShop] = [] {
 
     didSet {
@@ -46,8 +48,16 @@ class HomeViewModel {
     }
   }
 
+  var savedShopsForAllCategory: [UserSavedShops] = [] {
+
+    didSet {
+
+      onFetchSavedShopsForAllCategory?()
+    }
+  }
+
   // MARK: - Map related functions
-  func getShopAroundUser(distance: Double = 1500) {
+  func getShopAroundUser(distance: Double = 1000) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
 
@@ -57,7 +67,7 @@ class HomeViewModel {
 
   func filterShopWithinDistance(latitude: Double, longitude: Double, distanceInMeters: Double) {
 
-    // Find all shops within input meters within user's current location; default is 500 m
+    // Find all shops within input meters within user's current location; default is 1000 m
     CoffeeShopManager.shared.fetchShopWithinLatitude(latitude: latitude, distance: distanceInMeters) { [weak self] result in
 
       switch result {
@@ -123,5 +133,23 @@ class HomeViewModel {
         print("publishNewShop.failure\(error)")
       }
     })
+  }
+
+  // MARK: check if user has saved the shop
+  func fetchSavedShopsForAllCategory(user: User) {
+
+    UserManager.shared.fetchSavedShopsForAllCategory(user: user) { result in
+
+      switch result {
+
+      case .success(let savedShopDocs):
+
+        self.savedShopsForAllCategory = savedShopDocs
+
+      case .failure(let error):
+
+        print("fetchSavedShopsForAllCategory.failure: \(error)")
+      }
+    }
   }
 }

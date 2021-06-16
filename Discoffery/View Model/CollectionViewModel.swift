@@ -36,7 +36,7 @@ class CollectionViewModel {
     }
   }
 
-  var savedShopsForAllCategory = [UserSavedShops]() {
+  var savedShopsForAllCategory: [UserSavedShops] = [] {
 
     didSet {
 
@@ -94,7 +94,6 @@ class CollectionViewModel {
       case .success(let savedShopDocs):
 
         self.savedShopsForAllCategory = savedShopDocs
-
 
       case .failure(let error):
 

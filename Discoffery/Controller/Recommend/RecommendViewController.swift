@@ -9,6 +9,7 @@ import UIKit
 
 class RecommendViewController: UIViewController {
 
+  // MARK: - Properties
    private enum ButtonSet: String {
 
       case kol = "特調冷萃"
@@ -19,6 +20,11 @@ class RecommendViewController: UIViewController {
     }
 
   private let buttonArray: [ButtonSet] = [.kol, .coldbrew, .dessert]
+
+  // MARK: - Outlets
+  @IBOutlet weak var logo: UIImageView!
+
+  @IBOutlet weak var announce: UILabel!
 
   @IBOutlet weak var firstRecommendContainerView: UIView!
 
@@ -37,6 +43,8 @@ class RecommendViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setupVC()
+    logo.isHidden = true
+    announce.isHidden = true
   }
 
   func setupVC() {
@@ -59,14 +67,20 @@ extension RecommendViewController: SelectionViewDelegate {
         case 0:
 
           firstRecommendContainerView.isHidden = false
+          logo.isHidden = true
+          announce.isHidden = true
 
         case 1:
 
-          firstRecommendContainerView.isHidden = false
+          firstRecommendContainerView.isHidden = true
+          logo.isHidden = false
+          announce.isHidden = false
 
         case 2:
 
-          firstRecommendContainerView.isHidden = false
+          firstRecommendContainerView.isHidden = true
+          logo.isHidden = false
+          announce.isHidden = false
 
         default:
 
