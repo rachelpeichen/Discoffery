@@ -24,81 +24,47 @@ class ReviewManager {
 
     let docRef = Firestore.firestore().collection("shops").document(shop.id).collection("reviews")
 
-    docRef.getDocuments() { querySnapshot, error in
+    docRef.getDocuments { querySnapshot, error in
 
       if let error = error {
-
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
-        var reviews = [Review]()
+        var reviewsArr: [Review] = []
 
-        for document in querySnapshot!.documents {
+        for document in querySnapshot.documents {
 
           do {
             if let review = try document.data(as: Review.self, decoder: Firestore.Decoder()) {
-
-              reviews.append(review)
+              reviewsArr.append(review)
             }
-
           } catch {
-
             completion(.failure(error))
           }
         }
-        completion(.success(reviews))
+        completion(.success(reviewsArr))
       }
     }
   }
 
-  func publishUserReview(shop: CoffeeShop, review: inout Review, uploadedImgURL: [String], completion: @escaping (Result<String, Error>) -> Void) {
+  func publishUserReview(shop: CoffeeShop, review: inout Review, uploadedImgUrlArr: [String], completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("shops").document(shop.id).collection("reviews").document()
-
     review.id = docRef.documentID
-
     review.user = UserManager.shared.user.id
-
     review.userName = UserManager.shared.user.name
-
     review.parentId = shop.id
-
     review.postTime = Date().millisecondsSince1970
-
-    review.imgURL = uploadedImgURL
+    review.imgURL = uploadedImgUrlArr
 
     docRef.setData(review.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
-        completion(.success("Success"))
-      }
-    }
-  }
-
-  func publishNewShopReview(shopId: String, review: inout Review, completion: @escaping (Result<String, Error>) -> Void) {
-
-    let docRef = database.collection("newShopsDemo").document(shopId).collection("reviews").document()
-
-    review.id = docRef.documentID
-
-    review.parentId = shopId
-
-    review.postTime = Date().millisecondsSince1970
-
-    docRef.setData(review.toDict) { error in
-
-      if let error = error {
-
-        completion(.failure(error))
-
-      } else {
-
         completion(.success("Success"))
       }
     }

@@ -22,30 +22,27 @@ class FeatureManager {
 
     let docRef = database.collection("shops").document(shop.id).collection("features")
 
-    docRef.getDocuments() { querySnapshot, error in
+    docRef.getDocuments { querySnapshot, error in
 
       if let error = error {
-        
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
-        var feature: [Feature] = []
+        var featureArr: [Feature] = []
 
-        for document in querySnapshot!.documents {
+        for document in querySnapshot.documents {
 
           do {
             if let getFeature = try document.data(as: Feature.self, decoder: Firestore.Decoder()) {
-
-              feature.append(getFeature)
+              featureArr.append(getFeature)
             }
-
           } catch {
             completion(.failure(error))
           }
         }
-
-        completion(.success(feature))
+        completion(.success(featureArr))
       }
     }
   }
@@ -53,22 +50,17 @@ class FeatureManager {
   func publishNewShopFeature(shopId: String, feature: inout Feature, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("newShopsDemo").document(shopId).collection("features").document()
-
     feature.id = docRef.documentID
-
     feature.parentId = shopId
 
     docRef.setData(feature.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
         completion(.success("Success"))
       }
     }
   }
-
 }

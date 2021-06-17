@@ -46,25 +46,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var storyboard: UIStoryboard?
 
-    firebaseAuth.addStateDidChangeListener { auth, user in
+    firebaseAuth.addStateDidChangeListener { _, user in
 
       if let user = user {
-
         UserManager.shared.user.id = user.uid
-
-        storyboard = .main 
+        storyboard = .main
 
         if let homeVC = storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as? UITabBarController {
-
           self.window?.rootViewController = homeVC
         }
-
       } else {
-
         storyboard = .login
 
         if let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginViewController {
-
           self.window?.rootViewController = loginVC
         }
       }

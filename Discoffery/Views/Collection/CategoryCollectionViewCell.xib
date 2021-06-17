@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCollectionViewCell" id="gTV-IL-0wX" customClass="CategoryCollectionViewCell" customModule="Discoffery" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="235" height="274"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="235" height="274"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnk-Ar-vDt" userLabel="Img Container View">
+                        <rect key="frame" x="16" y="16" width="203" height="203"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unsplash_protrait_1" translatesAutoresizingMaskIntoConstraints="NO" id="D5M-Te-87A" userLabel="Img View">
+                                <rect key="frame" x="0.0" y="0.0" width="203" height="203"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="D5M-Te-87A" secondAttribute="height" multiplier="1:1" id="Fns-Dw-2fj"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="D5M-Te-87A" firstAttribute="leading" secondItem="Rnk-Ar-vDt" secondAttribute="leading" id="7hT-it-m96"/>
+                            <constraint firstItem="D5M-Te-87A" firstAttribute="top" secondItem="Rnk-Ar-vDt" secondAttribute="top" id="ZYb-H5-InY"/>
+                            <constraint firstAttribute="trailing" secondItem="D5M-Te-87A" secondAttribute="trailing" id="fRc-IV-1V2"/>
+                            <constraint firstAttribute="bottom" secondItem="D5M-Te-87A" secondAttribute="bottom" id="xBb-Vy-RTj"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igo-H2-jo7">
+                        <rect key="frame" x="94.5" y="235" width="46" height="23"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <color key="textColor" name="G1"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="igo-H2-jo7" secondAttribute="bottom" constant="16" id="0U0-Yi-3hp"/>
+                <constraint firstItem="Rnk-Ar-vDt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="1lP-PD-d9j"/>
+                <constraint firstAttribute="trailing" secondItem="Rnk-Ar-vDt" secondAttribute="trailing" constant="16" id="9dl-V8-4bG"/>
+                <constraint firstItem="igo-H2-jo7" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="FDw-jG-9nx"/>
+                <constraint firstItem="igo-H2-jo7" firstAttribute="top" secondItem="Rnk-Ar-vDt" secondAttribute="bottom" constant="16" id="iUW-pu-M1Q"/>
+                <constraint firstItem="Rnk-Ar-vDt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="k6Q-sZ-1Cz"/>
+            </constraints>
+            <size key="customSize" width="164" height="212"/>
+            <connections>
+                <outlet property="categoryLabel" destination="igo-H2-jo7" id="vGg-ew-jcw"/>
+                <outlet property="mainImgContainerView" destination="Rnk-Ar-vDt" id="ZIc-2f-rSj"/>
+                <outlet property="mainImgView" destination="D5M-Te-87A" id="1va-bt-rPA"/>
+            </connections>
+            <point key="canvasLocation" x="-85.507246376811594" y="159.04017857142856"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="unsplash_protrait_1" width="320" height="480"/>
+        <namedColor name="G1">
+            <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

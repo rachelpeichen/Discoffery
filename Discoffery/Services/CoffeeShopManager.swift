@@ -6,12 +6,11 @@
 //
 
 import Foundation
+import CoreLocation
 import Firebase
 import FirebaseFirestoreSwift
-import CoreLocation
 
 enum FirebaseError: Error {
-
   case notExistError
 }
 
@@ -22,17 +21,13 @@ class CoffeeShopManager {
 
   lazy var database = Firestore.firestore()
 
-  // MARK: - Functions
+  // MARK: - New Shop Related Functions
   func publishNewShop(newShop: inout NewCoffeeShop, uploadedImgURL: [String], completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("newShopsDemo").document()
-
     newShop.id = docRef.documentID
-
     newShop.reporterId = UserManager.shared.user.id
-
     newShop.reportTime = Date().millisecondsSince1970
-
     newShop.imgURL = uploadedImgURL
 
     docRef.setData(newShop.toDict) { error in
@@ -46,18 +41,49 @@ class CoffeeShopManager {
     }
   }
 
+  func fetchNewShops(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
+
+    let docRef = database.collection("newShopsDemo")
+    docRef.whereField("name", isEqualTo: name).getDocuments { querySnapshot, error in
+
+      if let error = error {
+        print("Error getting documents: \(error)")
+
+      } else {
+        guard let querySnapshot = querySnapshot else { return }
+
+        if querySnapshot.documents.isEmpty {
+          completion(.failure(FirebaseError.notExistError))
+
+        } else {
+          var newShop = CoffeeShop()
+
+          for document in querySnapshot.documents {
+            do {
+              if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
+                newShop = shop
+              }
+            } catch {
+              completion(.failure(error))
+            }
+          }
+          completion(.success(newShop))
+        }
+      }
+    }
+  }
+
+  // MARK: - Geo Distance Related Functions
   func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
-    // Find all shops within input meter of user's current location
+    // Find all shops within input meter around user's current location
 
-    // The number of meters per degree of latidue (roughly) 換算 1 degrees 的緯度 ~ 111194 m
+    // The number of meters per degree of latidue (roughly)
     let metersPerLatDegree = (Double.pi / 180) * 6371000
-
-    let lowerLat = latitude - (distance / metersPerLatDegree) // 緯度下限
-    let upperLat = latitude + (distance / metersPerLatDegree) // 緯度上限
+    let lowerLat = latitude - (distance / metersPerLatDegree)
+    let upperLat = latitude + (distance / metersPerLatDegree)
 
     let docRef = database.collection("shops")
-
-    // 先查緯度: Firebase range filters can be implemented on only one field
+    // Query latitude first because of the limit of Firebase's Geopoint query range
     let queryByLat = docRef
       .whereField("latitude", isGreaterThan: lowerLat)
       .whereField("latitude", isLessThan: upperLat)
@@ -68,102 +94,53 @@ class CoffeeShopManager {
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
         var shopsFilterd: [CoffeeShop] = []
 
-        for document in querySnapshot!.documents {
-
+        for document in querySnapshot.documents {
           do {
             if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-              
               shopsFilterd.append(shop)
             }
-
           } catch {
             completion(.failure(error))
           }
         }
-        
         completion(.success(shopsFilterd))
       }
     }
   }
 
+  // MARK: - Fetching Existing Shops Related Functions
   func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
 
     let docRef = database.collection("shops")
 
-    docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
+    docRef.whereField("name", isEqualTo: name).getDocuments { querySnapshot, error in
 
       if let error = error {
-
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
-        if querySnapshot!.documents.isEmpty {
-
+        if querySnapshot.documents.isEmpty {
           completion(.failure(FirebaseError.notExistError))
 
         } else {
-
           var selectedShop = CoffeeShop()
 
-          for document in querySnapshot!.documents {
-
+          for document in querySnapshot.documents {
             do {
               if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-
                 selectedShop = shop
               }
-
             } catch {
-
               completion(.failure(error))
             }
           }
-
           completion(.success(selectedShop))
-        }
-      }
-    }
-  }
-
-  func fetchNewShops(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
-  
-    let docRef = database.collection("newShopsDemo")
-
-    docRef.whereField("name", isEqualTo: name).getDocuments() { querySnapshot, error in
-
-      if let error = error {
-
-        print("Error getting documents: \(error)")
-
-      } else {
-
-        if querySnapshot!.documents.isEmpty {
-
-          completion(.failure(FirebaseError.notExistError))
-
-        } else {
-
-          var newShop = CoffeeShop()
-
-          for document in querySnapshot!.documents {
-
-            do {
-              if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-
-                newShop = shop
-              }
-
-            } catch {
-
-              completion(.failure(error))
-            }
-          }
-          
-          completion(.success(newShop))
         }
       }
     }
@@ -171,30 +148,25 @@ class CoffeeShopManager {
 
   func fetchKnownShopByDocId(docId: [String], completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
-    let docRef = database.collection("shops")
-
-    let query = docRef.whereField("id", in: docId)
+    let query = database.collection("shops").whereField("id", in: docId)
 
     query.getDocuments { querySnapshot, error in
 
       if let error = error {
-
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
         var knownShop: [CoffeeShop] = []
 
-        for document in querySnapshot!.documents {
+        for document in querySnapshot.documents {
 
           do {
             if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-
               knownShop.append(shop)
             }
-
           } catch {
-
             completion(.failure(error))
           }
         }
@@ -205,30 +177,25 @@ class CoffeeShopManager {
 
   func fetchShopByRecommendItem(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
 
-    let docRef = database.collection("shops")
-
-    let query = docRef.whereField("socket", isEqualTo: "maybe")
+    let query = database.collection("shops").whereField("socket", isEqualTo: "maybe")
 
     query.getDocuments { querySnapshot, error in
 
       if let error = error {
-
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
         var fetchShops: [CoffeeShop] = []
 
-        for document in querySnapshot!.documents {
+        for document in querySnapshot.documents {
 
           do {
             if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-
               fetchShops.append(shop)
             }
-
           } catch {
-
             completion(.failure(error))
           }
         }

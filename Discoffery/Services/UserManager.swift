@@ -54,7 +54,7 @@ class UserManager {
 
   func createUser(createdUser: inout User, completion: @escaping (Result<String, Error>) -> Void) {
 
-    let doc = database.collection("users").document(createdUser.id) 
+    let doc = database.collection("users").document(createdUser.id)
 
     createdUser.createdTime = Date().millisecondsSince1970
 
@@ -111,7 +111,7 @@ class UserManager {
 
         completion(.failure(error))
       }
-      guard let metadata = metadata else { return }
+      guard metadata != nil else { return }
 
       imageRef.downloadURL { url, error in
 
@@ -128,45 +128,39 @@ class UserManager {
   }
 
   // MARK: User's Collection
-  func createUserSavedShopsDefaultCategory(user: User, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
+  func createDefaultCollectionCategory(user: User, savedShops: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
 
-    savedShop.id = docRef.documentID
+    savedShops.id = docRef.documentID
+    savedShops.category = "全部收藏"
+    savedShops.createdTime = Date().millisecondsSince1970
 
-    savedShop.category = "全部收藏"
-
-    savedShop.createdTime = Date().millisecondsSince1970
-
-    docRef.setData(savedShop.toDict) { error in
+    docRef.setData(savedShops.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
-        completion(.success("Create User SavedShopsDefaultCategory Success"))
+        completion(.success("createDefaultCollectionCategory.success"))
       }
     }
   }
 
-  func addUserSavedShopToDefaultCategory (user: User, shop: CoffeeShop, savedShop: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
+  func addToDefaultCollectionCategory (user: User, addedShop: CoffeeShop, savedShops: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
 
-    savedShop.id = docRef.documentID
+    savedShops.id = docRef.documentID
 
     docRef.updateData([
-      "savedShopsByCategory": FieldValue.arrayUnion([shop.id])
+      "savedShopsByCategory": FieldValue.arrayUnion([addedShop.id])
     ]) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
         completion(.success("Success"))
       }
     }
@@ -176,10 +170,9 @@ class UserManager {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
 
-    docRef.getDocument() { document, error in
+    docRef.getDocument { document, error in
 
       let result = Result {
-
         try document?.data(as: UserSavedShops.self)
       }
 
@@ -188,12 +181,10 @@ class UserManager {
       case .success(let savedShops):
 
         if let savedShops = savedShops {
-
           completion(.success(savedShops))
         }
 
       case .failure(let error):
-
         completion(.failure(error))
       }
     }
@@ -201,30 +192,25 @@ class UserManager {
 
   func fetchSavedShopsForAllCategory(user: User, completion: @escaping (Result<[UserSavedShops], Error>) -> Void) {
 
-    let docRef = database.collection("users").document(user.id).collection("savedShops")
+    let query = database.collection("users").document(user.id).collection("savedShops").order(by: "createdTime")
 
-    let docRefOrderBy = docRef.order(by: "createdTime")
-
-    docRefOrderBy.getDocuments() { querySnapshot, error in
+    query.getDocuments { querySnapshot, error in
 
       if let error = error {
-
         print("Error getting documents: \(error)")
 
       } else {
+        guard let querySnapshot = querySnapshot else { return }
 
         var savedShopsDoc: [UserSavedShops] = []
 
-        for document in querySnapshot!.documents {
+        for document in querySnapshot.documents {
 
           do {
             if let shopDoc = try document.data(as: UserSavedShops.self, decoder: Firestore.Decoder()) {
-
               savedShopsDoc.append(shopDoc)
             }
-
           } catch {
-
             completion(.failure(error))
           }
         }
@@ -238,25 +224,21 @@ class UserManager {
     let docRef = database.collection("users").document(user.id).collection("savedShops").document()
 
     savedShopDoc.id = docRef.documentID
-
     savedShopDoc.category = category
-
     savedShopDoc.createdTime = Date().millisecondsSince1970
 
     docRef.setData(savedShopDoc.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
-        completion(.success("Create New Category Success"))
+        completion(.success("addNewCategory.success"))
       }
     }
   }
 
-  // MARK: - User's block list
+  // MARK: - Block list Related Functions
   func fetchBlockList(user: User, completion: @escaping (Result<[String], Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id)
@@ -264,30 +246,22 @@ class UserManager {
     docRef.getDocument { querySnapshot, error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else if querySnapshot?.data() == nil {
-
         completion(.failure(UserError.notExistError))
 
       } else {
-
         var blockList: [String] = []
 
         do {
-
           if let user = try querySnapshot?.data(as: User.self, decoder: Firestore.Decoder()) {
-
             blockList = user.blockList
-
             completion(.success(blockList))
           }
-
         } catch {
           completion(.failure(error))
         }
-
       }
     }
   }
@@ -297,18 +271,14 @@ class UserManager {
     let docRef = database.collection("users").document(user.id)
 
     docRef.updateData([
-
       "blockList": FieldValue.arrayRemove([unblockName])
-
     ]) { error in
 
       if let error = error {
-
-        print("Error updating document: \(error)")
+        print("updateBlockList.error: \(error)")
 
       } else {
-
-        print("Document successfully updated")
+        print("updateBlockList.success")
       }
     }
   }
@@ -318,18 +288,14 @@ class UserManager {
     let docRef = database.collection("users").document(user.id)
 
     docRef.updateData([
-
       "blockList": FieldValue.arrayUnion([blockName])
-
     ]) { error in
 
       if let error = error {
-
-        print("Error blockUser: \(error)")
+        print("blockUser.error: \(error)")
 
       } else {
-
-        print("User successfully blocked")
+        print("blockUser.success")
       }
     }
   }
@@ -339,18 +305,14 @@ class UserManager {
     let docRef = database.collection("users").document(user.id)
 
     docRef.updateData([
-
-      "name" : user.name
-
+      "name": user.name
     ]) { error in
 
       if let error = error {
-
-        print("Error: \(error)")
+        print("updateUserName.error: \(error)")
 
       } else {
-
-        print("User successfully updated")
+        print("updateUserName.success")
       }
     }
   }
@@ -360,18 +322,14 @@ class UserManager {
     let docRef = database.collection("users").document(user.id)
 
     docRef.updateData([
-
-      "profileImg" : user.profileImg
-
+      "profileImg": user.profileImg
     ]) { error in
 
       if let error = error {
-
-        print("Error: \(error)")
+        print("updateUserImg.error: \(error)")
 
       } else {
-
-        print("User successfully updated")
+        print("updateUserImg.success")
       }
     }
   }
@@ -381,20 +339,15 @@ class UserManager {
     let docRef = database.collection("users").document(user.id)
 
     docRef.updateData([
-
-      "name" : user.name,
-
-      "profileImg" : user.profileImg
-
+      "name": user.name,
+      "profileImg": user.profileImg
     ]) { error in
 
       if let error = error {
-
-        print("Error: \(error)")
+        print("updateUserNameAndImg.error: \(error)")
 
       } else {
-
-        print("User successfully updated")
+        print("updateUserNameAndImg.success")
       }
     }
   }

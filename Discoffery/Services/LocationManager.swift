@@ -26,22 +26,16 @@ class LocationManager {
 
     // Only executed if CLAuthorizationStatus = .authorizedAlways || .authorizedWhenInUse
     delegate = locationManager.delegate
-
     locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
     locationManager.startUpdatingLocation()
     
     guard let currentLocation = locationManager.location else { return }
-
     // Pass to HomeMapViewController for drawing map
     onCurrentCoordinate?(currentLocation.coordinate)
 
     let latitude = Double(currentLocation.coordinate.latitude)
-    
     let longitude = Double(currentLocation.coordinate.longitude)
-
     currentCoordinate.latitude = latitude
-
     currentCoordinate.longitude = longitude
 
     // Pass to HomeMapViewModel for fetching data on Firebase
