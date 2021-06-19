@@ -35,7 +35,7 @@ class HomeListViewController: UIViewController {
     // Do any additional setup after loading the view.
     setupTableView()
 
-    homeViewModel.onShopsData = { [weak self] shopsData in
+    homeViewModel.onShopsDataForList = { [weak self] shopsData in
 
       self?.shopsDataForList = shopsData
 
