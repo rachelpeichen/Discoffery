@@ -20,19 +20,17 @@ class CollectionViewModel {
 
   var onFetchSavedShopsForAllCategory: (() -> Void)?
 
+  // MARK: - Properties
   var savedShopsForSpecificCategory: [CoffeeShop] = [] {
 
     didSet {
-
       onFetchSavedShopsForSpecificCategory?()
     }
   }
 
-  // MARK: - Properties
   var savedShopsForAllCategory: [UserSavedShops] = [] {
 
     didSet {
-
       onFetchSavedShopsForAllCategory?()
     }
   }
@@ -112,11 +110,9 @@ class CollectionViewModel {
       case .success:
 
         self.onAddNewCategory?()
-
-        print("🥴addNewCategory To Firebase Success")
+        print("addNewCategory.success")
 
       case .failure(let error):
-
         print("addNewCategory.failure: \(error)")
       }
     }

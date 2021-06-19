@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShopFeatureCell: ShopDetailBasicCell {
+class ShopFeatureCell: UITableViewCell {
 
   // MARK: - Properties
   var feature = Feature()

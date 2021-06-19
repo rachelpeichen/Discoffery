@@ -54,9 +54,9 @@ class CategoryViewController: UIViewController {
 
           let distance = self.calDistanceBetweenTwoLocations(
 
-                location1Lat: LocationManager.shared.currentCoordinate.latitude,
+                location1Lat: LocationManager.shared.userCurrentCoordinate.latitude,
 
-                location1Lon: LocationManager.shared.currentCoordinate.longitude,
+                location1Lon: LocationManager.shared.userCurrentCoordinate.longitude,
 
                 location2Lat: result[index].latitude,
 
@@ -82,18 +82,16 @@ class CategoryViewController: UIViewController {
   // MARK: - Functions
   private func setupTableView() {
 
+    tableView.register(UINib(nibName: LandscapeCardCell.identifier, bundle: nil),
+                       forCellReuseIdentifier: LandscapeCardCell.identifier)
+
+    tableView.register(UINib(nibName: ShopFeatureCell.identifier, bundle: nil),
+                       forCellReuseIdentifier: ShopFeatureCell.identifier)
+
     tableView.delegate = self
-
     tableView.dataSource = self
-
-    tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
-
-    tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil), forCellReuseIdentifier: "shopFeatureCell")
-
     tableView.estimatedRowHeight = 320
-
     tableView.rowHeight = UITableView.automaticDimension
-
     tableView.separatorStyle = .none
 
     tableView.reloadData()
@@ -180,11 +178,11 @@ extension CategoryViewController: UITableViewDataSource {
       let mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
 
       // swiftlint:disable force_unwrapping
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
+      cell.imgView.image = UIImage(named: mockImages.randomElement()!)
 
-      cell.cafeName.text = shop.name
+      cell.name.text = shop.name
       cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
-      cell.starsView.rating = shop.tasty
+      cell.rateStarsView.rating = shop.tasty
       cell.openHours.text = "疫情暫停營業"
 
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }

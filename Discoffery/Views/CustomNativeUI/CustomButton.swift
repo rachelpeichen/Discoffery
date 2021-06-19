@@ -13,9 +13,7 @@ class CustomBtn: UIButton {
   @IBInspectable var cornerRadius: CGFloat = 0.0 {
 
     didSet {
-
-      layer.cornerRadius = cornerRadius
-
+      layer.cornerRadius  = cornerRadius
       layer.masksToBounds = cornerRadius > 0
     }
   }
@@ -23,7 +21,6 @@ class CustomBtn: UIButton {
   @IBInspectable var shadowRadius: CGFloat = 0.0 {
 
     didSet {
-
       layer.shadowRadius = shadowRadius
     }
   }
@@ -31,7 +28,6 @@ class CustomBtn: UIButton {
   @IBInspectable var borderWidth: CGFloat = 0.0 {
 
     didSet {
-
       layer.borderWidth = borderWidth
     }
   }
@@ -39,7 +35,6 @@ class CustomBtn: UIButton {
   @IBInspectable var borderColor: UIColor = .black {
 
     didSet {
-
       layer.borderColor = borderColor.cgColor
     }
   }
@@ -47,7 +42,6 @@ class CustomBtn: UIButton {
   @IBInspectable var titleLeftPadding: CGFloat = 0.0 {
 
     didSet {
-
       titleEdgeInsets.left = titleLeftPadding
     }
   }
@@ -55,12 +49,12 @@ class CustomBtn: UIButton {
   @IBInspectable var titleRightPadding: CGFloat = 0.0 {
 
     didSet {
-
       titleEdgeInsets.right = titleRightPadding
     }
   }
 
   @IBInspectable var titleTopPadding: CGFloat = 0.0 {
+
     didSet {
       titleEdgeInsets.top = titleTopPadding
     }
@@ -76,7 +70,6 @@ class CustomBtn: UIButton {
   @IBInspectable var imageLeftPadding: CGFloat = 0.0 {
 
     didSet {
-
       imageEdgeInsets.left = imageLeftPadding
     }
   }
@@ -84,7 +77,6 @@ class CustomBtn: UIButton {
   @IBInspectable var imageRightPadding: CGFloat = 0.0 {
 
     didSet {
-
       imageEdgeInsets.right = imageRightPadding
     }
   }
@@ -92,7 +84,6 @@ class CustomBtn: UIButton {
   @IBInspectable var imageTopPadding: CGFloat = 0.0 {
 
     didSet {
-
       imageEdgeInsets.top = imageTopPadding
     }
   }
@@ -100,7 +91,6 @@ class CustomBtn: UIButton {
   @IBInspectable var imageBottomPadding: CGFloat = 0.0 {
 
     didSet {
-
       imageEdgeInsets.bottom = imageBottomPadding
     }
   }
@@ -113,25 +103,18 @@ class CustomBtn: UIButton {
     if enableImageRightAligned,
 
        let imageView = imageView {
-
       imageEdgeInsets.left = self.bounds.width - imageView.bounds.width - imageRightPadding
     }
   }
 
-  // MARK: 先寫死btn shadow有需要再來改成IBInspectable
   override func awakeFromNib() {
     super.awakeFromNib()
 
     self.layer.masksToBounds = false
-
-    self.layer.shadowColor = UIColor.black.cgColor
-
-    self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
-
-    self.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-
+    self.layer.shadowColor   = UIColor.black.cgColor
+    self.layer.shadowPath    = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+    self.layer.shadowOffset  = CGSize(width: 0.0, height: 3.0)
     self.layer.shadowOpacity = 0.5
-
-    self.layer.shadowRadius = 1.0
+    self.layer.shadowRadius  = 1.0
   }
 }

@@ -11,11 +11,13 @@ import Cosmos
 protocol WriteReviewCellDelegate: AnyObject {
 
   func sendReview(inputReview: inout Review)
+
   func sendRecommendItem(inputItem: inout RecommendItem)
+
   func onTapUploadImgBtn()
 }
 
-class WriteReviewCell: ShopDetailBasicCell {
+class WriteReviewCell: UITableViewCell {
 
   // MARK: - Properties
   var userViewModel = UserViewModel()
@@ -51,17 +53,13 @@ class WriteReviewCell: ShopDetailBasicCell {
   }
 
   @IBOutlet weak var commentTextView: UITextView!
-
   @IBOutlet weak var addItemTextField: UITextField!
 
   @IBOutlet weak var uploadImageBtn: UIButton!
-
   @IBOutlet weak var sendReviewBtn: UIButton!
 
   @IBOutlet weak var uploadImgOne: UIImageView!
-
   @IBOutlet weak var uploadImgTwo: UIImageView!
-
   @IBOutlet weak var uploadImgThree: UIImageView!
 
   // MARK: - IBActions
@@ -70,7 +68,6 @@ class WriteReviewCell: ShopDetailBasicCell {
     if let input = sender.text {
 
       if !input.isEmpty {
-
         addedItem = input
       }
     }
@@ -107,8 +104,6 @@ class WriteReviewCell: ShopDetailBasicCell {
           print("index = \(index) & item = \(item)")
 
           wrappedRecommendItem.item = item
-
-          // wrappedRecommendItem.count += 1 在這+1會導致count沒更新一直累加送到火地所以在DetailVC檢查：這樣的邏輯變成是這個人推薦了幾個項目count就會是多少！
 
           delegate?.sendRecommendItem(inputItem: &wrappedRecommendItem)
         }

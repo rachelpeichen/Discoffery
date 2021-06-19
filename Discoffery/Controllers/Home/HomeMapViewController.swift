@@ -9,38 +9,36 @@ import UIKit
 import MapKit
 
 class HomeMapViewController: UIViewController {
-  
-  // MARK: - Outlets
-  @IBOutlet var mapView: MKMapView!
-  
-  @IBOutlet weak var selecetedShopContainerView: UIView!
 
-  @IBOutlet weak var centerLocationBtn: CustomBtn!
-
-  @IBAction func onTapCenterLocationBtn(_ sender: Any) {
-
-    if let coordinate = self.homeViewModel?.userCurrentCoordinate {
-
-      mapView.setCenter(coordinate, animated: true)
-    }
-  }
-  
   // MARK: - Properties
-  var homeViewModel: HomeViewModel?
-  
+  var homeViewModel = HomeViewModel()
+
   var shopsDataForMap: [CoffeeShop] = []
 
   var featureDic: [String: [Feature]] = [:]
 
   var recommendItemsDic: [String: [RecommendItem]] = [:]
-  
-  var selectedAnnotation: MKPointAnnotation?
+
+  var selectedShopAnnotation: MKPointAnnotation?
 
   var selectedShop: CoffeeShop?
 
   var selectedShopVC: SelectedShopViewController?
 
   var selectedAnnotationIndex: Int?
+  
+  // MARK: - IBOutlets & IBActions
+  @IBOutlet var mapView: MKMapView!
+  @IBOutlet weak var selecetedShopContainerView: UIView!
+  @IBOutlet weak var centerLocationBtn: CustomBtn!
+
+  @IBAction func onTapCenterLocationBtn(_ sender: Any) {
+
+    if let coordinate = self.homeViewModel.userCurrentCoordinate {
+
+      mapView.setCenter(coordinate, animated: true)
+    }
+  }
 
   // MARK: - View Life Cycle
   override func viewDidLoad() {
@@ -51,41 +49,38 @@ class HomeMapViewController: UIViewController {
     locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
     
     // 2: Get user's current coordinate for drawing map
-    LocationManager.shared.onCurrentCoordinate = { coordinate in
+    homeViewModel.getUserCurrentCoordinate()
+    
+    // 3: Fetch shops within distance on Firebase; default is 1000 m
+    homeViewModel.fetchShopsAroundUser()
 
-      self.homeViewModel?.userCurrentCoordinate = coordinate
-    }
-    
-    // 3: Fetch shops within distance on Firebase ; default now is 1500 m
-    self.homeViewModel?.getShopAroundUser()
-    
-    homeViewModel?.onShopsAnnotations = { [weak self] annotations in
+    homeViewModel.onShopsAnnotations = { [weak self] annotations in
 
       self?.mapView.showAnnotations(annotations, animated: true)
-
-      if let shopsData = self?.homeViewModel?.shopsData {
-
-        self?.shopsDataForMap = shopsData
-
-        for index in 0..<shopsData.count {
-
-          self?.fetchFeatureForShop(shop: shopsData[index])
-
-          self?.fetchRecommendItemForShop(shop: shopsData[index])
-
-          if let coordinate = self?.homeViewModel?.userCurrentCoordinate {
-
-            if let distance = self?.calDistanceBetweenTwoLocations(location1Lat: coordinate.latitude,
-                                                                   location1Lon: coordinate.longitude,
-                                                                   location2Lat: shopsData[index].latitude,
-                                                                   location2Lon: shopsData[index].longitude) {
-              self?.shopsDataForMap[index].cheap = distance
-            }
-          }
-        }
-      }
+//
+//      if let shopsData = self?.homeViewModel.shopsData {
+//
+//        self?.shopsDataForMap = shopsData
+//
+//        for index in 0..<shopsData.count {
+//
+//          self?.fetchFeatureForShop(shop: shopsData[index])
+//
+//          self?.fetchRecommendItemForShop(shop: shopsData[index])
+//
+//          if let coordinate = self?.homeViewModel.userCurrentCoordinate {
+//
+//            if let distance = self?.calDistanceBetweenTwoLocations(location1Lat: coordinate.latitude,
+//                                                                   location1Lon: coordinate.longitude,
+//                                                                   location2Lat: shopsData[index].latitude,
+//                                                                   location2Lon: shopsData[index].longitude) {
+//              self?.shopsDataForMap[index].cheap = distance
+//            }
+//          }
+//        }
+//      }
     }
-    selecetedShopContainerView.isHidden = true
+//    selecetedShopContainerView.isHidden = true
   }
 
   // MARK: - Functions
@@ -204,7 +199,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
       case .authorizedAlways, .authorizedWhenInUse:
         print("Location authorization is confirmed.")
-        homeViewModel?.getShopAroundUser()
+        homeViewModel.fetchShopsAroundUser()
         setUpMapView()
 
       default:
@@ -231,7 +226,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
         case .authorizedAlways, .authorizedWhenInUse:
           print("Location authorization is confirmed.")
-          homeViewModel?.getShopAroundUser()
+          homeViewModel.fetchShopsAroundUser()
           setUpMapView()
 
         default:
@@ -247,7 +242,7 @@ extension HomeMapViewController: HomeViewModelDelegate {
   
   func setUpMapView() {
     
-    homeViewModel?.delegate = self
+    homeViewModel.delegate = self
     
     mapView.delegate = self
     
@@ -255,7 +250,7 @@ extension HomeMapViewController: HomeViewModelDelegate {
     
     mapView.userTrackingMode = .follow
 
-    if let coordinate = homeViewModel?.userCurrentCoordinate {
+    if let coordinate = homeViewModel.userCurrentCoordinate {
 
       mapView.region = MKCoordinateRegion(
         center: coordinate,
@@ -270,11 +265,11 @@ extension HomeMapViewController: MKMapViewDelegate {
   
   func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
 
-    selectedAnnotation = view.annotation as? MKPointAnnotation
+    selectedShopAnnotation = view.annotation as? MKPointAnnotation
 
     for (index, item) in shopsDataForMap.enumerated() {
 
-      if let title = selectedAnnotation?.title {
+      if let title = selectedShopAnnotation?.title {
 
         if item.name == title {
 
@@ -283,17 +278,15 @@ extension HomeMapViewController: MKMapViewDelegate {
       }
     }
 
-    for shop in shopsDataForMap where shop.name == selectedAnnotation?.title {
+    for shop in shopsDataForMap where shop.name == selectedShopAnnotation?.title {
 
       if let selectedShopRecommendItem = recommendItemsDic[shop.id] {
 
         if let selectedsShopFeature = featureDic[shop.id] {
 
-          selectedShopVC?.setUpSelectedShopVC(
-            shop: shop,
-            feature: selectedsShopFeature[0],
-            recommendItem: selectedShopRecommendItem)
-
+          selectedShopVC?.layoutSelectedShopVC(shop: shop,
+                                              feature: selectedsShopFeature[0],
+                                              recommendItem: selectedShopRecommendItem)
           selecetedShopContainerView.isHidden = false
         }
       }

@@ -16,48 +16,45 @@ protocol HomeViewModelDelegate: AnyObject {
 
 class HomeViewModel {
 
-  // MARK: - Properties
-  weak var delegate: HomeViewModelDelegate?
-
+  // MARK: - Closures for HomeMapVC & HomeListVC
   var onShopsAnnotations: (([MKPointAnnotation]) -> Void)? // Only HomeMapVC use this
-  
+
   var onShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
 
-  var onFetchSavedShopsForAllCategory: (() -> Void)?
+  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this?????
+
+  // MARK: - Properties
+  weak var delegate: HomeViewModelDelegate?
 
   var shopsData: [CoffeeShop] = [] {
 
     didSet {
-
-      markAnnotationForShops(shops: shopsData)
-
       onShopsData?(shopsData)
+      markAnnotationForShops(shops: shopsData)
     }
   }
-
-  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this?????
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {
 
     didSet {
 
       if let userCurrentCoordinate = userCurrentCoordinate {
-
-        self.onUserCurrentCoordinate?(userCurrentCoordinate)
+        onUserCurrentCoordinate?(userCurrentCoordinate)
       }
     }
   }
+  // MARK: - Map Related Functions
+  // 1
+  func getUserCurrentCoordinate() {
 
-  var savedShopsForAllCategory: [UserSavedShops] = [] {
+    LocationManager.shared.onUserCurrentCoordinate = { coordinate in
 
-    didSet {
-
-      onFetchSavedShopsForAllCategory?()
+      self.userCurrentCoordinate = coordinate
     }
   }
 
-  // MARK: - Map related functions
-  func getShopAroundUser(distance: Double = 1000) {
+  // 2
+  func fetchShopsAroundUser(distance: Double = 1000) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
 
@@ -65,41 +62,41 @@ class HomeViewModel {
     }
   }
 
+  // 3
   func filterShopWithinDistance(latitude: Double, longitude: Double, distanceInMeters: Double) {
 
-    // Find all shops within input meters within user's current location; default is 1000 m
+    // 3-1
     CoffeeShopManager.shared.fetchShopWithinLatitude(latitude: latitude,
                                                      distance: distanceInMeters) { [weak self] result in
 
       switch result {
 
       case .success(let filteredShops):
-
-        self?.filterShopWithinLongitude(
-          shopFilteredByLat: filteredShops,
-          latitude: latitude,
-          longitude: longitude,
-          distance: distanceInMeters)
+        // 3-2
+        self?.filterShopWithinLongitude(shopFilteredByLat: filteredShops,
+                                        latitude: latitude,
+                                        longitude: longitude,
+                                        distance: distanceInMeters)
 
       case .failure(let error):
-
-        print("filterShopWithinLatitude.failure: \(error)")
+        print("filterShopWithinLatitude.error: \(error)")
       }
     }
   }
 
+  // 3-2
   func filterShopWithinLongitude(shopFilteredByLat: [CoffeeShop], latitude: Double, longitude: Double, distance: Double) {
 
-    // The number of meters per degree of lonitude (roughly) 換算 1 degrees 的經度 ~ 110122 m
+    // The number of meters per degree of lonitude (roughly)
     let metersPerLonDegree = (Double.pi / 180) * 6371000 * cos(latitude / 180)
 
-    let lowerLon = longitude - (distance / metersPerLonDegree) // 經度下限
-
-    let upperLon = longitude + (distance / metersPerLonDegree) // 經度上限
+    let lowerLon = longitude - (distance / metersPerLonDegree)
+    let upperLon = longitude + (distance / metersPerLonDegree)
 
     shopsData = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
   }
 
+  // MARK: - Functions For HomeMapVC
   func markAnnotationForShops(shops: [CoffeeShop]) {
 
     var shopAnnotations: [MKPointAnnotation] = []
@@ -107,13 +104,9 @@ class HomeViewModel {
     for index in 0..<shopsData.count {
 
       let shopAnnotation = MKPointAnnotation()
-
       shopAnnotation.coordinate.longitude = shopsData[index].longitude
-
       shopAnnotation.coordinate.latitude = shopsData[index].latitude
-
       shopAnnotation.title = shopsData[index].name
-
       shopAnnotations.append(shopAnnotation)
     }
     self.onShopsAnnotations?(shopAnnotations)
@@ -132,23 +125,5 @@ class HomeViewModel {
         print("publishNewShop.failure\(error)")
       }
     })
-  }
-
-  // MARK: check if user has saved the shop
-  func fetchSavedShopsForAllCategory(user: User) {
-
-    UserManager.shared.fetchSavedShopsForAllCategory(user: user) { result in
-
-      switch result {
-
-      case .success(let savedShopDocs):
-
-        self.savedShopsForAllCategory = savedShopDocs
-
-      case .failure(let error):
-
-        print("fetchSavedShopsForAllCategory.failure: \(error)")
-      }
-    }
   }
 }

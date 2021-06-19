@@ -192,10 +192,10 @@ extension SearchResultViewController: UITableViewDataSource {
 
       let shop = searchResultArr[indexPath.row]
       // swiftlint:disable force_unwrapping
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
-      cell.cafeName.text = shop.name
+      cell.imgView.image = UIImage(named: mockImages.randomElement()!)
+      cell.name.text = shop.name
       cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
-      cell.starsView.rating = shop.tasty
+      cell.rateStarsView.rating = shop.tasty
       cell.openHours.text = "疫情暫停營業"
 
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }

@@ -11,14 +11,14 @@ import FirebaseFirestoreSwift
 
 class LoginViewModel {
 
-  // MARK: - Closures For Notifying View Controllers
+  // MARK: - Closures For Notifying LoginVC
   var onUserIdentified: (() -> Void)?
 
   var onUserCreated: (() -> Void)?
 
   var onUserIdentifyError: (() -> Void)?
 
-  // MARK: - Functions
+  // MARK: - User Initial Setting Related Functions
   func identifyUser(uid: String) {
 
     UserManager.shared.identifyUser(firebaseUID: uid) { [weak self] result in
@@ -26,18 +26,16 @@ class LoginViewModel {
       switch result {
 
       case .success:
-
         self?.onUserIdentified?()
 
       case .failure(let error):
 
         switch error {
 
-        case UserError.notExistError: // Not found in Firestore's "users" collection so create one
+        case UserError.notExistError: // Not found in Firestore's "users" collection so need to create a document
           self?.createUser()
 
         default:
-
           self?.onUserIdentifyError?()
           print("identiftUser.error:\(error)")
         }

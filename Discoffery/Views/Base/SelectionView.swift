@@ -48,7 +48,6 @@ class SelectionView: UIView {
     didSet {
 
       setupSelectionViews()
-
       setupIndicatorView()
     }
   }
@@ -61,9 +60,7 @@ class SelectionView: UIView {
   private var stackView: UIStackView = {
 
     let stack = UIStackView()
-
     stack.axis = NSLayoutConstraint.Axis.horizontal
-
     stack.distribution = UIStackView.Distribution.fillEqually
 
     return stack
@@ -83,19 +80,13 @@ class SelectionView: UIView {
       let button = UIButton()
 
       button.tag = index
-
       button.setTitle(dataSource.titleOfButton(self, at: index), for: .normal)
-
       button.setTitleColor(dataSource.colorOfTitle(self, at: index), for: .normal)
-
       button.titleLabel?.font = dataSource.fontOfTitle(self, at: index)
 
-      button.addTarget(
-        self,
-        action: #selector(userDidTouchButton(_:)),
-        for: .touchUpInside
-      )
-
+      button.addTarget( self,
+                        action: #selector(userDidTouchButton(_:)),
+                        for: .touchUpInside)
       stackView.addArrangedSubview(button)
     }
 
@@ -118,9 +109,7 @@ class SelectionView: UIView {
     let initialBtn = stackView.arrangedSubviews[dataSource.initialButtonIndex(self)]
 
     selectedIndex = dataSource.initialButtonIndex(self)
-
     indicatorView.backgroundColor = dataSource.colorOfIndicator(self)
-
     indicatorView.translatesAutoresizingMaskIntoConstraints = false
 
     addSubview(indicatorView)
@@ -138,25 +127,18 @@ class SelectionView: UIView {
     ])
   }
 
-  // MARK: - Action
+  // MARK: - Button Action
   @objc private func userDidTouchButton(_ sender: UIButton) {
 
     // swiftlint:disable trailing_closure
     let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut, animations: { [weak self] in
-
       self?.indicatorCenterXContraint?.isActive = false
-
       self?.indicatorCenterXContraint = self?.indicatorView.centerXAnchor.constraint(equalTo: sender.centerXAnchor)
-
       self?.indicatorCenterXContraint?.isActive = true
-
       self?.layoutIfNeeded()
     })
-
     animator.startAnimation()
-
     delegate?.didSelectedButton?(self, at: sender.tag)
-
     selectedIndex = sender.tag
   }
 }

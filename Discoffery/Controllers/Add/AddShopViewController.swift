@@ -27,47 +27,37 @@ class AddShopViewController: UIViewController {
 
   // MARK: - IBOutlets
   @IBOutlet weak var timeSegControl: UISegmentedControl!
-
   @IBOutlet weak var socketSegControl: UISegmentedControl!
 
   @IBOutlet weak var collectionView: UICollectionView!
 
   @IBOutlet weak var nameTextField: UITextField!
-
   @IBOutlet weak var addressTextField: UITextField!
-
   @IBOutlet weak var addItemTextField: UITextField!
 
   @IBOutlet weak var commentTextView: UITextView!
-
   @IBOutlet weak var notesTextView: UITextView!
 
   @IBOutlet weak var rateStars: CosmosView! {
 
     didSet {
-
       rateStars.didFinishTouchingCosmos = { rating in
-        
         self.wrappedNewShop.rating = rating
       }
     }
   }
 
   @IBOutlet weak var uploadImgBtn: UIButton!
-
-  @IBOutlet var sendBtn: UIButton!
+  @IBOutlet var sendNewShopBtn: UIButton!
 
   @IBOutlet weak var imgOne: UIImageView!
-
   @IBOutlet weak var imgTwo: UIImageView!
-
   @IBOutlet weak var imgThree: UIImageView!
 
   // MARK: - IBActions
   @IBAction func endEditShopName(_ sender: UITextField) {
 
     if let inputName = sender.text {
-
       wrappedNewShop.newShopName = inputName
     }
   }
@@ -75,7 +65,6 @@ class AddShopViewController: UIViewController {
   @IBAction func endEditAddress(_ sender: UITextField) {
 
     if let address = sender.text {
-
       wrappedNewShop.address = address
     }
   }
@@ -90,7 +79,6 @@ class AddShopViewController: UIViewController {
     if let input = sender.text {
 
       if !input.isEmpty {
-
         addedItem = input
       }
     }
@@ -101,9 +89,7 @@ class AddShopViewController: UIViewController {
     guard let addedItem = addedItem else { return }
 
     wrappedNewShop.recommendItems.append(addedItem)
-
     addItemTextField.text = ""
-
     collectionView.reloadData()
   }
 
@@ -128,7 +114,6 @@ class AddShopViewController: UIViewController {
     if segue.identifier == "OpenHoursVCSegue" {
 
       if let destinationVC = segue.destination as? AddOpenHoursViewController {
-
         destinationVC.delegate = self
       }
     }
@@ -145,7 +130,7 @@ class AddShopViewController: UIViewController {
   // MARK: - Private Functions
   private func layoutAddShopVC() {
 
-    sendBtn.isEnabled = false
+    sendNewShopBtn.isEnabled = false
 
     commentTextView.delegate           = self
     commentTextView.layer.borderWidth  = 0.5
@@ -168,7 +153,7 @@ class AddShopViewController: UIViewController {
     collectionView.dataSource = self
   }
 
-  // MARK: - Functions
+  // MARK: - Functions  sholdn't be here!!!!!
   func sendNewShop(newShop: inout NewCoffeeShop) {
 
     var localNewShop = newShop
@@ -216,8 +201,8 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
     }) as Array).joined(separator: ";")
 
     wrappedNewShop.openHours = parsedOpenHours ?? "Unknown"
-    sendBtn.isEnabled = true
-    sendBtn.backgroundColor = .B3
+    sendNewShopBtn.isEnabled = true
+    sendNewShopBtn.backgroundColor = .B3
   }
 }
 
@@ -225,6 +210,7 @@ extension AddShopViewController: AddOpenHoursViewControllerDelegate {
 extension AddShopViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
     return wrappedNewShop.recommendItems.count
   }
 
@@ -246,7 +232,6 @@ extension AddShopViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
     let textSize: CGSize = wrappedNewShop.recommendItems[indexPath.row]
-
       .size(withAttributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)])
 
     return CGSize(width: textSize.width + 60, height: 40)

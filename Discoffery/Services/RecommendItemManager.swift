@@ -71,7 +71,6 @@ class RecommendItemManager {
   func checkIfRecommendItemExist(shop: CoffeeShop, item: RecommendItem, completion: @escaping (Result<RecommendItem, Error>) -> Void) {
     
     let docRef = database.collection("shops").document(shop.id).collection("recommendItems")
-    
     let queryByItem = docRef.whereField("item", isEqualTo: item.item)
     
     queryByItem.getDocuments { querySnapshot, error in
@@ -90,7 +89,6 @@ class RecommendItemManager {
           completion(.failure(RecommendItemError.notExistError))
           
         } else {
-          
           var didExistItem = RecommendItem()
           
           for document in querySnapshot.documents {

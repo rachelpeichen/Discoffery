@@ -10,33 +10,32 @@ import CoreLocation
 
 class SearchViewModel {
 
-  // MARK: - Properties
-  var onSearchShopsData: (([CoffeeShop]) -> Void)?
-
-  var onShopRecommendItem: (([RecommendItem]) -> Void)?
-
-  var searchShopsData: [CoffeeShop] = [] {
-
-    didSet {
-
-      onSearchShopsData?(searchShopsData)
-    }
-  }
-
-  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)? // 沒用到 之後精煉時要檢查修掉
+  // MARK: - Closures for SearchVC
+  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {
 
     didSet {
 
       if let userCurrentCoordinate = userCurrentCoordinate {
-
         self.onUserCurrentCoordinate?(userCurrentCoordinate)
       }
     }
   }
 
-  // MARK: - Distance between shop & user related functions
+  var onSearchShopsData: (([CoffeeShop]) -> Void)?
+
+  var onShopRecommendItem: (([RecommendItem]) -> Void)?
+
+  // MARK: - Properties
+  var searchShopsData: [CoffeeShop] = [] {
+
+    didSet {
+      onSearchShopsData?(searchShopsData)
+    }
+  }
+
+  // MARK: - Distance Between Shop & User Related Functions
   func getShopAroundUser(distance: Double = 2000) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
@@ -89,7 +88,6 @@ class SearchViewModel {
         self.onShopRecommendItem?(items)
 
       case .failure(let error):
-
         print("fetchFeatureForShop.failure: \(error)")
       }
     }

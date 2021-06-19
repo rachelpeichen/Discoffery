@@ -8,7 +8,7 @@
 import UIKit
 import Cosmos
 
-class ShopDescriptionCell: ShopDetailBasicCell {
+class ShopDescriptionCell: UITableViewCell {
 
   @IBOutlet weak var checkAllReviewsBtn: UIButton!
   @IBOutlet weak var rateStars: CosmosView!

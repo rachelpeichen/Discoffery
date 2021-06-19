@@ -15,28 +15,6 @@ protocol SelectedShopViewControllerDelegate: AnyObject {
 
 class SelectedShopViewController: UIViewController {
 
-  // MARK: - Outlets
-  @IBOutlet weak var backgroundView: UIView!
-
-  @IBOutlet weak var imageView: UIImageView!
-
-  @IBOutlet weak var selectedShopName: UILabel!
-
-  @IBOutlet weak var distanceLabel: UILabel!
-
-  @IBOutlet weak var averageRating: CosmosView!
-
-  @IBOutlet weak var featureOne: UILabel!
-
-  @IBOutlet weak var featureTwo: UILabel!
-
-  @IBOutlet weak var featureThree: UILabel!
-
-  @IBAction func didTouchSelectedVC(_ sender: Any) {
-
-    delegate?.didTouchSelectedVC(sender)
-  }
-
   // MARK: - Properties
   weak var delegate: SelectedShopViewControllerDelegate?
 
@@ -46,6 +24,23 @@ class SelectedShopViewController: UIViewController {
 
   var selectedShopRecommendItem: [RecommendItem]?
 
+  // MARK: - IBOutlets & IBActions
+  @IBOutlet weak var backgroundView: UIView!
+  @IBOutlet weak var imgView: UIImageView!
+  @IBOutlet weak var rateStarsView: CosmosView!
+
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var distanceLabel: UILabel!
+  @IBOutlet weak var featureOneLabel: UILabel!
+  @IBOutlet weak var featureTwoLabel: UILabel!
+  @IBOutlet weak var featureThreeLabel: UILabel!
+
+  @IBAction func didTouchSelectedVC(_ sender: Any) {
+
+    delegate?.didTouchSelectedVC(sender)
+  }
+
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -53,46 +48,33 @@ class SelectedShopViewController: UIViewController {
   }
 
   // MARK: - Functions
-  func setUpSelectedShopVC(shop: CoffeeShop, feature: Feature, recommendItem: [RecommendItem]) {
+  func layoutSelectedShopVC(shop: CoffeeShop, feature: Feature, recommendItem: [RecommendItem]) {
 
     selectedShop = shop
-
     selectedShopfeature = feature
-
     selectedShopRecommendItem = recommendItem
 
-    layoutSelecetedShopViewController()
-  }
-
-  func layoutSelecetedShopViewController() {
-
-    imageView.clipsToBounds = true
-
-    imageView.layer.cornerRadius = 10
-
+    imgView.clipsToBounds = true
+    imgView.layer.cornerRadius = 10
     backgroundView.layoutViewWithShadow()
 
     if let selectedShop = selectedShop {
 
-      averageRating.rating = selectedShop.tasty  // TODO: 還沒算出全部評價的平均先用api的
-
+      rateStarsView.rating = selectedShop.tasty
       distanceLabel.text = "\(selectedShop.cheap.rounded().formattedValue)公尺"
-
-      selectedShopName.text = selectedShop.name
+      nameLabel.text = selectedShop.name
     }
 
     if let selectedShopRecommendItem = selectedShopRecommendItem {
 
       let assignedItem = selectedShopRecommendItem[0]
-
-      featureOne.text = assignedItem.item
+      featureOneLabel.text = assignedItem.item
     }
 
     if let selectedShopfeature = selectedShopfeature {
 
-      featureTwo.text = selectedShopfeature.special[0]
-
-      featureThree.text = selectedShopfeature.special[1]
+      featureTwoLabel.text = selectedShopfeature.special[0]
+      featureThreeLabel.text = selectedShopfeature.special[1]
     }
   }
 }

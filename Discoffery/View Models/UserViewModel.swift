@@ -9,7 +9,7 @@ import Foundation
 
 class UserViewModel {
   
-  // MARK: - Closures For Notifying View Controllers
+  // MARK: - Closures For Notifying SettingVC
   var onWatchUser: ((User) -> Void)?
 
   var onBlockListForReview: (([String]) -> Void)?
@@ -29,7 +29,7 @@ class UserViewModel {
   // MARK: 直接監聽 這幾個block的func就可不用ㄇ？之後看看
   func fetchBlockList(user: User) {
 
-    UserManager.shared.fetchBlockList(user: user) { result in
+    UserManager.shared.fetchBlocklist(user: user) { result in
 
       switch result {
 
@@ -45,7 +45,7 @@ class UserViewModel {
 
   func fetchBlockListForReviews(user: User) {
 
-    UserManager.shared.fetchBlockList(user: user) { result in
+    UserManager.shared.fetchBlocklist(user: user) { result in
 
       switch result {
 
@@ -60,7 +60,7 @@ class UserViewModel {
 
   func updateBlockList(user: User, unBlockName: String) {
 
-    UserManager.shared.updateBlockList(user: user, unblockName: unBlockName) { result in
+    UserManager.shared.updateBlocklist(user: user, unblockName: unBlockName) { result in
 
       switch result {
 

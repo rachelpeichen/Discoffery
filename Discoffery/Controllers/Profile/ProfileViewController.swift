@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
 
-  // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 

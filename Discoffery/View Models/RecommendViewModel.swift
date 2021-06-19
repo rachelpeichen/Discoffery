@@ -10,10 +10,12 @@ import CoreLocation
 
 class RecommendViewModel {
 
+  // MARK: - Closures For Notifying Recommend VC
   var onRecommendShopAroundUser: (([CoffeeShop]) -> Void)?
 
   var onShopRecommendItems: (([RecommendItem]) -> Void)?
 
+  // MARK: - Properties
   var recommendShopAroundUser: [CoffeeShop] = [] {
 
     didSet {
@@ -24,7 +26,7 @@ class RecommendViewModel {
 
   var userCurrentCoordinate: CLLocationCoordinate2D?
 
-  // MARK: - Distance between shop & user related functions
+  // MARK: - Distance Between Shop & User Related Functions
   func getShopAroundUser(distance: Double = 1500) {
 
     LocationManager.shared.trackLocation { latitude, longitude in
@@ -32,7 +34,6 @@ class RecommendViewModel {
       filterShopWithinDistance(latitude: latitude, longitude: longitude, distanceInMeters: distance)
 
       self.userCurrentCoordinate?.latitude = latitude
-
       self.userCurrentCoordinate?.longitude = longitude
     }
   }
@@ -54,7 +55,6 @@ class RecommendViewModel {
           distance: distanceInMeters)
 
       case .failure(let error):
-
         print("filterShopWithinLatitude.failure: \(error)")
       }
     }
@@ -62,13 +62,10 @@ class RecommendViewModel {
 
   func filterShopWithinLongitude(shopFilteredByLat: [CoffeeShop], latitude: Double, longitude: Double, distance: Double) {
 
-    // The number of meters per degree of lonitude (roughly) 換算 1 degrees 的經度 ~ 110122 m
+    // The number of meters per degree of lonitude (roughly)
     let metersPerLonDegree = (Double.pi / 180) * 6371000 * cos(latitude / 180)
-
-    let lowerLon = longitude - (distance / metersPerLonDegree) // 經度下限
-
-    let upperLon = longitude + (distance / metersPerLonDegree) // 經度上限
-
+    let lowerLon = longitude - (distance / metersPerLonDegree)
+    let upperLon = longitude + (distance / metersPerLonDegree)
     recommendShopAroundUser = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
   }
 
@@ -79,11 +76,9 @@ class RecommendViewModel {
       switch result {
 
       case .success(let items):
-
         self.onShopRecommendItems?(items)
 
       case .failure(let error):
-
         print("fetchFeatureForShop.failure: \(error)")
       }
     }

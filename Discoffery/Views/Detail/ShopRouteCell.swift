@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class ShopRouteCell: ShopDetailBasicCell {
+class ShopRouteCell: UITableViewCell {
   
   @IBOutlet weak var mapView: MKMapView!
 

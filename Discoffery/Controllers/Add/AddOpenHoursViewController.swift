@@ -9,6 +9,7 @@ import Eureka
 import PopupDialog
 
 protocol AddOpenHoursViewControllerDelegate: AnyObject {
+
   func finishAddOpenHours(openHours: [String: Any?])
 }
 

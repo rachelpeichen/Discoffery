@@ -29,22 +29,16 @@ class UserManager {
     database.collection("users").document(firebaseUID).getDocument { querySnapshot, error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else if querySnapshot?.data() == nil {
-
         completion(.failure(UserError.notExistError))
 
       } else {
-
         do {
-
           if let user = try querySnapshot?.data(as: User.self, decoder: Firestore.Decoder()) {
-
             completion(.success(user))
           }
-
         } catch {
           completion(.failure(error))
         }
@@ -55,17 +49,14 @@ class UserManager {
   func createUser(createdUser: inout User, completion: @escaping (Result<String, Error>) -> Void) {
 
     let doc = database.collection("users").document(createdUser.id)
-
     createdUser.createdTime = Date().millisecondsSince1970
 
     doc.setData(createdUser.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
         completion(.success("Create User Success"))
       }
     }
@@ -79,36 +70,28 @@ class UserManager {
     docRef.addSnapshotListener { querySnapshot, error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
         let user = try? querySnapshot?.data(as: User.self)
-
         if let user = user {
-
           completion(.success(user))
         }
       }
     }
   }
 
-  // MARK: Upload Img
+  // MARK: Upload Img For reviews and new shop
   func uploadImgFromUser(pickerImage: UIImage, folderName: String, completion: @escaping (Result<String, Error>) -> Void) {
 
     let uuid = UUID().uuidString
-
     guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
-
     let storageRef = Storage.storage().reference()
-
     let imageRef = storageRef.child(folderName).child("\(uuid).jpg")
 
     imageRef.putData(image, metadata: nil) { metadata, error in
 
       if let error = error {
-
         completion(.failure(error))
       }
       guard metadata != nil else { return }
@@ -116,22 +99,19 @@ class UserManager {
       imageRef.downloadURL { url, error in
 
         if let url = url {
-
           completion(.success(url.absoluteString))
 
         } else if let error = error {
-
           completion(.failure(error))
         }
       }
     }
   }
 
-  // MARK: User's Collection
+  // MARK: Collection Related Functions
   func createDefaultCollectionCategory(user: User, savedShops: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
-
     savedShops.id = docRef.documentID
     savedShops.category = "全部收藏"
     savedShops.createdTime = Date().millisecondsSince1970
@@ -150,7 +130,6 @@ class UserManager {
   func addToDefaultCollectionCategory (user: User, addedShop: CoffeeShop, savedShops: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
-
     savedShops.id = docRef.documentID
 
     docRef.updateData([
@@ -175,7 +154,6 @@ class UserManager {
       let result = Result {
         try document?.data(as: UserSavedShops.self)
       }
-
       switch result {
 
       case .success(let savedShops):
@@ -193,7 +171,6 @@ class UserManager {
   func fetchSavedShopsForAllCategory(user: User, completion: @escaping (Result<[UserSavedShops], Error>) -> Void) {
 
     let query = database.collection("users").document(user.id).collection("savedShops").order(by: "createdTime")
-
     query.getDocuments { querySnapshot, error in
 
       if let error = error {
@@ -222,7 +199,6 @@ class UserManager {
   func addNewCategory(user: User, category: String, savedShopDoc: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document()
-
     savedShopDoc.id = docRef.documentID
     savedShopDoc.category = category
     savedShopDoc.createdTime = Date().millisecondsSince1970
@@ -238,8 +214,8 @@ class UserManager {
     }
   }
 
-  // MARK: - Block list Related Functions
-  func fetchBlockList(user: User, completion: @escaping (Result<[String], Error>) -> Void) {
+  // MARK: - Blocklist Related Functions
+  func fetchBlocklist(user: User, completion: @escaping (Result<[String], Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id)
 
@@ -266,7 +242,7 @@ class UserManager {
     }
   }
 
-  func updateBlockList(user: User, unblockName: String, completion: @escaping (Result< String, Error>) -> Void) {
+  func updateBlocklist(user: User, unblockName: String, completion: @escaping (Result< String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id)
 
@@ -300,6 +276,7 @@ class UserManager {
     }
   }
 
+  // MARK: - Personalizing Profile Related Functions
   func updateUserName(user: User, completion: @escaping (Result< String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id)

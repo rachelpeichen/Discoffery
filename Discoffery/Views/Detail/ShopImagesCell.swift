@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ShopImagesCell: ShopDetailBasicCell {
+class ShopImagesCell: UITableViewCell {
 
   // MARK: - Properties
   var mockImages = ["sq1", "sq2", "sq3"]

@@ -8,6 +8,7 @@
 import UIKit
 
 private enum BaseColor: String {
+  
   // swiftlint:disable identifier_name
   case B1
   case B2

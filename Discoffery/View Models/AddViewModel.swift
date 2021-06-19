@@ -10,6 +10,7 @@ import UIKit
 
 class AddViewModel {
 
+  // MARK: - Closures for DetailVC
   var onUploadImage: ((String) -> Void)?
 
   func uploadImageFromUser(with image: UIImage, folderName: String) {
@@ -18,13 +19,10 @@ class AddViewModel {
       switch result {
 
       case .success(let imgURL):
-
         self.onUploadImage?(imgURL)
-
         print("🔥 Upload imgs To Storage folder: \(folderName) Success")
 
       case .failure(let error):
-
         print("uploadImageFromUser.failure: \(error)")
       }
     }
@@ -37,11 +35,9 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish New Shop To Firebase Success")
 
       case .failure(let error):
-
         print("publishNewShop.failure: \(error)")
       }
     }
@@ -54,11 +50,9 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish Review To Firebase Success")
 
       case .failure(let error):
-
         print("publishUserReview.failure: \(error)")
       }
     }
@@ -71,11 +65,9 @@ class AddViewModel {
       switch result {
 
       case .success:
-
         print("Publish Recommend Item To Firebase Success")
 
       case .failure(let error):
-        
         print("publishRecommendItem.failure: \(error)")
       }
     }
@@ -88,17 +80,12 @@ class AddViewModel {
       switch result {
 
       case .success(let didExistItem):
-
         print("This item already exists on Firebase: \(didExistItem), go update item count.")
-
         self?.updateRecommendItemCount(shop: shop, item: didExistItem)
 
       case .failure(let error):
-
         print("Same item not found on Firebase: \(error), go publish item.")
-
         var publishItem = item
-
         self?.publishRecommendItem(shop: shop, item: &publishItem)
       }
     }

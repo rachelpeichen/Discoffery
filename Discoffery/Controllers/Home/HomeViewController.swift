@@ -12,21 +12,16 @@ class HomeViewController: UIViewController {
   // MARK: - Properties
   var sharedHomeViewModel = HomeViewModel()
 
-  // MARK: - Outlets
+  // MARK: - IBOutlets
   @IBOutlet weak var mapContainerView: UIView!
-
   @IBOutlet weak var listContainerView: UIView!
 
-  @IBAction func didTouchSearchBtn(_ sender: UIButton) {
-
-  }
-
+  // MARK: - IBActions
   @IBAction func changeLayout(_ sender: UIButton) {
 
     if listContainerView.isHidden == true {
 
       listContainerView.isHidden = false
-
       mapContainerView.isHidden  = true
 
       let listIconConfig = UIImage.SymbolConfiguration(scale: .large)
@@ -36,7 +31,6 @@ class HomeViewController: UIViewController {
     } else if listContainerView.isHidden == false {
 
       listContainerView.isHidden = true
-
       mapContainerView.isHidden  = false
 
       let mapIconConfig = UIImage.SymbolConfiguration(scale: .large)
@@ -52,12 +46,11 @@ class HomeViewController: UIViewController {
     // Do any additional setup after loading the view.
 
     mapContainerView.isHidden = false
-
     listContainerView.isHidden = true
   }
 
+  // MARK: - Prepare Segue
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
     // mapVC & listVC can both use the same model and get data at the same time
     if let mapVC = segue.destination as? HomeMapViewController {
 

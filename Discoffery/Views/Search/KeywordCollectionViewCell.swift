@@ -30,8 +30,9 @@ class KeywordCollectionViewCell: UICollectionViewCell {
     
     return layoutAttributes
   }
-  
-  func layoutKeywordCollectionViewCell(from: String) {
+
+  // MARK: Layout functions for View Controllers to implement
+  func layoutKeywordCell(from: String) {
     keywordBtn.setTitle(from, for: .normal)
   }
 }

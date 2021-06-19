@@ -10,7 +10,6 @@ import UIKit
 class BlockListTableViewCell: UITableViewCell {
 
   @IBOutlet weak var blockedUserLabel: UILabel!
-
   @IBOutlet weak var unBlockUserBtn: PaddingLabel!
 
   override func awakeFromNib() {

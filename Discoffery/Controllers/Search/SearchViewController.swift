@@ -89,7 +89,7 @@ extension SearchViewController: UICollectionViewDataSource {
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeywordCollectionViewCell.identifier,
                                                      for: indexPath) as? KeywordCollectionViewCell {
 
-      cell.layoutKeywordCollectionViewCell(from: hardCodeKeywordsArr[indexPath.row])
+      cell.layoutKeywordCell(from: hardCodeKeywordsArr[indexPath.row])
 
       return cell
     }

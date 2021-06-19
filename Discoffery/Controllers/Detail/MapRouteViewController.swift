@@ -30,7 +30,7 @@ class MapRouteViewController: UIViewController {
     super.viewDidLoad()
 
     // Do any additional setup after loading the view.
-   userCurrentCoordinate = LocationManager.shared.currentCoordinate
+   userCurrentCoordinate = LocationManager.shared.userCurrentCoordinate
 
     mapView.showsUserLocation = true
 

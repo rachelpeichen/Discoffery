@@ -21,7 +21,7 @@ class ReviewsPageViewController: UIViewController {
 
   var shopName = "Cafe Name"
 
-  // MARK: - IBOutlets
+  // MARK: - IBOutlets & IBActions
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var cafeNameLabel: UILabel!
   @IBAction func didTapBackButton(_ sender: Any) {
@@ -65,11 +65,11 @@ class ReviewsPageViewController: UIViewController {
     userViewModel.blockUser(user: UserManager.shared.user, blockName: filteredReviews[sender.tag].user)
 
     sender.isEnabled = false
-
     sender.setTitle("已封鎖此用戶", for: .disabled)
   }
 }
 
+// MARK: - UITableViewDataSource
 extension ReviewsPageViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,54 +79,39 @@ extension ReviewsPageViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-    if let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as? ReviewCell {
+    if let cell = tableView.dequeueReusableCell(withIdentifier: ReviewCell.identifier, for: indexPath) as? ReviewCell {
 
       let singleReview = filteredReviews[indexPath.row]
 
-      cell.layoutItemLabel(itemsArr: singleReview.recommendItems)
-
-      cell.layoutImgStackView(imgsArr: singleReview.imgURL)
-
       if singleReview.user == UserManager.shared.user.id {
-
         cell.blockBtn.isHidden = true
 
       } else {
-
         cell.blockBtn.tag = indexPath.row
-
         cell.blockBtn.addTarget(self, action: #selector(didTapCellButton(sender:)), for: .touchUpInside)
       }
 
-      cell.postTime.text = Date.dateFormatter.string(from: Date.init(milliseconds: singleReview.postTime))
+      cell.comment.text = singleReview.comment.isEmpty ? "該用戶無填寫評論" : singleReview.comment
+      cell.layoutItemLabel(itemsArr: singleReview.recommendItems)
+      cell.layoutImgStackView(imgsArr: singleReview.imgURL)
+      cell.layoutReviewCell(review: singleReview)
 
-      cell.rateStars.rating = singleReview.rating
-
-      cell.userName.text = singleReview.userName
-
-      cell.userImg.loadImage(singleReview.userImg)
-
-      if singleReview.comment.isEmpty {
-        
-        cell.comment.text = "該用戶無填寫評論"
-
-      } else {
-
-        cell.comment.text = singleReview.comment
-      }
       return cell
     }
     return ReviewCell()
   }
 }
 
+// MARK: - UITableViewDelegate
 extension ReviewsPageViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
     return UITableView.automaticDimension
   }
 
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+
     return UITableView.automaticDimension
   }
 }

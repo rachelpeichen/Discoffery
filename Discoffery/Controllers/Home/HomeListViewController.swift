@@ -12,7 +12,7 @@ import ESPullToRefresh
 class HomeListViewController: UIViewController {
 
   // MARK: - Properties
-  var homeViewModel: HomeViewModel?
+  var homeViewModel = HomeViewModel()
   
   var shopsDataForList: [CoffeeShop] = []
   
@@ -25,8 +25,6 @@ class HomeListViewController: UIViewController {
 
   var userSavedShopsArr: [String] = []
 
-  var mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
-
   // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
 
@@ -36,9 +34,8 @@ class HomeListViewController: UIViewController {
     
     // Do any additional setup after loading the view.
     setupTableView()
-    
-    // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！ LocationManager也是 所以直接去拿HomeViewModel的屬性
-    homeViewModel?.onShopsData = { [weak self] shopsData in
+
+    homeViewModel.onShopsData = { [weak self] shopsData in
 
       self?.shopsDataForList = shopsData
 
@@ -48,7 +45,7 @@ class HomeListViewController: UIViewController {
 
         self?.fetchRecommendItemForShop(shop: shopsData[index])
 
-        if let coordinate = self?.homeViewModel?.userCurrentCoordinate {
+        if let coordinate = self?.homeViewModel.userCurrentCoordinate {
 
           if let distance = self?.calDistanceBetweenTwoLocations(location1Lat: coordinate.latitude,
                                                                  location1Lon: coordinate.longitude,
@@ -64,22 +61,20 @@ class HomeListViewController: UIViewController {
     // MARK: Header to show last updated time for refreshing data
     tableView.es.addPullToRefresh { [unowned self] in
 
-      print(0) // 在這邊做更新資料相關事情
-
+      print(0) // Do update data stuff
       self.tableView.es.stopPullToRefresh()
     }
 
     // MARK: Footer to show loading more data and no more data
     tableView.es.addInfiniteScrolling { [unowned self] in
 
-      print(1) // 在這裡做載入更多資料的相關事情
-
+      print(1) // Do load more data stuff
       tableView.es.stopLoadingMore()
       tableView.es.noticeNoMoreData()
     }
   }
 
-  // MARK: - Functions
+  // MARK: - Prepare Segue
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     if let selectedRow = sender as? Int {
@@ -139,26 +134,8 @@ class HomeListViewController: UIViewController {
     }
   }
 
-  private func setupTableView() {
-    
-    tableView.delegate = self
-    tableView.dataSource = self
-    
-    tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
-
-    tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil), forCellReuseIdentifier: "shopFeatureCell")
-    
-    tableView.estimatedRowHeight = 320
-
-    tableView.rowHeight = UITableView.automaticDimension
-    
-    tableView.separatorStyle = .none
-    
-    tableView.reloadData()
-  }
-  
   func calDistanceBetweenTwoLocations(location1Lat: Double, location1Lon: Double, location2Lat: Double, location2Lon: Double) -> Double {
-    
+
     // Use Haversine Formula to calculate the distance in meter between two locations
     // φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km)
     let lat1 = location1Lat
@@ -174,42 +151,59 @@ class HomeListViewController: UIViewController {
     let Δλ = (lon2 - lon1) * Double.pi / 180
     let parameterA = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2)
     let parameterC = 2 * atan2(sqrt(parameterA), sqrt(1 - parameterA))
-    
+
     let distance = earthRadius * parameterC
-    
+
     return distance
+  }
+
+  // MARK: - Private Functions
+  private func setupTableView() {
+    
+    tableView.register(UINib(nibName: LandscapeCardCell.identifier, bundle: nil),
+                       forCellReuseIdentifier: LandscapeCardCell.identifier)
+
+    tableView.register(UINib(nibName: ShopFeatureCell.identifier, bundle: nil),
+                       forCellReuseIdentifier: ShopFeatureCell.identifier)
+
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.estimatedRowHeight = 320
+    tableView.rowHeight = UITableView.automaticDimension
+    tableView.separatorStyle = .none
+    tableView.reloadData()
   }
 }
 
+// MARK: - UITableViewDataSource
 extension HomeListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
     return shopsDataForList.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
     if let cell = tableView.dequeueReusableCell(
-        withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
+        withIdentifier: LandscapeCardCell.identifier, for: indexPath) as? LandscapeCardCell {
       
       let shop = shopsDataForList[indexPath.row]
 
-      // swiftlint:disable force_unwrapping
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
-      cell.cafeName.text = shop.name
-      cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
-      cell.starsView.rating = shop.tasty
-      cell.openHours.text = "疫情暫停營業"
+      cell.layoutLandscapeCell(shop: shop)
 
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
+
       var itemLayoutArr: [String] = []
       itemLayoutArr.append(contentsOf: recommendItemsArr.map { $0.item })
       cell.configureItem(with: itemLayoutArr)
 
       guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
+
       var featureLayoutArr = featureArr[0].special
       featureLayoutArr.append(featureArr[0].timeLimit)
       cell.configureFeature(with: featureLayoutArr)
+
       cell.selectionStyle = .none
 
       return cell
@@ -218,9 +212,11 @@ extension HomeListViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
     performSegue(withIdentifier: "navigateToDetailVC", sender: indexPath.row)
   }
 }
 
+// MARK: - UITableViewDelegate
 extension HomeListViewController: UITableViewDelegate {
 }

@@ -18,15 +18,18 @@ class LandscapeCardCell: UITableViewCell {
   // MARK: - IBOutlets
   @IBOutlet weak var itemCollectionView: UICollectionView!
   @IBOutlet weak var featureCollectionView: UICollectionView!
-  @IBOutlet weak var imageContainerView: UIView!
-  @IBOutlet weak var cafeMainImage: UIImageView!
-  @IBOutlet weak var starsView: CosmosView!
-  @IBOutlet weak var cafeName: UILabel!
+
+  @IBOutlet weak var imgContainerView: UIView!
+  @IBOutlet weak var imgView: UIImageView!
+  
+  @IBOutlet weak var rateStarsView: CosmosView!
+
+  @IBOutlet weak var name: UILabel!
   @IBOutlet weak var distance: UILabel!
   @IBOutlet weak var openHours: UILabel!
-  @IBOutlet weak var saveToCollectionBtn: UIButton!
 
-  // MARK: - Properties
+  @IBOutlet weak var saveToCollectionBtn: UIButton!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
 
@@ -39,7 +42,7 @@ class LandscapeCardCell: UITableViewCell {
     // Configure the view for the selected state
   }
 
-  // MARK: - Functions
+  // MARK: Layout functions for ViewControllers to implement
   func configureFeature(with featureArr: [String]) {
 
     self.featureArr = featureArr
@@ -54,10 +57,19 @@ class LandscapeCardCell: UITableViewCell {
     self.itemCollectionView.layoutIfNeeded()
   }
 
+  func layoutLandscapeCell(shop: CoffeeShop) {
+
+    // swiftlint:disable force_unwrapping
+    let mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
+    imgView.image = UIImage(named: mockImages.randomElement()!)
+    name.text = shop.name
+    distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
+    rateStarsView.rating = shop.tasty
+    openHours.text = "疫情暫停營業"
+  }
+
   // MARK: - Private Functions
   private func setupCollectionView() {
-
-    layoutImageViewWithShadow(for: cafeMainImage, with: imageContainerView)
 
     itemCollectionView.register(UINib(nibName: RecommendItemCollectionViewCell.identifier, bundle: nil),
                                          forCellWithReuseIdentifier: RecommendItemCollectionViewCell.identifier)
@@ -69,6 +81,7 @@ class LandscapeCardCell: UITableViewCell {
     itemCollectionView.dataSource = self
     featureCollectionView.delegate = self
     featureCollectionView.dataSource = self
+    layoutImageViewWithShadow(for: imgView, with: imgContainerView)
   }
 }
 
@@ -107,7 +120,7 @@ extension LandscapeCardCell: UICollectionViewDataSource {
     return FeatureCollectionViewCell()
   }
 }
-
+// MARK: - UICollectionViewDelegateFlowLayout
 extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -129,15 +142,16 @@ extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    // Distance Between Item Cells
+
       return 8
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    // Cell Margin
+
       return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
 }
 
+// MARK: - UICollectionViewDelegate
 extension LandscapeCardCell: UICollectionViewDelegate {
 }

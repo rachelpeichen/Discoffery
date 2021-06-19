@@ -77,13 +77,13 @@ class CoffeeShopManager {
   func fetchShopWithinLatitude(latitude: Double, distance: Double, completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
     // Find all shops within input meter around user's current location
 
-    // The number of meters per degree of latidue (roughly)
+    // The number of meters per degree of latidue
     let metersPerLatDegree = (Double.pi / 180) * 6371000
     let lowerLat = latitude - (distance / metersPerLatDegree)
     let upperLat = latitude + (distance / metersPerLatDegree)
 
     let docRef = database.collection("shops")
-    // Query latitude first because of the limit of Firebase's Geopoint query range
+    // Query latitude only first because of the limit of Firebase's Geopoint query range
     let queryByLat = docRef
       .whereField("latitude", isGreaterThan: lowerLat)
       .whereField("latitude", isLessThan: upperLat)
@@ -112,7 +112,7 @@ class CoffeeShopManager {
     }
   }
 
-  // MARK: - Fetching Existing Shops Related Functions
+  // MARK: - Fetch Existing Shops Related Functions
   func fetchShopSelectedOnMap(name: String, completion: @escaping (Result<CoffeeShop, Error>) -> Void) {
 
     let docRef = database.collection("shops")
@@ -171,35 +171,6 @@ class CoffeeShopManager {
           }
         }
         completion(.success(knownShop))
-      }
-    }
-  }
-
-  func fetchShopByRecommendItem(completion: @escaping (Result<[CoffeeShop], Error>) -> Void) {
-
-    let query = database.collection("shops").whereField("socket", isEqualTo: "maybe")
-
-    query.getDocuments { querySnapshot, error in
-
-      if let error = error {
-        print("Error getting documents: \(error)")
-
-      } else {
-        guard let querySnapshot = querySnapshot else { return }
-
-        var fetchShops: [CoffeeShop] = []
-
-        for document in querySnapshot.documents {
-
-          do {
-            if let shop = try document.data(as: CoffeeShop.self, decoder: Firestore.Decoder()) {
-              fetchShops.append(shop)
-            }
-          } catch {
-            completion(.failure(error))
-          }
-        }
-        completion(.success(fetchShops))
       }
     }
   }
