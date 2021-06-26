@@ -50,11 +50,21 @@ class HomeMapViewController: UIViewController {
     
     // 2: Get user's current coordinate for drawing map
     homeViewModel.getUserCurrentCoordinate()
-
+    
     // 3: Get shopsData
     homeViewModel.onShopsDataForMap = { shops in
 
       self.shopsDataForMap = shops
+
+      self.homeViewModel.fetchFeatureForShopsData(shopsData: shops)
+
+      // MARK: Still 0 elements
+      self.homeViewModel.onFeatureDicForMap = { result in
+
+        self.featureDic = result
+      }
+
+      self.homeViewModel.fetchRecommendItemForShopsData(shopsData: shops)
     }
 
     // 4: Mark shops on map
@@ -63,11 +73,11 @@ class HomeMapViewController: UIViewController {
       self?.mapView.showAnnotations(annotations, animated: true)
     }
 
-    // 5: Get shops feature & recommend item
+    homeViewModel.onRecommendItemsDicForMap = { result in
 
-    // 6: Get distance between shop and user
-
-//    selecetedShopContainerView.isHidden = true
+      self.recommendItemsDic = result
+    }
+    selecetedShopContainerView.isHidden = true
   }
 
   // MARK: - Prepare Segue
@@ -104,7 +114,7 @@ class HomeMapViewController: UIViewController {
   }
 }
 
-// MARK: - CLLocationManagerDelegate：拉成兩個func整理
+// MARK: - CLLocationManagerDelegate：要拉成兩個func整理
 extension HomeMapViewController: CLLocationManagerDelegate {
   
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -129,7 +139,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
       case .authorizedAlways, .authorizedWhenInUse:
         print("Location authorization is confirmed.")
-        homeViewModel.fetchShopsAroundUser(distance: 2000)
+        homeViewModel.fetchShopsAroundUser()
         setUpMapView()
 
       default:
@@ -155,7 +165,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
         case .authorizedAlways, .authorizedWhenInUse:
           print("Location authorization is confirmed.")
-          homeViewModel.fetchShopsAroundUser(distance: 2000)
+          homeViewModel.fetchShopsAroundUser()
           setUpMapView()
 
         default:
@@ -198,6 +208,7 @@ extension HomeMapViewController: MKMapViewDelegate {
       if let title = selectedShopAnnotation?.title {
 
         if item.name == title {
+
           selectedAnnotationIndex = index
         }
       }

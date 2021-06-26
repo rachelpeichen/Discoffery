@@ -95,7 +95,7 @@ class HomeListViewController: UIViewController {
     }
   }
 
-  // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  // TODO: Need to move to HomeViewModel
   func fetchFeatureForShop(shop: CoffeeShop) {
 
     FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
@@ -103,13 +103,10 @@ class HomeListViewController: UIViewController {
       switch result {
 
       case .success(let getFeature):
-
         self?.featureDic[shop.id] = getFeature
-        
         self?.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -122,13 +119,10 @@ class HomeListViewController: UIViewController {
       switch result {
 
       case .success(let getItems):
-
         self.recommendItemsDic[shop.id] = getItems
-
         self.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }

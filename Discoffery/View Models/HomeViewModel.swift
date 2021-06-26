@@ -27,7 +27,7 @@ class HomeViewModel {
   var onRecommendItemsDicForMap: (([String: [RecommendItem]]) -> Void)?
 
   // HomeListVC
-  var onShopsDataForList: (([CoffeeShop]) -> Void)?
+  var onShopsDataForList: (([CoffeeShop]) -> Void)? // OK
 
   // MARK: - Properties
   weak var delegate: HomeViewModelDelegate?
@@ -35,7 +35,7 @@ class HomeViewModel {
   var shopsData: [CoffeeShop] = [] {
 
     didSet {
-
+      onShopsDataForList?(shopsData)
       onShopsDataForMap?(shopsData)
       markAnnotationForShops(shops: shopsData)
     }
@@ -99,7 +99,7 @@ class HomeViewModel {
     shopsData = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
   }
 
-  // 4: 計算跟以下fetch還不知道放哪邊好
+  // 4: TODO: Need to confirm where to call this function
   func calDistanceBetweenUserAndShop() {
 
     for index in 0..<shopsData.count {
@@ -137,7 +137,7 @@ class HomeViewModel {
     return distance
   }
 
-  // 5
+  // 5 TODO: Need to confirm HOW & WHERE to call this function
   func fetchFeatureForShopsData(shopsData: [CoffeeShop]) {
 
     for index in 0..<shopsData.count {
