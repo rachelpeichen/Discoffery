@@ -52,19 +52,26 @@ class HomeMapViewController: UIViewController {
     homeViewModel.getUserCurrentCoordinate()
     
     // 3: Get shopsData
-    homeViewModel.onShopsDataForMap = { shops in
+    homeViewModel.onShopsDataForMap = { shopsData in
 
-      self.shopsDataForMap = shops
+      self.shopsDataForMap = shopsData
 
-      self.homeViewModel.fetchFeatureForShopsData(shopsData: shops)
+      for index in 0..<shopsData.count {
 
-      // MARK: Still 0 elements
-      self.homeViewModel.onFeatureDicForMap = { result in
+        self.fetchFeatureForShop(shop: shopsData[index])
 
-        self.featureDic = result
+        self.fetchRecommendItemForShop(shop: shopsData[index])
+
+        if let coordinate = self.homeViewModel.userCurrentCoordinate {
+          
+          let distance = self.calDistanceBetweenTwoLocations(location1Lat: coordinate.latitude,
+                                                             location1Lon: coordinate.longitude,
+                                                             location2Lat: shopsData[index].latitude,
+                                                             location2Lon: shopsData[index].longitude)
+          self.shopsDataForMap[index].cheap = distance
+        }
       }
-
-      self.homeViewModel.fetchRecommendItemForShopsData(shopsData: shops)
+      self.shopsDataForMap.sort { $0.cheap < $1.cheap }
     }
 
     // 4: Mark shops on map
@@ -73,10 +80,6 @@ class HomeMapViewController: UIViewController {
       self?.mapView.showAnnotations(annotations, animated: true)
     }
 
-    homeViewModel.onRecommendItemsDicForMap = { result in
-
-      self.recommendItemsDic = result
-    }
     selecetedShopContainerView.isHidden = true
   }
 
@@ -111,6 +114,60 @@ class HomeMapViewController: UIViewController {
         detailVC.recommendItemsArr = recommendItemsArr
       }
     }
+  }
+
+  // TODO: Need to move to HomeViewModel
+  func fetchFeatureForShop(shop: CoffeeShop) {
+
+    FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
+
+      switch result {
+
+      case .success(let getFeature):
+        self?.featureDic[shop.id] = getFeature
+
+      case .failure(let error):
+        print("fetchFeatureForShop: \(error)")
+      }
+    }
+  }
+
+  func fetchRecommendItemForShop(shop: CoffeeShop) {
+
+    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
+
+      switch result {
+
+      case .success(let getItems):
+        self.recommendItemsDic[shop.id] = getItems
+
+      case .failure(let error):
+        print("fetchFeatureForShop: \(error)")
+      }
+    }
+  }
+
+  func calDistanceBetweenTwoLocations(location1Lat: Double, location1Lon: Double, location2Lat: Double, location2Lon: Double) -> Double {
+
+    // Use Haversine Formula to calculate the distance in meter between two locations
+    // φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km)
+    let lat1 = location1Lat
+    let lat2 = location2Lat
+    let lon1 = location1Lon
+    let lon2 = location2Lon
+    let earthRadius = 6371000.0
+
+    // swiftlint:disable identifier_name
+    let φ1 = lat1 * Double.pi / 180 // φ, λ in radians
+    let φ2 = lat2 * Double.pi / 180
+    let Δφ = (lat2 - lat1) * Double.pi / 180
+    let Δλ = (lon2 - lon1) * Double.pi / 180
+    let parameterA = sin(Δφ / 2) * sin(Δφ / 2) + cos(φ1) * cos(φ2) * sin(Δλ / 2) * sin(Δλ / 2)
+    let parameterC = 2 * atan2(sqrt(parameterA), sqrt(1 - parameterA))
+
+    let distance = earthRadius * parameterC
+
+    return distance
   }
 }
 
@@ -221,8 +278,8 @@ extension HomeMapViewController: MKMapViewDelegate {
         if let selectedsShopFeature = featureDic[shop.id] {
 
           selectedShopVC?.layoutSelectedShopVC(shop: shop,
-                                              feature: selectedsShopFeature[0],
-                                              recommendItem: selectedShopRecommendItem)
+                                               feature: selectedsShopFeature[0],
+                                               recommendItem: selectedShopRecommendItem)
           selecetedShopContainerView.isHidden = false
         }
       }
