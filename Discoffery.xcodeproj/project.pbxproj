@@ -245,8 +245,6 @@
 			children = (
 				78DF25362652625200F47A04 /* WriteReviewCell.swift */,
 				78DF25372652625200F47A04 /* WriteReviewCell.xib */,
-				781733BD26678ACF0004C9CB /* AddItemCollectionViewCell.swift */,
-				781733BE26678ACF0004C9CB /* AddItemCollectionViewCell.xib */,
 			);
 			path = "Write Review";
 			sourceTree = "<group>";
@@ -453,6 +451,8 @@
 		78DEC28326541E8400726A5D /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				781733BD26678ACF0004C9CB /* AddItemCollectionViewCell.swift */,
+				781733BE26678ACF0004C9CB /* AddItemCollectionViewCell.xib */,
 				78DEC2B7265500A000726A5D /* SwitchCell.xib */,
 			);
 			path = Add;

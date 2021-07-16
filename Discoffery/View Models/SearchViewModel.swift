@@ -23,7 +23,8 @@ class SearchViewModel {
     }
   }
 
-  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)? // 沒用到 之後精煉時要檢查修掉
+  // MARK: - TODO: Check if line 27 closure needed
+  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {
 

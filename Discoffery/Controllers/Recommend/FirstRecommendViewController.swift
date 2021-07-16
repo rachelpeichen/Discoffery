@@ -50,26 +50,29 @@ class FirstRecommendViewController: UIViewController {
 
     collectionView.register(UINib(nibName: ProtraitCardCollectionCell.identifier, bundle: nil),
                             forCellWithReuseIdentifier: ProtraitCardCollectionCell.identifier)
-
     collectionView.delegate = self
-
     collectionView.dataSource = self
-
+    collectionView.emptyDataSetDelegate = self
+    collectionView.emptyDataSetSource = self
     collectionView.reloadWithoutAnimation()
 
+    setUpWaterfallCollectionView()
+  }
+
+  private func setUpWaterfallCollectionView() {
+
     let layout = CHTCollectionViewWaterfallLayout()
-
     layout.minimumColumnSpacing = 16.0
-
     layout.minimumInteritemSpacing = 16.0
-
     self.collectionView.collectionViewLayout = layout
   }
 }
+
+// MARK: - UICollectionViewDataSource
 extension FirstRecommendViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    
+
     return shopsForRecommend.count
   }
 
@@ -106,4 +109,25 @@ extension FirstRecommendViewController: CHTCollectionViewDelegateWaterfallLayout
 }
 
 extension FirstRecommendViewController: UICollectionViewDelegate {
+
+}
+
+// MARK: - DZNEmptyDataSet
+extension FirstRecommendViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+  // Now cannot show below
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "目前沒有可以推薦給您的店家"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "試試別的頁面吧"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }

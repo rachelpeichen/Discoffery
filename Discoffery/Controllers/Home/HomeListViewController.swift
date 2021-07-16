@@ -36,8 +36,7 @@ class HomeListViewController: UIViewController {
     
     // Do any additional setup after loading the view.
     setupTableView()
-    
-    // HomeMapVC和HomeListVC共用一個HomeViewModel 不能各自呼叫HomeViewModel的方法 會覆蓋掉 當HomeListVC 呼叫方法時 shopsdata就已經存進HomeViewModel了！！ LocationManager也是 所以直接去拿HomeViewModel的屬性
+
     homeViewModel?.onShopsData = { [weak self] shopsData in
 
       self?.shopsDataForList = shopsData
@@ -64,16 +63,14 @@ class HomeListViewController: UIViewController {
     // MARK: Header to show last updated time for refreshing data
     tableView.es.addPullToRefresh { [unowned self] in
 
-      print(0) // 在這邊做更新資料相關事情
-
+      print(0) // Do update data stuff
       self.tableView.es.stopPullToRefresh()
     }
 
     // MARK: Footer to show loading more data and no more data
     tableView.es.addInfiniteScrolling { [unowned self] in
 
-      print(1) // 在這裡做載入更多資料的相關事情
-
+      print(1) // Do load more data stuff
       tableView.es.stopLoadingMore()
       tableView.es.noticeNoMoreData()
     }
@@ -108,13 +105,10 @@ class HomeListViewController: UIViewController {
       switch result {
 
       case .success(let getFeature):
-
         self?.featureDic[shop.id] = getFeature
-        
         self?.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -127,13 +121,10 @@ class HomeListViewController: UIViewController {
       switch result {
 
       case .success(let getItems):
-
         self.recommendItemsDic[shop.id] = getItems
-
         self.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -143,17 +134,18 @@ class HomeListViewController: UIViewController {
     
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.emptyDataSetSource = self
+    tableView.emptyDataSetDelegate = self
     
-    tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
+    tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil),
+                       forCellReuseIdentifier: "landscapeCardCell")
 
-    tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil), forCellReuseIdentifier: "shopFeatureCell")
+    tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil),
+                       forCellReuseIdentifier: "shopFeatureCell")
     
     tableView.estimatedRowHeight = 320
-
     tableView.rowHeight = UITableView.automaticDimension
-    
     tableView.separatorStyle = .none
-    
     tableView.reloadData()
   }
   
@@ -181,6 +173,7 @@ class HomeListViewController: UIViewController {
   }
 }
 
+// MARK: - UITableViewDataSource
 extension HomeListViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -223,4 +216,18 @@ extension HomeListViewController: UITableViewDataSource {
 }
 
 extension HomeListViewController: UITableViewDelegate {
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+extension HomeListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "找不到附近咖啡廳的資訊😢"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }

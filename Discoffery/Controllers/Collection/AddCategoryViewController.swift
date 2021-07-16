@@ -36,9 +36,7 @@ class AddCategoryViewController: UIViewController {
       userSavedShopDoc.category = category
 
       finishBtn.isEnabled = true
-
       finishBtn.backgroundColor = .B3
-
       finishBtn.setTitleColor(.G1, for: .normal)
     }
   }

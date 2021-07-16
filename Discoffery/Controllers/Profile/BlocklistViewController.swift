@@ -49,6 +49,7 @@ class BlocklistViewController: UIViewController {
   }
 
   private func setupBlockListVC() {
+
     navigationController?.navigationBar.barTintColor = .G3
     navigationController?.navigationBar.tintColor = .G1
     tableView.emptyDataSetSource = self
@@ -100,7 +101,7 @@ extension BlocklistViewController: UITableViewDelegate {
 extension BlocklistViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
   func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-    let str = "目前沒有已封鎖的用戶:)"
+    let str = "目前沒有已封鎖的用戶😇"
     let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
     return NSAttributedString(string: str, attributes: attrs)
   }

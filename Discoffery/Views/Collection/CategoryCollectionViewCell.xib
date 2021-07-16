@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rnk-Ar-vDt" userLabel="Img Container View">
                         <rect key="frame" x="16" y="16" width="203" height="203"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unsplash_protrait_1" translatesAutoresizingMaskIntoConstraints="NO" id="D5M-Te-87A" userLabel="Img View">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mug" translatesAutoresizingMaskIntoConstraints="NO" id="D5M-Te-87A" userLabel="Img View">
                                 <rect key="frame" x="0.0" y="0.0" width="203" height="203"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="D5M-Te-87A" secondAttribute="height" multiplier="1:1" id="Fns-Dw-2fj"/>
@@ -63,7 +63,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="unsplash_protrait_1" width="320" height="480"/>
+        <image name="mug" width="640" height="640"/>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

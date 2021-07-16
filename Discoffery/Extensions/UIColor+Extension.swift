@@ -14,7 +14,6 @@ private enum BaseColor: String {
   case B3
   case B4
   case B5
-
   case G1
   case G2
   case G3
@@ -29,7 +28,6 @@ extension UIColor {
   static let B3 = baseColor(.B3)
   static let B4 = baseColor(.B4)
   static let B5 = baseColor(.B5)
-
   static let G1 = baseColor(.G1)
   static let G2 = baseColor(.G2)
   static let G3 = baseColor(.G3)

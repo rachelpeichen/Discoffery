@@ -22,7 +22,7 @@ class ReviewManager {
   // MARK: - Functions
   func fetchReviewsForShop(shop: CoffeeShop, completion: @escaping (Result<[Review], Error>) -> Void) {
 
-    let docRef = Firestore.firestore().collection("shops").document(shop.id).collection("reviews")
+    let docRef = database.collection("shops").document(shop.id).collection("reviews")
 
     docRef.getDocuments { querySnapshot, error in
 

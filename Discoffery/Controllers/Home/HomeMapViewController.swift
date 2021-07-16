@@ -12,18 +12,57 @@ class HomeMapViewController: UIViewController {
   
   // MARK: - Outlets
   @IBOutlet var mapView: MKMapView!
-  
+  @IBOutlet weak var coverView: UIView!
+  @IBOutlet weak var hintLabel: UILabel!
   @IBOutlet weak var selecetedShopContainerView: UIView!
-
   @IBOutlet weak var centerLocationBtn: CustomBtn!
 
+  @available(iOS 14.0, *)
   @IBAction func onTapCenterLocationBtn(_ sender: Any) {
 
-    if let coordinate = self.homeViewModel?.userCurrentCoordinate {
+    // Check auth status
+    let locationManager = CLLocationManager()
+    locationManager.delegate = self
+    locationManager.startUpdatingLocation()
 
-      mapView.setCenter(coordinate, animated: true)
+    if CLLocationManager.locationServicesEnabled() {
+
+      switch locationManager.authorizationStatus {
+
+      case .notDetermined, .restricted, .denied:
+        showPermissionAlert()
+
+      case .authorizedAlways, .authorizedWhenInUse:
+
+        if let coordinate = self.homeViewModel?.userCurrentCoordinate {
+          mapView.setCenter(coordinate, animated: true)
+        }
+
+      default:
+        print("Unknown Location Authorization Error")
+      }
+
+    } else {
+      print("Location services are not enabled")
     }
   }
+
+  func showPermissionAlert() {
+   let alertController = UIAlertController(title: "需要開啟定位權限",
+                                           message: "此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。",
+                                           preferredStyle: UIAlertController.Style.alert)
+
+   let okAction = UIAlertAction(title: "前往設定", style: .default, handler: { _ in
+       // Redirect to iPhone Settings
+       UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+   })
+
+   let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel)
+   alertController.addAction(cancelAction)
+   alertController.addAction(okAction)
+
+   self.present(alertController, animated: true, completion: nil)
+}
   
   // MARK: - Properties
   var homeViewModel: HomeViewModel?
@@ -47,6 +86,9 @@ class HomeMapViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view
+    coverView.isHidden = true
+    hintLabel.isHidden = true
+
     // 1:  When enter we check auth status
     locationManagerDidChangeAuthorization(LocationManager.shared.locationManager)
     
@@ -96,7 +138,6 @@ class HomeMapViewController: UIViewController {
       if let destinationVC = segue.destination as? SelectedShopViewController {
 
         selectedShopVC = destinationVC
-
         destinationVC.delegate = self
       }
 
@@ -121,7 +162,7 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  // MARK: TODO這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
+  // MARK: TODO - Need to move to ViewModel
   func fetchFeatureForShop(shop: CoffeeShop) {
 
     FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
@@ -129,11 +170,9 @@ class HomeMapViewController: UIViewController {
       switch result {
 
       case .success(let getFeature):
-
         self?.featureDic[shop.id] = getFeature
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -146,11 +185,9 @@ class HomeMapViewController: UIViewController {
       switch result {
 
       case .success(let getItems):
-
         self.recommendItemsDic[shop.id] = getItems
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -179,7 +216,7 @@ class HomeMapViewController: UIViewController {
   }
 }
 
-// MARK: - CLLocationManagerDelegate：拉成兩個func整理
+// MARK: - CLLocationManagerDelegate
 extension HomeMapViewController: CLLocationManagerDelegate {
   
   func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -188,15 +225,29 @@ extension HomeMapViewController: CLLocationManagerDelegate {
     manager.delegate = self
     
     if #available(iOS 14.0, *) {
-      // MARK: Auth check for version iOS 14.0 and above
+      // Auth check for version iOS 14.0 and above
       switch manager.authorizationStatus {
 
       case .restricted:
         print("Location access was restricted.")
 
       case .denied:
-        showLocationAuthDeniedDialog()
+        showLocationAuthDeniedDialog { result in
+          if result {
+
+            // Show hint to user where to auth location again
+            self.hintLabel.isHidden = false
+            self.coverView.isHidden = false
+            self.coverView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.8)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
+              self.hintLabel.isHidden = true
+              self.coverView.isHidden = true
+            }
+          }
+        }
         print("User denied access to location.")
+
 
       case .notDetermined:
         print("Location status not determined.")
@@ -212,7 +263,7 @@ extension HomeMapViewController: CLLocationManagerDelegate {
       }
 
     } else {
-      // MARK: Fallback on earlier versions
+      // Fallback on earlier versions
 
       if CLLocationManager.locationServicesEnabled() {
 
@@ -222,7 +273,20 @@ extension HomeMapViewController: CLLocationManagerDelegate {
           print("Location access was restricted.")
 
         case .denied:
-          showLocationAuthDeniedDialog()
+          showLocationAuthDeniedDialog { result in
+            if result {
+
+              // Show hint to user where to auth location again
+              self.hintLabel.isHidden = false
+              self.coverView.isHidden = false
+              self.coverView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.8)
+
+              DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
+                self.hintLabel.isHidden = true
+                self.coverView.isHidden = true
+              }
+            }
+          }
           print("User denied access to location.")
 
         case .notDetermined:
@@ -250,9 +314,7 @@ extension HomeMapViewController: HomeViewModelDelegate {
     homeViewModel?.delegate = self
     
     mapView.delegate = self
-    
     mapView.showsUserLocation = true
-    
     mapView.userTrackingMode = .follow
 
     if let coordinate = homeViewModel?.userCurrentCoordinate {
@@ -277,7 +339,6 @@ extension HomeMapViewController: MKMapViewDelegate {
       if let title = selectedAnnotation?.title {
 
         if item.name == title {
-
           selectedAnnotationIndex = index
         }
       }
@@ -314,7 +375,6 @@ extension HomeMapViewController: MKMapViewDelegate {
     }
 
     annotationView?.markerTintColor = .B2
-
     annotationView?.glyphText = "☕️"
 
     return annotationView

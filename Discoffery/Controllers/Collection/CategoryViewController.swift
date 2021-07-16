@@ -72,9 +72,7 @@ class CategoryViewController: UIViewController {
     } else {
 
       tableView.emptyDataSetSource = self
-
       tableView.emptyDataSetDelegate = self
-
       tableView.tableFooterView = UIView()
     }
   }
@@ -83,23 +81,18 @@ class CategoryViewController: UIViewController {
   private func setupTableView() {
 
     tableView.delegate = self
-
     tableView.dataSource = self
 
     tableView.register(UINib(nibName: "LandscapeCardCell", bundle: nil), forCellReuseIdentifier: "landscapeCardCell")
-
     tableView.register(UINib(nibName: "ShopFeatureCell", bundle: nil), forCellReuseIdentifier: "shopFeatureCell")
 
     tableView.estimatedRowHeight = 320
-
     tableView.rowHeight = UITableView.automaticDimension
-
     tableView.separatorStyle = .none
 
     tableView.reloadData()
   }
 
-  // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchFeatureForShop(shop: CoffeeShop) {
 
     FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
@@ -107,13 +100,10 @@ class CategoryViewController: UIViewController {
       switch result {
 
       case .success(let getFeature):
-
         self?.featureDic[shop.id] = getFeature
-
         self?.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -126,13 +116,10 @@ class CategoryViewController: UIViewController {
       switch result {
 
       case .success(let getItems):
-
         self.recommendItemsDic[shop.id] = getItems
-
         self.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchFeatureForShop: \(error)")
       }
     }
@@ -209,7 +196,7 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController: UITableViewDelegate {
 }
 
-// MARK: - DZNEmptyDataSetDelegate
+// MARK: - DZNEmptyDataSet
 extension CategoryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
   func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
@@ -219,7 +206,7 @@ extension CategoryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
   }
 
   func description(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
-    let str = "快把想去的咖啡廳加入收藏吧"
+    let str = "快把想去的咖啡廳加入收藏吧☺️"
     let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
     return NSAttributedString(string: str, attributes: attrs)
   }

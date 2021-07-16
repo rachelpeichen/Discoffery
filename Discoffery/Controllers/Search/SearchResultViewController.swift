@@ -10,6 +10,17 @@ import JGProgressHUD
 
 class SearchResultViewController: UIViewController {
 
+  // MARK: - IBOutlets
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var descriptionLabel: UILabel!
+  @IBOutlet weak var searchResultCount: UILabel!
+
+  // MARK: - IBActions
+  @IBAction func backToPreviousVC(_ sender: Any) {
+
+    self.dismiss(animated: true, completion: nil)
+  }
+
   // MARK: - Properties
   var searchViewModel = SearchViewModel()
 
@@ -24,17 +35,6 @@ class SearchResultViewController: UIViewController {
   var keyword: String?
 
   var mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
-
-  // MARK: - IBOutlets
-  @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var descriptionLabel: UILabel!
-  @IBOutlet weak var searchResultCount: UILabel!
-
-  // MARK: - IBActions
-  @IBAction func backToPreviousVC(_ sender: Any) {
-
-    self.dismiss(animated: true, completion: nil)
-  }
 
   // MARK: - View Life Cycle
   override func viewWillAppear(_ animated: Bool) {
@@ -218,6 +218,5 @@ extension SearchResultViewController: UITableViewDataSource {
   }
 }
 
-// MARK: - UITableViewDelegate
 extension SearchResultViewController: UITableViewDelegate {
 }

@@ -27,19 +27,12 @@ class AddShopViewController: UIViewController {
 
   // MARK: - IBOutlets
   @IBOutlet weak var timeSegControl: UISegmentedControl!
-
   @IBOutlet weak var socketSegControl: UISegmentedControl!
-
   @IBOutlet weak var collectionView: UICollectionView!
-
   @IBOutlet weak var nameTextField: UITextField!
-
   @IBOutlet weak var addressTextField: UITextField!
-
   @IBOutlet weak var addItemTextField: UITextField!
-
   @IBOutlet weak var commentTextView: UITextView!
-
   @IBOutlet weak var notesTextView: UITextView!
 
   @IBOutlet weak var rateStars: CosmosView! {
@@ -54,20 +47,15 @@ class AddShopViewController: UIViewController {
   }
 
   @IBOutlet weak var uploadImgBtn: UIButton!
-
   @IBOutlet var sendBtn: UIButton!
-
   @IBOutlet weak var imgOne: UIImageView!
-
   @IBOutlet weak var imgTwo: UIImageView!
-
   @IBOutlet weak var imgThree: UIImageView!
 
   // MARK: - IBActions
   @IBAction func endEditShopName(_ sender: UITextField) {
 
     if let inputName = sender.text {
-
       wrappedNewShop.newShopName = inputName
     }
   }
@@ -75,7 +63,6 @@ class AddShopViewController: UIViewController {
   @IBAction func endEditAddress(_ sender: UITextField) {
 
     if let address = sender.text {
-
       wrappedNewShop.address = address
     }
   }
@@ -90,7 +77,6 @@ class AddShopViewController: UIViewController {
     if let input = sender.text {
 
       if !input.isEmpty {
-
         addedItem = input
       }
     }
@@ -101,9 +87,7 @@ class AddShopViewController: UIViewController {
     guard let addedItem = addedItem else { return }
 
     wrappedNewShop.recommendItems.append(addedItem)
-
     addItemTextField.text = ""
-
     collectionView.reloadData()
   }
 
@@ -153,11 +137,11 @@ class AddShopViewController: UIViewController {
     commentTextView.clipsToBounds      = true
     commentTextView.layer.cornerRadius = 10
 
-    notesTextView.delegate           = self
-    notesTextView.layer.borderWidth  = 0.5
-    notesTextView.layer.borderColor  = UIColor.B5?.cgColor
-    notesTextView.clipsToBounds      = true
-    notesTextView.layer.cornerRadius = 10
+    notesTextView.delegate             = self
+    notesTextView.layer.borderWidth    = 0.5
+    notesTextView.layer.borderColor    = UIColor.B5?.cgColor
+    notesTextView.clipsToBounds        = true
+    notesTextView.layer.cornerRadius   = 10
   }
 
   private func setupCollectionView() {

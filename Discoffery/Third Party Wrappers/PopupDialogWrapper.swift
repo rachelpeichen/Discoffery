@@ -10,7 +10,7 @@ import PopupDialog
 
 extension UIViewController {
 
-  func showLocationAuthDeniedDialog() {
+  func showLocationAuthDeniedDialog(completion: @escaping(_ success: Bool) -> Void) {
 
     let title = "定位權限已關閉"
     let message = "如果您要取得咖啡廳資訊，請至設定 > 隱私權 > 定位服務內開啟定位功能。"
@@ -28,6 +28,7 @@ extension UIViewController {
 
     let buttonOne = DefaultButton(title: "我知道了", height: 60) {
       self.dismiss(animated: true, completion: nil)
+      completion(true)
     }
 
     popup.addButtons([buttonOne])

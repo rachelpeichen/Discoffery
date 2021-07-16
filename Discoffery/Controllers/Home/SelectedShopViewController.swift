@@ -17,19 +17,12 @@ class SelectedShopViewController: UIViewController {
 
   // MARK: - Outlets
   @IBOutlet weak var backgroundView: UIView!
-
   @IBOutlet weak var imageView: UIImageView!
-
   @IBOutlet weak var selectedShopName: UILabel!
-
   @IBOutlet weak var distanceLabel: UILabel!
-
   @IBOutlet weak var averageRating: CosmosView!
-
   @IBOutlet weak var featureOne: UILabel!
-
   @IBOutlet weak var featureTwo: UILabel!
-
   @IBOutlet weak var featureThree: UILabel!
 
   @IBAction func didTouchSelectedVC(_ sender: Any) {
@@ -56,42 +49,33 @@ class SelectedShopViewController: UIViewController {
   func setUpSelectedShopVC(shop: CoffeeShop, feature: Feature, recommendItem: [RecommendItem]) {
 
     selectedShop = shop
-
     selectedShopfeature = feature
-
     selectedShopRecommendItem = recommendItem
-
     layoutSelecetedShopViewController()
   }
 
   func layoutSelecetedShopViewController() {
 
     imageView.clipsToBounds = true
-
     imageView.layer.cornerRadius = 10
-
     backgroundView.layoutViewWithShadow()
 
     if let selectedShop = selectedShop {
 
-      averageRating.rating = selectedShop.tasty  // TODO: 還沒算出全部評價的平均先用api的
-
+      averageRating.rating = selectedShop.tasty
       distanceLabel.text = "\(selectedShop.cheap.rounded().formattedValue)公尺"
-
       selectedShopName.text = selectedShop.name
     }
 
     if let selectedShopRecommendItem = selectedShopRecommendItem {
 
       let assignedItem = selectedShopRecommendItem[0]
-
       featureOne.text = assignedItem.item
     }
 
     if let selectedShopfeature = selectedShopfeature {
 
       featureTwo.text = selectedShopfeature.special[0]
-
       featureThree.text = selectedShopfeature.special[1]
     }
   }

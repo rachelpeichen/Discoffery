@@ -118,7 +118,6 @@ extension CollectionViewController: UICollectionViewDataSource {
       let savedShopByCategory = savedShopsForAllCategory[indexPath.row]
 
       cell.layoutCategoryCollectionViewCell(from: savedShopByCategory.category)
-      cell.mainImgView.image = UIImage(named: "mugWithColor")
 
       return cell
     }
@@ -128,17 +127,7 @@ extension CollectionViewController: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
     selectedCategoryIndex = indexPath.row
-
     performSegue(withIdentifier: "navigateToCategoryVC", sender: indexPath.row)
-    //
-    //    selectedShopIndex = indexPath.row
-    //
-    //    let storyboard = UIStoryboard.main
-    //
-    //    if storyboard.instantiateViewController(withIdentifier: "DetailVC") is DetailViewController {
-    //
-    //      performSegue(withIdentifier: "navigateFromCollectionVC", sender: indexPath.row)
-    //    }
   }
 }
 
@@ -174,7 +163,6 @@ extension CollectionViewController: AddCategoryViewControllerDelegate {
   func reloadCollectionView() {
 
     collectionViewModel.onAddNewCategory = {
-
       self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
     }
   }

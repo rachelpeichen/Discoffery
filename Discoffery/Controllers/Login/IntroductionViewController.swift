@@ -11,7 +11,6 @@ class IntroductionViewController: UIViewController {
 
   // MARK: - IBOutlets & IBActions
   @IBOutlet weak var bgImgView: UIImageView!
-
   @IBOutlet weak var dialogView: UIView!
 
   @IBAction func naviagteToHomeVC(_ sender: Any) {

@@ -21,7 +21,7 @@ class AddViewModel {
 
         self.onUploadImage?(imgURL)
 
-        print("🔥 Upload imgs To Storage folder: \(folderName) Success")
+        print("Upload imgs To Storage folder: \(folderName) Success")
 
       case .failure(let error):
 

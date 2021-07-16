@@ -14,33 +14,28 @@ class HomeViewController: UIViewController {
 
   // MARK: - Outlets
   @IBOutlet weak var mapContainerView: UIView!
-
   @IBOutlet weak var listContainerView: UIView!
-
-  @IBAction func didTouchSearchBtn(_ sender: UIButton) {
-
-  }
 
   @IBAction func changeLayout(_ sender: UIButton) {
 
     if listContainerView.isHidden == true {
 
       listContainerView.isHidden = false
-
       mapContainerView.isHidden  = true
 
       let listIconConfig = UIImage.SymbolConfiguration(scale: .large)
       let listIcon       = UIImage(systemName: "list.dash", withConfiguration: listIconConfig)
+
       sender.setImage(listIcon, for: .normal)
 
     } else if listContainerView.isHidden == false {
 
       listContainerView.isHidden = true
-
       mapContainerView.isHidden  = false
 
       let mapIconConfig = UIImage.SymbolConfiguration(scale: .large)
       let mapIcon       = UIImage(systemName: "map", withConfiguration: mapIconConfig)
+      
       sender.setImage(mapIcon, for: .normal)
     }
   }
@@ -52,7 +47,6 @@ class HomeViewController: UIViewController {
     // Do any additional setup after loading the view.
 
     mapContainerView.isHidden = false
-
     listContainerView.isHidden = true
   }
 

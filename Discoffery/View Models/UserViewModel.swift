@@ -26,7 +26,7 @@ class UserViewModel {
     }
   }
 
-  // MARK: 直接監聽 這幾個block的func就可不用ㄇ？之後看看
+  // MARK: - TODO: Check if this function needed if using another sync method
   func fetchBlockList(user: User) {
 
     UserManager.shared.fetchBlockList(user: user) { result in
@@ -88,7 +88,7 @@ class UserViewModel {
     }
   }
 
-  // MARK: Update Profile - 這裡應該不用寫這麼多個
+  // MARK: Update Profile Related Functions
   func watchUser() {
 
     UserManager.shared.watchUser { result in

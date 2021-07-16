@@ -126,7 +126,7 @@ class HomeViewModel {
       switch result {
 
       case .success:
-        print("🥴fetchShopSelectedOnMap Success")
+        print("fetchShopSelectedOnMap Success")
 
       case .failure(let error):
         print("publishNewShop.failure\(error)")
