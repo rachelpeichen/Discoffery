@@ -17,13 +17,7 @@ class CollectionViewController: UIViewController {
   // MARK: - Properties
   var collectionViewModel = CollectionViewModel()
 
-  var savedShopsForAllCategory: [UserSavedShops] = [] {
-
-    didSet {
-
-      setupCollectionView()
-    }
-  }
+  var savedShopsForAllCategory: [UserSavedShops] = []
 
   var inputCategory: String?
 
@@ -38,6 +32,8 @@ class CollectionViewController: UIViewController {
     collectionViewModel.onFetchSavedShopsForAllCategory = {
 
       self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
+
+      self.setupCollectionView()
     }
   }
 
@@ -46,6 +42,9 @@ class CollectionViewController: UIViewController {
 
     // Do any additional setup after loading the view.
     setupNavigation()
+
+    let notificationName = Notification.Name("didAddNewCategory")
+    NotificationCenter.default.addObserver(self, selector: #selector(updateAllCategories), name: notificationName, object: nil)
   }
 
   // MARK: - Functions
@@ -76,12 +75,18 @@ class CollectionViewController: UIViewController {
 
   @objc func navigateToNextVC() {
 
-    // Create the AddCategory View Controller.
-    if let addCategoryVC =
-        self.storyboard?.instantiateViewController(withIdentifier: "addCategoryVC") as? AddCategoryViewController {
+    performSegue(withIdentifier: "navigateToAddCategoryVC", sender: self)
+  }
 
-      addCategoryVC.delegate = self
-      performSegue(withIdentifier: "navigateToAddCategoryVC", sender: self)
+  @objc func updateAllCategories() {
+
+    collectionViewModel.fetchCollectionsForAllCategories(user: UserManager.shared.user)
+
+    collectionViewModel.onFetchSavedShopsForAllCategory = {
+
+      self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
+
+      self.setupCollectionView()
     }
   }
 
@@ -155,15 +160,5 @@ extension CollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CollectionViewController: UICollectionViewDelegate {
-}
 
-// MARK: - AddCategoryViewControllerDelegate
-extension CollectionViewController: AddCategoryViewControllerDelegate {
-
-  func reloadCollectionView() {
-
-    collectionViewModel.onAddNewCategory = {
-      self.savedShopsForAllCategory = self.collectionViewModel.savedShopsForAllCategory
-    }
-  }
 }

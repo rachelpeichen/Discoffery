@@ -8,16 +8,9 @@
 import UIKit
 import JGProgressHUD
 
-protocol AddCategoryViewControllerDelegate: AnyObject {
-
-  func reloadCollectionView()
-}
-
 class AddCategoryViewController: UIViewController {
 
   // MARK: - Properties
-  weak var delegate: AddCategoryViewControllerDelegate?
-
   var collectionViewModel = CollectionViewModel()
 
   var userSavedShopDoc = UserSavedShops()
@@ -49,11 +42,11 @@ class AddCategoryViewController: UIViewController {
 
       self.showSuccessHUD(showInfo: "新增分類成功")
 
-      self.delegate?.reloadCollectionView()
-
     DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
 
       self.dismiss(animated: true, completion: nil)
+
+      NotificationCenter.default.post(name: .didAddNewCategory, object: nil)
     }
   }
 
@@ -72,7 +65,10 @@ class AddCategoryViewController: UIViewController {
   private func layoutAddCategoryVC() {
 
     finishBtn.isEnabled = false
-
     addCategoryBGView.layoutViewWithShadow()
   }
+}
+
+extension Notification.Name {
+  static let didAddNewCategory = Notification.Name("didAddNewCategory")
 }
