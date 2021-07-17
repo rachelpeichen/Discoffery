@@ -29,11 +29,9 @@ class UserManager {
     database.collection("users").document(firebaseUID).getDocument { querySnapshot, error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else if querySnapshot?.data() == nil {
-
         completion(.failure(UserError.notExistError))
 
       } else {
@@ -41,7 +39,6 @@ class UserManager {
         do {
 
           if let user = try querySnapshot?.data(as: User.self, decoder: Firestore.Decoder()) {
-
             completion(.success(user))
           }
 
@@ -61,11 +58,9 @@ class UserManager {
     doc.setData(createdUser.toDict) { error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
-
         completion(.success("Create User Success"))
       }
     }
@@ -79,7 +74,6 @@ class UserManager {
     docRef.addSnapshotListener { querySnapshot, error in
 
       if let error = error {
-
         completion(.failure(error))
 
       } else {
@@ -87,7 +81,6 @@ class UserManager {
         let user = try? querySnapshot?.data(as: User.self)
 
         if let user = user {
-
           completion(.success(user))
         }
       }
@@ -116,11 +109,9 @@ class UserManager {
       imageRef.downloadURL { url, error in
 
         if let url = url {
-
           completion(.success(url.absoluteString))
 
         } else if let error = error {
-
           completion(.failure(error))
         }
       }
@@ -234,6 +225,22 @@ class UserManager {
 
       } else {
         completion(.success("addNewCategory.success"))
+      }
+    }
+  }
+
+  func removeSavedShopInDefaultCategory(user: User, shop: CoffeeShop, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
+
+    docRef.updateData([
+      "savedShopsByCategory": FieldValue.arrayRemove([shop.id])
+    ]) { error in
+
+      if let error = error {
+        completion(.failure(error))
+      } else {
+        completion(.success("removeSavedShopInDefaultCategory.success"))
       }
     }
   }

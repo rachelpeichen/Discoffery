@@ -19,11 +19,9 @@ class HomeViewModel {
   // MARK: - Properties
   weak var delegate: HomeViewModelDelegate?
 
-  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)? // Only HomeMapVC use this
+  var onShopsAnnotations: (([MKPointAnnotation]) -> Void)? // For HomeListVC
   
-  var onShopsData: (([CoffeeShop]) -> Void)? // Only HomeListVC use this
-
-  var onFetchSavedShopsForAllCategory: (() -> Void)?
+  var onShopsData: (([CoffeeShop]) -> Void)? // For HomeListVC
 
   var shopsData: [CoffeeShop] = [] {
 
@@ -34,8 +32,8 @@ class HomeViewModel {
       onShopsData?(shopsData)
     }
   }
-
-  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?  // Only HomeMapVC use this?????
+  // MARK: TODO - Check if only HomeMapVC use this closure ?
+  var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {
 
@@ -45,14 +43,6 @@ class HomeViewModel {
 
         self.onUserCurrentCoordinate?(userCurrentCoordinate)
       }
-    }
-  }
-
-  var savedShopsForAllCategory: [UserSavedShops] = [] {
-
-    didSet {
-
-      onFetchSavedShopsForAllCategory?()
     }
   }
 
@@ -82,7 +72,6 @@ class HomeViewModel {
           distance: distanceInMeters)
 
       case .failure(let error):
-
         print("filterShopWithinLatitude.failure: \(error)")
       }
     }
@@ -132,23 +121,5 @@ class HomeViewModel {
         print("publishNewShop.failure\(error)")
       }
     })
-  }
-
-  // MARK: check if user has saved the shop
-  func fetchSavedShopsForAllCategory(user: User) {
-
-    UserManager.shared.fetchSavedShopsForAllCategory(user: user) { result in
-
-      switch result {
-
-      case .success(let savedShopDocs):
-
-        self.savedShopsForAllCategory = savedShopDocs
-
-      case .failure(let error):
-
-        print("fetchSavedShopsForAllCategory.failure: \(error)")
-      }
-    }
   }
 }

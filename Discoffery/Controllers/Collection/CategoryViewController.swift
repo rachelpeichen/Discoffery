@@ -164,15 +164,7 @@ extension CategoryViewController: UITableViewDataSource {
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
 
       let shop = savedShopsInThisCategory[indexPath.row]
-      let mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
-
-      // swiftlint:disable force_unwrapping
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
-
-      cell.cafeName.text = shop.name
-      cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
-      cell.starsView.rating = shop.tasty
-      cell.openHours.text = "疫情暫停營業"
+      cell.layoutLandscapeCardCell(shop: shop)
 
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
       var itemLayoutArr: [String] = []
@@ -194,6 +186,7 @@ extension CategoryViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension CategoryViewController: UITableViewDelegate {
+
 }
 
 // MARK: - DZNEmptyDataSet

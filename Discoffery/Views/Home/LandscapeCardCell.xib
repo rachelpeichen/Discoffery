@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -41,7 +40,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe Gaspard " textAlignment="natural" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gop-nG-Abn">
-                        <rect key="frame" x="16" y="282" width="272" height="20"/>
+                        <rect key="frame" x="16" y="282" width="112.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="vUM-KX-tJM"/>
                         </constraints>
@@ -92,7 +91,7 @@
                         <color key="textColor" name="G1"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="營業時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PV-Ic-siS">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="營業時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PV-Ic-siS">
                         <rect key="frame" x="16" y="359" width="65.5" height="19.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19.5" id="YpW-fw-ST2"/>
@@ -101,7 +100,7 @@
                         <color key="textColor" name="G1"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="週一週三週六公休不要來知道嗎" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e4a-3y-2Gq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="週一週三週六公休不要來知道嗎" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e4a-3y-2Gq">
                         <rect key="frame" x="85.5" y="359" width="230.5" height="19.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19.5" id="0op-FN-TkM"/>
@@ -136,22 +135,9 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZh-7x-Yoo">
-                        <rect key="frame" x="290" y="282" width="26" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="26" id="79B-HX-sSW"/>
-                            <constraint firstAttribute="height" constant="26" id="z43-Bw-AJh"/>
-                        </constraints>
-                        <color key="tintColor" name="G2"/>
-                        <state key="normal">
-                            <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
-                        </state>
-                        <state key="disabled" image="like_fill"/>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Jom-l6-ta9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="3qO-4R-CbA"/>
-                    <constraint firstAttribute="trailing" secondItem="NZh-7x-Yoo" secondAttribute="trailing" constant="16" id="4FA-3K-SRp"/>
                     <constraint firstAttribute="trailing" secondItem="Gsb-AW-Lk5" secondAttribute="trailing" constant="16" id="7tY-1r-Z4w"/>
                     <constraint firstItem="Jom-l6-ta9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ANz-vo-HKx"/>
                     <constraint firstItem="gop-nG-Abn" firstAttribute="top" secondItem="Jom-l6-ta9" secondAttribute="bottom" constant="16" id="AQc-KG-nqS"/>
@@ -167,12 +153,10 @@
                     <constraint firstItem="PzH-Wx-ekJ" firstAttribute="top" secondItem="VFC-fC-fgH" secondAttribute="bottom" id="Uu9-Mq-lEu"/>
                     <constraint firstItem="VFC-fC-fgH" firstAttribute="top" secondItem="9PV-Ic-siS" secondAttribute="bottom" constant="4" id="VWB-X4-hrt"/>
                     <constraint firstItem="e4a-3y-2Gq" firstAttribute="leading" secondItem="9PV-Ic-siS" secondAttribute="trailing" constant="4" id="Zfg-8U-evn"/>
-                    <constraint firstItem="NZh-7x-Yoo" firstAttribute="leading" secondItem="gop-nG-Abn" secondAttribute="trailing" constant="2" id="blz-CC-rCf"/>
                     <constraint firstItem="gop-nG-Abn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cfc-lZ-dMZ"/>
                     <constraint firstItem="VFC-fC-fgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="e6e-h7-UFU"/>
                     <constraint firstItem="Gsb-AW-Lk5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="gvW-zS-uis"/>
                     <constraint firstItem="9PV-Ic-siS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="j9s-Yf-bFm"/>
-                    <constraint firstItem="NZh-7x-Yoo" firstAttribute="top" secondItem="Jom-l6-ta9" secondAttribute="bottom" constant="16" id="mhm-EB-5HK"/>
                     <constraint firstItem="9PV-Ic-siS" firstAttribute="top" secondItem="3G0-dX-BbF" secondAttribute="bottom" constant="8" id="n1b-3K-EfZ"/>
                     <constraint firstItem="PzH-Wx-ekJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vP5-jB-e1H"/>
                     <constraint firstItem="e4a-3y-2Gq" firstAttribute="centerY" secondItem="9PV-Ic-siS" secondAttribute="centerY" id="y1b-A7-8Zy"/>
@@ -187,7 +171,6 @@
                 <outlet property="imageContainerView" destination="Jom-l6-ta9" id="OVk-fs-dgV"/>
                 <outlet property="itemCollectionView" destination="VFC-fC-fgH" id="BYV-CV-7bL"/>
                 <outlet property="openHours" destination="e4a-3y-2Gq" id="lrz-lO-XfL"/>
-                <outlet property="saveToCollectionBtn" destination="NZh-7x-Yoo" id="AZN-2y-xks"/>
                 <outlet property="starsView" destination="3G0-dX-BbF" id="7ZR-jy-qBr"/>
             </connections>
             <point key="canvasLocation" x="-84.057971014492765" y="181.47321428571428"/>
@@ -199,17 +182,12 @@
         </designable>
     </designables>
     <resources>
-        <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="like_fill" width="32" height="32"/>
         <image name="rect3" width="320" height="218.5"/>
         <namedColor name="B1">
             <color red="0.72399997711181641" green="0.54500001668930054" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="G1">
             <color red="0.24500000476837158" green="0.25799998641014099" blue="0.21899999678134918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="G2">
-            <color red="0.41999998688697815" green="0.43900001049041748" blue="0.3619999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

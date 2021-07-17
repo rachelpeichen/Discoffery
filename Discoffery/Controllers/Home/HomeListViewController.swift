@@ -23,10 +23,6 @@ class HomeListViewController: UIViewController {
 
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
-  var userSavedShopsArr: [String] = []
-
-  var mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
-
   // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
 
@@ -35,6 +31,10 @@ class HomeListViewController: UIViewController {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+  }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+
     setupTableView()
 
     homeViewModel?.onShopsData = { [weak self] shopsData in
@@ -97,7 +97,6 @@ class HomeListViewController: UIViewController {
     }
   }
 
-  // MARK: TODO!!!!這兩個是否能夠寫到HomeViewModel去～現在趕時間ＴＡＴ
   func fetchFeatureForShop(shop: CoffeeShop) {
 
     FeatureManager.shared.fetchFeatureForShop(shop: shop) { [weak self] result in
@@ -130,7 +129,7 @@ class HomeListViewController: UIViewController {
     }
   }
 
-  private func setupTableView() {
+  func setupTableView() {
     
     tableView.delegate = self
     tableView.dataSource = self
@@ -186,13 +185,7 @@ extension HomeListViewController: UITableViewDataSource {
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
       
       let shop = shopsDataForList[indexPath.row]
-
-      // swiftlint:disable force_unwrapping
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
-      cell.cafeName.text = shop.name
-      cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
-      cell.starsView.rating = shop.tasty
-      cell.openHours.text = "疫情暫停營業"
+      cell.layoutLandscapeCardCell(shop: shop)
 
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
       var itemLayoutArr: [String] = []
@@ -216,6 +209,7 @@ extension HomeListViewController: UITableViewDataSource {
 }
 
 extension HomeListViewController: UITableViewDelegate {
+
 }
 
 // MARK: - DZNEmptyDataSetDelegate

@@ -32,37 +32,48 @@ class DetailViewController: UIViewController {
 
   var uploadedImgURLArr: [String] = []
 
+  var isSavedInUserCollection = true
+
   private let shopsDetail: [CoffeeShopContentCategory] =
     [.images, .description, .recommend, .feature, .route, .writeReview]
 
-  // MARK: - IBOutlets & IBActions
+  // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
 
+  @IBOutlet weak var saveButton: UIButton!
+
   @IBAction func onTapBackButton(_ sender: Any) {
-    
+
     self.dismiss(animated: true, completion: nil)
   }
 
   let activityVC = UIActivityViewController(activityItems: ["跟你分享一家很棒的咖啡廳😊"], applicationActivities: nil)
 
+  // MARK: - IBActions
   @IBAction func onTapShareButton(_ sender: Any) {
 
-    // MARK: 現在的分享無法帶入資訊
     present(activityVC, animated: true, completion: nil)
   }
-  @IBOutlet weak var saveButton: UIButton!
 
   @IBAction func saveToCollection(_ sender: UIButton) {
 
-    saveShopToCollection()
+    syncSavedShopToCollectionStatus()
 
-    collectionViewModel.onAddUserSavedShop = {
+    if isSavedInUserCollection {
 
-      self.showSuccessHUD(showInfo: "成功加入收藏")
+      removeSavedShopInCollection()
+      collectionViewModel.onRemoveShopFromDefaultCategory = {
+        self.showSuccessHUD(showInfo: "成功取消收藏")
+        sender.isSelected = false
+      }
 
-      sender.setImage(UIImage(named: "like_fill"), for: .normal)
+    } else {
 
-      sender.isEnabled = false // MARK: 現在加了收藏後先不再給他按  
+      saveShopToCollection()
+      collectionViewModel.onAddUserSavedShop = {
+        self.showSuccessHUD(showInfo: "成功加入收藏")
+        sender.isSelected = true
+      }
     }
   }
 
@@ -74,9 +85,13 @@ class DetailViewController: UIViewController {
     setupTableView()
 
     if let shop = shop {
-
       fetchReviewsForShop(shop: shop)
     }
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
+    syncSavedShopToCollectionStatus()
   }
 
   // MARK: - Functions
@@ -85,7 +100,6 @@ class DetailViewController: UIViewController {
     if let reviewsVC = segue.destination as? ReviewsPageViewController {
 
       reviewsVC.reviews = self.reviews
-
       reviewsVC.shopName = self.shopName
 
     } else if let mapVC = segue.destination as? MapRouteViewController {
@@ -95,13 +109,11 @@ class DetailViewController: UIViewController {
       if let shop = shop {
 
         mapVC.shopLocation.latitude = shop.latitude
-
         mapVC.shopLocation.longitude = shop.longitude
       }
     }
   }
 
-  // MARK: TODO 這個fetchReviewsForShop是否能夠寫到ViewModel去?! 現在趕時間ＴＡＴ先放在這
   func fetchReviewsForShop(shop: CoffeeShop) {
 
     ReviewManager.shared.fetchReviewsForShop(shop: shop) { [weak self] result in
@@ -109,18 +121,34 @@ class DetailViewController: UIViewController {
       switch result {
 
       case .success(let getReviews):
-
         self?.reviews = getReviews
-
         self?.reviews.sort(by: { $0.postTime > $1.postTime })
-
         self?.reviewsCount = getReviews.count
-
         self?.tableView.reloadData()
 
       case .failure(let error):
-
         print("fetchReviewsForShop: \(error)")
+      }
+    }
+  }
+
+  func syncSavedShopToCollectionStatus() {
+
+    collectionViewModel.fetchSavedShopsInDefaultCategory(user: UserManager.shared.user)
+
+    collectionViewModel.onFetchAllUserSavedShops = { savedShops in
+
+      guard let shop = self.shop else { return }
+
+      if savedShops.contains(shop.id) {
+
+        self.isSavedInUserCollection = true
+        self.saveButton.isSelected = true
+
+      } else {
+
+        self.isSavedInUserCollection = false
+        self.saveButton.isSelected = false
       }
     }
   }
@@ -135,6 +163,14 @@ class DetailViewController: UIViewController {
         .addUserSavedShopToDefaultCategory(user: UserManager.shared.user,
                                                             shop: shop,
                                                             savedShop: &savedShop)
+    }
+  }
+
+  func removeSavedShopInCollection() {
+
+    if let shop = shop {
+
+      collectionViewModel.removeSavedShopInDefaultCategory(user: UserManager.shared.user, shop: shop)
     }
   }
 
@@ -307,7 +343,8 @@ extension DetailViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension DetailViewController: UITableViewDelegate {}
+extension DetailViewController: UITableViewDelegate {
+}
 
 // MARK: - WriteReviewCellDelegate
 extension DetailViewController: WriteReviewCellDelegate {

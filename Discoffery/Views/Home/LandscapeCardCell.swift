@@ -15,6 +15,8 @@ class LandscapeCardCell: UITableViewCell {
 
   var featureArr: [String] = []
 
+  var mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
+
   // MARK: - IBOutlets
   @IBOutlet weak var itemCollectionView: UICollectionView!
   @IBOutlet weak var featureCollectionView: UICollectionView!
@@ -24,7 +26,6 @@ class LandscapeCardCell: UITableViewCell {
   @IBOutlet weak var cafeName: UILabel!
   @IBOutlet weak var distance: UILabel!
   @IBOutlet weak var openHours: UILabel!
-  @IBOutlet weak var saveToCollectionBtn: UIButton!
 
   // MARK: - Properties
   override func awakeFromNib() {
@@ -32,6 +33,10 @@ class LandscapeCardCell: UITableViewCell {
 
     // Initialization code
     setupCollectionView()
+
+    // swiftlint:disable force_unwrapping
+    cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
+    openHours.text = "疫情暫停營業"
   }
 
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,6 +45,13 @@ class LandscapeCardCell: UITableViewCell {
   }
 
   // MARK: - Functions
+  func layoutLandscapeCardCell(shop: CoffeeShop) {
+
+    cafeName.text = shop.name
+    distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
+    starsView.rating = shop.tasty
+  }
+
   func configureFeature(with featureArr: [String]) {
 
     self.featureArr = featureArr
@@ -140,4 +152,5 @@ extension LandscapeCardCell: UICollectionViewDelegateFlowLayout {
 }
 
 extension LandscapeCardCell: UICollectionViewDelegate {
+
 }

@@ -20,6 +20,10 @@ class CollectionViewModel {
 
   var onFetchSavedShopsForAllCategory: (() -> Void)?
 
+  var onFetchAllUserSavedShops: (([String]) -> Void)? // For Detail Page
+
+  var onRemoveShopFromDefaultCategory: (() -> Void)? // For Detail Page
+
   var savedShopsForSpecificCategory: [CoffeeShop] = [] {
 
     didSet {
@@ -53,22 +57,31 @@ class CollectionViewModel {
   }
 
   func fetchSavedShopsInDefaultCategory(user: User) {
-
+    // For Detail Page to check if current viewd shop is saved in user's collection
     UserManager.shared.fetchUserSavedShopForDefaultCategory(user: user) { result in
 
       switch result {
 
       case .success(let savedShops):
-
-        if !savedShops.savedShopsByCategory.isEmpty {
-
-          let savedShopsArr = savedShops.savedShopsByCategory
-
-          self.fetchSavedShop(shopid: savedShopsArr)
-        }
+        self.onFetchAllUserSavedShops?(savedShops.savedShopsByCategory)
 
       case .failure(let error):
         print("fetchUserSavedShopForDefaultCategory.failure: \(error)")
+      }
+    }
+  }
+
+  func removeSavedShopInDefaultCategory(user: User, shop: CoffeeShop) {
+
+    UserManager.shared.removeSavedShopInDefaultCategory(user: user, shop: shop) { result in
+
+      switch result {
+
+      case .success:
+        self.onRemoveShopFromDefaultCategory?()
+
+      case .failure(let error):
+        print("removeSavedShopInDefaultCategory.failure: \(error)")
       }
     }
   }
@@ -110,13 +123,10 @@ class CollectionViewModel {
       switch result {
 
       case .success:
-
         self.onAddNewCategory?()
-
-        print("🥴addNewCategory To Firebase Success")
+        print("addNewCategory To Firebase Success")
 
       case .failure(let error):
-
         print("addNewCategory.failure: \(error)")
       }
     }
