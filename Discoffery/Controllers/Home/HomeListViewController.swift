@@ -15,9 +15,8 @@ class HomeListViewController: UIViewController {
   var homeViewModel: HomeViewModel?
   
   var shopsDataForList: [CoffeeShop] = []
-  
-  // Use shop.id as the key to find [Feature] belongs to which shop
-  var featureDic: [String: [Feature]] = [:]
+
+  var featureDic: [String: [Feature]] = [:] // Use shop.id as the key to find [Feature] belongs to which shop
 
   var recommendItemsDic: [String: [RecommendItem]] = [:]
 

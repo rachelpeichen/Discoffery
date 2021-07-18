@@ -10,8 +10,8 @@ import MapKit
 
 class MapRouteViewController: UIViewController {
 
+  // MARK: - IBOutlets & IBActions
   @IBOutlet weak var mapView: MKMapView!
-
   @IBOutlet weak var backBtn: UIButton!
 
   @IBAction func onTapBackBtn(_ sender: Any) {
@@ -26,6 +26,7 @@ class MapRouteViewController: UIViewController {
 
   var userCurrentCoordinate = CLLocationCoordinate2D()
 
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -40,6 +41,7 @@ class MapRouteViewController: UIViewController {
   }
 }
 
+// MARK: - MKMapViewDelegate
 extension MapRouteViewController: MKMapViewDelegate {
 
   func showDirection() {

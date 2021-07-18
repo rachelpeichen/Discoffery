@@ -39,7 +39,8 @@ class RecommendViewController: UIViewController {
     announce.isHidden = true
   }
 
-  func setupVC() {
+  // MARK: - Private Functions
+  private func setupVC() {
     navigationController?.navigationBar.barTintColor = .G3
 
     navigationController?.navigationBar.tintColor = .G1

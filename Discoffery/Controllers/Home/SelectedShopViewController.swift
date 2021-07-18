@@ -15,7 +15,7 @@ protocol SelectedShopViewControllerDelegate: AnyObject {
 
 class SelectedShopViewController: UIViewController {
 
-  // MARK: - Outlets
+  // MARK: - IBOutlets
   @IBOutlet weak var backgroundView: UIView!
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var selectedShopName: UILabel!
@@ -39,6 +39,7 @@ class SelectedShopViewController: UIViewController {
 
   var selectedShopRecommendItem: [RecommendItem]?
 
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 

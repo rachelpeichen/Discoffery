@@ -253,6 +253,7 @@ extension AddShopViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UICollectionViewDelegate
 extension AddShopViewController: UICollectionViewDelegate {
+
 }
 
 // MARK: - UITextViewDelegate

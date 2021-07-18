@@ -41,7 +41,6 @@ class SearchViewController: UIViewController {
     if let resultVC = segue.destination as? SearchResultViewController {
 
       guard let keyword = inputKeyword else { return }
-
       resultVC.keyword = keyword
     }
   }
@@ -90,10 +89,19 @@ extension SearchViewController: UICollectionViewDataSource {
                                                      for: indexPath) as? KeywordCollectionViewCell {
 
       cell.layoutKeywordCollectionViewCell(from: hardCodeKeywordsArr[indexPath.row])
+      cell.keywordBtn.addTarget(self, action: #selector(didTapKeywordBtn(sender:)), for: .allTouchEvents)
 
       return cell
     }
-    return FeatureCollectionViewCell()
+    return KeywordCollectionViewCell()
+  }
+
+  @objc func didTapKeywordBtn(sender: UIButton) {
+
+    if let input = sender.title(for: .normal) {
+      inputKeyword = input
+      performSegue(withIdentifier: "navigateToSearchResultVC", sender: sender)
+    }
   }
 }
 
@@ -127,5 +135,5 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UICollectionViewDelegate
 extension SearchViewController: UICollectionViewDelegate {
-  // Delegate Method
+
 }

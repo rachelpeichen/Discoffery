@@ -30,31 +30,21 @@ class SearchResultViewController: UIViewController {
 
   var recommendItemsDic: [String: [RecommendItem]] = [:] // Use shop.id as key to find [RecommendItem] belongs to which shop
 
-  var featureDic: [String: [Feature]] = [:] // now no use this
-
   var keyword: String?
 
-  var mockImages = ["rect1", "rect2", "rect3", "rect4", "rect5"]
-
   // MARK: - View Life Cycle
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(true)
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
     
     // Do any additional setup after loading the view.
+  }
 
-    showLoadingHUD()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(true)
     
-    setupTableView()
-
     // MARK: *Flow* fetch shop  -> fetch item for shop -> filter item == keyword -> sort by distance
-    // 1: Search shops within distance on Firebase; default is 2000 m 我家偏僻用3000
-    searchViewModel.getShopAroundUser(distance: 3000)
-
-    let dispatchGroup = DispatchGroup()
+    // 1: Search shops within distance on Firebase; default is 2000 m
+    searchViewModel.getShopAroundUser(distance: 2000)
 
     searchViewModel.onSearchShopsData = { [weak self] shopsData in
 
@@ -63,33 +53,20 @@ class SearchResultViewController: UIViewController {
       // 2: Search each shop's RecommendItem and *get successs call back*
       for index in 0..<shopsData.count {
 
-        let shop = shopsData[index]
-
-        dispatchGroup.enter() // Enter before fetching on Firebase
-
-        self?.searchViewModel.fetchRecommendItemForShop(shop: shop)
-
-        self?.searchViewModel.onShopRecommendItem = { result in
-
-          self?.recommendItemsDic[shop.id] = result
-
-          dispatchGroup.leave()
-        }
+        self?.fetchRecommendItemForShop(shop: shopsData[index])
       }
     }
 
-    dispatchGroup.notify(queue: .main) {
-
       // 3: Filter shopsAroundUser by keyword
       if let keyword = self.keyword {
-
         self.filterShopsAroundUser(keyword: keyword)
       }
 
       // 4: Show filtered result in ascending order of distance between user
       self.sortSearchResult()
+      self.setupTableView()
       self.tableView.reloadData()
-    }
+
   }
 
   // MARK: - Functions
@@ -103,6 +80,8 @@ class SearchResultViewController: UIViewController {
 
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.emptyDataSetSource = self
+    tableView.emptyDataSetDelegate = self
     tableView.estimatedRowHeight = 320
     tableView.rowHeight = UITableView.automaticDimension
     tableView.separatorStyle = .none
@@ -154,6 +133,21 @@ class SearchResultViewController: UIViewController {
     searchResultArr.sort { $0.cheap < $1.cheap }
   }
 
+  func fetchRecommendItemForShop(shop: CoffeeShop) {
+
+    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
+
+      switch result {
+
+      case .success(let getItems):
+        self.recommendItemsDic[shop.id] = getItems
+
+      case .failure(let error):
+        print("fetchFeatureForShop: \(error)")
+      }
+    }
+  }
+
   func calDistanceBetweenTwoLocations(location1Lat: Double, location1Lon: Double, location2Lat: Double, location2Lon: Double) -> Double {
 
     // Use Haversine Formula to calculate the distance in meter between two locations
@@ -182,7 +176,7 @@ extension SearchResultViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-    return searchResultArr.count
+    return shopsAroundUserArr.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -190,25 +184,13 @@ extension SearchResultViewController: UITableViewDataSource {
     if let cell = tableView.dequeueReusableCell(
         withIdentifier: "landscapeCardCell", for: indexPath) as? LandscapeCardCell {
 
-      let shop = searchResultArr[indexPath.row]
-      // swiftlint:disable force_unwrapping
-      cell.cafeMainImage.image = UIImage(named: mockImages.randomElement()!)
-      cell.cafeName.text = shop.name
-      cell.distance.text = "距離\(shop.cheap.rounded().formattedValue)公尺"
-      cell.starsView.rating = shop.tasty
-      cell.openHours.text = "疫情暫停營業"
+      let shop = shopsAroundUserArr[indexPath.row]
+      cell.layoutLandscapeCardCell(shop: shop)
 
       guard let recommendItemsArr = recommendItemsDic[shop.id] else { return UITableViewCell() }
-
       var itemLayoutArr: [String] = []
       itemLayoutArr.append(contentsOf: recommendItemsArr.map { $0.item })
       cell.configureItem(with: itemLayoutArr)
-
-      guard let featureArr = featureDic[shop.id] else { return UITableViewCell() }
-
-      var featureLayoutArr = featureArr[0].special
-      featureLayoutArr.append(featureArr[0].timeLimit)
-      cell.configureFeature(with: featureLayoutArr)
 
       cell.selectionStyle = .none
 
@@ -219,4 +201,19 @@ extension SearchResultViewController: UITableViewDataSource {
 }
 
 extension SearchResultViewController: UITableViewDelegate {
+
+}
+
+// MARK: - DZNEmptyDataSetDelegate
+extension SearchResultViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+
+  func title(forEmptyDataSet scrollView: UIScrollView) -> NSAttributedString? {
+    let str = "好像搜尋不到耶😣"
+    let attrs = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .body)]
+    return NSAttributedString(string: str, attributes: attrs)
+  }
+
+  func image(forEmptyDataSet scrollView: UIScrollView) -> UIImage? {
+    return UIImage(named: "logo")
+  }
 }

@@ -23,7 +23,7 @@ class CollectionViewController: UIViewController {
 
   var selectedCategoryIndex: Int?
 
-  // MARK: - Life Cycle
+  // MARK: - View Life Cycle
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
 

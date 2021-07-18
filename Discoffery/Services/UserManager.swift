@@ -23,7 +23,7 @@ class UserManager {
 
   lazy var database = Firestore.firestore()
 
-  // MARK: - User login and create on Firebase
+  // MARK: - User Login and Create User on Firebase Related Functions
   func identifyUser(firebaseUID: String, completion: @escaping (Result<User, Error>) -> Void) {
 
     database.collection("users").document(firebaseUID).getDocument { querySnapshot, error in
@@ -66,7 +66,7 @@ class UserManager {
     }
   }
 
-  // MARK: Listen to user change on Firebase
+  // MARK: Listen to User Change On Firebase
   func watchUser(completion: @escaping (Result<User, Error>) -> Void) {
 
     let docRef = database.collection("users").document(UserManager.shared.user.id)
@@ -87,38 +87,7 @@ class UserManager {
     }
   }
 
-  // MARK: Upload Img
-  func uploadImgFromUser(pickerImage: UIImage, folderName: String, completion: @escaping (Result<String, Error>) -> Void) {
-
-    let uuid = UUID().uuidString
-
-    guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
-
-    let storageRef = Storage.storage().reference()
-
-    let imageRef = storageRef.child(folderName).child("\(uuid).jpg")
-
-    imageRef.putData(image, metadata: nil) { metadata, error in
-
-      if let error = error {
-
-        completion(.failure(error))
-      }
-      guard metadata != nil else { return }
-
-      imageRef.downloadURL { url, error in
-
-        if let url = url {
-          completion(.success(url.absoluteString))
-
-        } else if let error = error {
-          completion(.failure(error))
-        }
-      }
-    }
-  }
-
-  // MARK: User's Collection
+  // MARK: User's Collection Related Functions
   func createDefaultCollectionCategory(user: User, savedShops: inout UserSavedShops, completion: @escaping (Result<String, Error>) -> Void) {
 
     let docRef = database.collection("users").document(user.id).collection("savedShops").document("defaultCategory")
@@ -303,6 +272,37 @@ class UserManager {
 
       } else {
         print("blockUser.success")
+      }
+    }
+  }
+
+  // MARK: - Modify Profile Related Functions
+  func uploadImgFromUser(pickerImage: UIImage, folderName: String, completion: @escaping (Result<String, Error>) -> Void) {
+
+    let uuid = UUID().uuidString
+
+    guard let image = pickerImage.jpegData(compressionQuality: 0.5) else { return }
+
+    let storageRef = Storage.storage().reference()
+
+    let imageRef = storageRef.child(folderName).child("\(uuid).jpg")
+
+    imageRef.putData(image, metadata: nil) { metadata, error in
+
+      if let error = error {
+
+        completion(.failure(error))
+      }
+      guard metadata != nil else { return }
+
+      imageRef.downloadURL { url, error in
+
+        if let url = url {
+          completion(.success(url.absoluteString))
+
+        } else if let error = error {
+          completion(.failure(error))
+        }
       }
     }
   }

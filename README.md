@@ -7,21 +7,21 @@
   <img width="300" height="150" src="https://github.com/rachelpeichen/remote-learning-assignment/blob/main/logo_nobg.png">
 </p>
 
-Discoffery is an easy-to-use application providing nearby coffee shops information to users. It offers mutiple interactive functions including searching, saving, and reviewing coffee shops to help users explore more great cafes that worth visiting the next time.
+Discoffery is an easy-to-use application providing nearby coffee shops information to users. It offers multiple interactive functions including searching, saving, and reviewing coffee shops to help users explore more great cafes that are worth visiting the next time.
 
 [![Download badge](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg)](https://apple.co/3xVk2Aj)
 
 ## Features & Screenshots
 
 ### Home
-- When user enter the app, the home page will present a map with coffees shops around the user within 1km.
+- When the user enters the app, the home page will present a map with coffees shops around the user within 1 km.
 - The user can also switch from map view to list view.
 
 ![Map](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/mapclip.gif)
 ![List](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/listclip.gif)
 
 ### Detail
-- Detail page shows the rating, reviews, opening hours, comment area, and navigating route of the coffee shop.
+- The detail page shows the rating, reviews, opening hours, comment area, and navigating route of the coffee shop.
 
 ![Detail](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/detailclipone.gif)
 
@@ -36,13 +36,13 @@ Discoffery is an easy-to-use application providing nearby coffee shops informati
 ![Reccommend](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/recommend.gif)
 
 ### Collection
-- Users can save their favorite coffee shops and view them in the collection page.
-- Users can create a new category to customize his/her collection.
+- Users can save their favorite coffee shops and view them on the collection page.
+- Users can create a new category to customize their collections.
 
 ![Collection](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/collection.png)
 
 ### Report a New Coffe Shop
-- Discoffery allow users to report new information whenever they find a new cafe.
+- Discoffery allows users to report new information whenever they find a new cafe.
 
 ![Add Shop](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/addShop.png)
 

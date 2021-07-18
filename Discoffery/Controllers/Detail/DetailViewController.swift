@@ -39,9 +39,9 @@ class DetailViewController: UIViewController {
 
   // MARK: - IBOutlets
   @IBOutlet weak var tableView: UITableView!
-
   @IBOutlet weak var saveButton: UIButton!
 
+  // MARK: - IBActions
   @IBAction func onTapBackButton(_ sender: Any) {
 
     self.dismiss(animated: true, completion: nil)
@@ -49,7 +49,6 @@ class DetailViewController: UIViewController {
 
   let activityVC = UIActivityViewController(activityItems: ["跟你分享一家很棒的咖啡廳😊"], applicationActivities: nil)
 
-  // MARK: - IBActions
   @IBAction func onTapShareButton(_ sender: Any) {
 
     present(activityVC, animated: true, completion: nil)
@@ -217,9 +216,7 @@ extension DetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
     guard let shop = shop else { return 0 }
-
     shopName = shop.name
-
     return shopsDetail.count
   }
 
@@ -244,12 +241,10 @@ extension DetailViewController: UITableViewDataSource {
         cell.checkAllReviewsBtn.addTarget(self,
                                           action: #selector(onTapCheckMoreReviewsBtn(sender:)),
                                           for: .touchUpInside)
-        cell.name.text = shop?.name
-        cell.address.text = shop?.address
+        guard let shop = shop else { return ShopDescriptionCell() }
+
+        cell.layoutShopDescriptionCell(shop: shop)
         cell.reviewsCount.text = "(\(reviewsCount))"
-        cell.rateStars.rating = shop?.tasty ?? 1
-        cell.averageRatings.text = String(Double(cell.rateStars.rating).rounded())
-        cell.openingHours.text = "因爲疫情暫停營業"
         cell.selectionStyle = .none
 
         return cell
@@ -336,9 +331,9 @@ extension DetailViewController: UITableViewDataSource {
 
     default:
 
-      return UITableViewCell()
+      return WriteReviewCell()
     }
-    return UITableViewCell()
+    return WriteReviewCell()
   }
 }
 

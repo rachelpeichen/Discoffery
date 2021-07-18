@@ -10,7 +10,7 @@ import MapKit
 
 class HomeMapViewController: UIViewController {
   
-  // MARK: - Outlets
+  // MARK: - IBOutlets & IBActions
   @IBOutlet var mapView: MKMapView!
   @IBOutlet weak var coverView: UIView!
   @IBOutlet weak var hintLabel: UILabel!
@@ -47,23 +47,6 @@ class HomeMapViewController: UIViewController {
     }
   }
 
-  func showPermissionAlert() {
-   let alertController = UIAlertController(title: "需要開啟定位權限",
-                                           message: "此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。",
-                                           preferredStyle: UIAlertController.Style.alert)
-
-   let okAction = UIAlertAction(title: "前往設定", style: .default, handler: { _ in
-       // Redirect to iPhone Settings
-       UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-   })
-
-   let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel)
-   alertController.addAction(cancelAction)
-   alertController.addAction(okAction)
-
-   self.present(alertController, animated: true, completion: nil)
-}
-  
   // MARK: - Properties
   var homeViewModel: HomeViewModel?
   
@@ -161,6 +144,23 @@ class HomeMapViewController: UIViewController {
       }
     }
   }
+
+  func showPermissionAlert() {
+   let alertController = UIAlertController(title: "需要開啟定位權限",
+                                           message: "此APP需要取得您的現在位置以搜尋您附近的咖啡廳資訊。",
+                                           preferredStyle: UIAlertController.Style.alert)
+
+   let okAction = UIAlertAction(title: "前往設定", style: .default, handler: { _ in
+       // Redirect to iPhone Settings
+       UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+   })
+
+   let cancelAction = UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel)
+   alertController.addAction(cancelAction)
+   alertController.addAction(okAction)
+
+   self.present(alertController, animated: true, completion: nil)
+}
 
   // MARK: TODO - Need to move to ViewModel
   func fetchFeatureForShop(shop: CoffeeShop) {
@@ -264,7 +264,6 @@ extension HomeMapViewController: CLLocationManagerDelegate {
 
     } else {
       // Fallback on earlier versions
-
       if CLLocationManager.locationServicesEnabled() {
 
         switch CLLocationManager.authorizationStatus() {
@@ -385,7 +384,6 @@ extension HomeMapViewController: MKMapViewDelegate {
 extension HomeMapViewController: SelectedShopViewControllerDelegate {
 
   func didTouchSelectedVC(_ sender: Any) {
-    
     performSegue(withIdentifier: "navigateSelectedShopVCToDetailVC", sender: sender)
   }
 }

@@ -13,8 +13,6 @@ class SearchViewModel {
   // MARK: - Properties
   var onSearchShopsData: (([CoffeeShop]) -> Void)?
 
-  var onShopRecommendItem: (([RecommendItem]) -> Void)?
-
   var searchShopsData: [CoffeeShop] = [] {
 
     didSet {
@@ -78,21 +76,5 @@ class SearchViewModel {
     let upperLon = longitude + (distance / metersPerLonDegree)
 
     searchShopsData = shopFilteredByLat.filter { $0.longitude >= lowerLon && $0.longitude <= upperLon }
-  }
-
-  func fetchRecommendItemForShop(shop: CoffeeShop) {
-
-    RecommendItemManager.shared.fetchRecommendItemForShop(shop: shop) { result in
-
-      switch result {
-
-      case .success(let items):
-        self.onShopRecommendItem?(items)
-
-      case .failure(let error):
-
-        print("fetchFeatureForShop.failure: \(error)")
-      }
-    }
   }
 }

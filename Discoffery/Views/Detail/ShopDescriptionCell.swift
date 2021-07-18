@@ -29,4 +29,12 @@ class ShopDescriptionCell: ShopDetailBasicCell {
     
     // Configure the view for the selected state
   }
+
+  func layoutShopDescriptionCell(shop: CoffeeShop) {
+    name.text = shop.name
+    address.text = shop.address
+    rateStars.rating = shop.tasty
+    openingHours.text = "因爲疫情暫停營業"
+    averageRatings.text = String(Double(shop.tasty).rounded())
+  }
 }

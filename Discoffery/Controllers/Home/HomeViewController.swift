@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
   // MARK: - Properties
   var sharedHomeViewModel = HomeViewModel()
 
-  // MARK: - Outlets
+  // MARK: - IBOutlets & IBActions
   @IBOutlet weak var mapContainerView: UIView!
   @IBOutlet weak var listContainerView: UIView!
 
@@ -50,6 +50,7 @@ class HomeViewController: UIViewController {
     listContainerView.isHidden = true
   }
 
+  // MARK: - Functions
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     // mapVC & listVC can both use the same model and get data at the same time

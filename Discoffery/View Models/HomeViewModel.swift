@@ -32,7 +32,7 @@ class HomeViewModel {
       onShopsData?(shopsData)
     }
   }
-  // MARK: TODO - Check if only HomeMapVC use this closure ?
+  
   var onUserCurrentCoordinate: ((CLLocationCoordinate2D) -> Void)?
 
   var userCurrentCoordinate: CLLocationCoordinate2D? {

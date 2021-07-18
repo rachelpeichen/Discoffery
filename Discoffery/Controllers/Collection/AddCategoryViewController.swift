@@ -17,9 +17,7 @@ class AddCategoryViewController: UIViewController {
 
   // MARK: - IBOutles & IBActions
   @IBOutlet weak var addCategoryBGView: UIView!
-
   @IBOutlet weak var categoryTextField: UITextField!
-
   @IBOutlet weak var finishBtn: CustomBtn!
 
   @IBAction func didEndAddCategory(_ sender: UITextField) {
@@ -55,6 +53,7 @@ class AddCategoryViewController: UIViewController {
     dismiss(animated: true, completion: nil)
   }
 
+  // MARK: View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -62,6 +61,7 @@ class AddCategoryViewController: UIViewController {
     layoutAddCategoryVC()
   }
 
+  // MARK: Private Functions
   private func layoutAddCategoryVC() {
 
     finishBtn.isEnabled = false

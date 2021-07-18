@@ -18,8 +18,10 @@ class FirstRecommendViewController: UIViewController {
 
   var recommendItemsDic: [String: [RecommendItem]] = [:]
 
+  // MARK: - IBOutlets
   @IBOutlet weak var collectionView: UICollectionView!
 
+  // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -45,7 +47,7 @@ class FirstRecommendViewController: UIViewController {
     }
   }
 
-  // MARK: - Functions
+  // MARK: - Private Functions
   private func setupCollectionView() {
 
     collectionView.register(UINib(nibName: ProtraitCardCollectionCell.identifier, bundle: nil),

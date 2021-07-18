@@ -70,10 +70,10 @@ class SettingViewController: UIViewController {
 
     updateUser.id = UserManager.shared.user.id
 
-    // MARK: 判斷更新的三種情況（Kinda Redundant）
+    // MARK: Check 3 situations of modifying profile
     if didChangeName == true && didUploadImg == true {
 
-      // 名字＋大頭貼都有改
+      // Both name and avatar
       guard let uploadImg = profileImg.image else { return }
 
       let dispatchGroup = DispatchGroup()
@@ -101,7 +101,7 @@ class SettingViewController: UIViewController {
 
     } else if didChangeName == true && didUploadImg == false {
 
-      // 只改名字
+      // Only name
       userViewModel.updateUserName(user: updateUser)
 
       showSuccessHUD(showInfo: "更新用戶名稱成功")
@@ -110,7 +110,7 @@ class SettingViewController: UIViewController {
 
     } else {
 
-      // 只改大頭貼
+      // Only avatar
       guard let uploadImg = profileImg.image else { return }
 
       let dispatchGroup = DispatchGroup()
