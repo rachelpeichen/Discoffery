@@ -4,12 +4,12 @@
 [![Platform](https://img.shields.io/badge/platform-iOS-lightgrey)](https://www.apple.com/tw/ios/ios-14/)
 
 <p align="center">
-  <img width="300" height="150" src="https://github.com/rachelpeichen/remote-learning-assignment/blob/main/logo_nobg.png">
+  <img width="300" height="150" src="https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/logo_nobg.png">
 </p>
 
 Discoffery is an easy-to-use application providing nearby coffee shops information to users. It offers multiple interactive functions including searching, saving, and reviewing coffee shops to help users explore more great cafes that are worth visiting the next time.
 
-[![Download badge](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg)](https://apple.co/3xVk2Aj)
+[![Download badge](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/Download_Badge.svg)](https://apple.co/3xVk2Aj)
 
 ## Features & Screenshots
 
@@ -17,34 +17,34 @@ Discoffery is an easy-to-use application providing nearby coffee shops informati
 - When the user enters the app, the home page will present a map with coffees shops around the user within 1 km.
 - The user can also switch from map view to list view.
 
-![Map](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/mapclip.gif)
-![List](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/listclip.gif)
+![Map](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/mapclip.gif)
+![List](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/listclip.gif)
 
 ### Detail
 - The detail page shows the rating, reviews, opening hours, comment area, and navigating route of the coffee shop.
 
-![Detail](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/detailclipone.gif)
+![Detail](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/detailclipone.gif)
 
 ### Review
 - Users can post reviews to any coffee shop.
 
-![Review](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/review.gif)
+![Review](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/review.gif)
 
 ### Recommend
 - Discoffery will recommend the user popular coffee shops nearby based on the rating and the user's location.
 
-![Reccommend](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/recommend.gif)
+![Reccommend](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/recommend.gif)
 
 ### Collection
 - Users can save their favorite coffee shops and view them on the collection page.
 - Users can create a new category to customize their collections.
 
-![Collection](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/collection.png)
+![Collection](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/collection.png)
 
 ### Report a New Coffe Shop
 - Discoffery allows users to report new information whenever they find a new cafe.
 
-![Add Shop](https://github.com/rachelpeichen/remote-learning-assignment/blob/main/addShop.png)
+![Add Shop](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/addShop.png)
 
 ## Libraries
 - [SwiftLint](https://github.com/realm/SwiftLint)
