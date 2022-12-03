@@ -9,8 +9,6 @@
 
 Discoffery is an easy-to-use application providing nearby coffee shops information to users. It offers multiple interactive functions including searching, saving, and reviewing coffee shops to help users explore more great cafes that are worth visiting the next time.
 
-[![Download badge](https://github.com/rachelpeichen/Discoffery/blob/develop/README%20Images/Download_Badge.svg)](https://apple.co/3xVk2Aj)
-
 ## Features & Screenshots
 
 ### Home
